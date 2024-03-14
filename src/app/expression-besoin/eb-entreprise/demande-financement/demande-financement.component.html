@@ -1,0 +1,542 @@
+<div class="container" *ngIf="demandeFin">
+  <div style="padding:30px;">
+    <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false"
+             nzTitle="Demande de financement de l'entreprise">
+
+      <nz-collapse [nzBordered]="false" style="background-color: white" nzAccordion>
+        <nz-collapse-panel style="font-weight: bold;" nzHeader="Etape 1/2 - Demande de financement de l'entreprise"
+                           [nzActive]="key1">
+          <form nz-form class="center-form" [formGroup]="demandeFinancementForm">
+            <div nz-row nzAlign="top">
+              <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                   [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }" [nzXl]="{ span: 10, offset: 1 }">
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-form-label nzRequired nzFor="type_demande">Type de demande de financement</nz-form-label>
+                    <nz-select formControlName="typefinancement"
+                               [ngClass]="{'is-invalid':submitted && demandeFinancementForm.controls.typefinancement.errors}"
+                               (ngModelChange)="gestionDuree()">
+                      <nz-option *ngFor="let typeFinancement of typefinancements" nzValue="{{typeFinancement.libelle}}"
+                                 nzLabel="{{typeFinancement.libelle}}"></nz-option>
+                    </nz-select>
+                    <div class="invalid-feedback"
+                         *ngIf="submitted && demandeFinancementForm.controls.typefinancement.errors">
+                      <div *ngIf="demandeFinancementForm.controls.typefinancement.errors.required">Ce champ est
+                        obligatoire
+                      </div>
+                    </div>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                   [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }" [nzXl]="{ span: 10, offset: 1 }">
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-form-label nzRequired nzFor="duree">{{libelleDuree}}</nz-form-label>
+                    <input nz-input name="duree" id="duree" type="number" formControlName="duree"
+                           [ngClass]="{'is-invalid':submitted && demandeFinancementForm.controls.duree.errors}"/>
+                    <div class="invalid-feedback" *ngIf="submitted && demandeFinancementForm.controls.duree.errors">
+                      <div *ngIf="demandeFinancementForm.controls.duree.errors.required">Ce champ est obligatoire</div>
+                      <div *ngIf="demandeFinancementForm.controls.duree.errors.pattern">Ce champ est invalide</div>
+                      <div
+                        *ngIf="demandeFinancementForm.controls.duree.errors.min || demandeFinancementForm.controls.duree.errors.max">
+                        La valeur de ce champ est incorrecte
+                      </div>
+
+                    </div>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+
+            </div>
+
+            <div nz-row nzAlign="top">
+              <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                   [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }" [nzXl]="{ span: 10, offset: 1 }">
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-form-label nzRequired nzFor="montant_demander">{{libelleMontant}}
+                    </nz-form-label>
+                    <nz-input-group [nzSuffix]="suffixTemplateInfo">
+                      <input (blur)="formatNumber(); onChangeCoutProjetValidators()" nz-input name="montant_demander"
+                             id="montant_demander"
+                             formControlName="montantdemande"
+                             [ngClass]="{'is-invalid':submitted && demandeFinancementForm.controls.montantdemande.errors}"/>
+                    </nz-input-group>
+                    <ng-template #suffixTemplateInfo><i nz-icon nz-tooltip
+                                                        nzTooltipTitle="Le montant minimum dans ce champ est de 500 mille FCFA, le montant maximum est de 50 millions FCFA. Ces fourchettes sont à titre illustratif pour vous guider. La structure qui recevra votre demande confirmera le montant à vous octroyer selon votre besoin de financement . "
+                                                        nzType="info-circle"></i></ng-template>
+
+                    <div class="invalid-feedback"
+                         *ngIf="submitted && demandeFinancementForm.controls.montantdemande.errors">
+                      <div *ngIf="demandeFinancementForm.controls.montantdemande.errors.required">Ce champ est
+                        obligatoire
+                      </div>
+                      <div *ngIf="demandeFinancementForm.controls.montantdemande.errors.pattern">Ce champ est invalide
+                      </div>
+                      <div
+                        *ngIf="demandeFinancementForm.controls.montantdemande.errors.minValidator || demandeFinancementForm.controls.montantdemande.errors.maxValidator">
+                        La valeur de ce champ est incorrecte
+                      </div>
+                    </div>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+
+              <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                   [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }" [nzXl]="{ span: 10, offset: 1 }">
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-form-label class="adjustements-inputs" nzRequired nzFor="p">Coût du projet en Francs CFA
+                    </nz-form-label>
+                    <input nz-input name="cout_projet" id="cout_projet" formControlName="coutProjet"
+                           [ngClass]="{'is-invalid':submitted && demandeFinancementForm.controls.coutProjet.errors}"
+                           (blur)="formatNumber()"/>
+                    <div class="invalid-feedback"
+                         *ngIf="submitted && demandeFinancementForm.controls.coutProjet.errors">
+                      <div *ngIf="demandeFinancementForm.controls.coutProjet.errors.required">Ce champ est obligatoire
+                      </div>
+                      <div *ngIf="demandeFinancementForm.controls.coutProjet.errors.minValidator">Le cout du projet doit
+                        être supérieur ou égal au montant demandé
+                      </div>
+                      <div *ngIf="demandeFinancementForm.controls.coutProjet.errors.pattern">Ce champ est invalide</div>
+                    </div>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+
+              <!--  champ à supprimer
+              <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                   [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }" [nzXl]="{ span: 10, offset: 1 }">
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-form-label nzRequired nzFor="n">% Apport</nz-form-label>
+                    <input nz-input name="business_plan" type="number" [max]="100" id="business_plan"
+                           formControlName="apport"
+                           [ngClass]="{'is-invalid':submitted && demandeFinancementForm.controls.apport.errors}"/>
+                    <div class="invalid-feedback" *ngIf="submitted && demandeFinancementForm.controls.apport.errors">
+                      <div *ngIf="demandeFinancementForm.controls.apport.errors.required">Ce champ est obligatoire</div>
+                      <div *ngIf="demandeFinancementForm.controls.apport.errors.pattern">Ce champ est invalide</div>
+                      <div *ngIf="demandeFinancementForm.controls.apport.errors.max">La valeur ne peut pas dépasser
+                        100
+                      </div>
+                    </div>
+                  </nz-form-control>
+                </nz-form-item>
+              </div> --->
+
+            </div>
+            <!-- Suppression Garantie proposer et valeur de la garantie
+                  <div nz-row nzAlign="top">
+                    <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                         [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }" [nzXl]="{ span: 10, offset: 1 }">
+                      <nz-form-item>
+                        <nz-form-control>
+                          <nz-form-label nzRequired nzFor="garantie_proposer">Garanties proposées</nz-form-label>
+                          <nz-select name="select-validate" formControlName="garantie"
+                                     (ngModelChange)="controlLabelGarante()"
+                                     [ngClass]="{'is-invalid':submitted && demandeFinancementForm.controls.garantie.errors}">
+                            <nz-option *ngFor="let garantie of garanties" nzValue="{{convertObject(garantie)}}"
+                                       nzLabel="{{garantie.libelle}}"></nz-option>
+                          </nz-select>
+                          <div class="invalid-feedback" *ngIf="submitted && demandeFinancementForm.controls.garantie.errors">
+                            <div *ngIf="demandeFinancementForm.controls.garantie.errors.required">Ce champ est obligatoire
+                            </div>
+                          </div>
+                        </nz-form-control>
+                      </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                         [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }" [nzXl]="{ span: 10, offset: 1 }">
+                      <nz-form-item>
+                        <nz-form-control>
+                          <nz-form-label class="adjustements-inputs" nzRequired nzFor="valeur_garantie">Valeur des garanties
+                            en Francs CFA
+                          </nz-form-label>
+                          <input nz-input name="valeur_garantie" id="valeur_garantie" (blur)="formatNumber()"
+                                 formControlName="valeurGarantie"
+                                 [ngClass]="{'is-invalid':submitted && demandeFinancementForm.controls.valeurGarantie.errors}"/>
+                          <div class="invalid-feedback"
+                               *ngIf="submitted && demandeFinancementForm.controls.valeurGarantie.errors">
+                            <div *ngIf="demandeFinancementForm.controls.valeurGarantie.errors.required">Ce champ est
+                              obligatoire
+                            </div>
+                            <div *ngIf="demandeFinancementForm.controls.valeurGarantie.errors.pattern">Ce champ est invalide
+                            </div>
+                          </div>
+                        </nz-form-control>
+                      </nz-form-item>
+                    </div>
+                  </div>  -->
+
+            <div nz-row nzAlign="top">
+              <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                   [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }" [nzXl]="{ span: 10, offset: 1 }">
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-form-label nzRequired nzFor="taux_interet">A quel taux d'interêt souhaiteriez vous rembourser le
+                      Financement ?
+                    </nz-form-label>
+                    <input nz-input name="taux_interet" type="number" id="taux_interet" [max]="100"
+                           formControlName="tauxInteret"
+                           [ngClass]="{'is-invalid':submitted && demandeFinancementForm.controls.tauxInteret.errors}"/>
+                    <div class="invalid-feedback"
+                         *ngIf="submitted && demandeFinancementForm.controls.tauxInteret.errors">
+                      <div *ngIf="demandeFinancementForm.controls.tauxInteret.errors.required">Ce champ est
+                        obligatoire
+                      </div>
+                      <div *ngIf="demandeFinancementForm.controls.tauxInteret.errors.required">Ce champ est invalide
+                      </div>
+                      <div *ngIf="demandeFinancementForm.controls.tauxInteret.errors.max">La valeur ne peut pas dépasser
+                        100
+                      </div>
+                    </div>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                   [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }" [nzXl]="{ span: 10, offset: 1 }">
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-form-label nzRequired nzFor="1414">Avez-vous déjà obtenu un financement dans le passé?
+                    </nz-form-label>
+                    <nz-radio-group [(ngModel)]="radioValue" [ngModelOptions]="{standalone: true}"
+                                    (ngModelChange)="choose()">
+                      <label nz-radio nzValue="non">NON</label>
+                      <label nz-radio nzValue="oui">OUI</label>
+
+                    </nz-radio-group>
+
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </form>
+        </nz-collapse-panel>
+        <nz-collapse-panel style="font-weight: bold;" nzHeader="Etape 2/2 - Demande de financement de l'entreprise"
+                           [nzActive]="key2" *ngIf="show">
+          <form nz-form style="margin-left: 10%;" [formGroup]="financementForm">
+            <div nz-row>
+              <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                   [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }" [nzXl]="{ span: 10, offset: 1 }">
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-form-label nzFor="occupation">Financement déjà obtenu ou en cours</nz-form-label>
+                    <div nz-col>
+                      <nz-button-group>
+                        <button nz-button>Financements</button>
+                        <button [nzDropdownMenu]="menu" nz-button nz-dropdown nzPlacement="bottomRight">
+                          <i nz-icon nzTheme="outline" nzType="eye"></i>
+                        </button>
+                      </nz-button-group>
+                      <nz-dropdown-menu #menu="nzDropdownMenu">
+                        <ul nz-menu>
+                          <li nz-menu-item *ngFor="let finan of listefinancements">
+                            <span nz-popover>{{finan.montant}} </span>
+                            <i nz-button nz-icon="edit"
+                               nzTheme="fill" nzType="edit" style="margin-right: 10px"
+                               (click)="modifierFinancement(finan.id)">
+                            </i>
+                            <i nz-button nz-icon="user-delete" nz-popconfirm
+                               nzCancelText="No" nzOkText="yes" nzPopconfirmPlacement="left"
+                               nzPopconfirmTitle="Etes-vous sûr de vouloir supprimer ce financement?"
+                               nzTheme="fill" nzType="delete" (nzOnConfirm)="confirmSuppressionFinancement(finan.id)"
+                               style="margin-right: 10px "></i>
+                          </li>
+                        </ul>
+                      </nz-dropdown-menu>
+                    </div>
+
+                  </nz-form-control>
+                </nz-form-item>
+
+              </div>
+              <div nz-col nzSpan="18" class="ant-advanced-search-form">
+
+                <div nz-row nzAlign="top">
+                  <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                       [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }"
+                       [nzXl]="{ span: 10, offset: 1 }">
+                    <nz-form-item>
+                      <nz-form-control>
+                        <nz-form-label [nzRequired]="controlLabel()" class="adjustements-inputs"
+                                       nzFor="occupation">
+                          Institution financière
+                        </nz-form-label>
+
+                        <nz-select formControlName="institutionFinanciere" (ngModelChange)="gestionInstitution()"
+                                   [ngClass]="{'is-invalid':submitted2 && financementForm.controls.institutionFinanciere.errors}">
+                          <nz-option nzValue="Financement terminé et remboursé" nzLabel="U-IMCEC"></nz-option>
+                          <nz-option nzValue="Inscription sur la plateforme en cours"
+                                     nzLabel="Réseau Entreprendre"></nz-option>
+                          <nz-option nzValue="Enregistrement de la demande en cours"
+                                     nzLabel="Caurie Microfinance"></nz-option>
+                          <nz-option nzValue="Demande reçue" nzLabel="WIC Capital"></nz-option>
+                          <nz-option nzValue="Demande transmise" nzLabel="BNDE"></nz-option>
+                          <nz-option nzValue="La banque agricole" nzLabel="La banque agricole"></nz-option>
+                          <nz-option nzValue="Incomplet" nzLabel="Orabank"></nz-option>
+                          <nz-option nzValue="Approuvé par le partenaire" nzLabel="Brightmore Capital"></nz-option>
+                          <nz-option nzValue="Accord notifié" nzLabel="Accord notifié"></nz-option>
+                          <nz-option nzValue="Autre institution" nzLabel="Autre"></nz-option>
+                        </nz-select>
+
+                        <div class="invalid-feedback"
+                             *ngIf="submitted2 && financementForm.controls.institutionFinanciere.errors">
+                          <div *ngIf="financementForm.controls.institutionFinanciere.errors.required">Ce champ est
+                            obligatoire
+                          </div>
+                        </div>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                  <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                       [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }"
+                       [nzXl]="{ span: 10, offset: 1 }">
+                    <nz-form-item>
+                      <nz-form-control>
+                        <nz-form-label nzFor="institution" [nzRequired]="controlLabelInstitution()">Autre (si pas
+                          répertoriée dans la liste déroulante)
+                        </nz-form-label>
+
+                        <input nz-input name="institution" type="text" id="institution"
+                               formControlName="autreInstitution"
+                               [ngClass]="{'is-invalid':submitted2 && financementForm.controls.autreInstitution.errors}">
+                        <div class="invalid-feedback"
+                             *ngIf="submitted2 && financementForm.controls.autreInstitution.errors">
+                          <div *ngIf="financementForm.controls.autreInstitution.errors.required">Ce champ est
+                            obligatoire
+                          </div>
+                          <div *ngIf="financementForm.controls.autreInstitution.errors.pattern">Cette valeur est
+                            invalide
+                          </div>
+                        </div>
+
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                </div>
+
+                <div nz-row nzAlign="top">
+                  <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                       [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }"
+                       [nzXl]="{ span: 10, offset: 1 }">
+                    <nz-form-item>
+                      <nz-form-control>
+                        <nz-form-label nzFor="occupation">Type de crédit</nz-form-label>
+
+                        <nz-select formControlName="typeCredit">
+                          <nz-option nzValue="Crédit court terme, moins à égal à 12 mois"
+                                     nzLabel="Crédit court terme, moins à égal à 12 mois"></nz-option>
+                          <nz-option nzValue="Crédit moyen terme, supérieur à 12 mois"
+                                     nzLabel="Crédit moyen terme, supérieur à 12 mois"></nz-option>
+                          <nz-option nzValue="Crédit d'urgence COVID 19"
+                                     nzLabel="Crédit d'urgence COVID 19"></nz-option>
+
+                        </nz-select>
+
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                  <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                       [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }"
+                       [nzXl]="{ span: 10, offset: 1 }">
+                    <nz-form-item>
+                      <nz-form-control>
+                        <nz-form-label [nzRequired]="controlLabel()" nzFor="montant">Montant en Francs CFA
+                        </nz-form-label>
+                        <input nz-input name="montant" id="montant" (blur)="formatNumber()"
+                               [ngClass]="{'is-invalid':submitted2 && financementForm.controls.montant.errors}"
+                               formControlName="montant">
+                        <div class="invalid-feedback" *ngIf="submitted2 && financementForm.controls.montant.errors">
+                          <div *ngIf="financementForm.controls.montant.errors.required">Ce champ est obligatoire</div>
+                          <div *ngIf="financementForm.controls.montant.errors.pattern">Ce champ est invalide</div>
+                        </div>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                </div>
+
+
+                <div nz-row>
+                  <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                       [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }"
+                       [nzXl]="{ span: 10, offset: 1 }">
+                    <nz-form-item>
+                      <nz-form-control>
+                        <nz-form-label nzFor="taux">Taux d'intérêt annuel hors taxe applicable</nz-form-label>
+
+                        <input nz-input name="taux" id="taux" type="number" formControlName="tauxInteretHt" [max]="100">
+                        <div class="invalid-feedback"
+                             *ngIf="submitted && financementForm.controls.tauxInteretHt.errors">
+                          <div *ngIf="financementForm.controls.tauxInteretHt.errors.max">La valeur ne peut pas dépasser
+                            100
+                          </div>
+                          <div *ngIf="financementForm.controls.tauxInteretHt.errors.pattern">Ce champ est invalide</div>
+                        </div>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                  <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                       [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }"
+                       [nzXl]="{ span: 10, offset: 1 }">
+                    <nz-form-item>
+                      <nz-form-control>
+                        <nz-form-label nzFor="date">Date de mise en place du financement</nz-form-label>
+
+                        <input nz-input name="date" type="date" [max]="dateMaxCreationString" id="date"
+                               formControlName="dateMepFinancement"
+                               [ngClass]="{'is-invalid':submitted2 && financementForm.controls.dateMepFinancement.errors}">
+                        <div class="invalid-feedback"
+                             *ngIf="submitted2 && financementForm.controls.dateMepFinancement.errors">
+                          <div *ngIf="financementForm.controls.dateMepFinancement.errors">Veuillez choisir une date
+                            adéquate
+                          </div>
+                        </div>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                </div>
+
+                <div nz-row>
+                  <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                       [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }"
+                       [nzXl]="{ span: 10, offset: 1 }">
+                    <nz-form-item>
+                      <nz-form-control>
+                        <nz-form-label [nzRequired]="controlLabel()" class="adjustements-inputs" nzFor="occupation">
+                          Statut du financement
+                        </nz-form-label>
+
+                        <nz-select formControlName="statutFinancement"
+                                   [ngClass]="{'is-invalid':submitted2 && financementForm.controls.statutFinancement.errors}">
+                          <nz-option nzValue="Financement terminé et remboursé"
+                                     nzLabel="Financement terminé et remboursé"></nz-option>
+                          <nz-option nzValue="Inscription sur la plateforme en cours"
+                                     nzLabel="Inscription sur la plateforme en cours"></nz-option>
+                          <nz-option nzValue="Enregistrement de la demande en cours"
+                                     nzLabel="Enregistrement de la demande en cours"></nz-option>
+                          <nz-option nzValue="Demande reçue" nzLabel="Demande reçue"></nz-option>
+                          <nz-option nzValue="Demande transmise" nzLabel="Demande transmise"></nz-option>
+                          <nz-option nzValue="En cours d'étude au niveau du partenaire"
+                                     nzLabel="En cours d'étude au niveau du partenaire"></nz-option>
+                          <nz-option nzValue="Incomplet" nzLabel="Incomplet"></nz-option>
+                          <nz-option nzValue="Approuvé par le partenaire"
+                                     nzLabel="Approuvé par le partenaire"></nz-option>
+                          <nz-option nzValue="Accord notifié" nzLabel="Accord notifié"></nz-option>
+                        </nz-select>
+                        <div class="invalid-feedback"
+                             *ngIf="submitted2 && financementForm.controls.statutFinancement.errors">
+                          <div *ngIf="financementForm.controls.statutFinancement.errors.required">Ce champ est
+                            obligatoire
+                          </div>
+                        </div>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                  <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                       [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }"
+                       [nzXl]="{ span: 10, offset: 1 }">
+                    <nz-form-item>
+                      <nz-form-control nzExtra="Formats documents autorisés: .pdf, .docx">
+                        <nz-form-label nzFor="fichierfinancement">Si financement en cours, fournir tableaux
+                          d'amortissements
+                        </nz-form-label>
+
+                        <input nz-input name="fichierfinancement"
+                               accept=".pdf,.docx,.doc,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                               type="file" id="fichierfinancement" formControlName="tableauxFinancement"
+                               (change)="tableauFinancementLoad($event)">
+                        <span *ngIf="!checkFinFileSize" [ngStyle]="{color: 'red'}"> Fichier trop lourd ( ne doit pas dépasser 2 MB)</span><br>
+
+                        <p>Fichier :
+                          <span><a href="{{baseUrlFile}}{{tableauFinancementNom}}"
+                                   target="_blank">{{this.financementForm.controls.tableauxFinancement.valid ? this.financementForm.controls.tableauxFinancement.value?.replace("C:\\fakepath\\",
+                            "") : ''}}</a></span></p>
+                        <div class="invalid-input" *ngIf="checkFile">
+                          <div>Veuillez choisir un format de fichier autorisé</div>
+                        </div>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                </div>
+
+
+                <div nz-row nzAlign="top">
+                  <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 24, push: 0 }"
+                       [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 10 }"
+                       [nzXl]="{ span: 10, offset: 1 }">
+                    <nz-form-item>
+                      <nz-form-control>
+                        <nz-form-label nzFor="dateremboursement">Date de remboursement intégral, si remboursement
+                          terminé
+                        </nz-form-label>
+
+                        <input nz-input name="fichierfinancement" [max]="dateMaxCreationString" type="date"
+                               id="dateremboursement" formControlName="dateRemboursement"
+                               [ngClass]="{'is-invalid':submitted2 && financementForm.controls.dateRemboursement.errors}">
+                        <div class="invalid-feedback"
+                             *ngIf="submitted2 && financementForm.controls.dateRemboursement.errors">
+                          <div *ngIf="financementForm.controls.dateRemboursement.errors">Veuillez choisir une date
+                            adéquate
+                          </div>
+                        </div>
+
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                </div>
+                <div nz-row nzAlign="middle">
+                  <button nz-button nzType="primary" nzShape="round" (click)="ajouterFinancement()"
+                          class="boutton-precedant">
+                    Ajouter
+                  </button>
+                </div>
+
+
+              </div>
+            </div>
+          </form>
+        </nz-collapse-panel>
+      </nz-collapse>
+      <br>
+      <div nz-col [nzXs]="{ span: 24 }" [nzSm]="{ offset: 0, span: 24, push: 0 }" [nzMd]="{ span: 20, offset: 1 }"
+           [nzLg]="{ span: 20 }" [nzXl]="{ span: 20 }">
+        <button nz-button nzType="primary" nzShape="round" (click)="pre()" *ngIf="currentStepPosition > 0"
+                class="boutton-precedant">
+          Précédant
+        </button>
+        <button nz-button nzType="primary" nzShape="round" (click)="next()" *ngIf="currentStepPosition < 1"
+                class="boutton-suivant">
+          Suivant
+        </button>
+        <button nz-button nzType="primary" nzShape="round" (click)="next()" *ngIf="currentStepPosition === 1"
+                class="boutton-suivant">
+          Valider
+        </button>
+      </div>
+
+    </nz-card>
+  </div>
+</div>
+
+<div class="container" id="otp_gie_section" *ngIf="showSucces" style="min-height: 450px;">
+  <div style="padding:30px;">
+    <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="NOTIFICATION">
+      <nz-result nzStatus="success" nzTitle="Votre expression de besoin a été bien enregistrée">
+        <div nz-result-extra>
+          <button nz-button nzType="primary" (click)="redirectionAcceuil()"> Retour à l'accueil</button>
+          <!-- <button nz-button *ngIf="idBeneficiaire" nzType="primary" routerLink="/pmo/offres-beneficiaire/{{idBeneficiaire}}"  > Choix offres </button> -->
+        </div>
+      </nz-result>
+    </nz-card>
+  </div>
+</div>
+<nz-modal [(nzVisible)]="showModel" nzTitle="Informations manquantes" (nzOnCancel)="handleStepCancel()"
+          (nzOnOk)="handleStepOk()">
+  <ng-container *nzModalContent>
+    <p>Veuillez d'abord saisir les informations de {{stepname}} </p>
+
+  </ng-container>
+
+
+</nz-modal>

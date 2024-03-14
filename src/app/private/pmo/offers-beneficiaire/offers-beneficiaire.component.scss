@@ -1,0 +1,538 @@
+nz-layout{
+  min-height: 100%;
+  width: 100%;
+}
+.menu-home {
+  height: 10vh;
+  background-color: white;
+
+}
+
+// changement couleur next step pas encore fait
+:host ::ng-deep .ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-icon {
+  // background: #1890ff;
+  background: #ffffff;
+}
+
+// Changement couleur ecriture de next step pas encore fait
+:host ::ng-deep .ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-icon .ant-steps-icon {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+// Background des icons deja fait
+:host ::ng-deep .ant-steps-item-finish .ant-steps-item-icon {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+// .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon
+:host ::ng-deep .ant-steps-item-icon .ant-steps-icon{
+  // color: #1890ff;
+  color: #ffffff;
+}
+
+.button-menu{
+  height: 30px;
+  width: 100px;
+}
+
+
+ul {
+  border-bottom: none;
+}
+
+.menu-element{
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #282D5E;
+}
+// ***************** MENU *********************
+
+// ******************* Layout Content **************
+.layoutContent{
+  min-height:80vh;
+  // min-height: 100vh;
+  // height: 100%;
+  background-color:#F1F1F9;
+  width: 100%;
+  height: fit-content;
+}
+
+.bienvenue {
+  margin-top: 45px;
+
+}
+
+.card-button-demande{
+  min-width: 100%;
+  width: fit-content
+  ;
+  height: 45px;
+  background: #224B96;
+  border-color : #224B96;
+  border-radius: 400px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+  z-index: 3;
+
+  top: 45px;
+
+  text-align: center;
+  color: #FFFFFF;
+
+}
+
+@media (max-width: 768px) {
+  .card-button-demande {
+    top: 0px ;
+    z-index: none;
+  }
+}
+
+
+.benef-page-header{
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+
+  color: #0C0E1D;
+}
+
+.tabs-container{
+  min-height: 100%;
+  height: fit-content;
+  width: 921px;
+}
+nz-tabset{
+  height: 100%;
+  background-color:#F1F1F9 ;
+}
+
+nz-tab{
+  height: fit-content;
+  background-color:#F1F1F9 ;
+}
+
+.button-demande-financement{
+  width: 235px;
+  height: 42px;
+  background-color: #224B96;
+  border-color : #224B96;
+}
+
+.tabs-container{
+  height: 100%;
+  width: 90%;
+}
+
+.sommaire-container{
+  min-height: 200px;
+  background-color: #fff;
+  border: 1px solid #EBEBEB;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(217, 221, 246, 0.54);
+  border-radius: 4px;
+  margin-bottom:15px;
+}
+
+.sommaire-divider{
+
+  width: 0px;
+  height: 171px;
+  border: 1px solid #EBEBEB;
+  // transform: rotate(90deg);
+
+
+}
+
+
+.id-benef{
+  height: 100%;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+
+  color: #545664;
+}
+
+
+.prez-entreprise{
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+
+  color: #545664;
+
+}
+
+.status-container{
+
+  height: 80px;
+  min-width: 100%;
+  width: fit-content;
+
+}
+
+.status-header{
+
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+
+  color: #545664;
+  margin-bottom:26px ;
+
+}
+
+.besoin-somme{
+
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+
+  color: #000000;
+}
+
+.choix-financement-text{
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #0C0E1D;
+}
+
+.text-selected-offre{
+
+font-family: Manrope;
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height */
+
+
+/* Prim/Blue2 */
+
+color: #7E85C8;
+}
+
+.card-offre-container{
+  min-height: 110px;
+  min-width: 320px;
+  width: fit-content;
+  background: #FFFFFF;
+  border: 1px solid #EBEBEB;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.choix-financement-container{
+  height:fit-content;
+  width:fit-content;
+}
+
+// .card-offre-somme {
+//   font-family: Manrope;
+//   font-style: normal;
+//   font-weight: bold;
+//   font-size: 18px;
+//   line-height: 25px;
+
+//   /* Text */
+
+//   color: #0C0E1D;
+// }
+
+// .card-offre-entreprise {
+//   font-family: Manrope;
+//   font-style: normal;
+//   font-weight: 600;
+//   font-size: 15px;
+//   line-height: 20px;
+
+//   color: #999BAE;
+
+// }
+
+// .card-offre-taux {
+//   font-family: Manrope;
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 13px;
+//   line-height: 18px;
+
+//   color: #999BAE;
+
+// }
+// .card-offre-checkbox{
+//   width: 27px;
+//   height: 27px;
+//   background: #14C04E;
+//   /* Accent/Green1 */
+
+//   border: 1px solid #14C04E;
+//   box-sizing: border-box;
+//   border-radius: 6px;
+//   }
+
+// .card-offre-content{
+//   height: inherit;
+// }
+// ******************* Layout Content **************
+
+
+// ******************* Card Detail Container ***********
+.card-offre-detail{
+  background-color: white;
+  min-height:415px ;
+  min-width: 500px ;
+  box-shadow: 0px 4px 4px rgba(217, 221, 246, 0.79);
+  border-radius: 4px;
+
+}
+
+.tag-refere{
+  background: #E83456;
+  border-radius: 6px;
+  border-color: #E83456;
+  width: 72px;
+  height: 30px;
+
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  /* identical to box height */
+
+  color: #FFFFFF;
+  text-align: center;
+  text-justify:auto ;
+}
+
+.card-offre-detail-container{
+  height: inherit;
+}
+
+.card-offre-detail-picture{
+  margin-top: -20px;
+
+}
+.card-offre-detail-picture + img{
+  border-radius: 3px;
+}
+
+.card-detail-somme{
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 27px;
+
+  /* Text */
+
+  color: #0C0E1D;
+}
+
+.card-detail-entreprise{
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  /* identical to box height */
+
+
+  color: #B0B1BD;
+}
+
+.card-detail-label{
+
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 25px;
+  /* identical to box height */
+
+
+  color: #B0B1BD;
+  margin-bottom: 20px;
+}
+
+.card-detail-content{
+
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 25px;
+  /* identical to box height */
+
+
+  color: #231F20;
+  margin-bottom: 20px;
+}
+
+.card-button-confirmer{
+  min-width: 60%;
+  width: fit-content;
+  height: 42px;
+  background-color: #224B96;
+  border-color : #224B96;
+  border-radius: 400px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.card-offre-container{
+  height: 110px;
+  background: #FFFFFF;
+  border: 1px solid #EBEBEB;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.card-offre-somme {
+  font-family: Manrope;
+  font-style: normal;
+  // font-weight: bold;
+  font-size: 13px;
+  line-height: 25px;
+
+  /* Text */
+
+  color: #0C0E1D;
+}
+
+.card-offre-entreprise {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+
+  color: #999BAE;
+
+}
+
+.card-offre-taux {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+
+  color: #999BAE;
+
+}
+.card-offre-checkbox{
+  width: 27px;
+  height: 27px;
+  background: #14C04E;
+  /* Accent/Green1 */
+
+  border: 1px solid #14C04E;
+  box-sizing: border-box;
+  border-radius: 6px;
+  }
+
+.card-offre-content{
+  height: 100%;
+}
+
+// ******************* Card Detail Container ***********
+
+.end-footer-container{
+  height: 10vh;
+  background-color: #224B96;
+}
+nz-layout{
+  min-height: 100vh;
+  height: fit-content;
+}
+
+.menu-home {
+  height: 9vh;
+  background-color: white;
+
+}
+
+
+.form-container{
+  min-height: 83vh ;
+  height: fit-content;
+}
+
+
+.footer-container{
+  background-color: #224B96;
+  min-height: 8vh;
+}
+
+//******************* Contact ******************************
+
+
+.contact-form-text-header {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+
+
+  color: #0c0202;
+
+}
+
+
+.text-icon-footer{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+
+  color: #0B0D17;
+}
+
+
+.end-of-footer{
+  width: 100%;
+}

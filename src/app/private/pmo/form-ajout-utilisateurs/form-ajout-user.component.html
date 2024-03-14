@@ -1,0 +1,19 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+<nz-layout>
+  <div nz-row nzJustify="center" nzAlign="middle">
+    <div nz-col nzSpan="18">
+      <nz-steps nzType="navigation" (nzIndexChange)="onIndexChange($event)" [nzCurrent]="currentStepPosition">
+        <nz-step nzTitle="Identification Personne"></nz-step>
+        <nz-step nzTitle="Accès"></nz-step>
+      </nz-steps>
+    </div>
+    <div nz-col nzSpan="24" class="steps-content">
+      <div *ngIf="currentStepPosition==0"></div>
+      <app-ajout-user [(personneContactPmo)]="personnePmo" *ngIf="currentStepPosition==0" > </app-ajout-user>
+      <div *ngIf="currentStepPosition==1"></div>
+      <app-connexion [(connexionInfo)]="connexionInfo" [stepname]="stepname" [showModel]="showModel" *ngIf="currentStepPosition==1">
+      Connexions</app-connexion>
+    </div>
+  </div>
+</nz-layout>
+</nz-spin>

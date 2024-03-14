@@ -1,0 +1,190 @@
+<div class="container" style="margin-bottom: 5%;">
+  <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false"
+           nzTitle="Identification - MANDATAIRE (si différent du Propriétaire)">
+    <i nz-icon nzType="info-circle" nzTheme="outline"
+       nz-tooltip="Renseigner seulement s'il y a une autre personne qui s'occupe des activités de l'entreprise  au quotidien"></i>
+    <form nz-form [formGroup]="agentContactForm">
+      <div nz-row nzAlign="top">
+        <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+             [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+          <nz-form-item nzJustify="center">
+            <nz-form-control>
+              <nz-form-label [nzRequired]="agentContactForm.controls.prenom.hasValidator(ValidatorsFront.required)"
+                             [nzSm]="24" [nzXs]="24" nzFor="prenom">Prénom
+              </nz-form-label>
+              <input nz-input name="prenom" formControlName="prenom" id="prenom"
+                     [ngClass]="{'is-invalid':submitted && agentContactForm.controls.prenom.errors}"/>
+              <div class="invalid-feedback" *ngIf="submitted && agentContactForm.controls.prenom.errors">
+                <div *ngIf="agentContactForm.controls.prenom.errors.required">Ce champ est obligatoire</div>
+                <div *ngIf="agentContactForm.controls.prenom.errors.pattern">Ce champ est invalide</div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+             [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+          <nz-form-item nzJustify="center">
+            <nz-form-control>
+              <nz-form-label [nzRequired]="agentContactForm.controls.nom.hasValidator(ValidatorsFront.required)"
+                             [nzSm]="24" [nzXs]="24" nzFor="nom">Nom
+              </nz-form-label>
+              <input nz-input name="nom" id="nom" formControlName="nom"
+                     [ngClass]="{'is-invalid':submitted && agentContactForm.controls.nom.errors}"/>
+              <div class="invalid-feedback" *ngIf="submitted && agentContactForm.controls.nom.errors">
+                <div *ngIf="agentContactForm.controls.nom.errors.required">Ce champ est obligatoire</div>
+                <div *ngIf="agentContactForm.controls.nom.errors.pattern">Ce champ est invalide</div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row nzAlign="top">
+        <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+             [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+          <nz-form-item nzJustify="center">
+            <nz-form-control>
+              <nz-form-label
+                [nzRequired]="agentContactForm.controls.numeroMobile.hasValidator(ValidatorsFront.required)" [nzSm]="24"
+                [nzXs]="24" nzFor="numeroTelephone">Numéro de téléphone
+              </nz-form-label>
+              <input nz-input formControlName="numeroMobile"
+                     [ngClass]="{'is-invalid': submitted && agentContactForm.controls.numeroMobile.errors}"/>
+              <div class="invalid-feedback" *ngIf="submitted && agentContactForm.controls.numeroMobile.errors">
+                <div *ngIf="agentContactForm.controls.numeroMobile.errors.required">Ce champ est obligatoire</div>
+                <div *ngIf="agentContactForm.controls.numeroMobile.errors.pattern">Ce champ est invalide</div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+             [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+          <nz-form-item nzJustify="center">
+            <nz-form-control>
+              <nz-form-label [nzRequired]="agentContactForm.controls.email.hasValidator(ValidatorsFront.required)"
+                             [nzSm]="24" [nzXs]="24" nzFor="email">Adresse mail
+              </nz-form-label>
+              <input nz-input name="email" id="email" formControlName="email"
+                     [ngClass]="{'is-invalid':submitted && agentContactForm.controls.email.errors}"/>
+              <div class="invalid-feedback" *ngIf="submitted && agentContactForm.controls.email.errors">
+                <div *ngIf="agentContactForm.controls.email.errors.required">Ce champ est obligatoire</div>
+                <div *ngIf="agentContactForm.controls.email.errors.pattern">Ce champ est invalide</div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row nzAlign="top">
+        <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+             [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+          <nz-form-item nzJustify="center">
+            <nz-form-control>
+              <nz-form-label nzRequired>Type de Piece</nz-form-label>
+              <nz-select #name="ngModel" (ngModelChange)="onClikTypePieces($event)"
+                         [(ngModel)]="typePieces" [ngClass]="{'is-invalid':submitted && name.errors}" required
+                         [ngModelOptions]="{standalone: true}">
+                <nz-option nzValue="cni" nzLabel="Carte Nationale d'Identité (CNI)"></nz-option>
+                <nz-option nzValue="Passport" nzLabel="Passport"></nz-option>
+              </nz-select>
+              <div *ngIf="submitted && name.invalid" class="piececolor">
+                <div *ngIf="name.errors?.['required']">
+                  Ce champ est obligatoire
+                </div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+             [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+          <nz-form-item nzJustify="center">
+            <nz-form-control>
+              <nz-form-label [nzRequired]="agentContactForm.controls.numeroCNI.hasValidator(ValidatorsFront.required)"
+                             [nzSm]="24" [nzXs]="24" nzFor="numeroCni">Renseigner le numéro du type de piece choisi
+                <i nz-icon nzType="info-circle" nzTheme="outline"
+                   nz-tooltip="Cas CNI : C'est le numero NIN se trouvant au verso de la CNI qui doit etre saisi"
+                   style="margin-top: 5px; margin-left: 5px;"></i>
+              </nz-form-label>
+              <input nz-input name="numeroCni" id="numeroCni" formControlName="numeroCNI"
+                     [ngClass]="{'is-invalid':submitted && agentContactForm.controls.numeroCNI.errors}"/>
+              <div class="invalid-feedback" *ngIf="submitted && agentContactForm.controls.numeroCNI.errors">
+                <div *ngIf="agentContactForm.controls.numeroCNI.errors.required">Ce champ est obligatoire</div>
+                <div *ngIf="agentContactForm.controls.numeroCNI.errors.pattern">Ce champ est invalide</div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row nzAlign="top">
+        <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+             [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+          <nz-form-item nzJustify="center">
+            <nz-form-control nzExtra="Format du fichier: Pdf, Jpeg, Png">
+              <nz-form-label [nzRequired]="agentContactForm.controls.documentCNI.hasValidator(ValidatorsFront.required)
+                                            && agentContactForm.controls.prenom.hasValidator(ValidatorsFront.required)"
+                             [nzSm]="24" [nzXs]="24" nzFor="cniFile">Scan CNI ou document d'identification
+              </nz-form-label>
+              <input type="file" nz-input accept="image/jpeg,.pdf,.png" name="cniFile" id="cniFile"
+                     (change)="documentCniLoad($event)" formControlName="documentCNI"
+                     [ngClass]="{'is-invalid':submitted && agentContactForm.controls.documentCNI.errors}"/>
+              <span *ngIf="!checkCNIFileSize" [ngStyle]="{color: 'red'}"> Fichier trop lourd ( ne doit pas dépasser 2 Mo)</span><br>
+
+              <p *ngIf="!beneficiaireId && nomDocumentCNI!=null">Fichier :
+                <span>{{this.agentContactForm.controls.documentCNI.valid ? this.agentContactForm.controls.documentCNI.value?.replace("C:\\fakepath\\", "") : ''}}</span><br>
+                <a *ngIf="nomDocumentCNI" href="{{baseUrlFile}}{{nomDocumentCNI}}"
+                   target="_blank">Voir document</a>
+              </p>
+              <div class="invalid-feedback" *ngIf="submitted && agentContactForm.controls.documentCNI.errors">
+                <div *ngIf="agentContactForm.controls.documentCNI.errors.required">Ce champ est obligatoire</div>
+              </div>
+              <div class="invalid-input" *ngIf="checkFile">
+                <div>Veuillez choisir un format de fichier autorisé</div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+             [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+          <nz-form-item nzJustify="center">
+            <nz-form-control>
+              <nz-form-label
+                [nzRequired]="agentContactForm.controls.adressePhysique.hasValidator(ValidatorsFront.required)"
+                [nzSm]="24" [nzXs]="24" nzFor="adressePhysique">Adresse physique
+              </nz-form-label>
+              <input nz-input name="adressePhysique" id="adressePhysique" formControlName="adressePhysique"
+                     [ngClass]="{'is-invalid':submitted && agentContactForm.controls.adressePhysique.errors}"/>
+              <div class="invalid-feedback" *ngIf="submitted && agentContactForm.controls.adressePhysique.errors">
+                <div *ngIf="agentContactForm.controls.adressePhysique.errors.required">Ce champ est obligatoire</div>
+                <div *ngIf="agentContactForm.controls.adressePhysique.errors.pattern">Ce champ est invalide</div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+
+        </div>
+      </div>
+
+      <hr>
+      <div nz-row nzJustify="space-around">
+        <div nz-col [nzXs]="{ span: 10 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20 }"
+             [nzLg]="{ span: 20 }" [nzXl]="{ span: 20 }">
+          <button nz-button nzType="primary" nzShape="round" (click)="pre()" *ngIf="currentStepPosition > 0"
+                  class="boutton-precedant">
+            Précédant
+          </button>
+
+          <button nz-button nzType="primary" nzShape="round" (click)="next()" *ngIf="currentStepPosition < 5"
+                  class="boutton-suivant">
+
+            Suivant
+          </button>
+          <button nz-button nzType="primary" nzShape="round" (click)="done()" *ngIf="currentStepPosition === 5"
+                  class="boutton-suivant">
+
+            Valider
+          </button>
+        </div>
+      </div>
+    </form>
+  </nz-card>
+</div>

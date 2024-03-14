@@ -1,0 +1,60 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <div nz-row class="content-container" nzJustify="center">
+    <div nz-col nzSpan="20">
+      <div nz-row nzJustify="space-between" nzAlign="middle" class="demande-buget-container">
+        <div nz-col nzSpan="5" class="demande-text">
+          Liste des Personnes
+        </div>
+      </div>
+      <div nz-row class="tabs-container">
+        <div nz-col nzSpan="24">
+          <nz-tabset>
+            <nz-tab nzTitle="Toutes">
+              <nz-table #nzTable [nzData]="listBene" nzTableLayout="fixed">
+                <thead>
+                <tr>
+                  <th>ID Personne</th>
+                  <th
+                    *ngFor="let column of listOfColumns"
+                    [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections"
+                  >
+                    {{ column.name }}
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let data of nzTable.data">
+                  <tr class="tr-showed">
+                    <td>#{{ data.beneficiaire?.personnes?.[0]?.id }}</td>
+                    <td>{{ data.beneficiaire?.dateModification | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td>{{ data.beneficiaire?.personnes?.[0]?.prenom }}</td>
+                    <td>{{ data.beneficiaire?.personnes?.[0]?.nom }}</td>
+                    <td>{{ data.beneficiaire?.personnes?.[0]?.numeroMobile }}</td>
+                    <td>{{ data.beneficiaire?.typeBeneficiaire }}</td>
+                    <td>{{ data.code }}</td>
+                    <td>{{ getStatusLibelle(data.statut) }}</td>
+                    <td>
+                      <div *ngIf="data.statut === 'EN_COURS' && authService.getRole() === 'AGENT_INITIATEUR'">
+                          <button nz-button nzType="primary" (click)="terminerEnrolement(data.beneficiaire)" >
+                            <span nz-tooltip="Terminer enrolement" nzTheme="outline" nz-popover=""
+                                  (click)="terminerEnrolement(data.beneficiaire)" > Initier </span>
+                          </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                  </tr>
+                </ng-container>
+                </tbody>
+              </nz-table>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nz-spin>

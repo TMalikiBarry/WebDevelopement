@@ -1,0 +1,104 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <nz-list [nzDataSource]="notifications?.content" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" >
+    <ng-template #item let-item >
+      <nz-comment nzAuthor="suqali" >
+        <nz-avatar nz-comment-avatar nzIcon="user" nzSrc="../../../../../favicon.ico" ></nz-avatar>
+        <nz-comment-content>
+        <div nz-row nzJustify="center" nzAlign="middle">
+            <div nz-col nzSpan="5">
+              <!-- title and information  -->
+                <div nz-row nzAlign="middle" nzJustify="start">
+                  <div nz-col nzSpan="20" class="title-comment">
+                    Id Demande
+                  </div>
+                  <div nz-col nzSpan="20" class="title-content">
+                    {{item.demande.id}}
+                  </div>
+                </div>
+              <!-- title and information  -->
+            </div>
+            <div nz-col nzSpan="5">
+              <!-- title and information  -->
+              <div nz-row nzAlign="middle" nzJustify="center">
+                <div nz-col nzSpan="20" class="title-comment">
+                  Type Demande
+                </div>
+                <div nz-col nzSpan="20" class="title-content">
+                  {{item.demande.typeDemande}}
+                </div>
+              </div>
+              <!-- title and information  -->
+            </div>
+            <div nz-col nzSpan="5">
+              <!-- title and information  -->
+              <div nz-row nzAlign="middle" nzJustify="center">
+                <div nz-col nzSpan="20" class="title-comment" >
+                  Montant
+                </div>
+                <div nz-col nzSpan="20" class="title-content">
+                  {{item.demande.montant |currency:'XOF'}}
+                </div>
+              </div>
+              <!-- title and information  -->
+            </div>
+
+            <div nz-col nzSpan="5">
+              <!-- title and information  -->
+              <div nz-row nzAlign="middle" nzJustify="start">
+                <div nz-col nzSpan="20" class="title-comment" >
+                  Statut de la demande
+                </div>
+                <div nz-col nzSpan="20" class="title-content">
+                  {{item.demande.statutDossier}}
+                </div>
+              </div>
+              <!-- title and information  -->
+            </div>
+
+            <div nz-col nzSpan="4">
+              <!-- title and information  -->
+              <div nz-row nzAlign="middle" nzJustify="start">
+                <div nz-col nzSpan="20" class="title-comment">
+                  Motif
+                </div>
+                <div nz-col nzSpan="20" class="title-content">
+                  {{item.motif}}
+                </div>
+              </div>
+              <!-- title and information  -->
+            </div>
+
+        </div>
+
+        <div nz-row nzJustify="start" nzAlign="middle">
+          <div nz-col nzSpan="4">
+            <!-- title and information  -->
+            <div nz-row nzAlign="middle" nzJustify="start">
+              <div nz-col nzSpan="20" class="title-comment">
+                Media
+              </div>
+              <div nz-col nzSpan="20" class="title-content">
+                <span *ngFor="let media of item.medias; let index">
+                  <a target="_blank" href="{{baseUrlFile}}{{media}}">Voir document</a>&nbsp;&nbsp;
+                </span>
+                <span *ngIf="item.medias.length==0">
+                  Non renseigné
+                </span>
+                <!-- <a *ngIf="item.medias.length>0" target="_blank" href="{{baseUrlFile}}{{item?.medias}}">Voir document</a> -->
+              </div>
+            </div>
+            <!-- title and information  -->
+          </div>
+
+        </div>
+        </nz-comment-content>
+        <!-- <nz-comment-action>Reply to</nz-comment-action> -->
+        <br>
+        <nz-comment-action>
+          <button *ngIf="item.demande.statutDossier=='RECU'" class="card-button-demande" routerLink="/pmo/apercu" nz-button> Demandes </button>
+        </nz-comment-action>
+      </nz-comment>
+    </ng-template>
+    <nz-pagination [nzPageIndex]="1" [nzTotal]="notifications?.totalElements" (nzPageIndexChange)="pageIndexCall($event)" (nzPageSizeChange)= "pageSizeCall($event)" nzShowSizeChanger [nzPageSize]="5"></nz-pagination>
+  </nz-list>
+</nz-spin>

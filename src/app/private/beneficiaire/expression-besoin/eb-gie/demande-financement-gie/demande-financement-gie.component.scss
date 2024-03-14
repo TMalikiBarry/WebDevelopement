@@ -1,0 +1,21 @@
+@import "src/assets/form-css/form-css";
+.ant-advanced-search-form {
+  padding: 24px;
+  background: #fbfbfb;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+}
+.marge-centre{
+  margin-top: 3%;
+}
+.adjustements-inputs{
+  margin-top:5%;
+}
+.invalid-input{
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: red;
+  font-weight: bold;
+
+}

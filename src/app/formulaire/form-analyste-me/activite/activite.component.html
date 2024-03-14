@@ -1,0 +1,356 @@
+
+<div class="container">
+  <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false"
+           nzTitle="Identification du client et Crédits">
+    <form nz-form [formGroup]="activiteForm">
+      <div nz-row nzJustify="center" [nzGutter]="[0,24]" >
+        <div nz-col nzSpan="22">
+          <nz-collapse [nzBordered]="false" style="background-color: white" nzAccordion>
+            <nz-collapse-panel style="font-weight: bold"
+                               nzHeader="Etape 1/2 - Activité commerciale / Projet entreprenarial" [nzActive]="key1">
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="n" >Nombre d'année d'activité
+                      </nz-form-label>
+                      <nz-select formControlName="nombreannee"
+                                 [ngClass]="{'is-invalid':submitted && activiteForm.controls.nombreannee.errors}">
+                        <nz-option *ngFor="let tranchAnneeActivite of tranchAnneeActivites"
+                                   nzValue="{{convertToString(tranchAnneeActivite)}}"
+                                   nzLabel="{{tranchAnneeActivite.libelle}}"></nz-option>
+                      </nz-select>
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label [nzSm]="100" [nzXs]="24" nzFor="fond">
+                        Fond Propes
+                      </nz-form-label>
+                      <input nz-input name="fond" type="text" id="fond" formControlName="fond"
+
+                             [ngClass]="{'is-invalid':submitted && activiteForm.controls.fond.errors}">
+                      <div class="invalid-feedback"
+                           *ngIf="submitted && activiteForm.controls.fond.errors">
+                        <div *ngIf="activiteForm.controls.fond.errors.pattern">La valeur de ce champ est invalide</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+
+              </div>
+              <div nz-row nzAlign="top">
+
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  nzFor="p">Solvabilité
+                      </nz-form-label>
+
+                      <nz-select formControlName="solvabilite">
+                        <nz-option nzValue="CAPITAUX_PROPRES"
+                                   nzLabel="Capitaux propres"></nz-option>
+                        <nz-option nzValue="ACTIF_NET"
+                                   nzLabel="Actif net"></nz-option>
+
+                      </nz-select>
+                      <div class="invalid-feedback" *ngIf="submitted && activiteForm.controls.solvabilite.errors">
+                        <div *ngIf="activiteForm.controls.solvabilite.errors.pattern">La valeur de ce champ est invalide</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+
+              </div>
+              <div style="font-weight: bold;text-align: center; "><label style="font-size: medium">Prévision</label></div>
+        <div style="font-weight: bold; background-color: #ccc;display: flex;margin-top: 2%;">
+
+        <div style="width:50%;">
+          <label style="margin-left: 10%">Activités existantes</label>
+          <div nz-row nzAlign="top">
+            <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                 [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+              <nz-form-item nzJustify="center">
+                <nz-form-control>
+                  <nz-form-label >Revenus annuel générés</nz-form-label>
+                  <input nz-input name="revenus" type="number" id="revenus" formControlName="revenus"
+                         [ngClass]="{'is-invalid':submitted && activiteForm.controls.revenus.errors}"/>
+                  <div class="invalid-feedback" *ngIf="submitted && activiteForm.controls.revenus.errors">
+
+                    <div *ngIf="activiteForm.controls.revenus.errors.pattern">Ce champ est invalide</div>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row nzAlign="top">
+            <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+              <nz-form-item nzJustify="center">
+                <nz-form-control>
+                  <nz-form-label
+                                 [nzSm]="24" [nzXs]="24" nzFor="benefice">Bénéfice annuel net
+
+                  </nz-form-label>
+                  <input nz-input name="benefice" id="benefice" formControlName="benefice"
+                         [ngClass]="{'is-invalid':submitted && activiteForm.controls.benefice.errors}"/>
+                  <div class="invalid-feedback" *ngIf="submitted && activiteForm.controls.benefice.errors">
+
+                    <div *ngIf="activiteForm.controls.benefice.errors.pattern">Ce champ est invalide</div>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row nzAlign="top">
+            <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                 [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+              <nz-form-item nzJustify="center">
+                <nz-form-control>
+                  <nz-form-label
+
+                    [nzSm]="24" [nzXs]="24"  nzFor="adressePhysique">Périodicité activités
+                  </nz-form-label>
+                  <input nz-input name="periodicite" id="periodicite" formControlName="periodicite"
+                         [ngClass]="{'is-invalid':submitted && activiteForm.controls.periodicite.errors}"/>
+
+                </nz-form-control>
+              </nz-form-item>
+
+            </div>
+
+          </div>
+        </div>
+          <div style="width:50%;">
+            <label style="margin-left: 10%">Projet</label>
+            <div nz-row nzAlign="top">
+              <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                   [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                <nz-form-item nzJustify="center">
+                  <nz-form-control>
+                    <nz-form-label >Revenus annuel prévisionnels</nz-form-label>
+                    <input nz-input name="revenusprevisionnels" type="number" id="revenusprevisionnels" formControlName="revenusprevisionnels"
+                           [ngClass]="{'is-invalid':submitted && activiteForm.controls.revenusprevisionnels.errors}"/>
+                    <div class="invalid-feedback" *ngIf="submitted && activiteForm.controls.revenusprevisionnels.errors">
+
+                      <div *ngIf="activiteForm.controls.revenusprevisionnels.errors.pattern">Ce champ est invalide</div>
+                    </div>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+            <div nz-row nzAlign="top">
+              <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                <nz-form-item nzJustify="center">
+                  <nz-form-control>
+                    <nz-form-label
+                                   [nzSm]="24" [nzXs]="24" nzFor="beneficePrevisionnel">Bénéfice annuel Prévisionnel
+                    </nz-form-label>
+                    <input nz-input name="beneficePrevisionnl" id="beneficePrevisionnel" formControlName="beneficePrevisionnel"
+                           [ngClass]="{'is-invalid':submitted && activiteForm.controls.beneficePrevisionnel.errors}"/>
+                    <div class="invalid-feedback" *ngIf="submitted && activiteForm.controls.beneficePrevisionnel.errors">
+
+                      <div *ngIf="activiteForm.controls.beneficePrevisionnel.errors.pattern">Ce champ est invalide</div>
+                    </div>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+            <div nz-row nzAlign="top">
+              <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                   [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                <nz-form-item nzJustify="center">
+                  <nz-form-control>
+                    <nz-form-label
+
+                      [nzSm]="24" [nzXs]="24"  nzFor="periodiciteprojet">Périodicité activités
+                    </nz-form-label>
+                    <input nz-input name="periodiciteprojet" id="periodiciteprojet" formControlName="periodiciteprojet"
+                           [ngClass]="{'is-invalid':submitted && activiteForm.controls.periodiciteprojet.errors}"/>
+
+                  </nz-form-control>
+                </nz-form-item>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+            </nz-collapse-panel>
+            <nz-collapse-panel style="font-weight: bold"
+                               nzHeader="Etape 2/2 - Besoin réel de crédit"
+                               [nzActive]="key2">
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control >
+                      <nz-form-label [nzSm]="100" [nzXs]="24"  nzFor="m" >Apport Personnel</nz-form-label>
+                      <input nz-input name="apport" id="apport" type="number" formControlName="apport"
+                             [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.apport.errors}"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted2 && activiteForm.controls.apport.errors">
+                        <div *ngIf="activiteForm.controls.apport.errors.pattern">La valeur du champ est invalide</div>
+                      </div>
+                    </nz-form-control>
+
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control >
+                      <nz-form-label [nzSm]="100" [nzXs]="24" nzFor="depenses">Dépenses Prévisionnelles</nz-form-label>
+                      <input nz-input name="depenses" id="depenses" type="number" formControlName="depenses"
+                             [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.depenses.errors}"/>
+
+                      <div class="invalid-feedback"
+                           *ngIf="submitted2 && activiteForm.controls.depenses.errors">
+                        <div *ngIf="activiteForm.controls.depenses.errors.pattern">la valeur du champ est invalide
+                        </div>
+                      </div>
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label class="police-label" nzFor="investissement">Investissement
+
+                      </nz-form-label>
+                      <input nz-input name="ned" id="nomconjoint" type="number" formControlName="investissement"
+                             [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.investissement.errors}"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted2 && activiteForm.controls.investissement.errors">
+                        <div *ngIf="activiteForm.controls.investissement.errors.pattern">la valeur du champ est invalide
+                        </div>
+                      </div>
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  nzFor="o">Besoin réel ou crédit</nz-form-label>
+                      <input nz-input name="o" id="23"  formControlName="besoinreel" [value]="calculbesoinreel()"
+                             [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.besoinreel.errors}"/>
+                      <div class="invalid-feedback" *ngIf="submitted2 && activiteForm.controls.besoinreel.errors">
+                        <div *ngIf="activiteForm.controls.besoinreel.errors.min">La valeur minimale est 0.
+                        </div>
+                        <div *ngIf="activiteForm.controls.besoinreel.errors.pattern">La valeur est incorrecte
+                        </div>
+                      </div>
+                      <div *ngIf="activiteForm.controls.besoinreel.errors" class="piececolor">
+                        <div
+                          *ngIf=" activiteForm.controls.besoinreel.errors.min">
+                          Veuillez revoir la saisie
+                        </div>
+                      </div>
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  nzFor="nf">Montant demandé</nz-form-label>
+                      <input nz-input name="nf" id="09" type="text" formControlName="montantdemande"
+                             [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.montantdemande.errors}"
+                      />
+                      <div class="invalid-feedback"
+                           *ngIf="submitted2 && activiteForm.controls.montantdemande.errors">
+                        <div *ngIf="activiteForm.controls.montantdemande.errors.pattern">la valeur du champ est invalide</div>
+                      </div>
+
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  nzFor="nf">Durée souhaitée</nz-form-label>
+                      <input nz-input name="duree" id="duree" type="text" formControlName="duree"
+                             [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.duree.errors}"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted2 && activiteForm.controls.duree.errors">
+                        <div *ngIf="activiteForm.controls.duree.errors.pattern">la valeur du champ est invalide</div>
+                      </div>
+
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  nzFor="nf">Nombre échéances</nz-form-label>
+                      <input nz-input name="nf" id="nombreecheances" type="text" formControlName="nombreecheances"
+                             [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.nombreecheances.errors}"
+                      />
+                      <div class="invalid-feedback"
+                           *ngIf="submitted2 && activiteForm.controls.nombreecheances.errors">
+                        <div *ngIf="activiteForm.controls.nombreecheances.errors.pattern">la valeur du champ est invalide</div>
+                      </div>
+
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  nzFor="typecredit">Type de crédit</nz-form-label>
+                      <nz-select formControlName="typecredit"
+                                 [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.typecredit.errors}">
+                        <nz-option *ngFor="let typeFinancement of typefinancements" nzValue="{{typeFinancement.libelle}}"
+                                   nzLabel="{{typeFinancement.libelle}}"></nz-option>
+                      </nz-select>
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+            </nz-collapse-panel>
+
+          </nz-collapse>
+        </div>
+      </div>
+      <br>
+      <div nz-row >
+        <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ span: 20, pull: 2 }" [nzXl]="{ span: 20 }" >
+          <button nz-button nzType="primary" nzShape="round" (click)="pre()" *ngIf="currentStepPosition > 0"
+                  class="boutton-precedant">
+            Précédant
+          </button>
+          <button nz-button nzType="primary" nzShape="round" (click)="next()" *ngIf="currentStepPosition < 2"
+                  class="boutton-suivant">
+            Suivant
+          </button>
+
+          <button nz-button nzType="primary" nzShape="round" (click)="done()" *ngIf="currentStepPosition === 2"
+                  class="boutton-suivant">
+            Valider
+          </button>
+        </div>
+      </div>
+    </form>
+  </nz-card>
+</div>
+

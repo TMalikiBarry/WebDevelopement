@@ -1,0 +1,121 @@
+<nz-layout>
+  <!-- Menu   -->
+  <div nz-row class="menu-home" nzJustify="space-between" nzAlign="middle" style="height: auto">
+    <div nz-col [nzXs]="{ offset: 0, span: 6, push: 0 }" [nzSm]="{ offset: 0, span: 6, push: 0 }" [nzMd]="{ span: 2, offset: 0 }" [nzLg]="{ span: 2 }" [nzXl]="{ span: 2 }" routerLink="/pmo" style="cursor: pointer;"><img
+        src="../../../../assets/images/logo-TG_valide.svg" height="70" width="100" alt="">
+      </div>
+    <!-- Element du Menu  -->
+    <div nz-col [nzXs]="{ offset: 1, span: 10, push: 0 }" [nzSm]="{ offset: 0, span: 10, push: 0 }" [nzMd]="{ span: 20, offset: 0 }" [nzLg]="{ span: 16 }" [nzXl]="{ span: 17 }" class="menu-element">
+      <ul nz-menu nzMode="horizontal">
+        <div nz-row nzJustify="space-around" nzAlign="middle">
+          <div nz-col>
+            <li nz-menu-item routerLink="indicateurs">
+              <i nz-icon nzType="fund" class="nav-link">
+                Tableau de bord
+              </i>
+            </li>
+          </div>
+          <div nz-col>
+            <li nz-menu-item>
+              <i nz-icon nzType="home" style="margin-right: 7px;" class="nav-link" routerLink="apercu">
+                Demandes
+              </i>
+            </li>
+          </div>
+          <div nz-col>
+            <li nz-menu-item routerLink="users_beneficiaire">
+              <i nz-icon nzType="user-add" class="nav-link">
+                Bénéficiaires
+              </i>
+            </li>
+          </div>
+          <div nz-col routerLink="/pmo/notification">
+            <li nz-menu-item class="nav-link">
+               <i nz-icon nzType="bell"  nzTheme="outline" class="nav-link">
+                Mes Notifications
+               </i>
+               <!-- <nz-badge  nzDot [nzShowDot]="false" >
+                  <i nz-icon nzType="bell"  nzTheme="outline" class="nav-link"></i>
+               </nz-badge> -->
+            </li>
+          </div>
+          <div nz-col>
+            <li nz-menu-item>
+              <i nz-icon nzType="folder" style="margin-right: 7px;" class="nav-link" routerLink="offres">
+                Offres
+              </i>
+            </li>
+          </div>
+          <div nz-col *ngIf="role=='SUPERVISEUR_PMO'">
+            <li nz-menu-item routerLink="users">
+              <i nz-icon nzType="user-add" class="nav-link">
+                Gestion des utilisateurs
+              </i>
+            </li>
+          </div>
+        </div>
+      </ul>
+    </div>
+    <!-- Element du Menu  -->
+
+    <!-- Bouton de connexion et d'inscripition  -->
+    <div nz-col [nzXs]="{ offset: 1, span: 6}" [nzSm]="{ offset: 1, span: 6, push: 0 }" [nzMd]="{ span: 2, offset: 0 }" [nzLg]="{ span:4, pull:2 }" [nzXl]="{ span: 3, pull:2 }">
+      <div nz-row nzJustify="center" nzAlign="middle">
+        <div nz-col>
+          <!--<nz-badge nzDot>
+            <i nz-icon nzType="bell" style="font-size: 21px;"></i>
+          </nz-badge>-->
+        </div>
+
+        <div nz-col>
+          <nz-avatar [nzSize]="45" nzIcon="user" nzSrc="{{baseUrlFile}}{{pmo?.logo}}" nz-dropdown [nzDropdownMenu]="menuUser">
+          </nz-avatar>
+
+
+          <nz-dropdown-menu #menuUser="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item routerLink="profil" >
+                <i nz-icon nzType="user" nzTheme="outline"></i>
+                <span style="margin-left: 10px;">Profil</span>
+              </li>
+              <li nz-menu-item routerLink="change_password" >
+                <i nz-icon nzType="edit" nzTheme="outline"></i>
+                <span style="margin-left: 10px;">Changer mot de passe</span>
+              </li>
+              <li nz-menu-item (click)="askFordeconnexion()" >
+                <i nz-icon nzType="logout" nzTheme="outline"></i>
+                <span style="margin-left: 10px;">Se déconnecter</span>
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+
+
+        </div>
+
+        <!--<div nz-col nzSpan="6">
+          <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+            <img src="../../../../assets/images/beneficiaire/menu/flag/france 1.jpg" width="20" height="20" alt="">
+            FRA
+            <i nz-icon nzType="down"></i>
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>
+                <img src="../../../../assets/images/beneficiaire/menu/flag/france 1.jpg" width="20" height="20" alt=""> &nbsp; Francais
+              </li>
+              &lt;!&ndash; <li nz-menu-item>2nd menu item</li> &ndash;&gt;
+            </ul>
+          </nz-dropdown-menu>
+        </div>-->
+
+      </div>
+    </div>
+  </div>
+  <!-- Menu   -->
+
+  <!-- content  -->
+  <!-- Layout content  -->
+
+  <router-outlet></router-outlet>
+  <!-- Layout content  -->
+</nz-layout>

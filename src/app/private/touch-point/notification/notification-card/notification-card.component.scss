@@ -1,0 +1,39 @@
+
+nz-comment {
+  background-color: white;
+  border-radius: 8px;
+  margin-top : 10px;
+  min-width: 300px;
+  width: auto ;
+  padding: 10px ;
+  box-shadow: 10px 10px 10px rgba($color: #808080, $alpha: 0.3) ;
+}
+
+.title-comment {
+
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.title-content {
+  margin-bottom: 10px;
+  font-family: Manrope;
+  font-style: normal;
+  color: #B0B1BD;
+}
+
+.card-button-demande {
+  height: 45px;
+  background: #224B96;
+  border-color : #224B96;
+  border-radius: 400px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color : white ;
+}

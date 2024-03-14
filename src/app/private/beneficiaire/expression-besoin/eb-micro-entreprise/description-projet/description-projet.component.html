@@ -1,0 +1,391 @@
+<div class="container">
+  <div class="container">
+    <div style="padding:30px;">
+      <nz-card [nzBordered]="false" nzTitle="Description du projet" style="width:auto;border-radius: 8px;">
+        <form [formGroup]="descriptionForm" class="center-form" nz-form>
+          <nz-collapse [nzBordered]="false" nzAccordion style="background-color: white">
+            <nz-collapse-panel [nzActive]="key1" nzHeader="Etape 1/3 - description du projet à financer"
+                               style="font-weight: bold;">
+              <div nz-row nzAlign="top">
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="description" nzRequired>Description du projet ou de
+                        l'activité à financer
+                      </nz-form-label>
+                      <input [ngClass]="{'is-invalid':submitted && descriptionForm.controls.descriptionProjet.errors}" formControlName="descriptionProjet" id="description" name="cout"
+                             nz-input/>
+                      <div *ngIf="submitted && descriptionForm.controls.descriptionProjet.errors"
+                           class="invalid-feedback">
+                        <div *ngIf="descriptionForm.controls.descriptionProjet.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzExtra="Formats documents autorisés: .pdf, .docx">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="bussiness">Bussiness Plan</nz-form-label>
+                      <input (change)="bussinessPlanLoad($event)"
+                             accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                             formControlName="bussimessPlan" id="bussiness"
+                             name="bussiness"
+                             nz-input type="file">
+                      <span *ngIf="!checkBPlanFileSizeMB" [ngStyle]="{color: 'red'}"> Fichier trop lourd ( ne doit pas dépasser 2 Mo)</span><br>
+                      <p *ngIf="bussinessPlanNom && bussinessPlanNom != ''">Fichier :
+                        <span><a href="{{baseUrlFile}}{{bussinessPlanNom}}"
+                                 target="_blank">
+                        {{this.descriptionForm.controls.bussimessPlan.valid ? this.bussinessPlanNom.slice(this.bussinessPlanNom.lastIndexOf('_') + 1) : ''}}
+                      </a><i (click)="deleteBusinessPlan(bussinessPlanNom)" nz-icon nzType="delete"></i></span>
+                      </p>
+                      <div *ngIf="checkFilePlan" class="invalid-input">
+                        <div>Veuillez choisir un format de fichier autorisé</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24"
+                                     nzExtra="Formats documents autorisés: Pdf, Jpeg, Png, Docx">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="complement">Complément d'informations(Choississez un
+                        ou plusieurs fichiers)
+                      </nz-form-label>
+                      <input (change)="complementInfoLoad($event)"
+                             accept="image/jpeg,.pdf,.png,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                             formControlName="complementInfo" id="complement"
+                             multiple
+                             name="complement" nz-input type="file">
+                      <!-- <p>Fichier : <span style="display: none;">{{this.descriptionForm.controls.complementInfo.valid?this.descriptionForm.controls.complementInfo?.value?.replace("C:\\fakepath\\", ""):''}}</span> &nbsp;
+                        <a *ngIf="demande.projets[0]?.complementInformations[0]" target="_blank" href="{{baseUrlFile}}{{demande.projets[0]?.complementInformations[0]}}">Voir document</a>
+                      </p> -->
+                      <span *ngIf="!checkCpmtInfoFileSizeMB" [ngStyle]="{color: 'red'}"> Fichier trop lourd ( ne doit pas dépasser 2 Mo)</span><br>
+                      <p>
+                        Fichiers :
+                        <!-- <span *ngFor="let complementInfoNom of complementInfoNomList">{{complementInfoNom?.replace("C:\\fakepath\\", "")}} <br></span> -->
+                        <span *ngFor="let complementInfoNom of complementInfoNomList; let i = index">
+                        <a href="{{baseUrlFile}}{{complementInfoNom}}"
+                           target="_blank"><em>{{this.complementInfoNom.slice(this.complementInfoNom.lastIndexOf('_') + 1)}}</em></a> &nbsp; <i
+                          (click)="deleteComplement(complementInfoNom)" nz-icon nzType="delete"></i> &nbsp;&nbsp;
+                      </span>
+                      </p>
+                      <div *ngIf="checkFileInfo" class="invalid-input">
+                        <div>Veuillez choisir un format de fichier autorisé</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+            </nz-collapse-panel>
+            <nz-collapse-panel [nzActive]="key2"
+                               nzHeader="Etape 2/3 - description du projet à financer (Employés permanents)"
+                               style="font-weight: bold;">
+              <div nz-row nzAlign="top">
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="nbreemploi">Emplois éxistants: employés permanents
+                        <i class="marge-icon-info" nz-icon
+                           nz-tooltip="Emploi crée pour répondre à un besoin normal et habituel dans le cadre de l'activité de l'entrepreneur pour une durée supérieure à 6 mois sur une année"
+                           nzTheme="outline"
+                           nzType="info-circle"></i>
+                      </nz-form-label>
+                      <input [ngClass]="{'is-invalid':submitted2 && descriptionForm.controls.employesPermanents.errors}" formControlName="employesPermanents" id="nk" name="nbreemploi" nz-input
+                             type="number">
+                      <div *ngIf="submitted2 && descriptionForm.controls.employesPermanents.errors"
+                           class="invalid-feedback">
+                        <div *ngIf="descriptionForm.controls.employesPermanents.errors.pattern">Ce champ est invalide
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="nbreemploi" nzRequired>Nombre d'emplois prévu avec
+                        ce financement ou projet
+                        <i class="marge-icon-info" nz-icon
+                           nz-tooltip="Emploi permanent prévu pour répondre à un besoin normal et habituel de l'entreprise pour une durée supérieure ou égale à 6 mois sur une année"
+                           nzTheme="outline"
+                           nzType="info-circle"></i>
+                      </nz-form-label>
+                      <input (change)="checkLimitInputsPermanent()" [ngClass]="{'is-invalid':submitted2 && descriptionForm.controls.nombreEmploiAdditionnelsPermanent.errors}" formControlName="nombreEmploiAdditionnelsPermanent" id="nbreemploi"
+                             name="nbreemploi"
+                             nz-input
+                             type="number">
+                      <div *ngIf="submitted2 && descriptionForm.controls.nombreEmploiAdditionnelsPermanent.errors"
+                           class="invalid-feedback">
+                        <div *ngIf="descriptionForm.controls.nombreEmploiAdditionnelsPermanent.errors.required">Ce champ
+                          est obligatoire
+                        </div>
+                        <div *ngIf="descriptionForm.controls.nombreEmploiAdditionnelsPermanent.errors.pattern">Ce champ
+                          est invalide
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="nombre_femme" nzRequired>Nombre de femmes prévu
+                      </nz-form-label>
+                      <input (change)="checkNombreTotalFemmePermanent()" [ngClass]="{'is-invalid':submitted2 && descriptionForm.controls.nombreFemmesPrevuPermanent.errors}" formControlName="nombreFemmesPrevuPermanent" id="cc"
+                             name="nombre_femme"
+                             nz-input
+                             type="number"/>
+                      <div *ngIf="submitted2 && descriptionForm.controls.nombreFemmesPrevuPermanent.errors"
+                           class="invalid-feedback">
+                        <div *ngIf="descriptionForm.controls.nombreFemmesPrevuPermanent.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                        <div *ngIf="descriptionForm.controls.nombreFemmesPrevuPermanent.errors.pattern">Ce champ est
+                          invalide
+                        </div>
+                      </div>
+                      <div *ngIf="descriptionForm.controls.nombreFemmesPrevuPermanent.errors" class="invalid-input">
+                        <div *ngIf="descriptionForm.controls.nombreFemmesPrevuPermanent.errors.max">Veuillez saisir un
+                          nombre d'employés correct
+                        </div>
+                      </div>
+                      <div *ngIf="nombreTotalFemmePermanent" class="invalid-input">
+                        <div>Veuillez d'abord saisir le nombre d'employé(s) permanent(s)</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="pourcentage_femme">Pourcentage femme</nz-form-label>
+                      <input [attr.disabled]="true" [value]="calculPourcentageFemmesPermanent()" formControlName="pourcentageFemmePermanent" id="dd"
+                             name="pourcentage_femme" nz-input/>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <div nz-row nzAlign="top">
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="nombre_jeune" nzRequired>Nombre de jeunes (< 35 ans)
+                        prévu
+                      </nz-form-label>
+                      <input (change)="checkNombreTotalJeunePermanent()" [ngClass]="{'is-invalid':submitted2 && descriptionForm.controls.nombreJeunesPermanent.errors}" formControlName="nombreJeunesPermanent" id="sd" name="nombre_jeune"
+                             nz-input
+                             type="number"/>
+                      <div *ngIf="submitted2 && descriptionForm.controls.nombreJeunesPermanent.errors"
+                           class="invalid-feedback">
+                        <div *ngIf="descriptionForm.controls.nombreJeunesPermanent.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                        <div *ngIf="descriptionForm.controls.nombreJeunesPermanent.errors.pattern">La valeur est
+                          invalide
+                        </div>
+                      </div>
+                      <div *ngIf="descriptionForm.controls.nombreJeunesPermanent.errors" class="invalid-input">
+                        <div *ngIf="descriptionForm.controls.nombreJeunesPermanent.errors.max">Veuillez saisir un nombre
+                          d'employés correct
+                        </div>
+                      </div>
+                      <div *ngIf="nombreTotalJeunePermanent" class="invalid-input">
+                        <div>Veuillez d'abord saisir le nombre d'employé(s) permanent(s)</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="pourcentage_jeune">Pourcentage de jeunes (< 35
+                        ans)
+                      </nz-form-label>
+                      <input [attr.disabled]="true" [value]="calculPourcentageJeunesPermanent()" formControlName="pourcentageJeunesPermanent" id="ee"
+                             name="pourcentage_jeune" nz-input/>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+
+            </nz-collapse-panel>
+            <nz-collapse-panel [nzActive]="key3"
+                               nzHeader="Etape 3/3 - description du projet à financer (Employés non permanents)"
+                               style="font-weight: bold;">
+              <div nz-row nzAlign="top">
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="nbreemploi">Emplois éxistants: employés non
+                        permanents, prestataires, saisonniers, etc.
+                        <i class="marge-icon-info" nz-icon
+                           nz-tooltip="Emploi crée pour répondre à un besoin temporaire ou saisonnier dans le cadre de l'activité de l'entrepreneur pour une durée inférieure ou égale à 6 mois sur une année"
+                           nzTheme="outline"
+                           nzType="info-circle"></i>
+                      </nz-form-label>
+                      <input [ngClass]="{'is-invalid':submitted3 && descriptionForm.controls.nombreJeunesPermanent.errors}" formControlName="employesNonPermanents" id="rr" name="nbreemploi" nz-input
+                             type="number">
+                      <div *ngIf="submitted3 && descriptionForm.controls.employesNonPermanents.errors"
+                           class="invalid-feedback">
+                        <div *ngIf="descriptionForm.controls.employesNonPermanents.errors.required">Ce champ est
+                          invalide
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="po" nzRequired>Nombre
+                        d'emplois non permanents prévu avec ce financement ou projet
+                        <i class="marge-icon-info" nz-icon
+                           nz-tooltip="Emploi non permanent prévu pour répondre à un besoin normal et habituel de l'entreprise pour une durée supérieure ou égale à 6 mois sur une année"
+                           nzTheme="outline"
+                           nzType="info-circle"></i>
+                      </nz-form-label>
+                      <input (change)="checkLimitInputsNonPermanent()" [ngClass]="{'is-invalid':submitted3 && descriptionForm.controls.NombreEmploisAdditionnelsNonPermanent.errors}" formControlName="NombreEmploisAdditionnelsNonPermanent" id="dmp"
+                             name="nombre_femme"
+                             nz-input
+                             type="number"/>
+                      <div *ngIf="submitted3 && descriptionForm.controls.NombreEmploisAdditionnelsNonPermanent.errors"
+                           class="invalid-feedback">
+                        <div *ngIf="descriptionForm.controls.NombreEmploisAdditionnelsNonPermanent.errors.required">Ce
+                          champ est obligatoire
+                        </div>
+                        <div *ngIf="descriptionForm.controls.NombreEmploisAdditionnelsNonPermanent.errors.pattern">Ce
+                          champ est invalide
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="nombre_femme" nzRequired>Nombre de femmes non
+                        permanentes prévu
+                      </nz-form-label>
+                      <input (change)="checkNombreTotalFemmeNonPermanent()" [ngClass]="{'is-invalid':submitted3 && descriptionForm.controls.NombreFemmesPrevusNonPermanent.errors}" formControlName="NombreFemmesPrevusNonPermanent" id="cac"
+                             name="nombre_femme"
+                             nz-input
+                             type="number"/>
+                      <div *ngIf="submitted3 && descriptionForm.controls.NombreFemmesPrevusNonPermanent.errors"
+                           class="invalid-feedback">
+                        <div *ngIf="descriptionForm.controls.NombreFemmesPrevusNonPermanent.errors.required">Ce champ
+                          est obligatoire
+                        </div>
+                        <div *ngIf="descriptionForm.controls.NombreFemmesPrevusNonPermanent.errors.pattern">Ce champ est
+                          invalide
+                        </div>
+                      </div>
+                      <div *ngIf="descriptionForm.controls.NombreFemmesPrevusNonPermanent.errors" class="invalid-input">
+                        <div *ngIf="descriptionForm.controls.NombreFemmesPrevusNonPermanent.errors.max">Veuillez saisir
+                          un nombre d'employés correct
+                        </div>
+                      </div>
+
+
+                      <div *ngIf="nombreTotalFemmeNonPermanent" class="invalid-input">
+                        <div>Veuillez d'abord saisir le nombre d'employé(s) non permanent(s)</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="pourcentage_femme">Pourcentage femmes non
+                        permanentes
+                      </nz-form-label>
+                      <input [attr.disabled]="true" [value]="calculPourcentageFemmesNonPermanent()" formControlName="PourentageFemmessNonPermanent" id="dad"
+                             name="pourcentage_femme" nz-input/>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <div nz-row nzAlign="top">
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="nombre_jeune" nzRequired>Nombre de jeunes (< 35 ans)
+                        non permanents prévu
+                      </nz-form-label>
+                      <input (change)="checkNombreTotalJeuneNonPermanent()" [ngClass]="{'is-invalid':submitted3 && descriptionForm.controls.NombreJeunessNonPermanent.errors}" formControlName="NombreJeunessNonPermanent" id="sda"
+                             name="nombre_jeune"
+                             nz-input
+                             type="number"/>
+                      <div *ngIf="submitted3 && descriptionForm.controls.NombreJeunessNonPermanent.errors"
+                           class="invalid-feedback">
+                        <div *ngIf="descriptionForm.controls.NombreJeunessNonPermanent.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                        <div *ngIf="descriptionForm.controls.NombreJeunessNonPermanent.errors.pattern">Cette valeur est
+                          invalide
+                        </div>
+                        <div *ngIf="descriptionForm.controls.NombreJeunessNonPermanent.errors.max">Veuillez saisir un
+                          nombre d'employés correct
+                        </div>
+                      </div>
+                      <div *ngIf="descriptionForm.controls.NombreJeunessNonPermanent.errors" class="invalid-input">
+                        <div *ngIf="descriptionForm.controls.NombreJeunessNonPermanent.errors.max">Veuillez saisir un
+                          nombre d'employés correct
+                        </div>
+                      </div>
+                      <div *ngIf="nombreTotalJeuneNonPermanent" class="invalid-input">
+                        <div>Veuillez d'abord saisir le nombre d'employé(s) non permanent(s)</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                      <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="pourcentage_jeune">Pourcentage de jeunes (< 35 ans)
+                        non permanents
+                      </nz-form-label>
+                      <input [attr.disabled]="true" [value]="calculPourcentageJeunesNonPermanent()" formControlName="PourcentageJeunessNonPermanent" id="eea"
+                             name="pourcentage_jeune" nz-input/>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+
+            </nz-collapse-panel>
+          </nz-collapse>
+          <div class="steps-action marge-form" nz-col nzSpan="18">
+            <button (click)="pre()" *ngIf="currentStepPosition > 0" class="boutton-precedant" nz-button nzShape="round"
+                    nzType="primary">
+
+              Précédant
+            </button>
+            <button (click)="next()" *ngIf="currentStepPosition < 1" class="boutton-suivant" nz-button nzShape="round"
+                    nzType="primary">
+
+              Suivant
+            </button>
+            <button (click)="done()" *ngIf="currentStepPosition === 1" class="boutton-suivant" nz-button nzShape="round"
+                    nzType="primary">
+
+              Valider
+            </button>
+          </div>
+        </form>
+      </nz-card>
+    </div>
+  </div>
+</div>

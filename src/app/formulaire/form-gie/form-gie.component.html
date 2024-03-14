@@ -1,0 +1,47 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+<nz-layout>
+  <div nz-row nzJustify="center" nzAlign="middle">
+    <div nz-col>
+      <div nz-row nzAlign="middle" nzJustify="center">
+        <nz-steps nzType="navigation" [nzCurrent]="currentStepPosition" (nzIndexChange)="onIndexChange($event)">
+          <nz-step nzTitle="Mandataire" style="margin-right: 25px"></nz-step>
+          <nz-step  *ngIf="auth.getRole()!='AGENT_INITIATEUR'" nzTitle="Autre Mandataire " style="margin-right: 25px"></nz-step>
+          <nz-step nzTitle="Groupement" style="margin-right: 25px"></nz-step>
+          <nz-step nzTitle="Activité" style="margin-right: 25px"></nz-step>
+          <nz-step *ngIf="!idPmo" nzTitle="Identification Visuelle" style="margin-right: 25px"></nz-step>
+          <nz-step *ngIf="!beneficiaireId && auth.getRole()!='AGENT_INITIATEUR'" nzTitle="Accès" style="margin-right: 25px"></nz-step>
+        </nz-steps>
+      </div>
+    </div>
+    <div nz-col nzSpan="24" class="steps-content">
+      <div *ngIf="currentStepPosition==0"></div>
+      <app-gie-identification-person-contact [beneficiairetp]="beneficiairetp" [(personContact)]="personContact" [showPmoReferant]="showPmoReferant" *ngIf="currentStepPosition==0"></app-gie-identification-person-contact>
+      <div *ngIf="currentStepPosition==1" ></div>
+      <app-gie-identification-agent *ngIf="currentStepPosition==1 && auth.getRole()!='AGENT_INITIATEUR'" [(agentInfo)]="agentInfo"></app-gie-identification-agent>
+      <div *ngIf="currentStepPosition==2"></div>
+      <app-gie-identification-groupement *ngIf="(currentStepPosition==2 && auth.getRole()!='AGENT_INITIATEUR') || (currentStepPosition==1 && auth.getRole()=='AGENT_INITIATEUR')" [(groupementInfo)]="groupementInfo"></app-gie-identification-groupement>
+      <div *ngIf="currentStepPosition==3"></div>
+      <app-gie-identification-activite-groupement *ngIf="(currentStepPosition==3 && auth.getRole()!='AGENT_INITIATEUR') || (currentStepPosition==2 && auth.getRole()=='AGENT_INITIATEUR')" [(activiteInfo)]="activiteInfo"></app-gie-identification-activite-groupement>
+      <div *ngIf="currentStepPosition==4"></div>
+      <app-gie-selphie [beneficiairetp]="beneficiairetp" *ngIf="(currentStepPosition==4 && !idPmo) || (currentStepPosition==3 && auth.getRole()=='AGENT_INITIATEUR')" [(selphieInfo)]="selphieInfo" ></app-gie-selphie>
+      <div *ngIf="currentStepPosition==5"></div>
+      <app-register-form-gie *ngIf="currentStepPosition==5 && !beneficiairetp  && auth.getRole()!='AGENT_INITIATEUR'" [benefApiResponse]="benefApiResponse" [(connexionInfo)]="connexionInfo"[numeroTelephone]="numeroTelephone"
+      [showCodeOtpForm]="showOtp" [showSuccessPmo]="showSuccessPmo" [nombreSecond]="nombreSecond" [renvoiCode]="renvoiCode" [showModel]="showModel" [stepname]="stepname"></app-register-form-gie>
+    </div>
+    <!--<div nz-col nzSpan="18"  class="steps-action" id="section_button">
+      <button nz-button nzType="primary" nzShape="round" (click)="pre()" *ngIf="currentStepPosition > 0" class="boutton-precedant">
+
+        Précédant
+      </button>
+      <button nz-button nzType="primary" nzShape="round" (click)="next()" *ngIf="currentStepPosition < 4" class="boutton-suivant">
+
+        Suivant
+      </button>
+      <button nz-button nzType="primary" nzShape="round" (click)="done()" *ngIf="currentStepPosition === 4" class="boutton-suivant">
+
+        Valider
+      </button>
+    </div>-->
+  </div>
+</nz-layout>
+</nz-spin>

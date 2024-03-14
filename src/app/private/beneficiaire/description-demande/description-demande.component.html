@@ -1,0 +1,407 @@
+<nz-tabset>
+  <!-- Debut info demande -->
+  <nz-tab nzTitle="Demande">
+    <div nz-row nzJustify="center" nzAlign="middle" class="card-offre-content">
+
+      <nz-collapse [nzBordered]="false" style="background-color: white" nzAccordion  >
+        <nz-collapse-panel style="font-weight: bold;" nzHeader="Description du projet à financer"  [nzActive]="key1">
+          <div nz-row nzAlign="top" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="description">Description du projet ou de l'activité à financer</nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.description}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24" class="adjustements-inputs" nzRequired nzFor="nbreannee">Coût du projet en Francs CFA</nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.cout | currency: "XOF": "symbol": "1.0": "fr"}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row nzAlign="top" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24"  nzFor="bussiness">Business Plan</nz-form-label>
+                  <nz-form-item>
+                    <a *ngIf="demande?.projets[0]?.businessPlan"
+                       href="{{baseUrlFile}}{{demande?.projets[0]?.businessPlan}}" target="_blank">
+                      {{demande?.projets[0]?.businessPlan.slice(demande?.projets[0]?.businessPlan.lastIndexOf('_') + 1)}}</a>
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="complement">Compléments d'informations</nz-form-label>
+                  <nz-form-item
+                    *ngFor="let complementInfoNom of demande?.projets[0]?.complementInformations; let i= index">
+                     <span>
+                      <a href="{{baseUrlFile}}{{complementInfoNom}}"
+                         target="_blank"><em>{{this.complementInfoNom.slice(this.complementInfoNom.lastIndexOf('_') + 1)}}</em></a>&nbsp;&nbsp;
+                    </span>
+                  </nz-form-item>
+
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+        </nz-collapse-panel>
+        <nz-collapse-panel style="font-weight: bold;" nzHeader="Description du projets à financer (Employés permanents)" [nzActive]="key2">
+          <div nz-row nzAlign="top" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24" class="adjustements-inputs"  nzFor="nbreemploi">Emplois à créer: employés permanents </nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.nombreEmploisPermanent?.libelle}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="nbreemploi">Nombre d'emplois prévu avec ce financement ou projets</nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.nombreEmploisAdditionnelPermanent}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row nzAlign="top" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="nombre_femme">Nombre de femmes prévu</nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.nombreFemmePrevuePermanent}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24"  nzFor="pourcentage_femme">Pourcentage femme</nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.pourcentageFemmePermanent}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <div nz-row nzAlign="top" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="nombre_jeune">Nombre de jeunes (< 35 ans) prévu </nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.nombreJeunePermanent}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="pourcentage_jeune">Pourcentage de jeunes (< 35 ans)</nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.pourcentageJeunePermanent}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+
+        </nz-collapse-panel>
+        <nz-collapse-panel style="font-weight: bold;" nzHeader="Description du projet à financer (Employés non permanents)" [nzActive]="key3">
+          <div nz-row nzAlign="top" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24"  nzFor="nbreemploi">Emplois à créer: employés non permanents, prestataires, saisonniers, etc.</nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.nombreEmploisNonPermanent?.libelle}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24" class="adjustements-inputs" nzRequired nzFor="po">Nombre d'emplois non permanents prévu avec ce financement ou projet</nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.nombreEmploisAdditionnelNonPermanent}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row nzAlign="top">
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="nombre_femme">Nombre de femmes non permanentes prévu</nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.nombreFemmePrevueNonPermanent}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24"  nzFor="pourcentage_femme">Pourcentage femmes non permanentes</nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.pourcentageFemmeNonPermanent}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <div nz-row nzAlign="top" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="nombre_jeune">Nombre de jeunes (< 35 ans) non permanents prévu </nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.nombreJeuneNonPermanent}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="24" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24"  nzFor="pourcentage_jeune">Pourcentage de jeunes (< 35 ans) non permanents</nz-form-label>
+                  <nz-form-item>
+                    {{demande?.projets[0]?.pourcentageJeuneNonPermanent}}
+                  </nz-form-item>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+        </nz-collapse-panel>
+        <!-- Fin description du projet -->
+
+        <!-- debut expression besoin -->
+        <nz-collapse-panel style="font-weight: bold;" nzHeader="Demande de financement" [nzActive]="key4">
+                <div nz-row nzAlign="top">
+                  <div nz-col nzSpan="12">
+
+                    <nz-form-item>
+                      <nz-form-control [nzSm]="24" [nzXs]="24">
+                        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="typedemande">Type de financement
+                        </nz-form-label>
+                        <nz-form-item>
+                          {{demande?.typeDemande}}
+                        </nz-form-item>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                  <div nz-col nzSpan="12">
+                    <nz-form-item>
+                      <nz-form-control [nzSm]="24" [nzXs]="24">
+                        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="duree">Durée souhaitée en nombre de mois
+                        </nz-form-label>
+                        <nz-form-item>
+                          {{demande?.duree}}
+                        </nz-form-item>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+
+                </div>
+
+                <div nz-row nzAlign="top">
+                  <div nz-col nzSpan="12">
+                    <nz-form-item>
+                      <nz-form-control [nzSm]="24" [nzXs]="24">
+                        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="nbreannee"> Montant demandé en Francs CFA
+                        </nz-form-label>
+                        <nz-form-item>
+                          {{demande?.montant| currency: "XOF": "symbol": "1.0": "fr"}}
+                        </nz-form-item>
+                      </nz-form-control>
+                    </nz-form-item>
+
+                  </div>
+                  <div nz-col nzSpan="12">
+                    <nz-form-item>
+                      <nz-form-control [nzSm]="24" [nzXs]="24">
+                        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="tauxinteret">Taux d'intérêt annuel hors taxe
+                          souhaité </nz-form-label>
+                        <nz-form-item>
+                          {{demande?.tauxInteretAnnuelleSouhaite}}
+                        </nz-form-item>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+<!--                  <div nz-col nzSpan="12">-->
+<!--                    <nz-form-item>-->
+<!--                      <nz-form-control [nzSm]="24" [nzXs]="24">-->
+<!--                        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="apport">% Apport </nz-form-label>-->
+<!--                        <nz-form-item>-->
+<!--                          {{demande?.apport}}-->
+<!--                        </nz-form-item>-->
+<!--                      </nz-form-control>-->
+<!--                    </nz-form-item>-->
+<!--                  </div>-->
+
+                </div>
+
+                <div nz-row  nzAlign="top" *ngIf="typeBeneficiaire=='GIE'">
+                  <div nz-col nzSpan="12">
+                    <nz-form-item>
+                      <nz-form-control [nzSm]="24" [nzXs]="24">
+                        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="type_demande">Nombre de membres concernés</nz-form-label>
+                        <nz-form-item>
+                          {{demande?.nombreMembresConcernes}}
+                        </nz-form-item>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                  <div nz-col nzSpan="12">
+                    <nz-form-item>
+                      <nz-form-control [nzSm]="24" [nzXs]="24" >
+                        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="montant_demander">Montant demandé en Francs CFA / par membre</nz-form-label>
+                        <nz-form-item>
+                          {{demande?.montantDemandeParMembre| currency: "XOF": "symbol": "1.0": "fr"}}
+                        </nz-form-item>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                </div>
+          <!-- Suppression champs Garanties proposées et Valeur de la garantie
+                <div nz-row nzAlign="top">
+                  <div nz-col nzSpan="12">
+                    <nz-form-item>
+                      <nz-form-control [nzSm]="24" [nzXs]="24">
+                        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="garanties">Garanties proposées
+                        </nz-form-label>
+                        <nz-form-item>
+                          {{demande?.garantie?.libelle}}
+                        </nz-form-item>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                  <div nz-col nzSpan="12">
+                    <nz-form-item>
+                      <nz-form-control [nzSm]="24" [nzXs]="24">
+                        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="valeurgarnatie">Valeur de la garantie en
+                          Francs CFA</nz-form-label>
+                        <nz-form-item>
+                          {{demande?.valeurGarantie}}
+                        </nz-form-item>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+
+                </div>  -->
+                <div nz-row nzAlign="top">
+<!--                  <div nz-col nzSpan="12">-->
+<!--                    <nz-form-item>-->
+<!--                      <nz-form-control [nzSm]="24" [nzXs]="24">-->
+<!--                        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="tauxinteret">Taux d'intérêt annuel hors taxe-->
+<!--                          souhaité </nz-form-label>-->
+<!--                        <nz-form-item>-->
+<!--                          {{demande?.tauxInteretAnnuelleSouhaite}}-->
+<!--                        </nz-form-item>-->
+<!--                      </nz-form-control>-->
+<!--                    </nz-form-item>-->
+<!--                  </div>-->
+                  <div nz-col nzSpan="12">
+                    <nz-form-item>
+                      <nz-form-control [nzSm]="24" [nzXs]="24">
+                        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="1414">A t-il déjà obtenu un financement dans le passé?
+                        </nz-form-label>
+                        <nz-form-item>
+                          <span *ngIf="show">Oui</span>
+                          <span *ngIf="!show">Non</span>
+                        </nz-form-item>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                </div>
+            </nz-collapse-panel>
+            <nz-collapse-panel style="font-weight: bold;" nzHeader="Demande de financement" [nzActive]="key2" *ngIf="show">
+              <nz-table #nzTable [nzData]="demande?.financementObtenus" nzTableLayout="fixed">
+                <thead>
+                  <tr>
+                    <th>Institution financière</th>
+                    <th>Type de crédit</th>
+                    <th>Montant demandé</th>
+                    <th>Date de mise en place</th>
+                    <th>Statut financement</th>
+                    <th nzWidth="60px"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let data of demande?.financementObtenus">
+                    <tr class="tr-showed">
+                      <td>{{ data?.institutionFinanciere }}</td>
+                      <td>{{ data?.typeCredit }}</td>
+                      <td>{{ data?.montant | currency: "XOF": "symbol": "1.0": "fr" }}</td>
+                      <td>{{ data?.dateFinancement | date:'medium':'GMT' }}</td>
+                      <td>{{ data?.statusFinancement}}</td>
+                      <td [nzExpand]="expandSet.has(data.id+'')" (nzExpandChange)="onExpandChange(data.id+'', $event)"></td>
+                    </tr>
+                    <tr [nzExpand]="expandSet.has(data.id+'')" class="tr-expanded" style="height: 160px;border: 1px solid #EBEBEB;">
+                      <div nz-row nzAlign="middle" style="height: 155px; ">
+
+                        <!-- Right part of detail benef  -->
+                        <div nz-col nzSpan="20" style="height: 100%; padding: 10px;" >
+                          <div nz-row nzJustify="space-between" >
+                            <div nz-col nzOffset="2" nzSpan="12" class="label-detail-tr">
+                              Taux d'intérêt annuel hors taxe applicable
+                            </div>
+                            <div nz-col nzSpan="6" class="label-detail-tr">
+                              Tableaux d'amortissements
+                            </div>
+                          </div>
+
+                          <div nz-row nzJustify="space-between" style="margin-bottom: 75px;">
+                            <div nz-col nzSpan="12" nzOffset="2" class="label-detail-tr-content">
+                              <!-- 250,000 CFA -->
+                              {{data?.tauxInteretAnnuelHT}}
+                              <!-- <span *ngIf="!beneficiaire.chiffreAffaireAnMoins1">Non renseigné</span> -->
+                            </div>
+                            <div nz-col nzSpan="5" class="label-detail-tr-content">
+                              <!-- 3 Years -->
+                              <!-- {{data?.tableauAmortissement}} -->
+                              <a *ngIf="data?.tableauAmortissement" target="_blank" href="{{baseUrlFile}}{{data?.tableauAmortissement}}">Voir document</a>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Right part of detail benef  -->
+                      </div>
+                    </tr>
+                    <tr style="height: 20px;visibility: hidden;background-color: transparent;">
+
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </nz-table>
+            </nz-collapse-panel>
+      </nz-collapse>
+
+    </div>
+  </nz-tab>
+</nz-tabset>

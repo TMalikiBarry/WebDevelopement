@@ -1,0 +1,206 @@
+nz-layout{
+  min-height: 100vh;
+  height: fit-content;
+}
+
+.menu-home {
+  height: 9vh;
+  background-color: white;
+
+}
+
+
+.form-container{
+  min-height: 83vh ;
+  height: fit-content;
+}
+
+
+.footer-container{
+  background-color: #224B96;
+  min-height: 8vh;
+}
+
+.button-inscription{
+  height: 45px;
+  width: 110px ;
+  background-color: #E83456;
+  border-color : #E83456 ;
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.button-connexion{
+  height: 50%;
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25%;
+  line-height:25%;
+}
+
+.button-menu{
+  height: 50%;
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25%;
+  line-height: 22%;
+}
+
+//******************* Contact ******************************
+
+.Contact-container{
+  height: 750px;
+  background-color: #F1F1F9;
+}
+
+.contact-info {
+  height: 500px ;
+  background-color: #F1F1F9;
+  border-radius: 24px;
+
+}
+
+.contact-form{
+
+  height: 450px;
+}
+
+.contact-form-text-header {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+
+
+  color: #0c0202;
+
+}
+
+
+.contact-form-text {
+
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 24px;
+  /* or 150% */
+
+  color: #0c0202;
+
+}
+
+.contact-info-text-header {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+
+
+  color: #0B0D17;
+
+}
+
+
+.contact-info-text {
+
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* or 150% */
+
+
+  color: #0B0D17;
+
+
+}
+
+.contact-info-address, .contact-info-tel, .contact-info-mail{
+
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+
+  color: #0B0D17;
+}
+
+.text-icon-footer{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+
+  color: #0B0D17;
+}
+
+.label-form-contact{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* or 150% */
+
+
+  color: #0c0202;
+}
+
+.form-input-contact{
+  border-radius: 8px;
+  width: 280px;
+  height: 50px;
+  border: 1px solid #ABABAB;
+
+}
+
+::placeholder{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: #948D8D;
+  padding: 10px;
+}
+
+.textarea-form{
+  border-radius: 8px;
+}
+
+.contact-form-container{
+
+}
+
+.button-contact-form{
+  background-color: #E83456;
+  border-color : #E83456;
+  width: 280px ;
+  height: 50px ;
+}
+
+nz-divider{
+  border: 1px solid #292929;
+}
+
+.end-of-footer{
+  width: 100%;
+}

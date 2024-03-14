@@ -1,0 +1,137 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <!-- Layout beneficiaires  -->
+  <nz-layout>
+    <!-- Menu   -->
+    <div nz-row class="menu-home" nzJustify="space-between" nzAlign="middle" style="height: auto">
+      <div nz-col [nzXs]="{ offset: 0, span: 6, push: 0 }" [nzSm]="{ offset: 0, span: 6, push: 0 }" [nzMd]="{ span: 2, offset: 0 }" [nzLg]="{ span: 4 }" [nzXl]="{ span: 4 }" (click)="home()" style="cursor: pointer;" >
+        <img alt="" height="70" src="assets/images/logo-TG_valide.svg" width="100">
+      </div>
+      <!-- Element du Menu  -->
+      <div nz-col class="menu-element" [nzXs]="{ offset: 1, span: 10, push: 0 }" [nzSm]="{ offset: 0, span: 10, push: 0 }" [nzMd]="{ span: 20, offset: 0 }" [nzLg]="{ span: 14 }" [nzXl]="{ span: 15 }" >
+        <ul nz-menu nzMode="horizontal" >
+          <div nz-row nzJustify="space-around" nzAlign="middle" >
+            <div nz-col routerLink="/beneficiaire">
+              <li nz-menu-item>
+                <i nz-icon nzType="home" style="margin-right: 7px;"></i>
+                Aperçu
+              </li>
+            </div>
+            <div nz-col routerLink="/beneficiaire/demande">
+              <li nz-menu-item>
+                <i nz-icon nzType="folder" style="margin-right: 7px;"></i>
+                Mes Demandes
+              </li>
+            </div>
+            <div nz-col routerLink="/beneficiaire/notification">
+              <li nz-menu-item>
+                <nz-badge  nzDot [nzShowDot]="false" >
+                  <i nz-icon nzType="bell"  nzTheme="outline"></i>
+                </nz-badge>
+                 Mes Notifications
+              </li>
+            </div>
+          </div>
+        </ul>
+      </div>
+      <!-- Element du Menu  -->
+      <!-- Bouton de connexion et d'inscripition  -->
+      <div nz-col [nzXs]="{ offset: 1, span: 6}" [nzSm]="{ offset: 1, span: 6, push: 0 }" [nzMd]="{ span: 2, offset: 0 }" [nzLg]="{ span:4, pull:2 }" [nzXl]="{ span: 3, pull:2 }">
+        <div nz-row nzJustify="end" nzAlign="middle">
+
+          <div nz-col nzSpan="6">
+            <nz-avatar [nzSize]="45" nzIcon="user" nzSrc="{{baseUrlFile}}" nz-dropdown [nzDropdownMenu]="menuUser">
+            </nz-avatar>
+
+            <nz-dropdown-menu #menuUser="nzDropdownMenu">
+              <ul nz-menu nzSelectable>
+                <li nz-menu-item routerLink="change_password" >
+                  <i nz-icon nzType="edit" nzTheme="outline"></i>
+                  <span style="margin-left: 10px;">Changer mot de passe</span>
+                </li>
+                <li nz-menu-item (click)="showConfirm()" >
+                  <i nz-icon nzType="logout" nzTheme="outline"></i>
+                  <span style="margin-left: 10px;">Se déconnecter</span>
+                </li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Menu   -->
+
+    <!-- content  -->
+
+
+
+    <div nz-row  class="layoutContent" nzJustify="center" nzAlign="top" >
+
+      <div nz-col nzSpan="20" class="notification">
+        <p style="margin-bottom: 0px;"> Notifications </p>
+      </div>
+      <div nz-col nzSpan="20" >
+        <app-notification-card [notifications]="listNotification" >
+        </app-notification-card>
+      </div>
+
+    </div>
+
+
+
+    <div nz-row nzJustify="center" nzAlign="middle" class="end-footer-container">
+      <div nz-col nzSpan="24">
+
+        <div nz-row class="end-of-footer" nzJustify="space-between" nzAlign="middle">
+
+          <div nz-col nzSpan="3" nzXs=4 nzSm="5" nzMd="6">
+            <img alt="" height="70" src="assets/images/logo-suqali-png-blanc.png">
+          </div>
+
+          <div nz-col style="color: white;"  nzSpan="3" nzXs="0" nzSm="0" nzMd="3">
+            <div>
+              © 2021
+            </div>
+            <div style=" margin-left: 2%; color: white;" nzAlign="middle">
+              v 0.0.5
+            </div>
+          </div>
+
+          <div nz-col nzSpan="3" nzXs="12" nzSm="10" nzMd="10" nzLg="8" >
+            <div nz-row >
+              <div nz-col  nzSpan="5">
+                <a href="https://twitter.com/SuqaliSN" target="_blank">
+                  <img height="40" src="assets/images/Social Icons/White/twitter.svg" width="40">
+                </a>
+              </div>
+              <div nz-col nzSpan="5">
+                <a href="https://www.facebook.com/Suqali-100680222470713" target="_blank" >
+                  <img height="40" src="assets/images/Social Icons/White/facebook.svg" width="40">
+                </a>
+              </div>
+              <div nz-col nzSpan="5" >
+                <a href="https://www.linkedin.com/company/suqalisn/" target="_blank">
+                  <img height="40" src="assets/images/Social Icons/White/linkedin.svg" width="40">
+                </a>
+              </div>
+              <div nz-col nzSpan="5" >
+                <a href="https://www.instagram.com/suqali.officiel/" target="_blank">
+                  <img height="40" src="assets/images/Social Icons/White/Youtube.svg" width="40">
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+           <!-- last row of the footer  -->
+    </div>
+
+
+
+    <!-- content  -->
+  </nz-layout>
+
+
+  <!-- Layout beneficiaires  -->
+  </nz-spin>

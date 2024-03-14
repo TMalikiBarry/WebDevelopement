@@ -1,0 +1,434 @@
+<nz-layout>
+  <!-- Menu   -->
+  <div nz-row class="menu-home" nzJustify="space-between" nzAlign="middle">
+    <div nz-col nzSpan="4" routerLink="/pmo" style="cursor: pointer;"><img
+        src="../../../../assets/images/logo-TG_valide.svg" height="70" width="100" alt=""></div>
+    <!-- Element du Menu  -->
+    <div nz-col nzSpan="14" nzXs="0" nzLg="14" class="menu-element">
+      <ul nz-menu nzMode="horizontal">
+        <div nz-row nzJustify="space-around" nzAlign="middle">
+          <div nz-col nzSpan="3">
+            <li nz-menu-item>
+              <i nz-icon nzType="home" style="margin-right: 7px;"></i>
+              Aperçu
+            </li>
+          </div>
+          <div nz-col nzSpan="4">
+            <li nz-menu-item>
+              <i nz-icon nzType="folder" style="margin-right: 7px;"></i>
+              Financements
+            </li>
+          </div>
+          <div nz-col nzSpan="4">
+            <li nz-menu-item>
+              <i nz-icon nzType="fund"></i>
+              Rapports
+            </li>
+          </div>
+        </div>
+      </ul>
+    </div>
+    <!-- Element du Menu  -->
+
+    <!-- Bouton de connexion et d'inscripition  -->
+    <div nz-col nzSpan="6" nzXs="10" nzSm="10" nzLg="6">
+      <div nz-row nzJustify="center" nzAlign="middle">
+        <div nz-col nzSpan="6">
+          <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+            <img src="../../../../assets/images/beneficiaire/menu/flag/france 1.jpg" width="20" height="20" alt="">
+            FRA
+            <i nz-icon nzType="down"></i>
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>
+                <img src="../../../../assets/images/beneficiaire/menu/flag/france 1.jpg" width="20" height="20" alt=""> &nbsp; Francais
+              </li>
+              <!-- <li nz-menu-item>2nd menu item</li> -->
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+
+        <div nz-col nzSpan="6">
+          <nz-badge nzDot>
+            <i nz-icon nzType="bell" style="font-size: 21px;"></i>
+          </nz-badge>
+        </div>
+        <div nz-col nzSpan="6">
+          <nz-avatar [nzSize]="45" nzIcon="user" nzSrc="../../../../assets/images/Partenaires-logo/Impact Hub Logo.svg" nz-dropdown [nzDropdownMenu]="menuUser">
+          </nz-avatar>
+
+          <nz-dropdown-menu #menuUser="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item (click)="askFordeconnexion()" >
+                <i nz-icon nzType="logout" nzTheme="outline"></i>
+                <span style="margin-left: 10px;">se deconnecter</span>
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Menu   -->
+
+  <!-- Layout content  -->
+
+  <div nz-row class="content-container" nzJustify="center">
+    <div nz-col nzSpan="20">
+      <!-- Demande et Budget  Header -->
+      <div nz-row nzJustify="space-between" nzAlign="middle" class="demande-buget-container">
+        <div nz-col nzSpan="5" class="demande-text">
+          Demandes
+        </div>
+      </div>
+
+      <!-- Tabs de de beneficiaire  -->
+        <div nz-row class="tabs-container">
+            <div nz-col nzSpan="24">
+              <nz-tabset>
+                <nz-tab nzTitle="Toutes">
+                  <nz-table #nzTable [nzData]="listeDemande" nzTableLayout="fixed">
+                    <thead>
+                      <tr>
+
+                        <th>ID Bénéficiaire</th>
+                        <th>Date</th>
+                        <th>Montant demandé</th>
+                        <th>Secteur</th>
+                        <th>Statut demande</th>
+                        <th nzWidth="60px"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let data of listeDemande">
+                        <tr class="tr-showed">
+                          <td>#{{ data.demande?.beneficiaire?.id }}</td>
+                          <td>{{ data.demande?.dateCreation | date:'medium':'GMT' }}</td>
+                          <td>{{ data.demande?.montant }}</td>
+                          <td>{{ data.demande?.beneficiaire?.activiteBeneficiaires[0]?.secteurActivites[0]?.libelle }}</td>
+                          <td>{{ data.demande?.statutDossier }}</td>
+                          <td [nzExpand]="expandSet.has(data.demande?.id+'')" (nzExpandChange)="onExpandChange(data.demande?.id+'', $event)"></td>
+                        </tr>
+                        <tr [nzExpand]="expandSet.has(data.demande?.id+'')" class="tr-expanded" style="height: 160px;border: 1px solid #EBEBEB;">
+                          <div nz-row nzAlign="middle" style="height: 155px; ">
+
+                            <!-- Right part of detail benef  -->
+                            <div nz-col nzSpan="12" style="height: 100%; padding: 10px;" >
+                              <!-- Right part top header  -->
+                              <div nz-row style="margin-bottom: 15px;">
+                                <!-- image of the detail  -->
+                                <div nz-col nzSpan="2">
+                                  <img src="../../../../assets/images/pmo/logo-detail" width="30" height="30" alt="">
+                                </div>
+                                <!-- image of the detail  -->
+
+                                <!-- Nom benef et non entreprise  -->
+                                  <div nz-col nzSpan="6">
+                                    <div nz-row >
+                                      <div nz-col nzSpan="24" class="nom-entreprise-benef" >
+                                        <!-- Aminata Diallo -->
+                                        {{data?.demande?.beneficiaire?.personnes[0]?.prenom}} {{data?.demande?.beneficiaire?.personnes[0]?.nom}}
+                                      </div>
+                                      <div nz-col nzSpan="24" class="nom-entreprise">
+                                        <!-- +221Agro -->
+                                        {{data.demande?.beneficiaire?.nom}}
+                                      </div>
+                                    </div>
+                                  </div>
+                                <!-- Nom benef et non entreprise  -->
+
+                                <!-- bouton detail  -->
+                                  <!-- <div nz-col nzSpan="4" nzOffset="12">
+                                    <button nz-button nzType="primary"class="buton-detail"> Détails </button>
+                                  </div> -->
+                                <!-- bouton detail  -->
+
+                              </div>
+                              <!-- Right part top header  -->
+
+                              <!-- Right part second header  -->
+
+                              <div nz-row nzJustify="space-between" >
+                                <div nz-col nzOffset="2" nzSpan="6" class="label-detail-tr">
+                                  Chiffre d'affaires
+                                </div>
+                                <div nz-col nzSpan="6" class="label-detail-tr">
+                                  Période de Prêt
+                                </div>
+                              </div>
+
+                              <div nz-row nzJustify="space-between" style="margin-bottom: 75px;">
+                                <div nz-col nzSpan="5" nzOffset="2" class="label-detail-tr-content">
+                                  <!-- 250,000 CFA -->
+                                  {{data.demande?.beneficiaire?.chiffreAffaireAnMoins1}}
+                                </div>
+                                <div nz-col nzSpan="5" class="label-detail-tr-content">
+                                  <!-- 3 Years -->
+                                  {{data.demande?.duree}} Mois
+                                </div>
+                              </div>
+                              <!-- Right part second header  -->
+
+                              <!-- stepper   -->
+                              <!-- <div nz-row >
+                                <div nz-col nzSpan="24" >
+                                  <nz-steps [nzCurrent]="2" nzSize="small" nzLabelPlacement="vertical" nzProgressDot>
+
+                                    <nz-step  nzTitle="50,000 CFA"></nz-step>
+
+                                    <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                                    <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                                    <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                                  </nz-steps>
+                                </div>
+                              </div> -->
+                              <!-- stepper   -->
+                            </div>
+                            <!-- Right part of detail benef  -->
+                          </div>
+                        </tr>
+                        <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </nz-table>
+                </nz-tab>
+                <nz-tab nzTitle="Approuvées">
+                  <nz-table #nzTable [nzData]="listeDemande" nzTableLayout="fixed">
+                    <thead>
+                      <tr>
+
+                        <th>ID Bénéficiaire</th>
+                        <th>Date</th>
+                        <th>Montant demandé</th>
+                        <th>Secteur</th>
+                        <th>Statut demande</th>
+                        <th nzWidth="60px"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let data of listeDemande">
+                        <tr class="tr-showed">
+                          <td>#{{ data.demande?.beneficiaire?.id }}</td>
+                          <td>{{ data.demande?.dateCreation | date:'medium':'GMT' }}</td>
+                          <td>{{ data.demande?.montant }}</td>
+                          <td>{{ data.demande?.beneficiaire?.activiteBeneficiaires[0]?.secteurActivites[0]?.libelle }}</td>
+                          <td>{{ data.demande?.statutDossier }}</td>
+                          <td [nzExpand]="expandSet.has(data.demande?.id+'')" (nzExpandChange)="onExpandChange(data.demande?.id+'', $event)"></td>
+                        </tr>
+                        <tr [nzExpand]="expandSet.has(data.demande?.id+'')" class="tr-expanded" style="height: 160px;border: 1px solid #EBEBEB;">
+                          <div nz-row nzAlign="middle" style="height: 155px; ">
+
+                            <!-- Right part of detail benef  -->
+                            <div nz-col nzSpan="12" style="height: 100%; padding: 10px;" >
+                              <!-- Right part top header  -->
+                              <div nz-row style="margin-bottom: 15px;">
+                                <!-- image of the detail  -->
+                                <div nz-col nzSpan="2">
+                                  <img src="../../../../assets/images/pmo/logo-detail" width="30" height="30" alt="">
+                                </div>
+                                <!-- image of the detail  -->
+
+                                <!-- Nom benef et non entreprise  -->
+                                  <div nz-col nzSpan="6">
+                                    <div nz-row >
+                                      <div nz-col nzSpan="24" class="nom-entreprise-benef" >
+                                        <!-- Aminata Diallo -->
+                                        {{data?.demande?.beneficiaire?.personnes[0]?.prenom}} {{data?.demande?.beneficiaire?.personnes[0]?.nom}}
+                                      </div>
+                                      <div nz-col nzSpan="24" class="nom-entreprise">
+                                        <!-- +221Agro -->
+                                        {{data.demande?.beneficiaire?.nom}}
+                                      </div>
+                                    </div>
+                                  </div>
+                                <!-- Nom benef et non entreprise  -->
+
+                                <!-- bouton detail  -->
+                                  <!-- <div nz-col nzSpan="4" nzOffset="12">
+                                    <button nz-button nzType="primary"class="buton-detail"> Détails </button>
+                                  </div> -->
+                                <!-- bouton detail  -->
+
+                              </div>
+                              <!-- Right part top header  -->
+
+                              <!-- Right part second header  -->
+
+                              <div nz-row nzJustify="space-between" >
+                                <div nz-col nzOffset="2" nzSpan="6" class="label-detail-tr">
+                                  Chiffre d'affaires
+                                </div>
+                                <div nz-col nzSpan="6" class="label-detail-tr">
+                                  Période de Prêt
+                                </div>
+                              </div>
+
+                              <div nz-row nzJustify="space-between" style="margin-bottom: 75px;">
+                                <div nz-col nzSpan="5" nzOffset="2" class="label-detail-tr-content">
+                                  <!-- 250,000 CFA -->
+                                  {{data.demande?.beneficiaire?.chiffreAffaireAnMoins1}}
+                                </div>
+                                <div nz-col nzSpan="5" class="label-detail-tr-content">
+                                  <!-- 3 Years -->
+                                  {{data.demande?.duree}} Mois
+                                </div>
+                              </div>
+                              <!-- Right part second header  -->
+
+                              <!-- stepper   -->
+                              <!-- <div nz-row >
+                                <div nz-col nzSpan="24" >
+                                  <nz-steps [nzCurrent]="2" nzSize="small" nzLabelPlacement="vertical" nzProgressDot>
+
+                                    <nz-step  nzTitle="50,000 CFA"></nz-step>
+
+                                    <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                                    <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                                    <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                                  </nz-steps>
+                                </div>
+                              </div> -->
+                              <!-- stepper   -->
+                            </div>
+                            <!-- Right part of detail benef  -->
+                          </div>
+                        </tr>
+                        <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </nz-table>
+                </nz-tab>
+                <nz-tab nzTitle="Rejetées">
+                  <nz-table #nzTable [nzData]="listeDemande" nzTableLayout="fixed">
+                    <thead>
+                      <tr>
+
+                        <th>ID Bénéficiaire</th>
+                        <th>Date</th>
+                        <th>Montant demandé</th>
+                        <th>Secteur</th>
+                        <th>Statut demande</th>
+                        <th nzWidth="60px"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let data of listeDemande">
+                        <tr class="tr-showed">
+                          <td>#{{ data.demande?.beneficiaire?.id }}</td>
+                          <td>{{ data.demande?.dateCreation | date:'medium':'GMT' }}</td>
+                          <td>{{ data.demande?.montant }}</td>
+                          <td>{{ data.demande?.beneficiaire?.activiteBeneficiaires[0]?.secteurActivites[0]?.libelle }}</td>
+                          <td>{{ data.demande?.statutDossier }}</td>
+                          <td [nzExpand]="expandSet.has(data.demande?.id+'')" (nzExpandChange)="onExpandChange(data.demande?.id+'', $event)"></td>
+                        </tr>
+                        <tr [nzExpand]="expandSet.has(data.demande?.id+'')" class="tr-expanded" style="height: 160px;border: 1px solid #EBEBEB;">
+                          <div nz-row nzAlign="middle" style="height: 155px; ">
+
+                            <!-- Right part of detail benef  -->
+                            <div nz-col nzSpan="12" style="height: 100%; padding: 10px;" >
+                              <!-- Right part top header  -->
+                              <div nz-row style="margin-bottom: 15px;">
+                                <!-- image of the detail  -->
+                                <div nz-col nzSpan="2">
+                                  <img src="../../../../assets/images/pmo/logo-detail" width="30" height="30" alt="">
+                                </div>
+                                <!-- image of the detail  -->
+
+                                <!-- Nom benef et non entreprise  -->
+                                  <div nz-col nzSpan="6">
+                                    Institution financière:  <div nz-row >
+                                      <div nz-col nzSpan="24" class="nom-entreprise-benef" >
+                                        <!-- Aminata Diallo -->
+                                        {{data?.demande?.beneficiaire?.personnes[0]?.prenom}} {{data?.demande?.beneficiaire?.personnes[0]?.nom}}
+                                      </div>
+                                      <div nz-col nzSpan="24" class="nom-entreprise">
+                                        <!-- +221Agro -->
+                                        {{data.demande?.beneficiaire?.nom}}
+                                      </div>
+                                    </div>
+                                  </div>
+                                <!-- Nom benef et non entreprise  -->
+
+                                <!-- bouton detail  -->
+                                  <!-- <div nz-col nzSpan="4" nzOffset="12">
+                                    <button nz-button nzType="primary"class="buton-detail"> Détails </button>
+                                  </div> -->
+                                <!-- bouton detail  -->
+
+                              </div>
+                              <!-- Right part top header  -->
+
+                              <!-- Right part second header  -->
+
+                              <div nz-row nzJustify="space-between" >
+                                <div nz-col nzOffset="2" nzSpan="6" class="label-detail-tr">
+                                  Chiffre d'affaires
+                                </div>
+                                <div nz-col nzSpan="6" class="label-detail-tr">
+                                  Période de Prêt
+                                </div>
+                              </div>
+
+                              <div nz-row nzJustify="space-between" style="margin-bottom: 75px;">
+                                <div nz-col nzSpan="5" nzOffset="2" class="label-detail-tr-content">
+                                  <!-- 250,000 CFA -->
+                                  {{data.demande?.beneficiaire?.chiffreAffaireAnMoins1}}
+                                </div>
+                                <div nz-col nzSpan="5" class="label-detail-tr-content">
+                                  <!-- 3 Years -->
+                                  {{data.demande?.duree}} Mois
+                                </div>
+                              </div>
+                              <!-- Right part second header  -->
+
+                              <!-- stepper   -->
+                              <!-- <div nz-row >
+                                <div nz-col nzSpan="24" >
+                                  <nz-steps [nzCurrent]="2" nzSize="small" nzLabelPlacement="vertical" nzProgressDot>
+
+                                    <nz-step  nzTitle="50,000 CFA"></nz-step>
+
+                                    <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                                    <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                                    <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                                  </nz-steps>
+                                </div>
+                              </div> -->
+                              <!-- stepper   -->
+                            </div>
+                            <!-- Right part of detail benef  -->
+                          </div>
+                        </tr>
+                        <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </nz-table>
+                </nz-tab>
+              </nz-tabset>
+            </div>
+        </div>
+      <!-- Tabs de de beneficiaire  -->
+
+    </div>
+
+  </div>
+  <!-- Layout content  -->
+</nz-layout>

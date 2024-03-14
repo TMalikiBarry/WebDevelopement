@@ -1,0 +1,59 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <!-- Layout beneficiaires  -->
+  <nz-layout>
+    <div nz-row  class="layoutContent" nzJustify="center" nzAlign="top" >
+
+      <div nz-col nzSpan="20" class="notification">
+        <p style="margin-bottom: 0px;"> Notifications </p>
+      </div>
+      <div nz-col nzSpan="20" >
+        <app-notification-card [notifications]="listNotification" >
+        </app-notification-card>
+      </div>
+
+    </div>
+
+
+
+    <div nz-row class="footer-container" nzJustify="center" nzAlign="middle">
+      <div nz-row class="end-of-footer" nzJustify="space-between" nzAlign="middle">
+        <div nz-col nzSpan="3">
+          <img src="../../assets/images/logo-suqali-png-blanc.png" height="70" alt="">
+        </div>
+
+        <div style="color: white;" nz-col nzSpan="3">
+          <div>
+            © 2021
+          </div>
+          <div style=" margin-left: 2%" nzAlign="middle">
+            v 0.0.5
+          </div>
+        </div>
+
+        <div nz-col nzSpan="3">
+          <div nz-row >
+            <div nz-col nzSpan="5">
+              <img src="../../assets/images/Social%20Icons/White/twitter.svg" alt="">
+            </div>
+            <div nz-col  nzSpan="5">
+              <img src="../../assets/images/Social%20Icons/White/facebook.svg" alt="">
+            </div>
+            <div nz-col nzSpan="5" >
+              <img src="../../assets/images/Social%20Icons/White/linkedin.svg" alt="">
+            </div>
+            <div nz-col nzSpan="5" >
+              <img src="../../assets/images/Social Icons/White/Youtube.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- content  -->
+  </nz-layout>
+
+
+  <!-- Layout beneficiaires  -->
+  </nz-spin>

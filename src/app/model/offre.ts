@@ -1,0 +1,46 @@
+import {Session} from "./session";
+import {InstrumentFinancement} from "./instrument-financement";
+import {TypeFinancement} from "./type-financement";
+import {OffreMatrice} from "./offre-matrice";
+import {Taux} from "./taux";
+import {ZoneIntervention} from "./zone-intervention";
+import {Activite} from "./activite";
+import {SecteurActivite} from "./secteur-activite";
+import {Demande} from "./demande";
+import {PMO} from "./pmo";
+import {Garantie} from "./garantie";
+
+export class Offre {
+  supprime?: boolean;
+  dateCreation?: string;
+  dateModification?: string;
+  session?:	Session;
+  id?: number;
+  intituleAction?: string;
+  dateDebut?: string;
+  dateFin?: string;
+  beneficiairesCibles?: string;
+  instrumentFinancement?: InstrumentFinancement;
+  typeFinancement?: TypeFinancement;
+  offreMatrice?: OffreMatrice;
+  tauxRecouvrement?: number;
+  tauxInteretAnnuelHT?: Taux;
+  tauxInteretAnnuelTTC?: Taux;
+  tauxInteretAnnuelTEG?: Taux;
+  tauxInteretAnnuelFRI?: Taux;
+  libelleOffre?:	string;
+  budgetTotal?:	number;
+  montantMax?:	number;
+  montantMin?:	number;
+  montantMoyen?:	number;
+  periodeDifferePartiel?:	number;
+  periodeDiffereTotal?:	number;
+  isDiffere?:	boolean;
+  zoneIntervention?: ZoneIntervention;
+  secteurActivites?: SecteurActivite[];
+  demande?: Demande[];
+  garanties?: Garantie[];
+  conditionsOuvertureCompte?: string;
+  apport?: string;
+  pmo?: PMO;
+}

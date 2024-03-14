@@ -1,0 +1,59 @@
+nz-layout{
+  min-height: 100%;
+  width: 100%;
+}
+.menu-home {
+  height: 10vh;
+  background-color: white;
+
+}
+
+
+.button-menu{
+  height: 30px;
+  width: 100px;
+}
+
+
+ul {
+  border-bottom: none;
+}
+
+.menu-element{
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #282D5E;
+}
+// ***************** MENU *********************
+
+// ******************* Layout Content **************
+.layoutContent{
+  min-height:80vh;
+  // min-height: 100vh;
+  // height: 100%;
+  background-color:#F1F1F9;
+  width: 100%;
+  height: fit-content;
+}
+
+
+// ******************* Card Detail Container ***********
+
+.end-footer-container{
+  height: 10vh;
+  background-color: #224B96;
+}
+
+.notification {
+    height: fit-content;
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 44px;
+
+    color: #0C0E1D;
+}

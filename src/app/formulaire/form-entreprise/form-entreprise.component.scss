@@ -1,0 +1,22 @@
+@import "../../../assets/form-css/step-css.scss";
+
+.piececolor {
+  color: #DC352C;
+  font-size: .875em;
+}
+
+.boutton-suivant {
+  float: right;
+}
+
+.boutton-precedant {
+  float: left;
+}
+
+.page-integrale {
+
+}
+
+:host ::ng-deep .ant-steps-navigation {
+  display: block !important;
+}

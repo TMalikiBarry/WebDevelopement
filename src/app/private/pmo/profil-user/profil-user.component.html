@@ -1,0 +1,177 @@
+<div class="container">
+  <nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+    <div style="padding:30px;" >
+      <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="Informations personnelles">
+        <form  nz-form class="center-form" [formGroup]="personneForm" >
+          <div nz-row nzAlign="bottom" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="11">Prénom</nz-form-label>
+                  <input nz-input formControlName="prenom" id="11"/>
+                  <div *ngIf="personneForm.controls.prenom.hasError('required') && personneForm.controls.prenom.touched">
+                    <span id="errorMessage">Prénom obligatoire</span> <br>
+                  </div>
+                  <div *ngIf="personneForm.controls.prenom.hasError('pattern') && personneForm.controls.prenom.touched">
+                    <span id="errorMessage">Mauvais format du prénom</span> <br>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24" >
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="12">Nom</nz-form-label>
+                  <input nz-input formControlName="nom" id="12"/>
+                  <div *ngIf="personneForm.controls.nom.hasError('required') && personneForm.controls.nom.touched">
+                    <span id="errorMessage">Nom obligatoire</span> <br>
+                  </div>
+                  <div *ngIf="personneForm.controls.nom.hasError('pattern') && personneForm.controls.nom.touched">
+                    <span id="errorMessage">Mauvais format du nom</span> <br>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+    
+          </div>
+    
+          <div nz-row nzAlign="bottom" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="33">Numéro de téléphone fixe</nz-form-label>
+                  <div nz-row>
+                    <div nz-col nzSpan="24">
+                      <input nz-input name="33" id="33" formControlName="numeroFixe" />
+                      <div *ngIf="personneForm.controls.numeroFixe.hasError('required') && personneForm.controls.numeroFixe.touched">
+                        <span id="errorMessage">Numéro obligatoire</span> <br>
+                      </div>
+                      <div *ngIf="personneForm.controls.numeroFixe.hasError('pattern') && personneForm.controls.numeroFixe.touched">
+                        <span id="errorMessage">Mauvais format du Numéro</span> <br>
+                      </div>
+                    </div>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="33">Numéro de téléphone mobile</nz-form-label>
+                  <div nz-row>
+                    <div nz-col nzSpan="24">
+                      <input nz-input name="33" id="33" formControlName="numeroMobile" />
+                      <div *ngIf="personneForm.controls.numeroMobile.hasError('required') && personneForm.controls.numeroMobile.touched">
+                        <span id="errorMessage">Numéro obligatoire</span> <br>
+                      </div>
+                      <div *ngIf="personneForm.controls.numeroMobile.hasError('pattern') && personneForm.controls.numeroMobile.touched">
+                        <span id="errorMessage">Mauvais format du Numéro</span> <br>
+                      </div>
+                    </div>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+    
+          </div>
+  
+          <div nz-row nzAlign="bottom" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="55">Date de naissance</nz-form-label>
+                  <input type="date" [max]="dateMaxCreationString" nz-input name="55" id="55" formControlName="dateNaissance" />
+                  <div *ngIf="personneForm.controls.dateNaissance.hasError('required') && personneForm.controls.dateNaissance.touched">
+                    <span id="errorMessage">Date naissance obligatoire</span> <br>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="22">Genre</nz-form-label>
+                  <nz-select formControlName="genre">
+                    <nz-option *ngFor="let genre of genres" nzValue="{{convertObject(genre)}}" nzLabel="{{genre.libelle}}"></nz-option>
+                  </nz-select>
+                  <div *ngIf="personneForm.controls.genre.hasError('required') && personneForm.controls.genre.touched">
+                    <span id="errorMessage">Genre obligatoire</span> <br>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+    
+          </div>
+  
+          <div nz-row  nzAlign="bottom" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" nzRequired [nzXs]="24" nzFor="44">Adresse mail</nz-form-label>
+                  <input nz-input formControlName="email" id="44"  [email]="true" />
+                  <div *ngIf="personneForm.controls.email.hasError('required') && personneForm.controls.email.touched">
+                    <span id="errorMessage">Adresse mail obligatoire</span> <br>
+                  </div>
+                  <div *ngIf="personneForm.controls.email.hasError('pattern') && personneForm.controls.email.touched">
+                    <span id="errorMessage">Mauvais format de l'adresse</span> <br>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="55">Adresse physique (Lieu de résidence actuel)</nz-form-label>
+                  <input nz-input formControlName="adressePhysique" id="55" />
+                  <div *ngIf="personneForm.controls.adressePhysique.hasError('required') && personneForm.controls.adressePhysique.touched">
+                    <span id="errorMessage">Adresse obligatoire</span> <br>
+                  </div>
+                  <div *ngIf="personneForm.controls.adressePhysique.hasError('pattern') && personneForm.controls.adressePhysique.touched">
+                    <span id="errorMessage">Mauvais format de l'adresse</span> <br>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+    
+          <div nz-row nzAlign="bottom" >
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="22">Titre</nz-form-label>
+                  <nz-select formControlName="titre" >
+                    <nz-option *ngFor="let titre of titres" nzValue="{{convertObject(titre)}}" nzLabel="{{titre?.libelle}}"></nz-option>
+                  </nz-select>
+                  <div *ngIf="personneForm.controls.titre.hasError('required') && personneForm.controls.titre.touched">
+                    <span id="errorMessage">Titre obligatoire</span> <br>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                  <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="22">Profil</nz-form-label>
+                  <nz-select formControlName="role" >
+                    <nz-option *ngFor="let role of roles" nzValue="{{role.value}}" nzLabel="{{role.libelle}}"></nz-option>
+                  </nz-select>
+                  <div *ngIf="personneForm.controls.role.hasError('required') && personneForm.controls.role.touched">
+                    <span id="errorMessage">Profil obligatoire</span> <br>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            
+          </div>
+          <div nz-row nzAlign="bottom" >
+            <button nz-button nzType="primary" [disabled]="!personneForm.valid" nzShape="round" (click)="updatePersonne()" class="boutton-suivant">
+              <!-- <i nz-icon nzType="validate"></i> -->
+              Valider
+            </button>
+          </div>
+        </form>
+      </nz-card>
+    </div>
+  </nz-spin>
+</div>
+

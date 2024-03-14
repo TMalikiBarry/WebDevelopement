@@ -1,0 +1,962 @@
+@import "~swiper/scss";
+@import "~swiper/scss/pagination";
+@import "~swiper/scss/navigation";
+
+.menu-home {
+  height: 80px;
+  background-color: white;
+  position: sticky;
+  top :0 ;
+  z-index: 3;
+}
+
+
+
+.button-inscription{
+  min-width: 110px;
+  min-height: 45px;
+  height: 100%;
+  width: fit-content ;
+  background-color: #224B96;
+  border-color : #224B96 ;
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.button-connexion{
+  height: 100%;
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.button-menu:focus{
+  background-color: #F49D1E;
+  color : white ;
+}
+
+.button-menu{
+  min-height: 45px;
+  height: 100%;
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 500;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 22px;
+
+}
+
+.logo-image{
+  width: 50%;
+  height: 70%;
+  cursor: pointer;
+}
+
+
+.presentation-platforme{
+  min-height: 500px;
+  height: fit-content;
+  background-color: #FFFFFF;
+  padding-bottom: 40px;
+
+}
+
+.presentation-text-button-container{
+
+}
+// contient les textes de presentation
+// et le bouton demander un financmement
+.presentation-text-button {
+  height: 290px;
+}
+.button-demande-financement{
+  width: 235px;
+  height: 42px;
+  background-color: #224B96;
+  border-color : #224B96;
+}
+
+
+.presentation-text{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 49px;
+
+}
+
+
+
+.presentation-text-2{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+}
+
+
+.swiper-container{
+ height: 500px;
+}
+
+
+.swiper-presentation{
+
+  height: 500px;
+  --swiper-navigation-color: #fff;
+  --swiper-pagination-color:#fff ;
+
+}
+
+// **************** Slider Design *********************
+
+.slider-container-1 {
+background: url(../../../assets/images/image-slide-principal/Agri-bon.PNG);
+background-size: cover;
+background-position: center;
+height: 500px ;
+}
+
+.slider-container-2 {
+  background: url(../../../assets/images/image-slide-principal/artisanat-bn.PNG);
+  background-size: cover;
+  background-position: center;
+  height: 500px ;
+
+
+  }
+.slider-container-3 {
+  background: url(../../../assets/images/image-slide-principal/elevage-bn.PNG);
+  background-size: cover;
+  background-position: center;
+  height: 500px ;
+
+  }
+
+.slider-container-1-text{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 30px;
+  color: #FFFFFF;
+  background-color: rgba(79, 71, 71, 0.3);
+  height: inherit;
+  width: inherit;
+}
+
+// **************** Slider Design END *********************
+.statistic-container {
+  min-height: 450 px;
+  height: fit-content;
+  background-image: url(../../../assets/images/background-statistic.svg);
+  background-size: cover;
+  background-position: top ;
+  background-color: #FFFFFF;
+
+}
+
+// ******************* Statistic **************************
+.statistics{
+
+  min-height: 253px;
+  height: fit-content;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 13px;
+
+}
+
+.chiffre-decaissement{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 66px;
+  text-align: center;
+
+  /* Prim/Blue1 */
+
+  color: #224B96;
+}
+
+.text-decaissement{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 27px;
+  text-align: center;
+
+  color: #224B96;
+}
+
+.statistic-element-container {
+  min-height: 252px;
+  height: fit-content;
+
+}
+.chiffre-stat{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 66px;
+  text-align: center;
+
+  /* Prim/Blue2 */
+
+  color: #224B96;
+}
+
+.text-stat{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 27px;
+  text-align: center;
+  min-height: 100px;
+  /* Text */
+
+  color: #0C0E1D;
+}
+
+// ******************* Statistic END **************************
+
+
+// ****************** A propos de nous ************************
+
+.Apropos{
+  min-height: 800px;
+  height: fit-content;
+  background-color: #fff;
+  min-width: 300px;
+  width: fit-content;
+}
+
+.photo-apropos{
+  min-height: 500px;
+  height: fit-content;
+  min-width: 90%;
+  width: fit-content;
+}
+
+.image-propos {
+  width: 100%;
+  height: 70%;
+}
+
+.apropos-text{
+  min-height: 300px;
+  min-width: 320px;
+  width: fit-content ;
+
+}
+
+.apropos-desc-container{
+  min-width:50%;
+  width: fit-content;
+  height: fit-content;
+}
+
+.aproposHeader{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+
+  color: #000000;
+}
+
+.aproposDescription{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 147.5%;
+  /* or 24px */
+  width: fit-content;
+  text-align: justify;
+  min-height: 130px;
+  height: fit-content;
+
+  /* Text */
+
+  color: #0C0E1D;
+
+}
+
+
+// ************************* comment ca marche ****************************
+.comment-ca-part{
+  min-height: 596px;
+  height: fit-content;
+  background-image: url(../../../assets/images/comment-bg.svg);
+  background-color: white;
+  background-position: bottom;
+}
+
+.comment-header{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+/* identical to box height */
+
+
+/* Text */
+
+color: #0C0E1D;
+}
+
+.image-com-marche{
+  height: 100%;
+  width: 100%;
+}
+.photo-text{
+
+}
+.photo-text-comment{
+  height: 392px;
+}
+
+.step-container{
+  min-height: 596px ;
+  height: fit-content;
+}
+
+// .step-container-col {
+//   height: fit-content;
+// }
+.step{
+  min-height: 176px ;
+  height: fit-content;
+}
+
+.step-1{
+  background-color: #F49D1E ;
+}
+.step-number{
+  background-color: #F4F5F7;
+  border-radius: 100%;
+  width: 96px ;
+  height: 96px;
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 33px;
+/* identical to box height */
+
+
+color: #000000;
+}
+
+.step-1-content-container{
+  min-height: 170px;
+  height: 100%;
+}
+
+
+
+.step-1-header{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 136.5%;
+  /* identical to box height, or 22px */
+
+
+  /* Default / White */
+
+  color: #FFFFFF;
+}
+
+.step-1-description{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  /* or 171% */
+
+  font-feature-settings: 'liga' off;
+
+  /* Default / White */
+
+  color: #FFFFFF;
+}
+
+.step-2 ,.step-3{
+  background-color: #E2E4F3;;
+}
+
+.step-2-header, .step-3-header{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+  /* or 112% */
+
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  font-feature-settings: 'liga' off;
+
+  /* Text / Gray 900 */
+
+  color: #18191F;
+
+}
+
+.step-2-description, .step-3-description {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  /* or 171% */
+
+  font-feature-settings: 'liga' off;
+
+  /* Text / Gray 900 */
+
+  color: #18191F;
+}
+// ************************* comment ca marche ****************************
+
+
+
+
+// ************************* Partenaires de confiance ***********************
+
+.partenaires{
+  // margin-top : 30px ;
+  min-height: 250px;
+  background-color: #fff;
+  height: fit-content;
+}
+
+.partenaires-header{
+
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+
+  color: #000000;
+}
+
+.partenaires-text{
+
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 147.5%;
+  /* identical to box height, or 24px */
+
+  text-align: justify;
+
+  color: #424242;
+}
+
+.swiper-partenaires{
+  --swiper-navigation-color: #282D5E;
+  --swiper-pagination-color:#fff ;
+   height:60px;
+}
+
+.partenaires-slider{
+  height: inherit;
+}
+// ************************* Partenaires de confiance ***********************
+
+
+// ************************* Temoignages **************************
+
+.temoignages {
+  min-height:440px ;
+  height: fit-content;
+  background-image: url(../../../assets/images/temoignages/bg-temoignages.svg);
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-color: #F1F1F9;
+}
+
+.temoignage-presentation{
+  height: 440px;
+  max-width: 375px;
+}
+
+.temoignage-pres-header{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+
+
+  color: #000000;
+}
+
+.temoignage-pres-text{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #424242;
+}
+
+.swiper-temoignage{
+  min-height: 400px;
+  height: fit-content;
+
+}
+
+.slider-temoignage-container{
+  min-height: 400px;
+  height: fit-content;
+}
+
+.slider-temoignage-content{
+  max-width: 550;
+  min-width: 320px ;
+  width: fit-content;
+
+}
+
+.slider-temoignage{
+  min-height: 285px;
+  height: fit-content;
+  max-width: 523px;
+  min-width: 320px ;
+  background: #F49D1E;
+  box-shadow: 0px 4px 4px rgba(218, 80, 119, 0.4);
+  border-radius: 7px;
+}
+
+.slider-temoignage-header{
+
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  /* or 160% */
+
+  font-feature-settings: 'liga' off;
+
+  color: #FFFFFF;
+}
+
+.slider-temoignage-text{
+
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  /* or 171% */
+
+  font-feature-settings: 'liga' off;
+
+  color: #FFFFFF;
+}
+
+.slider-temoignage-img{
+  width: 43px;
+  height: 43px;
+  clip-path: circle(50%);
+}
+
+.sliderTemoignagePrenom{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: center;
+
+  color: #FFFFFF;
+  width: 101px;
+
+}
+.sliderTemoignageRole{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #E1E1E1;
+}
+// ************************* Temoignages **************************
+
+
+
+// ************************ Localisation **************************
+
+.localisation{
+  min-height: 800px;
+  height: fit-content;
+  background-color: #fff;
+}
+
+.localisation-header{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+  color: #000000;
+}
+
+.localisation-container {
+  min-height: 664px;
+  height: fit-content;
+  width: 100%;
+}
+
+.localisation-text-search{
+
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+
+  color: #424242
+}
+form{
+width: inherit;
+}
+// nz-select{
+//   width: 260px !important;
+//   height: 49px !important;
+// }
+
+// .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+
+
+//   background: #FFFFFF;
+//   border: 1px solid #ABABAB;
+//   border-radius: 32px;
+// }
+
+// .ant-select-single:not(.ant-select-customize-input) .ant-select-selector{
+//   height: 49px ;
+// }
+
+
+// .ant-select:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-search-input {
+//   margin: 0;
+//   padding: 0;
+//   background: transparent;
+//   border: none;
+//   outline: none;
+//   -webkit-appearance: none;
+//   -moz-appearance: none;
+//   appearance: none;
+//   height: 49px;
+// }
+
+.search-button{
+  width: 125px;
+  height: 48px;
+  background-color: #282D5E ;
+  border-color :#282D5E;
+}
+
+.map-localisation{
+  min-height: 400px;
+  margin-top : 20px;
+  height: fit-content;
+}
+
+.select-localisation-form{
+  width: 260px;
+  height: 48px;
+  border: 1px solid #ABABAB;
+  box-sizing: border-box;
+  border-radius: 32px;
+}
+
+.option-select-localisation{
+  text-align: center;
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: #948D8D;
+
+}
+
+.input-search-maps{
+  border-radius: 8px;
+  width: 100%;
+  height: 48px;
+ // border-radius: 32px;
+  border:  0px solid #ABABAB;
+ // border : none ;
+}
+
+.input-search-maps:focus{
+  border-style: none ;
+  outline-color : none ;
+}
+
+.ant-input-affix-wrapper {
+  border: 1px solid #d9d9d9;
+  border-radius: 32px;
+}
+
+// .button-localisation-form{
+//   background: #224B96;
+//   border-color: #224B96;
+//   border-radius: 56px;
+//   width: 125px ;
+//   height: 48px;
+// }
+agm-map {
+  height: 500px;
+}
+
+.agm-map-container-inner {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+}
+
+// ************************ Localisation **************************
+
+
+
+//******************* Contact ******************************
+
+.Contact-container{
+  min-height: 700px;
+  height: fit-content;
+  background-color: #F0F0F0;
+
+}
+
+.contact-info {
+  min-height: 450px ;
+  height: fit-content;
+  background-color: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
+
+
+}
+
+.contact-form{
+
+  min-height: 400px;
+  height: fit-content;
+}
+
+.contact-form-text-header {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+
+
+  color: #FFFFFF;
+
+}
+
+
+.contact-form-text {
+
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 24px;
+  /* or 150% */
+
+  color: #FFFFFF;
+
+}
+
+.contact-info-text-header {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+
+
+  color: #0B0D17;
+
+}
+
+
+.contact-info-text {
+
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* or 150% */
+
+
+  color: #0B0D17;
+
+
+}
+
+.contact-info-address, .contact-info-tel, .contact-info-mail{
+
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+
+  color: #0B0D17;
+}
+
+.text-icon-footer{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 22px;
+  /* identical to box height */
+
+
+  color: #0B0D17;
+}
+
+.label-form-contact{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* or 150% */
+
+
+  color: #FFFFFF;
+}
+
+.form-home-contact{
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+  padding: 5px ;
+  margin-top: 20px ;
+  margin-bottom: 5px;
+}
+
+.slide-text-container{
+  text-align: center;
+  padding: 40px;
+}
+
+.form-input-contact{
+  border-radius: 8px;
+  width: 100%;
+  height: 50px;
+  border: 1px solid #ABABAB;
+
+}
+
+::placeholder{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: #948D8D;
+  padding: 10px;
+}
+
+.textarea-form{
+  border-radius: 8px;
+}
+
+textarea{
+  width:100% ;
+  min-height: 200px;
+}
+.contact-form-container{
+  background-color: #F0F0F0;
+}
+.contact-information-container{
+  background-color: #F0F0F0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.card-contact{
+
+  background-color: #fff;
+  height: 100px ;
+  border-radius: 8px;
+  box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); ;
+}
+
+.circle-logo-contact{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #F49D1E;
+}
+.button-contact-form{
+  background-color: #F49D1E;
+  border-color : #F49D1E;
+  width: 245px ;
+  height: 50px ;
+}
+
+nz-divider{
+  border: 1.5px solid white;
+}
+
+end-footer-container{}
+
+.end-of-footer{
+width: 100%;
+background-color: #224B96;
+}
+// .ant-input {
+//   // border: 1px solid #ABABAB;
+//   border-radius: 8px;
+//   width: 200px;
+//   height: 50px;
+// }
+//******************* Contact ******************************

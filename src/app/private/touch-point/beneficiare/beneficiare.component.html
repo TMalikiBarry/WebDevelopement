@@ -1,0 +1,111 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <div nz-row class="content-container" nzJustify="center">
+    <div nz-col nzSpan="20">
+      <div nz-row nzJustify="space-between" nzAlign="middle" class="demande-buget-container">
+        <div nz-col nzSpan="5" class="demande-text">
+          Liste des bénéficiaires
+        </div>
+      </div>
+      <div nz-row class="tabs-container">
+        <div nz-col nzSpan="24">
+          <nz-tabset>
+            <nz-tab nzTitle="Toutes">
+              <nz-table #nzTable [nzData]="listBeneficiaires" nzTableLayout="fixed">
+                <thead>
+                <tr>
+                  <th>ID Beneficiaire</th>
+                  <th
+                    *ngFor="let column of listOfColumns"
+                    [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections"
+                  >
+                    {{ column.name }}
+                  </th>
+                  <th nzWidth="60px"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let data of nzTable.data">
+                  <tr class="tr-showed">
+                    <td>#{{ data.id }}</td>
+                    <td>{{ data.dateModification | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td>{{ data?.personnes?.[0]?.prenom +" "}} {{ data?.personnes?.[0]?.nom }}</td>
+                    <td>{{ data?.personnes?.[0]?.numeroMobile}}</td>
+                    <td>{{ data?.typeBeneficiaire }}</td>
+                    <td>{{ getStatusLibelle(data?.statut) || ''}}</td>
+                    <td [nzExpand]="expandSet.has(data.id+'')" (nzExpandChange)="onExpandChange(data.id+'', $event)"></td>
+                  </tr>
+                  <tr [nzExpand]="expandSet.has(data.id+'')" class="tr-expanded" style="height: 160px;border: 1px solid #EBEBEB;">
+                    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                      <div nz-col class="gutter-row" [nzSpan]="2">
+                        <div class="inner-box">
+                          <div nz-col nzSpan="2">
+                            <img alt="" height="30" src="assets/images/pmo/logo-detail" width="30">
+                          </div>
+                        </div>
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="6">
+                        <div class="inner-box">
+                          {{ data?.personnes?.[0]?.prenom +" "}} {{ data?.personnes?.[0]?.nom +" "}}
+                        </div>
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="6">
+                        <div class="inner-box">
+                          Adresse<br>
+                          <span *ngIf="data?.personnes?.[0]?.adresse ">{{ data?.personnes?.[0]?.adresse }}</span>
+                          <span *ngIf="!data?.personnes?.[0]?.adresse">Non renseigné</span>
+                        </div>
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="6">
+                        <div class="inner-box"  *ngIf="data?.personnes?.[0]?.email != null">
+                          Email <br>
+                          {{ data?.personnes?.[0]?.email +" "}}
+                        </div>
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="4" *ngIf="authService.getRole() !== 'AGENT_INITIATEUR' && data.statut !== 'PENDING_REGISTRED'">
+                        <div class="inner-box">
+                          <button nz-button nzType="primary"class="buton-detail" (click)="showModalDescriptionBeneficiaire(data)"> Détails </button>
+                        </div>
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="4" *ngIf="authService.getRole() === 'AGENT_INITIATEUR' && !data.demandes?.[0] && data.statut !== 'PENDING_REGISTRED'">
+                        <div class="inner-box">
+                          <button nz-button nzType="primary"class="buton-detail" (click)="ajoutDemande(data)"> Demande </button>
+                        </div>
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="4" *ngIf="authService.getRole() === 'AGENT_INITIATEUR' && data.demandes?.[0] && data.statut !== 'PENDING_REGISTRED'">
+                        <div class="inner-box">
+                          <button nz-button nzType="primary"class="buton-detail" (click)="editBeneficiaire(data)"> Modifier </button>
+                        </div>
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="4" *ngIf="authService.getRole() === 'AGENT_INITIATEUR' && data.statut === 'PENDING_REGISTRED'">
+                        <div class="inner-box">
+                          <button nz-button nzType="primary"class="buton-detail" (click)="terminerEnrolement(data)"> INITIER </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                      <div nz-col class="gutter-row" [nzSpan]="20">
+
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="4" *ngIf="data.statut=='INITIE' && authService.getRole() === 'AGENT_VALIDATEUR'">
+                        <div class="inner-box">
+                          <button nz-button nzType="primary"class="buton-detail" [disabled]="val" (click)="validerBeneficiaire(data)"> Valider </button>
+                        </div>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                  </tr>
+                </ng-container>
+                </tbody>
+              </nz-table>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nz-spin>

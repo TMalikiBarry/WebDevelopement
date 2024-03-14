@@ -1,0 +1,253 @@
+<div class="container" style="margin-bottom: 5%;">
+  <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="Identification - de l'entreprise">
+    <form nz-form [formGroup]="entrepriseForm">
+      <div nz-row nzJustify="center" [nzGutter]="[0,24]">
+        <div nz-col nzSpan="24">
+          <nz-collapse [nzBordered]="false" style="background-color: white" nzAccordion>
+            <nz-collapse-panel style="font-weight: bold;" nzHeader="Etape 1/2- Identification de l'entreprise"
+                               [nzActive]="key1">
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+
+                      <nz-form-label nzRequired nzFor="denominationSociale">Dénomination Sociale
+                        <i nz-icon nzType="info-circle" nzTheme="outline"
+                           nz-tooltip="Nom de l'entreprise/sigle à l'identique tel que précisé sur le NINEA"
+                           style="margin-top: 5px; margin-left: 5px;"></i>
+                      </nz-form-label>
+                      <input nz-input name="denominationSociale" id="denominationSociale"
+                             formControlName="denominationSociale"
+                             [ngClass]="{'is-invalid':submitted && entrepriseForm.controls.denominationSociale.errors}"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted && entrepriseForm.controls.denominationSociale.errors">
+                        <div *ngIf="entrepriseForm.controls.denominationSociale.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="statutJuridique" nzRequired>Statut juridique de l'entreprise</nz-form-label>
+                      <nz-select [ngClass]="{'is-invalid':submitted && entrepriseForm.controls.statutJuridique.errors}"
+                                 formControlName="statutJuridique"
+                                 name="select-validate">
+                        <nz-option nzLabel="Entreprise individuelle" nzValue="Entreprise individuelle"></nz-option>
+                        <nz-option nzLabel="SARL / SUARL" nzValue="SARL / SUARL"></nz-option>
+                        <nz-option nzLabel="SAS / SASU" nzValue="SAS / SASU"></nz-option>
+                        <nz-option nzLabel="SA / SASU" nzValue="SA / SASU"></nz-option>
+                        <nz-option nzLabel="Entreprise non enregistrée"
+                                   nzValue="Entreprise non enregistrée"></nz-option>
+
+                      </nz-select>
+                      <div *ngIf="submitted && entrepriseForm.controls.statutJuridique.errors" class="invalid-feedback">
+                        <div *ngIf="entrepriseForm.controls.statutJuridique.errors.required">Ce champ est obligatoire
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control nzExtra="Format du fichier: Pdf, Jpeg, Png, Docx">
+                      <nz-form-label nzFor="numeroTelephone">Document RCCM</nz-form-label>
+                      <input type="file"
+                             accept="image/jpeg,.pdf,.png,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                             nz-input name="numeroTelephone" id="numeroTelephone" (change)="loaddocumentRccm($event)"/>
+                      <span *ngIf="!checkRCCMFileSize" [ngStyle]="{color: 'red'}"> Fichier trop lourd ( ne doit pas dépasser 2 Mo)</span><br>
+                      <p *ngIf="documentRCCMNom"><a href="{{baseUrlFile}}{{documentRCCMNom}}"
+                                                    target="_blank">{{documentRCCMNom.slice(documentRCCMNom.lastIndexOf('_') + 1)}}</a>&nbsp;&nbsp;
+                        <i (click)="removeFichier(documentRCCMNom, 'RCCM')" nz-icon nzType="delete"></i></p>
+                      <div class="invalid-input" *ngIf="checkFileRccm">
+                        <div>Veuillez choisir un format de fichier autorisé</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="nom">Numéro RCCM</nz-form-label>
+                      <input formControlName="numeroRccm" id="nom" name="nom" nz-input/>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control nzExtra="Format du fichier: Pdf, Jpeg, Png,Docx">
+                      <nz-form-label nzFor="documentNINEA">Document NINEA</nz-form-label>
+                      <!-- <input type="file" accept="image/jpeg,.pdf,.png,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" formControlName="documentNinea" nz-input name="documentNINEA" id="documentNINEA" (change)="loaddocumentNinea($event)"  /> -->
+                      <input type="file"
+                             accept="image/jpeg,.pdf,.png,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                             nz-input name="documentNINEA" id="documentNINEA" (change)="loaddocumentNinea($event)"/>
+                      <span *ngIf="!checkNINEAFileSize" [ngStyle]="{color: 'red'}"> Fichier trop lourd ( ne doit pas dépasser 2 Mo)</span><br>
+                      <p *ngIf="documentNineaNom"><a href="{{baseUrlFile}}{{documentNineaNom}}"
+                                                     target="_blank">{{documentNineaNom.slice(documentNineaNom.lastIndexOf('_') + 1)}}</a>&nbsp;&nbsp;
+                        <i (click)="removeFichier(documentNineaNom, 'NINEA')" nz-icon nzType="delete"></i></p>
+                      <div class="invalid-input" *ngIf="checkFileNinea">
+                        <div>Veuillez choisir un format de fichier autorisé</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="email">NINEA</nz-form-label>
+                      <input formControlName="ninea" name="email" nz-input/>
+                      <span style="visibility: hidden;"> ok for centering element </span>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+            </nz-collapse-panel>
+            <nz-collapse-panel style="font-weight: bold;" nzHeader="Etape 2/2 - Identification de l'entreprise"
+                               [nzActive]="key2">
+
+              <div nz-row nzAlign="top">
+
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzRequired nzFor="numeroCni">Date de création
+                      </nz-form-label>
+                      <input type="date" [max]="dateMaxCreationString" nz-input name="dateCreation" id="23"
+                             formControlName="dateCreation"
+                             [ngClass]="{'is-invalid':submitted2 && entrepriseForm.controls.dateCreation.errors}"/>
+                      <div class="invalid-feedback" *ngIf="submitted2 && entrepriseForm.controls.dateCreation.errors">
+                        <div *ngIf="entrepriseForm.controls.dateCreation.errors.required">Ce champ est obligatoire</div>
+                        <div *ngIf="entrepriseForm.controls.dateCreation.errors.pastDateValidator">Ce champ est
+                          invalide
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzRequired nzFor="adressePhysique">Adresse/Siège social</nz-form-label>
+                      <input nz-input id="09" formControlName="adressePhysique"
+                             [ngClass]="{'is-invalid':submitted2 && entrepriseForm.controls.adressePhysique.errors}"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted2 && entrepriseForm.controls.adressePhysique.errors">
+                        <div *ngIf="entrepriseForm.controls.adressePhysique.errors.required">Ce champ est obligatoire
+                        </div>
+                        <div *ngIf="entrepriseForm.controls.adressePhysique.errors.pattern">Ce champ est invalide</div>
+                      </div>
+                    </nz-form-control>
+
+                  </nz-form-item>
+                </div>
+
+              </div>
+              <div nz-row nzAlign="top">
+
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzRequired nzFor="region">Région</nz-form-label>
+                      <nz-select [(ngModel)]="region" [ngModelOptions]="{standalone: true}" #name="ngModel"
+                                 [ngClass]="{'is-invalid':submitted2 && entrepriseForm.controls.region.errors}"
+                                 (ngModelChange)="chargeDepartements($event)">
+                        <nz-option *ngFor="let region of regions" nzValue="{{convertToString(region)}}"
+                                   nzLabel="{{region.libelle}}"></nz-option>
+                      </nz-select>
+                      <div class="invalid-feedback" *ngIf="submitted2 && entrepriseForm.controls.region.errors">
+                        <div *ngIf="entrepriseForm.controls.region.errors.required">Ce champ est obligatoire</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+
+
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzRequired nzFor="departement">Département
+                        <i nz-icon nzType="info-circle" nzTheme="outline"
+                           nz-tooltip="Choisir une région pour charger les départements"
+                           style="margin-top: 5px; margin-left: 5px;"></i>
+                      </nz-form-label>
+                      <nz-select name="departement" formControlName="departement"
+                                 [ngClass]="{'is-invalid':submitted2 && entrepriseForm.controls.departement.errors}">
+                        <nz-option *ngFor="let departement of departements" nzValue="{{convertToString(departement)}}"
+                                   nzLabel="{{departement.libelle}}"></nz-option>
+                      </nz-select>
+                      <div class="invalid-feedback" *ngIf="submitted2 && entrepriseForm.controls.departement.errors">
+                        <div *ngIf="entrepriseForm.controls.departement.errors.required">Ce champ est obligatoire</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzRequired nzFor="centreUrbain">Zone urbaine?
+                        <i nz-icon nzType="info-circle" nzTheme="outline"
+                           nz-tooltip="Est considéré comme localisé en zone rurale: tout bénéficiaire dont la majorité de l'activité économique est située dans une localité où le secteur d'activité prédominant est le secteur primaire, comptant au maximum 75.000 habitants"
+                           style="margin-top: 5px; margin-left: 5px;"></i>
+                      </nz-form-label>
+                      <nz-select name="select-validate" formControlName="centreUrbain"
+                                 [ngClass]="{'is-invalid':submitted2 && entrepriseForm.controls.centreUrbain.errors}">
+                        <nz-option nzValue="oui" nzLabel="OUI"></nz-option>
+                        <nz-option nzValue="non" nzLabel="NON"></nz-option>
+                      </nz-select>
+                      <div class="invalid-feedback" *ngIf="submitted2 && entrepriseForm.controls.centreUrbain.errors">
+                        <div *ngIf="entrepriseForm.controls.centreUrbain.errors.required">Ce champ est obligatoire</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+            </nz-collapse-panel>
+          </nz-collapse>
+        </div>
+      </div>
+      <br>
+      <div nz-row nzJustify="space-around">
+        <div nz-col [nzXs]="{ span: 10 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20 }"
+             [nzLg]="{ span: 20 }" [nzXl]="{ span: 20 }">
+          <button nz-button nzType="primary" nzShape="round" (click)="pre()" *ngIf="currentStepPosition > 0"
+                  class="boutton-precedant">
+            Précédant
+          </button>
+
+          <button nz-button nzType="primary" nzShape="round" (click)="next()" *ngIf="currentStepPosition < 5"
+                  class="boutton-suivant">
+
+            Suivant
+          </button>
+          <button nz-button nzType="primary" nzShape="round" (click)="done()" *ngIf="currentStepPosition === 5"
+                  class="boutton-suivant">
+
+            Valider
+          </button>
+        </div>
+      </div>
+    </form>
+  </nz-card>
+</div>

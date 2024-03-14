@@ -1,0 +1,347 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <nz-layout>
+    <!-- Menu   -->
+    <div nz-row class="menu-home" nzJustify="space-between" nzAlign="middle" style="height: auto">
+      <div nz-col [nzXs]="{ offset: 0, span: 6, push: 0 }" [nzSm]="{ offset: 0, span: 6, push: 0 }" [nzMd]="{ span: 2, offset: 0 }" [nzLg]="{ span: 4 }" [nzXl]="{ span: 4 }" routerLink="/beneficiaire" style="cursor: pointer;" >
+        <img alt="" height="70" src="assets/images/logo-TG_valide.svg" width="100">
+      </div>
+      <!-- Element du Menu  -->
+      <div nz-col [nzXs]="{ offset: 1, span: 10, push: 0 }" [nzSm]="{ offset: 0, span: 10, push: 0 }" [nzMd]="{ span: 20, offset: 0 }" [nzLg]="{ span: 14 }" [nzXl]="{ span: 15 }"  class="menu-element" >
+        <ul nz-menu nzMode="horizontal">
+          <div nz-row nzJustify="space-around" nzAlign="middle" >
+            <div nz-col routerLink="/beneficiaire">
+              <li nz-menu-item>
+                <i nz-icon nzType="home" style="margin-right: 7px;"></i>
+                Aperçu
+              </li>
+            </div>
+            <div nz-col routerLink="/beneficiaire/demande">
+              <li nz-menu-item>
+                <i nz-icon nzType="folder" style="margin-right: 7px;"></i>
+                Mes Demandes
+              </li>
+            </div>
+            <div nz-col routerLink="/beneficiaire/notification">
+              <li nz-menu-item>
+                <nz-badge  nzDot [nzShowDot]="false" >
+                  <i nz-icon nzType="bell"  nzTheme="outline"></i>
+                </nz-badge>
+                Mes Notifications
+              </li>
+            </div>
+
+
+          </div>
+
+        </ul>
+      </div>
+      <!-- Element du Menu  -->
+      <!-- Bouton de connexion et d'inscripition  -->
+      <div nz-col [nzXs]="{ offset: 1, span: 6}" [nzSm]="{ offset: 1, span: 6, push: 0 }" [nzMd]="{ span: 2, offset: 0 }" [nzLg]="{ span:4, pull:2 }" [nzXl]="{ span: 3, pull:2 }">
+        <div nz-row nzJustify="center" nzAlign="middle">
+          <div nz-col nzSpan="6">
+            <nz-badge (click)="showConfirm()">
+              <!-- <i nz-icon nzType="logout" nzTheme="outline"></i> -->
+              <i nz-icon nzType="logout" nzTheme="outline" style="font-size: 21px;"></i>
+            </nz-badge>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Menu   -->
+
+    <!-- Layout content  -->
+
+    <div nz-row class="content-container" nzJustify="center">
+      <div nz-col nzSpan="20">
+        <!-- Demande et Budget  Header -->
+        <div nz-row nzJustify="space-between" nzAlign="middle" class="demande-buget-container">
+          <div nz-col nzSpan="5" class="demande-text">
+            Demandes
+          </div>
+
+        </div>
+
+        <!-- Tabs de de beneficiaire  -->
+        <div nz-row class="tabs-container">
+          <div nz-col nzSpan="24">
+            <nz-tabset>
+              <nz-tab nzTitle="Toutes">
+                <nz-table #nzTable [nzData]="listeDemande" nzTableLayout="fixed" [nzScroll]="{ x: '1150px' }">
+                  <thead>
+                  <tr>
+                    <th>ID Demande</th>
+                    <th
+                      *ngFor="let column of listOfColumns"
+                      [nzSortOrder]="column.sortOrder"
+                      [nzSortFn]="column.sortFn"
+                      [nzSortDirections]="column.sortDirections"
+                    >
+                      {{ column.name }}
+                    </th>
+                    <th
+                      *ngFor="let column of listOfColumnsBis"
+                      [nzSortOrder]="column.sortOrder"
+                      [nzSortFn]="column.sortFn"
+                      [nzSortDirections]="column.sortDirections"
+                      [nzFilterMultiple]="column.filterMultiple"
+                      [nzFilters]="column.listOfFilter"
+                      [nzFilterFn]="column.filterFn"
+                    >
+                      {{ column.name }}
+                    </th>
+                    <th nzWidth="60px"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <ng-container *ngFor="let data of nzTable.data">
+                    <tr class="tr-showed">
+                      <td>#{{ data.id }}</td>
+                      <td>{{ data.dateCreation | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                      <td>{{ data.montant | currency: "XOF": "symbol": "1.0": "fr" }}</td>
+                      <td>{{ data.montantOctroye | currency: "XOF": "symbol": "1.0": "fr" }}</td>
+                      <td>{{ data.typeDemande }}</td>
+                      <td>{{ getStatusLibelle(data?.statutDossier) || ''}}</td>
+                      <td [nzExpand]="expandSet.has(data.id+'')" (nzExpandChange)="onExpandChange(data.id+'', $event)"></td>
+                    </tr>
+                    <tr [nzExpand]="expandSet.has(data.id+'')" class="tr-expanded" style="height: 160px;border: 1px solid #EBEBEB;">
+                      <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                        <div nz-col class="gutter-row" [nzSpan]="2">
+                          <div class="inner-box">
+                            <div nz-col nzSpan="2">
+                              <img alt="" height="30" src="assets/images/pmo/logo-detail" width="30">
+                            </div>
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="6">
+                          <div class="inner-box">
+                            {{beneficiaire?.personnes[0]?.prenom}} {{beneficiaire?.personnes[0]?.nom}}
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="6">
+                          <div class="inner-box">
+                            Chiffre d'affaire <br>
+                            <span *ngIf="beneficiaire.chiffreAffaireAnMoins1">{{beneficiaire.chiffreAffaireAnMoins1}}</span>
+                            <span *ngIf="!beneficiaire.chiffreAffaireAnMoins1">Non renseigné</span>
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="6">
+                          <div class="inner-box">
+                            Période de Prêt <br>
+                            {{data.duree}} Mois
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="4">
+                          <div class="inner-box">
+                            <button nz-button (click)="showModalDescriptionDemande(data)" nzType="primary"class="buton-detail"> Détails </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                        <div nz-col class="gutter-row" [nzSpan]="20">
+
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="4" *ngIf="data.statutDossier=='INITIE' || data.statutDossier=='RECU_AF' || data.statutDossier=='INVALIDATED'">
+                          <div class="inner-box">
+                            <button nz-button (click)="goExpressionBesoin(data)" nzType="primary"class="buton-detail"> Modifier </button>
+                          </div>
+                        </div>
+                      </div>
+                    </tr>
+                    <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                    </tr>
+                  </ng-container>
+                  </tbody>
+                </nz-table>
+              </nz-tab>
+              <nz-tab nzTitle="Approuvées">
+                <nz-table #nzTableApprouve [nzData]="listeDemandeApprouvees" nzTableLayout="fixed" [nzScroll]="{ x: '1150px' }">
+                  <thead>
+                  <tr>
+
+                    <th>ID Demande</th>
+                    <th>Date</th>
+                    <th>Montant demandé</th>
+                    <th>Montant octroyé</th>
+                    <th>Type</th>
+                    <th>Statut demande</th>
+                    <th nzWidth="60px"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <ng-container *ngFor="let data of listeDemandeApprouvees">
+                    <tr class="tr-showed">
+                      <td>#{{ data.id }}</td>
+                      <td>{{ data.dateCreation | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                      <td>{{ data.montant | currency: "XOF": "symbol": "1.0": "fr" }}</td>
+                      <td>{{ data.montantOctroye | currency: "XOF": "symbol": "1.0": "fr" }}</td>
+                      <td>{{ data.typeDemande }}</td>
+                      <td>{{ getStatusLibelle(data?.statutDossier) || ''}}</td>
+                      <td [nzExpand]="expandSet.has(data.id+'')" (nzExpandChange)="onExpandChange(data.id+'', $event)"></td>
+                    </tr>
+                    <tr [nzExpand]="expandSet.has(data.id+'')" class="tr-expanded" style="height: 160px;border: 1px solid #EBEBEB;">
+                      <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                        <div nz-col class="gutter-row" [nzSpan]="2">
+                          <div class="inner-box">
+                            <div nz-col nzSpan="2">
+                              <img alt="" height="30" src="assets/images/pmo/logo-detail" width="30">
+                            </div>
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="6">
+                          <div class="inner-box">
+                            {{beneficiaire?.personnes[0]?.prenom}} {{beneficiaire?.personnes[0]?.nom}}
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="6">
+                          <div class="inner-box">
+                            Chiffre d'affaire <br>
+                            <span *ngIf="beneficiaire.chiffreAffaireAnMoins1">{{beneficiaire.chiffreAffaireAnMoins1}}</span>
+                            <span *ngIf="!beneficiaire.chiffreAffaireAnMoins1">Non renseigné</span>
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="6">
+                          <div class="inner-box">
+                            Période de Prêt <br>
+                            {{data.duree}} Mois
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="4">
+                          <div class="inner-box">
+                            <button nz-button (click)="showModalDescriptionDemande(data)" nzType="primary"class="buton-detail"> Détails </button>
+                          </div>
+                        </div>
+                      </div>
+                    </tr>
+                    <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                    </tr>
+                  </ng-container>
+                  </tbody>
+                </nz-table>
+              </nz-tab>
+              <nz-tab nzTitle="Rejetées">
+                <nz-table #nzTableRejetees [nzData]="listeDemandeRejetees" nzTableLayout="fixed" [nzScroll]="{ x: '1150px' }">
+                  <thead>
+                  <tr>
+                    <th>ID Demande</th>
+                    <th>Date</th>
+                    <th>Montant demandé</th>
+                    <th>Montant octroyé</th>
+                    <th>Type</th>
+                    <th>Statut demande</th>
+                    <th nzWidth="60px"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <ng-container *ngFor="let data of listeDemandeRejetees">
+                    <tr class="tr-showed">
+                      <td>#{{ data.id }}</td>
+                      <td>{{ data.dateCreation | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                      <td>{{ data.montant | currency: "XOF": "symbol": "1.0": "fr" }}</td>
+                      <td>{{ data.montantOctroye | currency: "XOF": "symbol": "1.0": "fr" }}</td>
+                      <td>{{ data.typeDemande }}</td>
+                      <td>{{ getStatusLibelle(data?.statutDossier || '')}}</td>
+                      <td [nzExpand]="expandSet.has(data.id+'')" (nzExpandChange)="onExpandChange(data.id+'', $event)"></td>
+                    </tr>
+                    <tr [nzExpand]="expandSet.has(data.id+'')" class="tr-expanded" style="height: 160px;border: 1px solid #EBEBEB;">
+                      <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                        <div nz-col class="gutter-row" [nzSpan]="2">
+                          <div class="inner-box">
+                            <div nz-col nzSpan="2">
+                              <img alt="" height="30" src="assets/images/pmo/logo-detail" width="30">
+                            </div>
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="6">
+                          <div class="inner-box">
+                            {{beneficiaire?.personnes[0]?.prenom}} {{beneficiaire?.personnes[0]?.nom}}
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="6">
+                          <div class="inner-box">
+                            Chiffre d'affaire <br>
+                            <span *ngIf="beneficiaire.chiffreAffaireAnMoins1">{{beneficiaire.chiffreAffaireAnMoins1}}</span>
+                            <span *ngIf="!beneficiaire.chiffreAffaireAnMoins1">Non renseigné</span>
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="6">
+                          <div class="inner-box">
+                            Période de Prêt <br>
+                            {{data.duree}} Mois
+                          </div>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="4">
+                          <div class="inner-box">
+                            <button nz-button (click)="showModalDescriptionDemande(data)" nzType="primary"class="buton-detail"> Détails </button>
+                          </div>
+                        </div>
+                      </div>
+                    </tr>
+                    <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                    </tr>
+                  </ng-container>
+                  </tbody>
+                </nz-table>
+              </nz-tab>
+            </nz-tabset>
+          </div>
+        </div>
+        <!-- Tabs de de beneficiaire  -->
+
+      </div>
+
+    </div>
+    <!-- Layout content  -->
+    <div nz-row nzJustify="center" nzAlign="middle" class="end-footer-container">
+      <div nz-col nzSpan="24">
+
+        <div nz-row class="end-of-footer" nzJustify="space-between" nzAlign="middle">
+
+          <div nz-col nzSpan="3" nzXs=4 nzSm="5" nzMd="6">
+            <img alt="" height="70" src="assets/images/logo-suqali-png-blanc.png">
+          </div>
+
+          <div nz-col style="color: white;"  nzSpan="3" nzXs="0" nzSm="0" nzMd="3">
+            <div>
+              © 2021
+            </div>
+            <div style=" margin-left: 2%; color: white;" nzAlign="middle">
+              v 0.0.5
+            </div>
+          </div>
+
+          <div nz-col nzSpan="3" nzXs="12" nzSm="10" nzMd="10" nzLg="8" >
+            <div nz-row >
+                  <div nz-col  nzSpan="5">
+                    <a href="https://twitter.com/SuqaliSN" target="_blank">
+                      <img src="../../assets/images/Social Icons/White/twitter.svg" height="40" width="40">
+                    </a>
+                  </div>
+                  <div nz-col nzSpan="5">
+                    <a href="https://www.facebook.com/Suqali-100680222470713" target="_blank" >
+                      <img src="../../assets/images/Social Icons/White/facebook.svg" height="40" width="40" >
+                    </a>
+                  </div>
+                  <div nz-col nzSpan="5" >
+                    <a href="https://www.linkedin.com/company/suqalisn/" target="_blank">
+                      <img src="../../assets/images/Social Icons/White/linkedin.svg" height="40" width="40">
+                    </a>
+                  </div>
+                  <div nz-col nzSpan="5" >
+                    <a href="https://www.instagram.com/suqali.officiel/" target="_blank">
+                      <img src="../../assets/images/Social Icons/White/Youtube.svg" height="40" width="40">
+                    </a>
+                  </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- last row of the footer  -->
+    </div>
+  </nz-layout>
+</nz-spin>

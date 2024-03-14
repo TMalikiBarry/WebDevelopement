@@ -1,0 +1,527 @@
+<div class="container" style="margin-bottom: 5%;">
+  <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false"
+           nzTitle="Description des activités de l'entreprise">
+    <form nz-form [formGroup]="activiteForm">
+      <div nz-row nzJustify="center" [nzGutter]="[0,24]">
+        <div nz-col nzSpan="22">
+          <nz-collapse [nzBordered]="false" style="background-color: white" nzAccordion>
+            <nz-collapse-panel style="font-weight: bold"
+                               nzHeader="Etape 1/3 - Description des activités de l'entreprise" [nzActive]="key1">
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="n" nzRequired>Secteur d'activité
+                      </nz-form-label>
+                      <nz-select formControlName="secteurActivite"
+                                 [ngClass]="{'is-invalid':submitted && activiteForm.controls.secteurActivite.errors}"
+                                 (ngModelChange)="gestionInstitution()">
+                        <nz-option *ngFor="let secteurActivite of secteurActivites"
+                                   nzValue="{{convertToString(secteurActivite)}}" nzLabel="{{secteurActivite.libelle}}">
+                        </nz-option>
+                      </nz-select>
+                      <div class="invalid-feedback" *ngIf="submitted && activiteForm.controls.secteurActivite.errors">
+                        <div *ngIf="activiteForm.controls.secteurActivite.errors.required">Ce champ est obligatoire
+                        </div>
+                        <div *ngIf="activiteForm.controls.secteurActivite.errors.pattern">Ce champ est invalide</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label [nzSm]="100" [nzXs]="24" nzFor="secteurnonrepertorie"
+                                     [nzRequired]="controlLabelInstitution()">Secteur d'activité (Si pas repertorié dans
+                        la liste déroulante)
+                      </nz-form-label>
+                      <input nz-input name="secteurnonrepertorie" id="secteurnonrepertorie"
+                             formControlName="secteurActiviteAutre"
+                             [ngClass]="{'is-invalid':submitted && activiteForm.controls.secteurActiviteAutre.errors}"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted && activiteForm.controls.secteurActiviteAutre.errors">
+                        <div *ngIf="activiteForm.controls.secteurActiviteAutre.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+
+              </div>
+              <div nz-row nzAlign="top">
+
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzRequired nzFor="p">Localisation des activités - Zone
+                        urbaine
+                        <i nz-icon nzType="info-circle" nzTheme="outline"
+                           nz-tooltip="Est considéré comme localisé en zone rurale: tout bénéficiaire dont la majorité de l'activité économique est située dans une localité où le secteur d'activité prédominant est le secteur primaire, comptant au maximum 75.000 habitants"
+                           style="margin-top: 5px; margin-left: 5px;"></i>
+                      </nz-form-label>
+                      <nz-select formControlName="centreUrbain"
+                                 [ngClass]="{'is-invalid':submitted && activiteForm.controls.centreUrbain.errors}">
+                        <nz-option nzValue="oui" nzLabel="OUI"></nz-option>
+                        <nz-option nzValue="non" nzLabel="NON"></nz-option>
+                      </nz-select>
+                      <div class="invalid-feedback" *ngIf="submitted && activiteForm.controls.centreUrbain.errors">
+                        <div *ngIf="activiteForm.controls.centreUrbain.errors.required">Ce champ est obligatoire</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label [nzSm]="100" [nzXs]="24" nzFor="m" nzRequired>Nombre
+                        d'années d'activité
+                      </nz-form-label>
+                      <nz-select (ngModelChange)="controlChiffreAffaire()" formControlName="nombreAnneeActivite"
+                                 [ngClass]="{'is-invalid':submitted && activiteForm.controls.nombreAnneeActivite.errors}">
+                        <nz-option *ngFor="let tranchAnneeActivite of tranchAnneeActivites"
+                                   nzValue="{{convertToString(tranchAnneeActivite)}}"
+                                   nzLabel="{{tranchAnneeActivite.libelle}}"></nz-option>
+                      </nz-select>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted && activiteForm.controls.nombreAnneeActivite.errors">
+                        <div *ngIf="activiteForm.controls.nombreAnneeActivite.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="revenuTotalGroupement2019">Chiffre d'affaires pour l'année N-2
+                      </nz-form-label>
+
+                      <nz-select formControlName="revenuTotalGroupement2019">
+                        <nz-option nzValue="Inférieur ou égal à 50 millions hors taxes FCFA / an"
+                                   nzLabel="Inférieur ou égal à 50 millions hors taxes FCFA / an"></nz-option>
+                        <nz-option nzValue="Entre 51 et 100 millions hors taxes FCFA / an"
+                                   nzLabel="Entre 51 et 100 millions hors taxes FCFA / an"></nz-option>
+                        <nz-option nzValue="Entre 101 et 300 millions hors taxes FCFA / an"
+                                   nzLabel="Entre 101 et 300 millions hors taxes FCFA / an"></nz-option>
+                      </nz-select>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="revenuTotalGroupement2020">
+                        Chiffre d'affaires pour l'année N-1
+                      </nz-form-label>
+                      <input (blur)="formatNumberetatFinancier()"
+                             [ngClass]="{'is-invalid':submitted && activiteForm.controls.revenuTotalGroupement2020.errors}"
+                             formControlName="revenuTotalGroupement2020"
+                             nz-input/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted && activiteForm.controls.revenuTotalGroupement2020.errors">
+                        <div *ngIf="activiteForm.controls.revenuTotalGroupement2020.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                        <div *ngIf="activiteForm.controls.revenuTotalGroupement2020.errors.pattern">Ce champ est
+                          invalide
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+            </nz-collapse-panel>
+            <nz-collapse-panel style="font-weight: bold"
+                               nzHeader="Etape 2/3 - Description des activités de l'entreprise (Employés Permanents)"
+                               [nzActive]="key2">
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control nzExtra="Format du fichier: Pdf, docx">
+                      <nz-form-label [nzSm]="100" [nzXs]="24" nzFor="etatFinancier2019">Etats financiers 2021 (fournir
+                        états certifiés si applicable)
+                      </nz-form-label>
+                      <input type="file"
+                             accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                             nz-input name="etatFinancier2019" id="etatFinancier2019"
+                             (change)="loadetatFinancier2019($event)"/>
+                      <span *ngIf="!checkEtatFinSize19" [ngStyle]="{color: 'red'}"> Fichier trop lourd ( ne doit pas dépasser 2 Mo)</span><br>
+
+                      <p *ngIf="etatFinancier2019Nom"><a href="{{baseUrlFile}}{{etatFinancier2019Nom}}"
+                                                         target="_blank">{{etatFinancier2019Nom.slice(etatFinancier2019Nom.lastIndexOf('_') + 1)}}</a>&nbsp;&nbsp;
+                        <i (click)="removeFichier(etatFinancier2019Nom, '19')" nz-icon nzType="delete"></i>
+                      </p>
+                    </nz-form-control>
+                    <div class="invalid-input" *ngIf="checkFilePrecedent">
+                      <div>Veuillez choisir un format de fichier autorisé</div>
+                    </div>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control nzExtra="Format du fichier: Pdf, Jpeg, Png, Docx">
+                      <nz-form-label [nzSm]="100" [nzXs]="24" nzFor="revenuTotalGroupement2020">Etats
+                        financiers 2022 (fournir états certifiés si applicable)
+                      </nz-form-label>
+                      <input type="file" nz-input
+                             accept="image/jpeg,.pdf,.png,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                             name="revenuTotalGroupement2020"
+                             (change)="loadetatFinancier2020($event)"
+                             [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.revenuTotalGroupement2020.errors}"/>
+                      <span *ngIf="!checkEtatFinSize20" [ngStyle]="{color: 'red'}"> Fichier trop lourd ( ne doit pas dépasser 2 Mo)</span><br>
+                      <p *ngIf="etatFinancier2020Nom"><a href="{{baseUrlFile}}{{etatFinancier2020Nom}}"
+                                                         target="_blank">{{etatFinancier2020Nom.slice(etatFinancier2020Nom.lastIndexOf('_') + 1)}}</a>&nbsp;&nbsp;
+                        <i (click)="removeFichier(etatFinancier2020Nom, '20')" nz-icon nzType="delete"></i>
+                      </p>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted2 && activiteForm.controls.etatFinancier2020.errors">
+                        <div *ngIf="activiteForm.controls.etatFinancier2020.errors.required">Ce champ est obligatoire
+                        </div>
+                      </div>
+                      <div class="invalid-input" *ngIf="checkFileActuel">
+                        <div>Veuillez choisir un format de fichier autorisé</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label class="police-label" nzFor="employer_permanent">Employés
+                        permanents
+                        <i nz-icon nzType="info-circle" nzTheme="outline"
+                           nz-tooltip="Nombre d'emploi à date  pour répondre à un besoin normal et habituel dans le cadre de l'activité de l'entreprise  avec une durée prévue au moins sur 6 mois par année"
+                           style="margin-top: 5px; margin-left: 5px;"></i>
+                      </nz-form-label>
+                      <nz-select formControlName="employePermanent"
+                                 [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.employePermanent.errors}">
+                        <nz-option *ngFor="let trancheNombrePersonne of trancheNombrePersonnes"
+                                   nzValue="{{convertToString(trancheNombrePersonne)}}"
+                                   nzLabel="{{trancheNombrePersonne.libelle}}"></nz-option>
+                      </nz-select>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted2 && activiteForm.controls.employePermanent.errors">
+                        <div *ngIf="activiteForm.controls.employePermanent.errors.required">Ce champ est obligatoire
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzRequired nzFor="o">Nombre exact à date</nz-form-label>
+                      <input nz-input name="o" id="23" type="number" formControlName="nombreExactADate"
+                             [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.nombreExactADate.errors}"
+                             (change)="checkLimitInputsPermanent()"/>
+                      <div class="invalid-feedback" *ngIf="submitted2 && activiteForm.controls.nombreExactADate.errors">
+                        <div *ngIf="activiteForm.controls.nombreExactADate.errors.required">Ce champ est obligatoire
+                        </div>
+                        <div *ngIf="activiteForm.controls.nombreExactADate.errors.pattern">La valeur est incorrecte
+                        </div>
+                      </div>
+                      <div *ngIf="activiteForm.controls.nombreExactADate.errors" class="piececolor">
+                        <div *ngIf="activiteForm.controls.nombreExactADate.errors.min">Cette valeur doit être supérieur
+                          à 0
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzRequired nzFor="nf">Nombre de femmes</nz-form-label>
+                      <input nz-input name="nf" id="09" type="number" formControlName="nombreFemmePermanent"
+                             [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.nombreFemmePermanent.errors}"
+                             (change)="checkNombreTotalFemmePermanent()"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted2 && activiteForm.controls.nombreFemmePermanent.errors">
+                        <div *ngIf="activiteForm.controls.nombreFemmePermanent.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                      </div>
+                      <div *ngIf="activiteForm.controls.nombreFemmePermanent.errors" class="piececolor">
+                        <div
+                          *ngIf="activiteForm.controls.nombreFemmePermanent.errors.max || activiteForm.controls.nombreFemmePermanent.errors.min">
+                          Veuillez saisir un nombre d'employés correct
+                        </div>
+                      </div>
+                      <div class="invalid-input" *ngIf="nombreTotalFemmePermanent">
+                        <div>Veuillez d'abord saisir le nombre d'employé(s) permanent(s)</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="pf">Pourcentage de femmes</nz-form-label>
+                      <input nz-input name="pf" id="pf" formControlName="pourcentageFemmePermanent"
+                             [value]="calculPourcentageFemmePermanent()"/>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzRequired nzFor="nj">
+                        Nombre de jeunes (< 35 ans)
+                      </nz-form-label>
+                      <input nz-input name="nj" id="nj" type="number" formControlName="nombreJeunePermanent"
+                             [ngClass]="{'is-invalid':submitted2 && activiteForm.controls.nombreJeunePermanent.errors}"
+                             (change)="checkNombreTotalJeunePermanent()"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted2 && activiteForm.controls.nombreJeunePermanent.errors">
+                        <div *ngIf="activiteForm.controls.nombreJeunePermanent.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                      </div>
+                      <div *ngIf="activiteForm.controls.nombreJeunePermanent.errors" class="piececolor">
+                        <div
+                          *ngIf="activiteForm.controls.nombreJeunePermanent.errors.max || activiteForm.controls.nombreJeunePermanent.errors.min">
+                          Veuillez saisir un nombre d'employés correct
+                        </div>
+                      </div>
+                      <div class="invalid-input" *ngIf="nombreTotalJeunePermanent">
+                        <div>Veuillez d'abord saisir le nombre d'employé(s) permanent(s)</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="pj">Pourcentage de jeunes (< 35
+                        ans)
+                      </nz-form-label>
+                      <input nz-input name="pj" id="pj" formControlName="pourcentageJeunesPermanent"
+                             [value]="calculPourcentageJeunesPermanent()"/>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+            </nz-collapse-panel>
+            <nz-collapse-panel style="font-weight: bold"
+                               nzHeader="Etape 3/3 - Description des activités de l'entreprise (Employés non Permanents)"
+                               [nzActive]="key3">
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label class="police-label" nzFor="enp">Employés non permanents,
+                        prestataires, saisonniers,etc
+                        <i nz-icon nzType="info-circle" nzTheme="outline"
+                           nz-tooltip="Nombre d'emploi à date  pour répondre à un besoin temporaire ou saisonnier dans le cadre de l'activité de l'entreprise  avec une durée inférieur à 6 mois sur une année"
+                           style="margin-top: 5px; margin-left: 5px;"></i>
+                      </nz-form-label>
+                      <nz-select formControlName="membreNonPermanent">
+                        <nz-option *ngFor="let trancheNombrePersonne of trancheNombrePersonnes"
+                                   nzValue="{{convertToString(trancheNombrePersonne)}}"
+                                   nzLabel="{{trancheNombrePersonne.libelle}}"></nz-option>
+                      </nz-select>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzRequired nzFor="ned">Nombre
+                        exact à date
+                      </nz-form-label>
+                      <input nz-input name="ned" id="ned" type="number" formControlName="nombreExactADateNonPermanent"
+                             [ngClass]="{'is-invalid':submitted3 && activiteForm.controls.nombreExactADateNonPermanent.errors}"
+                             (change)="checkLimitInputsNonPermanent()"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted3 && activiteForm.controls.nombreExactADateNonPermanent.errors">
+                        <div *ngIf="activiteForm.controls.nombreExactADateNonPermanent.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                        <div *ngIf="activiteForm.controls.nombreExactADateNonPermanent.errors.pattern">La valeur est
+                          incorrecte
+                        </div>
+                      </div>
+                      <div *ngIf="activiteForm.controls.nombreExactADateNonPermanent.errors" class="piececolor">
+
+                        <div *ngIf="activiteForm.controls.nombreExactADateNonPermanent.errors.min">Cette valeur doit
+                          être supérieure à 0
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzRequired nzFor="ndf">Nombre de femmes</nz-form-label>
+                      <input nz-input name="ndf" id="ndf" type="number" formControlName="nombreFemmeNonPermanent"
+                             [ngClass]="{'is-invalid':submitted3 && activiteForm.controls.nombreFemmeNonPermanent.errors}"
+                             (change)="checkNombreTotalFemmeNonPermanent()"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted3 && activiteForm.controls.nombreFemmeNonPermanent.errors">
+                        <div *ngIf="activiteForm.controls.nombreFemmeNonPermanent.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                      </div>
+                      <div *ngIf="activiteForm.controls.nombreFemmeNonPermanent.errors" class="piececolor">
+                        <div
+                          *ngIf="activiteForm.controls.nombreFemmeNonPermanent.errors.max || activiteForm.controls.nombreFemmeNonPermanent.errors.min">
+                          Veuillez saisir un nombre d'employés correct
+                        </div>
+                      </div>
+                      <div class="invalid-input" *ngIf="nombreTotalFemmeNonPermanent">
+                        <div>Veuillez d'abord saisir le nombre d'employé(s) non permanent(s)</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="pdf">Pourcentage de femmes</nz-form-label>
+                      <input nz-input name="pdf" id="pdf" formControlName="pourcentageFemmeNonPermanent"
+                             [value]="calculPourcentageFemmeNonPermanent()"/>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label type="number" nzRequired
+                                     nzFor="ndj">Nombre de jeunes (< 35 ans)
+                      </nz-form-label>
+                      <input nz-input name="ndj" id="ndj" formControlName="nombreJeuneNonPermanent"
+                             [ngClass]="{'is-invalid':submitted3 && activiteForm.controls.nombreJeuneNonPermanent.errors}"
+                             (change)="checkNombreTotalJeuneNonPermanent()"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted3 && activiteForm.controls.nombreJeuneNonPermanent.errors">
+                        <div *ngIf="activiteForm.controls.nombreJeuneNonPermanent.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                      </div>
+                      <div *ngIf="activiteForm.controls.nombreJeuneNonPermanent.errors" class="piececolor">
+                        <div
+                          *ngIf="activiteForm.controls.nombreJeuneNonPermanent.errors.max || activiteForm.controls.nombreJeuneNonPermanent.errors.min">
+                          Veuillez saisir un nombre d'employés correct
+                        </div>
+                      </div>
+                      <div class="invalid-input" *ngIf="nombreTotalJeuneNonPermanent">
+                        <div>Veuillez d'abord saisir le nombre d'employé(s) non permanent(s)</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="pjd">Pourcentage de jeunes (< 35
+                        ans)
+                      </nz-form-label>
+                      <input nz-input name="pjd" id="pjd" formControlName="pourcentageJeunesNonPermanent"
+                             [value]="calculPourcentageJeunesNonPermanent()"/>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label [nzSm]="50" [nzXs]="24" nzRequired nzFor="aa">Salaire net / mois le plus bas dans
+                        l'entreprise en Francs CFA
+                      </nz-form-label>
+                      <input nz-input name="aa" id="aa" (blur)="formatSalaireBas()"
+                             formControlName="revenuMembreBasGroupement"
+                             [ngClass]="{'is-invalid':submitted3 && activiteForm.controls.revenuMembreBasGroupement.errors}"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted3 && activiteForm.controls.revenuMembreBasGroupement.errors">
+                        <div *ngIf="activiteForm.controls.revenuMembreBasGroupement.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label [nzSm]="50" [nzXs]="24" nzRequired nzFor="qq">Salaire net moyen / mois dans
+                        l'entreprise en Francs CFA
+                      </nz-form-label>
+                      <input nz-input name="qq" id="qq" (blur)="formatSalaireMoyen()"
+                             formControlName="revenuMoyenGroupement"
+                             [ngClass]="{'is-invalid':submitted3 && activiteForm.controls.revenuMoyenGroupement.errors}"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted3 && activiteForm.controls.revenuMoyenGroupement.errors">
+                        <div *ngIf="activiteForm.controls.revenuMoyenGroupement.errors.required">Ce champ est
+                          obligatoire
+                        </div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+            </nz-collapse-panel>
+          </nz-collapse>
+        </div>
+      </div>
+      <br>
+      <div nz-row>
+        <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+             [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ span: 20, pull: 2 }" [nzXl]="{ span: 20 }">
+          <button nz-button nzType="primary" nzShape="round" (click)="pre()" *ngIf="currentStepPosition > 0"
+                  class="boutton-precedant">
+            Précédant
+          </button>
+          <button nz-button nzType="primary" nzShape="round" (click)="next()" *ngIf="currentStepPosition < 5"
+                  class="boutton-suivant">
+            Suivant
+          </button>
+
+          <button nz-button nzType="primary" nzShape="round" (click)="done()" *ngIf="currentStepPosition === 5"
+                  class="boutton-suivant">
+            Valider
+          </button>
+        </div>
+      </div>
+    </form>
+  </nz-card>
+</div>

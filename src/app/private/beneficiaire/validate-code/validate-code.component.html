@@ -1,0 +1,88 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <nz-layout>
+    <!-- container  -->
+    <div nz-row class="login-container" nzJustify="center" nzAlign="middle" *ngIf="!showSuccess">
+      <div nz-col nzSpan="8" class="login-content">
+        <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="Code de validation">
+          <!-- Formulaire de reinitialisation  -->
+          <form nz-form [formGroup]="validateCodeForm" class="login-form-here">
+            <nz-form-item>
+              <nz-form-control>
+                <!-- <nz-form-label [nzSm]="12" [nzXs]="24" nzRequired >Code </nz-form-label> -->
+                <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="11">Veuillez saisir le code reçu par sms au {{numeroTelephone}}
+                </nz-form-label>
+                <nz-input-group nzPrefixIcon="user">
+                  <input type="text" nz-input name="code" placeholder="Entrez le code" formControlName="code"/>
+                </nz-input-group>
+                <div *ngIf="validateCodeForm.controls.code.hasError('required') && validateCodeForm.controls.code.touched">
+                  <span id="errorMessage">Code obligatoire</span> <br>
+                </div>
+                <div *ngIf="validateCodeForm.controls.code.hasError('pattern') && validateCodeForm.controls.code.touched">
+                  <span id="errorMessage">Le code ne contient que des chiffres </span> <br>
+                </div>
+                <div *ngIf="validateCodeForm.controls.code.hasError('maxlength') && validateCodeForm.controls.code.touched">
+                  <span id="errorMessage">Le code est de 6 chiffres </span> <br>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+            <div id="errorMessage" *ngIf="showError">  {{errorMessage}} </div>
+            <!-- <div nz-col nzSpan="18"  class="steps-action marge-form" id="section_button_entreprise">
+              <button nz-button [disabled]="!validateCodeForm.valid" nzType="primary" nzShape="round" (click)="validerCode()" class="boutton-suivant">
+                Valider
+              </button>
+            </div> -->
+            <nz-form-item nz-row class="register-area"  nzAlign="middle">
+              <nz-form-control nzSpan="18" >
+                <button nz-button nzType="primary" (click)="renvoyerCode()" [disabled]="renvoiCode">  Renvoyer le code <span style="padding-left: 2%"  *ngIf="nombreSecond !==0">   (00: {{nombreSecond}})</span></button>
+              </nz-form-control>
+              <nz-form-control nzSpan="6" nzOffset="2">
+                <button nz-button nzType="primary" (click)="validerCode()">Valider code</button>
+              </nz-form-control>
+            </nz-form-item>
+
+          </form>
+        <!-- Formulaire de reinitialisation  -->
+        <button nz-button nzType="link" routerLink="/home" nzShape="round">
+          Retour
+        </button>
+        </nz-card>
+      </div>
+    </div>
+
+    <!--  Message de succes  -->
+    <div nz-row class="login-container" nzJustify="center" nzAlign="middle" nzJustify="center" nzAlign="middle" *ngIf="showSuccess">
+      <div nz-col nzSpan="8" class="login-content">
+        <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="Modification mot de passe">
+          <!-- Formulaire de connexion  -->
+          <form nz-form style="margin-left: 25%;" [formGroup]="validateCodeForm" class="login-form-here">
+            <nz-alert
+            nzType="success"
+            nzDescription="Code validé avec succès "
+          ></nz-alert>
+          <!-- <button style="margin-top: 10px;" nz-button nzType="primary" nzShape="round" class="boutton-suivant" routerLink="/login">
+            Se connecter
+          </button> -->
+          </form>
+        <!-- Formulaire de connexion  -->
+        </nz-card>
+      </div>
+    </div>
+
+    <!--  Message derreur  -->
+    <div nz-row class="login-container" nzJustify="center" nzAlign="middle" nzJustify="center" nzAlign="middle" *ngIf="showError">
+      <div nz-col nzSpan="8" class="login-content">
+        <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="Modification mot de passe">
+          <form nz-form style="margin-left: 25%;" [formGroup]="validateCodeForm" class="login-form-here">
+            <nz-alert
+            nzType="error"
+            nzDescription="errorMessage"
+          ></nz-alert>
+          <!-- <button style="margin-top: 10px;" nz-button nzType="primary" nzShape="round" class="boutton-suivant" routerLink="/login">
+            Se connecter
+          </button> -->
+          </form>
+        </nz-card>
+      </div>
+    </div>
+  </nz-layout>
+</nz-spin>

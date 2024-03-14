@@ -1,0 +1,411 @@
+@import "~swiper/css";
+@import "~swiper/css/grid";
+@import "~swiper/css/pagination";
+@import "~swiper/css/navigation";
+
+
+.test{
+  font-family: Avenir ;
+  background-color: white !important;
+}
+
+
+.menu-button{
+  height: 50px;
+}
+
+.menu-button:focus {
+  background-color: #224B96;
+  border-color : #224B96;
+  color : white ;
+}
+
+.menu-button:hover{
+  background-color: #F49D1E;
+  border-color: #F49D1E;
+}
+
+#button-connexion{
+  background-color: #224B96;
+  border-color : #224B96;
+}
+
+.logo-imagev2{
+  cursor: pointer;
+}
+
+#menu-home {
+  background-color: white;
+  box-shadow: 0px 2px 20px 2px #DCDCDC ;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+
+}
+
+
+// *************************************** Swiper ***************************************
+#swiper-container{
+  height: 500px;
+  margin-top : 50px ;
+}
+.slide-container{
+  height: 500px;
+  background-image:linear-gradient(0.25turn, #2d70eb, #ebf8e179, #f7990b),  url(../../../assets/images/image-slide-principal/Agri-bon.PNG);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:center;
+  // background-position: center;
+}
+
+.slide-container-2{
+  height: 500px;
+  background-image:linear-gradient(0.25turn, #2d70eb, #ebf8e179, #f7990b),  url(../../../assets/images/image-slide-principal/artisanat-bn.PNG);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:center;
+  // background-position: center;
+}
+.slide-container-3{
+  height: 500px;
+  background-image:linear-gradient(0.25turn, #2d70eb, #ebf8e179, #f7990b),  url(../../../assets/images/image-slide-principal/elevage-bn.PNG);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:center;
+  // background-position: center;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after{
+  color: white;
+}
+// *************************************** Swiper ***************************************
+
+
+
+// *************************************** Statistique  ***************************************
+
+#stat-header-container{
+  background-color: #ebd9c4;
+  min-height: 250px !important;
+  margin-bottom: 10px;
+}
+
+#stat-header{
+  font-size: 25px;
+  color: #000000;
+  font-weight: 500;
+  font-family: "Avenir";
+  text-align: center;
+  border-bottom: 3px solid #f18d1d ;
+  border-bottom-left-radius : 2px ;
+  border-bottom-right-radius : 2px ;
+}
+
+.stat-content-container{
+   height: auto;
+}
+#stat-decaisses{
+  background-color: #224B96;
+  border-color : #224B96 ;
+  color : white ;
+  border-radius: 24px;
+  background-image: linear-gradient(0deg, #046095 0%, #7aaccf 100%);
+ // border-radius: 50px;
+  text-align: center;
+  box-shadow: 5px 2px 10px 5px  #dcdcdcf8;
+
+
+
+}
+
+#somme-decaisse{
+  font-size: 42px;
+  color: #fefefe;
+  font-weight: 500;
+  font-family: "Avenir";
+  text-align: center;
+}
+
+#texte-decaisse{
+  font-size: 21px;
+  color: #fefefe;
+  font-weight: 300;
+  font-family: "Avenir";
+  text-align: center;
+}
+
+
+#apropos-header{
+  font-size: 25px;
+  color: #000000;
+  font-weight: 500;
+  border-bottom: 2px solid #f28e1e;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+// *************************************** Statistique  ***************************************
+
+// *************************************** A propos   ***************************************
+
+#apropos-container{
+  margin-top : 10px ;
+  background-color : #156ab3 ;
+  clip-path: polygon(0 0, 100% 11%, 100% 100%, 0 84%);
+  height: 550px;
+  z-index: inherit;
+}
+
+
+
+#apropos-header-container{
+  margin-top: 20px;
+}
+
+#apropos-content-container{
+  height: inherit;
+}
+
+#apropos-content-text{
+  background-image: url(../../../assets/images/aproposnous/bg-apropos-logo.png);
+  background-position-x: center;
+  background-position-y: 20%;
+  background-repeat: no-repeat;
+  background-size: 550px 550px ;
+
+
+}
+
+#button-apropos{
+  margin-top : 20px;
+  height: 55px;
+  width: auto;
+  background-color: #f18d1d;
+  border-color : #f18d1d;
+  border-radius: 32px;
+  font-size: 21px;
+}
+
+#apropos-text{
+  font-size: 21px;
+  color: #ffffff;
+  font-weight: 500;
+  line-height: 35px;
+  text-align: justify;
+  height: 60%;
+  color : white ;
+}
+
+
+// *************************************** A propos   ***************************************
+
+
+// ***************************************  Fonctionnement  ***************************************
+
+.header-text{
+  text-align: center;
+  font-size: 25px;
+  color: #000000;
+  font-weight: 500;
+  height: inherit;
+}
+
+.header-line{
+  height: 3px;
+  background-color: #f18d1d;
+  border-radius:3px;
+}
+
+
+#fonc-body {
+  background-color: #f18d1d;
+  height: 550px;
+  clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+}
+
+#fonc-body-text{
+  height: inherit;
+}
+
+.fonc-list-number{
+  font-size: 56px;
+  line-height: 15px;
+  color: #156ab3;
+  font-weight: 500;
+
+  height: fit-content;
+}
+
+.fonc-list-title{
+  font-size: 19px;
+  line-height: 15px;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.header-description{
+  font-size: 21px;
+  color: #000000;
+  font-weight: 500;
+  text-align: center;
+  margin-top : 20px;
+  margin-bottom: 20px;
+}
+
+.desc-step-number {
+    height: 33%;
+   text-align: center;
+   font-size: 56px;
+   line-height: 15px;
+   color: #156ab3;
+   font-weight: 500;
+}
+
+.title-step {
+    font-size: 19px;
+    line-height: 15px;
+    color: #ffffff;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.title-step-content{
+    font-size: 13px;
+    line-height: 15px;
+    color: #ffffff;
+    font-weight: 500;
+}
+// ***************************************  Fonctionnement  ***************************************
+
+
+// ***************************************  Partenaire  ***************************************
+
+.swiper-slide-element {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  height: calc((100% - 30px) / 2) !important;
+  width : calc((100% - 30px) / 3);
+  border: 0.10px solid #156ab3;
+  filter: drop-shadow(3.507px 7.19px 4px rgba(1,1,1,0.15));
+  border-radius: 8px;
+}
+
+.swiperslider-container{
+  height: 100%;
+}
+// ***************************************  Partenaire  ***************************************
+
+
+
+// ***************************************  Localisation   ***************************************
+
+#localisation-container {
+  height: 500px ;
+}
+
+:host ::ng-deep  .ant-input-affix-wrapper {
+  // border: 1px solid #d9d9d9;
+  border-radius: 32px;
+  height: 53px;
+  border: 0.51px solid #777777;
+}
+
+#search-description {
+  font-size: 21px;
+  color: #000000;
+  font-weight: 500;
+}
+
+
+.map-localisation{
+  height: 100%;
+  margin-top : 20px;
+  filter: drop-shadow(3.507px 7.19px 4px rgba(1,1,1,0.15));
+
+ }
+
+agm-map {
+  height: 400px;
+  border-radius: 12px;
+}
+
+
+// ***************************************  Localisation   ***************************************
+
+
+
+// ***************************************  Contact   ***************************************
+
+.head-text-contact{
+  font-size: 2.5vw;
+  color: #000000;
+  font-weight: 500;
+  font-family: "Avenir";
+  text-align: center;
+}
+
+#header-form-contact{
+  font-size: 31px;
+  color: #000000;
+  font-weight: 500;
+}
+
+.contact-input{
+  width: 100%;
+  border-radius: 12px;
+  height: 70px;
+  border: 1px solid #ABABAB;
+  filter: drop-shadow(3.507px 7.19px 4px rgba(1,1,1,0.15));
+}
+
+.textarea-contact{
+  min-height: 300px;
+}
+
+.contact-input::placeholder{
+  font-size: 20px;
+  color: #a19e9e;
+  font-weight: 300;
+}
+
+.send-button{
+  height: 60px;
+  width: 25%;
+  border-radius: 12px;
+  font-size: 31px;
+  color: #ffffff;
+  font-weight: 800;
+  filter: drop-shadow(3.507px 7.19px 4px rgba(1,1,1,0.15));
+}
+// ***************************************  Contact   ***************************************
+
+
+// ***************************************  Footer   ***************************************
+
+#footer-home {
+  border-top : 5px solid #f28e1e;
+  min-height: 100px;
+  background-color: #156ab3;
+}
+// ***************************************  Footer   ***************************************
+@media screen and (max-width: 400px) {
+  .size-policy-step {
+    font-size: 14px !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+
+  .footer-text-sponsor {
+    text-align: center !important;
+  }
+}
+.premierdecalage{
+  margin-left: 4%;
+  display: block;
+}
+.deuxiemedecalage{
+  margin-left: 9%;
+  display: block;
+}

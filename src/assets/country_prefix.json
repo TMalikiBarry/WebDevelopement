@@ -1,0 +1,989 @@
+{
+  "countryPrefix": [
+    {
+        "pays": "Afghanistan",
+        "code": "AF",
+        "indicatif": "93"
+      },
+      {
+        "pays": "Afrique du Sud",
+        "code": "ZA",
+        "indicatif": "27"
+      },
+      {
+        "pays": "Albanie",
+        "code": "AL",
+        "indicatif": "355"
+      },
+      {
+        "pays": "Algerie",
+        "code": "DZ",
+        "indicatif": "213"
+      },
+      {
+        "pays": "Allemagne",
+        "code": "DE",
+        "indicatif": "49"
+      },
+      {
+        "pays": "Andorre",
+        "code": "AD",
+        "indicatif": "376"
+      },
+      {
+        "pays": "Angola",
+        "code": "AO",
+        "indicatif": "244"
+      },
+      {
+        "pays": "Antigua-et-Barbuda",
+        "code": "AG",
+        "indicatif": "1268"
+      },
+      {
+        "pays": "Arabie saoudite",
+        "code": "SA",
+        "indicatif": "966"
+      },
+      {
+        "pays": "Argentine",
+        "code": "AR",
+        "indicatif": "54"
+      },
+      {
+        "pays": "Armenie",
+        "code": "AM",
+        "indicatif": "374"
+      },
+      {
+        "pays": "Aruba",
+        "code": "AW",
+        "indicatif": "297"
+      },
+      {
+        "pays": "Australie",
+        "code": "AU",
+        "indicatif": "61"
+      },
+      {
+        "pays": "Autriche",
+        "code": "AT",
+        "indicatif": "43"
+      },
+      {
+        "pays": "Azerbaïdjan",
+        "code": "AZ",
+        "indicatif": "994"
+      },
+      {
+        "pays": "Bahamas",
+        "code": "BS",
+        "indicatif": "1242"
+      },
+      {
+        "pays": "Bahre",
+        "code": "BH",
+        "indicatif": "973"
+      },
+      {
+        "pays": "Bangladesh",
+        "code": "BD",
+        "indicatif": "880"
+      },
+      {
+        "pays": "Barbade",
+        "code": "BB",
+        "indicatif": "1246"
+      },
+      {
+        "pays": "Belgique",
+        "code": "BE",
+        "indicatif": "32"
+      },
+      {
+        "pays": "Belize",
+        "code": "BZ",
+        "indicatif": "501"
+      },
+      {
+        "pays": "Benin",
+        "code": "BJ",
+        "indicatif": "229"
+      },
+      {
+        "pays": "Bhoutan",
+        "code": "BT",
+        "indicatif": "975"
+      },
+      {
+        "pays": "Bielorussie",
+        "code": "BY",
+        "indicatif": "375"
+      },
+      {
+        "pays": "Birmanie",
+        "code": "MM",
+        "indicatif": "95"
+      },
+      {
+        "pays": "Bolivie",
+        "code": "BO",
+        "indicatif": "591"
+      },
+      {
+        "pays": "Bonaire, Saint Eustache et Saba",
+        "code": "BQ",
+        "indicatif": "599"
+      },
+      {
+        "pays": "Bosnie-Herzegovine",
+        "code": "BA",
+        "indicatif": "387"
+      },
+      {
+        "pays": "Botswana",
+        "code": "BW",
+        "indicatif": "267"
+      },
+      {
+        "pays": "Bresil",
+        "code": "BR",
+        "indicatif": "55"
+      },
+      {
+        "pays": "Brunei",
+        "code": "BN",
+        "indicatif": "673"
+      },
+      {
+        "pays": "Bulgarie",
+        "code": "BG",
+        "indicatif": "359"
+      },
+      {
+        "pays": "Burkina faso",
+        "code": "BF",
+        "indicatif": "226"
+      },
+      {
+        "pays": "Burundi",
+        "code": "BI",
+        "indicatif": "257"
+      },
+      {
+        "pays": "Cambodge",
+        "code": "KH",
+        "indicatif": "855"
+      },
+      {
+        "pays": "Cameroun",
+        "code": "CM",
+        "indicatif": "237"
+      },
+      {
+        "pays": "Canada",
+        "code": "CA",
+        "indicatif": "1"
+      },
+      {
+        "pays": "Cap-Vert",
+        "code": "CV",
+        "indicatif": "238"
+      },
+      {
+        "pays": "Chili",
+        "code": "CL",
+        "indicatif": "56"
+      },
+      {
+        "pays": "Chine",
+        "code": "CN",
+        "indicatif": "86"
+      },
+      {
+        "pays": "Chypre",
+        "code": "CY",
+        "indicatif": "357"
+      },
+      {
+        "pays": "Colombie",
+        "code": "CO",
+        "indicatif": "57"
+      },
+      {
+        "pays": "Comores",
+        "code": "KM",
+        "indicatif": "269"
+      },
+      {
+        "pays": "Congo Brazzaville",
+        "code": "CG",
+        "indicatif": "242"
+      },
+      {
+        "pays": "Congo Kinshasa",
+        "code": "CD",
+        "indicatif": "243"
+      },
+      {
+        "pays": "Coree du sud",
+        "code": "KR",
+        "indicatif": "82"
+      },
+      {
+        "pays": "Coree du Nord",
+        "code": "KP",
+        "indicatif": "850"
+      },
+      {
+        "pays": "Costa Rica",
+        "code": "CR",
+        "indicatif": "506"
+      },
+      {
+        "pays": "Cote d'Ivoire",
+        "code": "CI",
+        "indicatif": "225"
+      },
+      {
+        "pays": "Croatie",
+        "code": "HR",
+        "indicatif": "385"
+      },
+      {
+        "pays": "Cuba",
+        "code": "CU",
+        "indicatif": "53"
+      },
+      {
+        "pays": "Danemark",
+        "code": "DK",
+        "indicatif": "45"
+      },
+      {
+        "pays": "Djibouti",
+        "code": "DJ",
+        "indicatif": "253"
+      },
+      {
+        "pays": "Dominique",
+        "code": "DM",
+        "indicatif": "767"
+      },
+      {
+        "pays": "Egypte",
+        "code": "EG",
+        "indicatif": "20"
+      },
+      {
+        "pays": "El Salvador",
+        "code": "SV",
+        "indicatif": "503"
+      },
+      {
+        "pays": "Emirats arabes unis",
+        "code": "AE",
+        "indicatif": "971"
+      },
+      {
+        "pays": "Equateur",
+        "code": "EC",
+        "indicatif": "593"
+      },
+      {
+        "pays": "Erythree",
+        "code": "ER",
+        "indicatif": "291"
+      },
+      {
+        "pays": "Espagne",
+        "code": "ES",
+        "indicatif": "34"
+      },
+      {
+        "pays": "Estonie",
+        "code": "EE",
+        "indicatif": "372"
+      },
+      {
+        "pays": "Etats Unis",
+        "code": "US",
+        "indicatif": "1"
+      },
+      {
+        "pays": "Ethiopie",
+        "code": "ET",
+        "indicatif": "251"
+      },
+      {
+        "pays": "Fidji",
+        "code": "FJ",
+        "indicatif": "679"
+      },
+      {
+        "pays": "Finlande",
+        "code": "FI",
+        "indicatif": "358"
+      },
+      {
+        "pays": "France",
+        "code": "FR",
+        "indicatif": "33"
+      },
+      {
+        "pays": "Gabon",
+        "code": "GA",
+        "indicatif": "241"
+      },
+      {
+        "pays": "Gambie",
+        "code": "GM",
+        "indicatif": "220"
+      },
+      {
+        "pays": "Georgie",
+        "code": "GE",
+        "indicatif": "995"
+      },
+      {
+        "pays": "Ghana",
+        "code": "GH",
+        "indicatif": "233"
+      },
+      {
+        "pays": "Grèce",
+        "code": "GR",
+        "indicatif": "30"
+      },
+      {
+        "pays": "Grenade",
+        "code": "GD",
+        "indicatif": "1473"
+      },
+      {
+        "pays": "Guatemala",
+        "code": "GT",
+        "indicatif": "502"
+      },
+      {
+        "pays": "Guinee",
+        "code": "GN",
+        "indicatif": "224"
+      },
+      {
+        "pays": "Guinee-Bissao",
+        "code": "GN",
+        "indicatif": "245"
+      },
+      {
+        "pays": "Guinee equatoriale",
+        "code": "GQ",
+        "indicatif": "240"
+      },
+      {
+        "pays": "Guyana",
+        "code": "GY",
+        "indicatif": "592"
+      },
+      {
+        "pays": "Haïti",
+        "code": "HT",
+        "indicatif": "509"
+      },
+      {
+        "pays": "Honduras",
+        "code": "HN",
+        "indicatif": "504"
+      },
+      {
+        "pays": "Hongrie",
+        "code": "HU",
+        "indicatif": "36"
+      },
+      {
+        "pays": "Inde",
+        "code": "IN",
+        "indicatif": "91"
+      },
+      {
+        "pays": "Indonesie",
+        "code": "ID",
+        "indicatif": "62"
+      },
+      {
+        "pays": "Iran",
+        "code": "IR",
+        "indicatif": "98"
+      },
+      {
+        "pays": "Iraq",
+        "code": "IQ",
+        "indicatif": "964"
+      },
+      {
+        "pays": "Irlande",
+        "code": "IE",
+        "indicatif": "353"
+      },
+      {
+        "pays": "Islande",
+        "code": "IS",
+        "indicatif": "354"
+      },
+      {
+        "pays": "Israël",
+        "code": "IL",
+        "indicatif": "972"
+      },
+      {
+        "pays": "Italie",
+        "code": "IT",
+        "indicatif": "39"
+      },
+      {
+        "pays": "Jamaïque",
+        "code": "JM",
+        "indicatif": "876"
+      },
+      {
+        "pays": "Japon",
+        "code": "JP",
+        "indicatif": "81"
+      },
+      {
+        "pays": "Jordanie",
+        "code": "JO",
+        "indicatif": "962"
+      },
+      {
+        "pays": "Kazakhstan",
+        "code": "KZ",
+        "indicatif": "7"
+      },
+      {
+        "pays": "Kenya",
+        "code": "KE",
+        "indicatif": "254"
+      },
+      {
+        "pays": "Kirghizistan",
+        "code": "KG",
+        "indicatif": "996"
+      },
+      {
+        "pays": "Kiribati",
+        "code": "KI",
+        "indicatif": "686"
+      },
+      {
+        "pays": "Koweït",
+        "code": "KW",
+        "indicatif": "965"
+      },
+      {
+        "pays": "Laos",
+        "code": "LA",
+        "indicatif": "856"
+      },
+      {
+        "pays": "Lesotho",
+        "code": "LS",
+        "indicatif": "266"
+      },
+      {
+        "pays": "Lettonie",
+        "code": "LV",
+        "indicatif": "371"
+      },
+      {
+        "pays": "Liban",
+        "code": "LB",
+        "indicatif": "961"
+      },
+      {
+        "pays": "Liberia",
+        "code": "LR",
+        "indicatif": "231"
+      },
+      {
+        "pays": "Libye",
+        "code": "LY",
+        "indicatif": "218"
+      },
+      {
+        "pays": "Liechtenstein",
+        "code": "LI",
+        "indicatif": "423"
+      },
+      {
+        "pays": "Lituanie",
+        "code": "LT",
+        "indicatif": "370"
+      },
+      {
+        "pays": "Luxembourg",
+        "code": "LU",
+        "indicatif": "352"
+      },
+      {
+        "pays": "Macedoine",
+        "code": "MK",
+        "indicatif": "389"
+      },
+      {
+        "pays": "Madagascar",
+        "code": "MG",
+        "indicatif": "261"
+      },
+      {
+        "pays": "Malaisie",
+        "code": "MY",
+        "indicatif": "60"
+      },
+      {
+        "pays": "Malawi",
+        "code": "MW",
+        "indicatif": "265"
+      },
+      {
+        "pays": "Maldives",
+        "code": "MV",
+        "indicatif": "960"
+      },
+      {
+        "pays": "Mali",
+        "code": "ML",
+        "indicatif": "223"
+      },
+      {
+        "pays": "Malte",
+        "code": "MT",
+        "indicatif": "356"
+      },
+      {
+        "pays": "Maroc",
+        "code": "MA",
+        "indicatif": "212"
+      },
+      {
+        "pays": "Marshall",
+        "code": "MH",
+        "indicatif": "692"
+      },
+      {
+        "pays": "Maurice",
+        "code": "MU",
+        "indicatif": "230"
+      },
+      {
+        "pays": "Mauritanie",
+        "code": "MR",
+        "indicatif": "222"
+      },
+      {
+        "pays": "Mexique",
+        "code": "MX",
+        "indicatif": "52"
+      },
+      {
+        "pays": "Micronesie",
+        "code": "FM",
+        "indicatif": "691"
+      },
+      {
+        "pays": "Moldavie",
+        "code": "MD",
+        "indicatif": "373"
+      },
+      {
+        "pays": "Monaco",
+        "code": "MC",
+        "indicatif": "377"
+      },
+      {
+        "pays": "Mongolie",
+        "code": "MN",
+        "indicatif": "976"
+      },
+      {
+        "pays": "Montenegro",
+        "code": "ME",
+        "indicatif": "382"
+      },
+      {
+        "pays": "Mozambique",
+        "code": "MZ",
+        "indicatif": "258"
+      },
+      {
+        "pays": "Namibie",
+        "code": "NA",
+        "indicatif": "264"
+      },
+      {
+        "pays": "Nauru",
+        "code": "NR",
+        "indicatif": "674"
+      },
+      {
+        "pays": "Nepal",
+        "code": "NP",
+        "indicatif": "977"
+      },
+      {
+        "pays": "Nicaragua",
+        "code": "NI",
+        "indicatif": "505"
+      },
+      {
+        "pays": "Niger",
+        "code": "NE",
+        "indicatif": "227"
+      },
+      {
+        "pays": "Nigeria",
+        "code": "NG",
+        "indicatif": "234"
+      },
+      {
+        "pays": "Niue",
+        "code": "NU",
+        "indicatif": "683"
+      },
+      {
+        "pays": "Norvège",
+        "code": "NO",
+        "indicatif": "47"
+      },
+      {
+        "pays": "Nouvelle-Zelande",
+        "code": "NZ",
+        "indicatif": "64"
+      },
+      {
+        "pays": "Oman",
+        "code": "OM",
+        "indicatif": "968"
+      },
+      {
+        "pays": "Ouganda",
+        "code": "UG",
+        "indicatif": "256"
+      },
+      {
+        "pays": "Ouzbekistan",
+        "code": "UZ",
+        "indicatif": "998"
+      },
+      {
+        "pays": "Pakistan",
+        "code": "PK",
+        "indicatif": "92"
+      },
+      {
+        "pays": "Palaos",
+        "code": "PW",
+        "indicatif": "680"
+      },
+      {
+        "pays": "Panama",
+        "code": "PA",
+        "indicatif": "507"
+      },
+      {
+        "pays": "Papouasie - Nouvelle Guinee",
+        "code": "PG",
+        "indicatif": "675"
+      },
+      {
+        "pays": "Paraguay",
+        "code": "PY",
+        "indicatif": "595"
+      },
+      {
+        "pays": "Pays-Bas",
+        "code": "NL",
+        "indicatif": "31"
+      },
+      {
+        "pays": "Perou",
+        "code": "PE",
+        "indicatif": "51"
+      },
+      {
+        "pays": "Philippines",
+        "code": "PH",
+        "indicatif": "63"
+      },
+      {
+        "pays": "Pologne",
+        "code": "PL",
+        "indicatif": "48"
+      },
+      {
+        "pays": "Portugal",
+        "code": "PT",
+        "indicatif": "351"
+      },
+      {
+        "pays": "Qatar",
+        "code": "QA",
+        "indicatif": "974"
+      },
+      {
+        "pays": "Republique centrafricaine",
+        "code": "CF",
+        "indicatif": "236"
+      },
+      {
+        "pays": "Republique dominicaine",
+        "code": "DO",
+        "indicatif": "809"
+      },
+      {
+        "pays": "Republique tchèque",
+        "code": "CZ",
+        "indicatif": "420"
+      },
+      {
+        "pays": "Roumanie",
+        "code": "RO",
+        "indicatif": "40"
+      },
+      {
+        "pays": "Royaume-Uni",
+        "code": "GB",
+        "indicatif": "44"
+      },
+      {
+        "pays": "Russie",
+        "code": "RU",
+        "indicatif": "7"
+      },
+      {
+        "pays": "Rwanda",
+        "code": "RW",
+        "indicatif": "250"
+      },
+      {
+        "pays": "Saint-Christophe-et-Nievès",
+        "code": "KN",
+        "indicatif": "1869"
+      },
+      {
+        "pays": "Sainte-Lucie",
+        "code": "LC",
+        "indicatif": "1758"
+      },
+      {
+        "pays": "Saint-Marin",
+        "code": "SM",
+        "indicatif": "378"
+      },
+      {
+        "pays": "Saint-Martin",
+        "code": "SX",
+        "indicatif": "590"
+      },
+      {
+        "pays": "Saint-Vincent-et-les Grenadines",
+        "code": "VC",
+        "indicatif": "1784"
+      },
+      {
+        "pays": "Salomon",
+        "code": "SB",
+        "indicatif": "677"
+      },
+      {
+        "pays": "Samoa occidentales",
+        "code": "WS",
+        "indicatif": "685"
+      },
+      {
+        "pays": "Sao Tome-et-Principe",
+        "code": "ST",
+        "indicatif": "239"
+      },
+      {
+        "pays": "Senegal",
+        "code": "SN",
+        "indicatif": "221"
+      },
+      {
+        "pays": "Serbie",
+        "code": "RS",
+        "indicatif": "381"
+      },
+      {
+        "pays": "Seychelles",
+        "code": "SC",
+        "indicatif": "248"
+      },
+      {
+        "pays": "Sierra Leone",
+        "code": "SL",
+        "indicatif": "232"
+      },
+      {
+        "pays": "Singapour",
+        "code": "SG",
+        "indicatif": "65"
+      },
+      {
+        "pays": "Slovaquie",
+        "code": "SK",
+        "indicatif": "421"
+      },
+      {
+        "pays": "Slovenie",
+        "code": "SI",
+        "indicatif": "386"
+      },
+      {
+        "pays": "Somalie",
+        "code": "SO",
+        "indicatif": "252"
+      },
+      {
+        "pays": "Soudan",
+        "code": "SD",
+        "indicatif": "249"
+      },
+      {
+        "pays": "Sri Lanka",
+        "code": "LK",
+        "indicatif": "94"
+      },
+      {
+        "pays": "Suède",
+        "code": "SE",
+        "indicatif": "46"
+      },
+      {
+        "pays": "Suisse",
+        "code": "CH",
+        "indicatif": "41"
+      },
+      {
+        "pays": "Suriname",
+        "code": "SR",
+        "indicatif": "597"
+      },
+      {
+        "pays": "Swaziland",
+        "code": "SZ",
+        "indicatif": "268"
+      },
+      {
+        "pays": "Syrie",
+        "code": "SY",
+        "indicatif": "963"
+      },
+      {
+        "pays": "Tadjikistan",
+        "code": "TJ",
+        "indicatif": "992"
+      },
+      {
+        "pays": "Tanzanie",
+        "code": "TZ",
+        "indicatif": "255"
+      },
+      {
+        "pays": "Tchad",
+        "code": "TD",
+        "indicatif": "235"
+      },
+      {
+        "pays": "Thaïlande",
+        "code": "TH",
+        "indicatif": "66"
+      },
+      {
+        "pays": "Timor oriental",
+        "code": "TL",
+        "indicatif": "670"
+      },
+      {
+        "pays": "Togo",
+        "code": "TG",
+        "indicatif": "228"
+      },
+      {
+        "pays": "Tonga",
+        "code": "TO",
+        "indicatif": "676"
+      },
+      {
+        "pays": "Trinite-et-Tobago",
+        "code": "TT",
+        "indicatif": "868"
+      },
+      {
+        "pays": "Tunisie",
+        "code": "TN",
+        "indicatif": "216"
+      },
+      {
+        "pays": "Turkmenistan",
+        "code": "TM",
+        "indicatif": "993"
+      },
+      {
+        "pays": "Turquie",
+        "code": "TR",
+        "indicatif": "90"
+      },
+      {
+        "pays": "Tuvalu",
+        "code": "TV",
+        "indicatif": "688"
+      },
+      {
+        "pays": "Ukraine",
+        "code": "UA",
+        "indicatif": "380"
+      },
+      {
+        "pays": "Uruguay",
+        "code": "UY",
+        "indicatif": "598"
+      },
+      {
+        "pays": "Vanuatu",
+        "code": "VU",
+        "indicatif": "678"
+      },
+      {
+        "pays": "Vatican",
+        "code": "VA",
+        "indicatif": "379"
+      },
+      {
+        "pays": "Venezuela",
+        "code": "VE",
+        "indicatif": "58"
+      },
+      {
+        "pays": "Viêt Nam",
+        "code": "VN",
+        "indicatif": "84"
+      },
+      {
+        "pays": "Yemen",
+        "code": "YE",
+        "indicatif": "967"
+      },
+      {
+        "pays": "Zambie",
+        "code": "ZM",
+        "indicatif": "260"
+      },
+      {
+        "pays": "Zimbabwe",
+        "code": "ZW",
+        "indicatif": "263"
+      }
+  ]
+}

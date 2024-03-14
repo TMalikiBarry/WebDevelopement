@@ -1,0 +1,204 @@
+<nz-spin [nzSpinning]="isSpinningRegister" [nzDelay]="500">
+  <nz-modal [(nzVisible)]="isVisiblePhone" style="margin-left: 0px;" [nzWidth]="700" nzTitle="Modification téléphone" (nzOnCancel)="handleCancelModal()">
+    <div *nzModalContent>
+      <form  nz-form [formGroup]="demandeForm">
+        <div nz-row nzAlign="middle" nzJustify="space-between">
+          <div nz-col nzSpan="10">
+            <div nz-row nzAlign="bottom">
+              <div nz-col nzSpan="24">
+                <nz-form-item>
+                <!-- <nz-form-item> -->
+                  <nz-form-control>
+                    <nz-form-label nzRequired nzFor="11">Numéro téléphone</nz-form-label>
+                    <input nz-input name="number" type="number" id="duree" formControlName="telephone">
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div *ngIf="demandeForm?.controls?.telephone?.hasError('required') && demandeForm?.controls?.telephone?.touched">
+                <span id="errorMessage">Téléphone obligatoire</span> <br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div *nzModalFooter>
+      <!-- <span>Modal Footer:</span> -->
+      <button nz-button nzType="default" (click)="handleCancelModal()">Annuler</button>
+      <button nz-button nzType="primary" [disabled]="!demandeForm.valid" (click)="handleOkModal()">Valider</button>
+    </div>
+  </nz-modal>
+<div class="container" id="access_connexion_gie" *ngIf="!showCodeOtpForm && !showSuccess">
+  <div style="padding:30px;">
+    <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="Création des accès pour le bénéficiare">
+      <form [formGroup]="connexionForm" nz-form style="margin-left: 10%;">
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="combineTpl" [nzLg]="16" [nzMd]="16" [nzSm]="16" [nzXs]="16">
+            <nz-form-label [nzSm]="20" [nzXs]="20" nzFor="11" nzRequired>Identifiant</nz-form-label>
+            <nz-input-group nzPrefixIcon="user">
+              <input type="text" nz-input name="username" formControlName="username"
+                     placeholder="Identifiant / Email / Tel"
+                     [ngClass]="{'is-invalid':submitted && connexionForm.controls.username.errors}"/>
+            </nz-input-group>
+            <ng-template #combineTpl let-control>
+              <ng-container *ngIf="submitted && control.hasError('required')">Ce champ est obligatoire</ng-container>
+              <ng-container *ngIf="submitted && control.hasError('pattern')">Ce champ est invalide</ng-container>
+              <ng-container *ngIf="submitted && control.hasError('loginDuplicated')">Ce login existe déjà</ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="combineTpl" [nzLg]="16" [nzMd]="16" [nzSm]="16" [nzXs]="16"
+                           nzExtra="8 caractères au minimum">
+            <nz-form-label [nzSm]="20" [nzXs]="20" nzFor="11" nzRequired>Mot de passe</nz-form-label>
+            <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixPassword">
+              <input [type]="passwordVisible ? 'text' : 'password'" nz-input name="password" formControlName="password"
+                     placeholder=" mot de passe"
+                     [ngClass]="{'is-invalid':submitted && connexionForm.controls.password.errors}"/>
+              <!-- suffix of password  -->
+              <ng-template #suffixPassword>
+                <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                   (click)="passwordVisible = !passwordVisible"></i>
+              </ng-template>
+              <!-- suffix of password  -->
+            </nz-input-group>
+            <ng-template #combineTpl let-control>
+              <ng-container *ngIf="submitted && control.hasError('required')">Ce champ est obligatoire</ng-container>
+              <ng-container *ngIf="submitted && control.hasError('pattern')">Ce champ est invalide </ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="combineTpl" [nzLg]="16" [nzMd]="16" [nzSm]="16" [nzXs]="16"
+                           nzExtra="8 caractères au minimum">
+            <nz-form-label [nzSm]="20" [nzXs]="20" nzFor="11" nzRequired>Confirmer mot de passe</nz-form-label>
+            <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixConfirmPassword">
+              <input [type]="confirmPasswordVisible ? 'text' : 'password'" nz-input name="password"
+                     formControlName="passwordConfirmation" placeholder="Confirmer mot de passe"
+                     [ngClass]="{'is-invalid':submitted && connexionForm.controls.password.errors}"/>
+              <!-- suffix of password  -->
+              <ng-template #suffixConfirmPassword>
+                <i nz-icon [nzType]="confirmPasswordVisible ? 'eye-invisible' : 'eye'"
+                   (click)="confirmPasswordVisible = !confirmPasswordVisible"></i>
+              </ng-template>
+              <!-- suffix of password  -->
+              <ng-template #combineTpl let-control>
+                <ng-container *ngIf="submitted && control.hasError('required')">Ce champ est obligatoire</ng-container>
+                <ng-container *ngIf="submitted && control.hasError('pattern')">Ce champ est invalide</ng-container>
+                <ng-container *ngIf="submitted && control.hasError('loginDuplicated')">Ce login existe déjà </ng-container>
+              </ng-template>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="combineTpl" [nzLg]="16" [nzMd]="16" [nzSm]="16" [nzXs]="16">
+            <div nz-row>
+              <a (click)="openCgu()" *ngIf="!idPmo" [ngStyle]="{color: cguChecked? 'blue': 'red', textAlign: 'center'}"
+                 nz-col nzSpan="23">J’ai lu et j’accepte les conditions générales d’utilisations (Voir CGU) notamment la
+                mention relative à la protection des données personnelles.</a>
+              <a (click)="openCgu()" *ngIf="idPmo" [ngStyle]="{color: cguChecked? 'blue': 'red', textAlign: 'center'}"
+                 nz-col nzSpan="23">Le candidat déclare avoir lu et accepte les conditions générales d’utilisations
+                (Voir CGU) notamment la mention relative à la protection des données personnelles.</a>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <div nz-col nzSpan="18"  class="steps-action marge-form" id="section_button_gie">
+          <button nz-button nzType="primary" nzShape="round" (click)="pre()" *ngIf="currentStepPosition > 0" class="boutton-precedant">
+
+            Précédant
+          </button>
+          <button nz-button nzType="primary" nzShape="round" class="boutton-suivant" id="valider_inscription" [disabled]="!cguChecked" (click)="next()">
+
+            Valider inscription
+          </button>
+
+        </div>
+      </form>
+    </nz-card>
+  </div>
+</div>
+
+<div class="container" id="otp_entreprise_section" *ngIf="showCodeOtpForm && !showSuccessPmo">
+  <div style="padding:30px;">
+    <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="Code de validation">
+      <form nz-form style="margin-left: 25%;" [formGroup]="otpForm">
+        <nz-form-item>
+          <nz-form-control [nzLg]="16" [nzMd]="16" [nzSm]="16" [nzXs]="16">
+            <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="11">Veuillez saisir le code reçu par sms
+              au {{numeroTelephone}}
+            </nz-form-label>
+            <nz-input-group nzPrefixIcon="user">
+              <input type="text" nz-input name="code" formControlName="code" placeholder="Code reçu"/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row class="register-area"  nzAlign="middle">
+          <nz-form-control nzSpan="8" >
+            <button nz-button nzType="primary" (click)="renvoyerCode()"[disabled]="renvoiCode">  Renvoyer le code <span style="padding-left: 2%"  *ngIf="nombreSecond !==0">  (00: {{nombreSecond}})</span></button>
+          </nz-form-control>
+          <nz-form-control nzSpan="8" nzOffset="2">
+
+            <button nz-button nzType="primary" [disabled]="!otpForm.valid" (click)="validerCode()">Valider code</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+      <button nz-button nzType="link" (click)="changeTelephone()" style="margin-left: 23.6%;" nzShape="round">
+        Changer le numéro de téléphone
+      </button>
+    </nz-card>
+  </div>
+</div>
+<!--  Message de succes  -->
+
+<!-- <div class="container" id="otp_gie_section" *ngIf="showSuccess">
+  <div style="padding:30px;">
+    <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="Code de Validation ">
+      <form nz-form style="margin-left: 25%;" [formGroup]="otpForm">
+        <nz-alert
+        nzType="success"
+        nzMessage="Succés"
+        nzDescription="Votre inscription est terminée"
+      ></nz-alert>
+      </form>
+
+      <button style="margin-top: 10px;" nz-button nzType="primary" nzShape="round" class="boutton-suivant" routerLink="/login">
+        Demander un financement
+      </button>
+    </nz-card>
+  </div>
+</div> -->
+
+<div class="container" id="otp_gie_section" *ngIf="showSuccess"   style="min-height: 450px;">
+  <div style="padding:30px;">
+    <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="Notification">
+      <nz-result nzStatus="success" nzTitle="Votre inscription est terminée">
+        <div nz-result-extra>
+          <button *ngIf="!idPmo" nz-button nzType="primary" routerLink="/login" >Demander un financement</button>
+          <!-- <button *ngIf="idPmo" nz-button nzType="primary" routerLink="/expression-gie/{{idPmo}}/{{benefApiResponse?.reponse?.idBeneficiaire}}" >Demander un financement</button> -->
+          <button *ngIf="!idPmo" nz-button routerLink="/">Non ultérieurement </button>
+          <!-- <button *ngIf="idPmo" nz-button routerLink="/pmo">Non ultérieurement </button> -->
+        </div>
+      </nz-result>
+    </nz-card>
+  </div>
+</div>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Confirmation de saisie" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <p>Je certifie que les informations saisies sont correctes et conformes</p>
+  </ng-container>
+</nz-modal>
+<nz-modal [(nzVisible)]="isVisiblePMO" nzTitle="Confirmation de saisie" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOkPMO()">
+  <ng-container *nzModalContent>
+    <p>Le candidat certifie que les informations saisies sont correctes et conformes</p>
+  </ng-container>
+</nz-modal>
+<nz-modal [(nzVisible)]="showModel" nzTitle="Informations manquantes" (nzOnCancel)="handleCancelStep()" (nzOnOk)="handleOkStep()">
+  <ng-container *nzModalContent>
+    <p>Veuillez d'abord saisir les informations de {{stepname}} </p>
+
+  </ng-container>
+
+
+</nz-modal>
+</nz-spin>

@@ -1,0 +1,56 @@
+@import "src/assets/form-css/form-css";
+
+.card-offre-container{
+  height: 110px;
+  background: #FFFFFF;
+  border: 1px solid #EBEBEB;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.card-offre-somme {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  /* Text */
+  color: #0C0E1D;
+}
+
+.card-offre-entreprise {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: #999BAE;
+
+}
+
+.card-offre-taux {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+
+  color: #999BAE;
+
+}
+.card-offre-checkbox{
+  width: 27px;
+  height: 27px;
+  background: #14C04E;
+  /* Accent/Green1 */
+
+  border: 1px solid #14C04E;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.card-offre-content{
+  height: 100%;
+}
+
+

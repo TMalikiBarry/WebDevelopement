@@ -1,0 +1,10 @@
+@import "../../../assets/form-css/step-css.scss";
+
+nz-layout{
+  height: 100%;
+}
+
+:host ::ng-deep .ant-steps-navigation{
+  display: block !important;
+}
+

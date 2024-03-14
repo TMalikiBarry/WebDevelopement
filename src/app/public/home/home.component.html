@@ -1,0 +1,977 @@
+<nz-layout>
+  <!-- Menu du landing page  -->
+  <div nz-row class="menu-home" nzJustify="space-between" nzAlign="middle">
+    <div nz-col nzSpan="2" nzXs="6" nzMd="4" nzLg="4" routerLink="/home" ><img class="logo-image" src="../../../assets/images/logo-TG_valide.svg"  alt=""></div>
+
+    <!-- Menu de la page d'accueil  -->
+    <div nz-col nzSpan="14"  nzMd="0" nzSm="0" nzXs="0" nzLg="14">
+      <div nz-row nzJustify="center" nzAlign="middle" style="height: inherit;">
+        <div  nz-col nzSpan="5"><button nz-button nzType="text" nzShape="round" class="button-menu" (click)="scrollFn('Apropos')">A propos de nous </button></div>
+        <div  nz-col nzSpan="5"><button nz-button nzType="text" nzShape="round" class="button-menu" (click)="scrollFn('comment-ca-part')">Fonctionnement </button></div>
+        <div  nz-col nzSpan="5"><button nz-button nzType="text" nzShape="round" class="button-menu" (click)="scrollFn('localisation')">Trouver un agent </button></div>
+        <div  nz-col nzSpan="5"><button nz-button nzType="text" nzShape="round" class="button-menu" (click)="scrollFn('Contact-container')">Nous contacter</button></div>
+      </div>
+    </div>
+    <!-- Bouton de connexion et d'inscripition  -->
+    <div nz-col nzSpan="6" nzXs="16" nzMd="10" nzLg="6">
+      <div nz-row nzJustify="space-around" nzAlign="middle" style="height: inherit;">
+        <div nz-col> <button nz-button nzType="primary" nzShape="round" nzShape="round" class="button-inscription" routerLink="/login">Connexion </button></div>
+      </div>
+    </div>
+    <!-- <div nz-col nzSpan="3" nzXs="6" nzMd="4" nzLg="4" routerLink="/home" ><img class="logo-image" src="../../../assets/images/Partenaires-logo/Ask Mastercard Logo.svg"  alt=""></div> -->
+  </div>
+  <!-- Menu du landing page  -->
+
+  <!-- Presentation de la plateforme -->
+  <div nz-row class="presentation-platforme" nzJustify="center" nzAlign="middle">
+    <!-- Parti avec le carousel  -->
+    <div nz-col nzSpan="24" [nzXs]="{ span: 24 , order: 1}" [nzSm]="{ span: 24 , order: 1}">
+      <div nz-row nzJustify="space-around" class="swiper-container">
+        <div nz-col nzSpan="24">
+          <swiper class="swiper-presentation" [navigation]="true" [pagination]="{ clickable: true }" [autoplay]="{
+            delay: 5000,
+            disableOnInteraction: false
+          }" [loop]="true" >
+            <ng-template swiperSlide>
+              <div nz-row class="slider-container-1" nzJustify="center" nzAlign="bottom">
+                  <div nz-col nzSpan="24" class="slider-container-1-text">
+                    <div nz-row nzJustify="center" nzAlign="bottom" style="height: inherit">
+                      <div nz-col nzSpan="22" style="text-align:center" class="slide-text-container">
+                        Seynabou et Fozia, des agricultrices bénéficiaires de Fass Touré ont étendu  leurs opérations à deux nouveaux sites .
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide>
+              <div nz-row class="slider-container-2" nzJustify="center" nzAlign="bottom">
+                <div nz-col nzSpan="24" class="slider-container-1-text">
+                  <div nz-row nzJustify="center" nzAlign="bottom" style="height: inherit;">
+                    <div nz-col nzSpan="22" style="text-align:center;" class="slide-text-container" >
+                      Ndeye Oumy, une grande styliste  bénéficiaire a étendu son atelier et recruter 5 personnes.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide>
+              <div nz-row class="slider-container-3" nzJustify="center" nzAlign="middle">
+                <div nz-col nzSpan="24" class="slider-container-1-text">
+                  <div nz-row nzJustify="center" nzAlign="bottom" style="height: inherit;">
+                    <div nz-col nzSpan="22" class="slide-text-container" >
+                      Babacar, propriétaire bénéficiaire d'une ferme à Touba, a modernisé ses usines de fabrication
+                      et embauché 30 nouveaux employés.
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </ng-template>
+          </swiper>
+        </div>
+      </div>
+
+    </div>
+    <!-- Parti avec la carousel FIN -->
+
+    <!-- texte de presentation  -->
+    <!-- <div nz-col nzSpan="12" [nzXs]="{ span: 24 , order: 2}" [nzSm]="{ span: 12 , order: 1}"class="presentation-text-button-container">
+
+
+    </div> -->
+
+  </div>
+  <!-- Presentation de la plateforme -->
+
+
+
+  <!-- Statistique de la plateforme  -->
+  <div nz-row class="statistic-container" nzJustify="center" nzAlign="middle">
+    <div nz-col nzSpan="20" class="statistics">
+      <div nz-row nzJustify="space-between" nzAlign="middle" class="statistic-element-container">
+
+        <!-- Partie decaissement  -->
+        <div nz-col nzSpan="8" [nzXs]="{ span: 24 , order: 1}" [nzSm]="{ span: 10 , order: 1}" [nzMd]="{ span : 24 , order : 1 }"  [nzLg]="{ span: 24 , order: 1}" [nzLg]="{ span: 24 , order: 1}" >
+          <div nz-row nzJustify="center" nzAlign="middle">
+            <div nz-col nzSpan="20">
+              <div nz-row nzJustify="center">
+                <div nz-col nzSpan="">
+                  <img src="../../../assets/images/decaissement-icone.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <!-- <div nz-col nzSpan="20" class="chiffre-decaissement"> 39 605 000 FCFA </div> -->
+            <!-- <div nz-col nzSpan="20" class="chiffre-decaissement"> {{indicateurs?.volumeFinancement | currency: "XOF": "symbol": "1.0": "fr"}} </div> -->
+            <div nz-col nzSpan="20" class="chiffre-decaissement">{{indicateurs?.volumeFinancement | currency: "XOF": "symbol": "1.0": "fr"}} </div>
+            <div nz-col nzSpan="20" class="text-decaissement"> décaissés </div>
+          </div>
+        </div>
+        <!-- Partie decaissement  -->
+
+        <div nz-col nzSpan="3" [nzXs]="{ span: 24 , order: 2}" [nzSm]="{ span: 10 , order: 2}"  [nzLg]="{ span: 3 , order: 2}"  >
+          <div nz-row nzJustify="center" nzAlign="middle">
+            <div nz-col nzSpan="20">
+              <div nz-row nzJustify="center">
+                <div nz-col nzSpan="">
+                  <img src="../../../assets/images/partenaire.svg" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div nz-col nzSpan="20" class="chiffre-stat"> {{indicateurs?.nombreBeneficiaireEntreprise }}</div>
+            <div nz-col nzSpan="20" class="text-stat"> entreprises bénéficiaires </div>
+          </div>
+        </div>
+
+        <div nz-col nzSpan="3" [nzXs]="{ span: 24 , order: 2}" [nzSm]="{ span: 10 , order: 2}" [nzLg]="{ span: 3 , order: 2}"  >
+          <div nz-row nzJustify="center" nzAlign="middle">
+            <div nz-col nzSpan="20">
+              <div nz-row nzJustify="center">
+                <div nz-col nzSpan="">
+                  <img src="../../../assets/images/partenaire.svg" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div nz-col nzSpan="20" class="chiffre-stat"> {{indicateurs?.nombreBeneficiaireMicroEntrepreneur}}</div>
+            <div nz-col nzSpan="20" class="text-stat"> micro-entrepreneurs bénéficiaires </div>
+          </div>
+        </div>
+        <div nz-col nzSpan="3" [nzXs]="{ span: 24 , order: 3}" [nzSm]="{ span: 10 , order: 3}" [nzLg]="{ span: 3 , order: 3}" >
+          <div nz-row nzJustify="center" nzAlign="middle">
+            <div nz-col nzSpan="20">
+              <div nz-row nzJustify="center">
+                <div nz-col nzSpan="">
+                  <img style="width: 43%; margin-left: 45px;" src="../../../assets/images/femme.png" alt="">
+                </div>
+              </div>
+            </div>
+            <div nz-col nzSpan="20" class="chiffre-stat"> {{indicateurs?.pourcentageBeneficiaireFemme}}%</div>
+            <div nz-col nzSpan="20" class="text-stat">de bénéficiaires femmes financées</div>
+          </div>
+        </div>
+
+        <div nz-col nzSpan="3" [nzXs]="{ span: 24 , order: 3}" [nzSm]="{ span: 10 , order: 3}" [nzLg]="{ span: 3 , order: 3}" >
+          <div nz-row nzJustify="center" nzAlign="middle" >
+            <div nz-col nzSpan="20">
+              <div nz-row nzJustify="center">
+                <div nz-col nzSpan="">
+                  <img style="width: 43%; margin-left: 45px;" src="../../../assets/images/jeune.png" alt="">
+                </div>
+              </div>
+            </div>
+            <div nz-col nzSpan="20" class="chiffre-stat"> {{indicateurs?.pourcentageBeneficiaireJeune}}%</div>
+            <div nz-col nzSpan="20" class="text-stat">de jeunes bénéficiaires financés</div>
+          </div>
+        </div>
+        <div nz-col nzSpan="3" [nzXs]="{ span: 24 , order: 3}" [nzSm]="{ span: 10 , order: 3}" [nzLg]="{ span: 3 , order: 3}" >
+          <div nz-row nzJustify="center" nzAlign="middle">
+            <div nz-col nzSpan="20">
+              <div nz-row nzJustify="center">
+                <div nz-col nzSpan="">
+                  <img src="../../../assets/images/membre-com-icon.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div nz-col nzSpan="20" class="chiffre-stat"> {{indicateurs?.pourcentageBeneficiaireZoneRurale}}%</div>
+            <div nz-col nzSpan="20" class="text-stat"> de bénéficiaires dans les zones rurales</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Statistique de la plateforme  -->
+
+
+
+
+
+  <!-- A propos de nous  -->
+  <div nz-row class="Apropos" nzJustify="center" nzAlign="middle" id="Apropos">
+
+    <div nz-col nzSpan="12" nzXs="24" nzSm="12" >
+      <div nz-row nzJustify="center" nzAlign="middle" class="photo-apropos">
+        <div nz-col nzSpan="20">
+          <img src="../../../assets/images/aproposdenous.png" class="image-propos" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div nz-col nzSpan="12" nzXs="24" nzSm="12"  class="apropos-desc-container" >
+      <div nz-row nzJustify="center" nzAlign="middle" class="apropos-text">
+        <div nz-col nzSpan="20">
+          <span class="aproposHeader">A propos de nous</span>
+        </div>
+        <div nz-col nzSpan="20" class="aproposDescription">
+
+          Suqali est une plateforme digitale conçue pour favoriser l'inclusion financière. Elle est destinée à tous les micro-entrepreneurs,
+          et micros, petites et moyennes entreprises des 14 régions du Sénégal dans le but de faciliter leur accès au financement.
+
+          <!-- Youth Africa Works est une plateforme de financement permettant aux entrepreneurs
+          africains de développer et d'étendre leurs activités commerciales.
+          Cette initiative reflète notre optimisme pour l'avenir de l'Afrique,
+          notre stratégie se concentre sur l'innovation avec les entreprises
+          locales pour trouver des solutions au défi de l'emploi des jeunes en Afrique. -->
+
+        </div>
+        <div nz-col nzSpan="20">
+          <div nz-col><button nz-button nzType="primary" (click)="goAPropos()" nzShape="round" class="button-inscription">En Savoir plus</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- A propos de nous  -->
+
+
+
+
+
+
+  <!-- comment ca marche  -->
+  <div nz-row class="comment-ca-part" id="comment-ca-part">
+
+    <!-- Header text and photo  -->
+    <div nz-col nzSpan="12" class="photo-text" nzXs="24" nzSm="24" nzMd="12" >
+      <div nz-row nzJustify="center" nzAlign="middle" class="photo-text-comment">
+        <div nz-col nzSpan="20" class="comment-header">
+          Fonctionnement
+        </div>
+        <div nz-col nzSpan="20">
+          <img src="../../../assets/images/image-comment-ca-marche.png" class="image-com-marche" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- Header text and photo  -->
+
+    <div nz-col nzSpan="12" nzXs="24" nzSm="24" nzMd="12" class="step-container">
+
+      <div nz-row nzJustify="center" nzAlign="bottom" class="step-container">
+        <div nz-col nzSpan="24" class="step-container-col">
+          <div nz-row nzJustify="center" nzAlign="middle" >
+            <!-- step 1  -->
+            <div nz-col nzSpan="20" class="step step-1">
+              <div nz-row nzJustify="center" nzAlign="middle" class="step-1-content-container">
+
+                <div nz-col nzSpan="4" nzXs="22" nzSm="4" nzMd="5" style="margin-top: 20px;">
+                  <div nz-row nzJustify="center" nzAlign="middle" class="step-number">
+                    <div nz-col>1</div>
+                  </div>
+                </div>
+                <div nz-col nzSpan="18" nzXs="22" nzSm="18" nzMd="17">
+                  <div nz-row nzJustify="center" nzAlign="middle">
+                    <div nz-col nzSpan="18" class="step-1-header"> Créer votre compte  </div>
+                    <div nz-col nzSpan="18" class="step-1-description"> Inscrivez-vous gratuitement sur la plateforme et présentez-nous votre activité.  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- step 1  -->
+
+            <!-- step 2  -->
+            <div nz-col nzSpan="20" class="step step-2">
+              <div nz-row nzJustify="center" nzAlign="middle" class="step-1-content-container">
+                <div nz-col nzSpan="4" nzXs="22" nzSm="4" nzMd="5">
+                  <div nz-row nzJustify="center" nzAlign="middle" class="step-number">
+                    <div nz-col>2</div>
+                  </div>
+                </div>
+                <div nz-col nzSpan="18" nzXs="22" nzSm="18" nzMd="17">
+                  <div nz-row nzJustify="center" nzAlign="middle">
+                    <div nz-col nzSpan="18" class="step-2-header"> Soumettre une demande de financement</div>
+                    <div nz-col nzSpan="18" class="step-2-description">
+                      Soumettez votre demande de financement via notre formulaire
+                      afin de vous orienter vers nos instutions financières partenaires.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- step 2  -->
+
+            <!-- step 3  -->
+            <div nz-col nzSpan="20" class="step step-3">
+              <div nz-row nzJustify="center" nzAlign="middle" class="step-1-content-container">
+                <div nz-col nzSpan="4" nzXs="22" nzSm="4" nzMd="5">
+                  <div nz-row nzJustify="center" nzAlign="middle" class="step-number">
+                    <div nz-col>3</div>
+                  </div>
+                </div>
+                <div nz-col nzSpan="18" nzXs="22" nzSm="18" nzMd="17">
+                  <div nz-row nzJustify="center" nzAlign="middle">
+                    <div nz-col nzSpan="18" class="step-3-header">Bénéficier du financement </div>
+                    <div nz-col nzSpan="18" class="step-3-description">
+                      Si votre demande est approuvée par nos partenaires,
+                      le montant de votre financement demandé vous sera versé par intervalles.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+             <!-- we add the button here  -->
+          <div nz-col nzSpan="20" class="step">
+            <div nz-row nzJustify="end" nzAlign="middle" style="min-height: inherit;" >
+              <div nz-col>
+                <button nz-button nzType="primary" nzShape="round" class="button-demande-financement" routerLink="/login" >Demander
+                un financement
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- we add the button here  -->
+          </div>
+          <!-- step 3  -->
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- comment ca marche  -->
+
+
+
+
+  <!-- Nos Partenaires de confiances  -->
+  <div nz-row class="partenaires" nzJustify="center" nzAlign="middle" id="partenaires">
+    <div nz-col nzSpan="20">
+      <div nz-row nzJustify="center" nzAlign="middle">
+        <div nz-col class="partenaires-header">
+          Nos partenaires de confiance
+        </div>
+      </div>
+    </div>
+
+    <div nz-col nzSpan="20">
+      <div nz-row nzJustify="center" nzAlign="middle">
+        <div nz-col class="partenaires-text">
+          Nous travaillons avec plusieurs entreprises leaders
+        </div>
+      </div>
+
+    </div>
+    <div nz-col nzSpan="22" nzJustify="center">
+      <swiper class="swiper-partenaires" [config]="config">
+        <!-- <ng-template swiperSlide>
+          <div nz-row nzJustify="center" nzAlign="middle" class="partenaires-slider">
+            <div nz-col>
+              <img src="../../../assets/images/Partenaires-logo/Ask Mastercard Logo.svg" alt="">
+            </div>
+          </div>
+        </ng-template> -->
+        <ng-template swiperSlide>
+          <div nz-row nzJustify="center" nzAlign="middle" class="partenaires-slider">
+            <div nz-col>
+              <a href="https://www.bnde.sn/" target="_blank" >
+                <img src="../../../assets/images/partenaires-confiance/LOGO BNDE.png" width="100" height="50" alt="">
+              </a>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div nz-row nzJustify="center" nzAlign="middle" class="partenaires-slider">
+            <div nz-col>
+              <a href="https://www.reseau-entreprendre.org/dakar/" target="_blank" >
+                <img src="../../../assets/images/partenaires-confiance/LOGO I-UMCEC HD.jpg" width="100" height="50" alt="">
+              </a>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div nz-row nzJustify="center" nzAlign="middle" class="partenaires-slider">
+            <div nz-col>
+              <a href="https://wic-capital.net/" target="_blank">
+                <img src="../../../assets/images/partenaires-confiance/WIC Capital Logo.png" width="100" height="50" alt="">
+              </a>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div nz-row nzJustify="center" nzAlign="middle" class="partenaires-slider">
+            <div nz-col>
+              <a href="https://www.reseau-entreprendre.org/dakar/" target="_blank" >
+                <img src="../../../assets/images/partenaires-confiance/Reseau-entreprendre-dakar.svg" width="100" height="50"
+                     alt="">
+              </a>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div nz-row nzJustify="center" nzAlign="middle" class="partenaires-slider">
+            <div nz-col>
+              <a href="https://brightmorecapital.com/" target="_blank" >
+                <img src="../../../assets/images/partenaires-confiance/Brightmore Capital - Logo.png" width="100" height="50"
+                     alt="">
+              </a>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div nz-row nzJustify="center" nzAlign="middle" class="partenaires-slider">
+            <div nz-col>
+              <a href="https://www.cticdakar.com/" target="_blank" >
+                <img src="../../../assets/images/partenaires-confiance/LOGO CTIC .png" width="100" height="50"
+                     alt="">
+              </a>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div nz-row nzJustify="center" nzAlign="middle" class="partenaires-slider">
+            <div nz-col>
+              <a href="http://incubation.ugb.sn/" target="_blank" >
+                <img src="../../../assets/images/partenaires-confiance/incubateur_ugb.jpg" width="50" height="50"
+                     alt="">
+              </a>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div nz-row nzJustify="center" nzAlign="middle" class="partenaires-slider">
+            <div nz-col>
+              <a href="https://www.reseau-entreprendre.org/dakar/" target="_blank" >
+                <img src="../../../assets/images/partenaires-confiance/Logocaurie_A4.png" width="100" height="50"
+                     alt="">
+              </a>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div nz-row nzJustify="center" nzAlign="middle" class="partenaires-slider">
+            <div nz-col>
+              <a href="https://africa.makesense.org/" target="_blank" >
+                <img src="../../../assets/images/partenaires-confiance/makesense.png" width="100" height="50"
+                     alt="">
+              </a>
+            </div>
+          </div>
+        </ng-template>
+        <!-- <ng-template swiperSlide>Slide 9</ng-template> -->
+      </swiper>
+    </div>
+  </div>
+  <!-- Nos Partenaires de confiances  -->
+
+
+
+
+  <!-- Temoignages -->
+
+  <!-- <div nz-row class="temoignages" nzJustify="center" nzAlign="middle" id="temoignages">
+
+    <div nz-col nzSpan="6" nzXs="24" nzMd="24" nzLg="6" >
+      <div nz-row nzJustify="center" nzAlign="middle" class="temoignage-presentation">
+        <div nz-col nzSpan="24">
+          <div nz-row nzJustify="center">
+            <div nz-col nzSpan="20" class="temoignage-pres-header">Écoutez les participants de notre programme</div>
+            <div nz-col nzSpan="20" class="temoignage-pres-text">Écoutez des entrepreneurs et des propriétaires
+              d'entreprise parler de leur expérience avec Suqali </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col nzSpan="18" nzXs="24" nzMd="24" nzLg="18">
+      <-- temoignages swiper  -->
+      <!-- <swiper [config]="configTemoignages" class="swiper-temoignage" >
+        <ng-template swiperSlide>
+
+          <div nz-row nzJustify="center" nzAlign="middle" class="slider-temoignage-container">
+            <div nz-col nzSpan="22" class="slider-temoignage-content" >
+              <div nz-row nzJustify="center"  nzAlign="middle" class="slider-temoignage">
+                <div nz-col nzSpan="20" >
+
+                  <div nz-row >
+                    <div nz-col nzSpan="20" >
+                      <img src="../../../assets/images/temoignages/“.svg">
+                    </div>
+                  </div>
+
+                  <div nz-row >
+                    <div nz-col nzSpan="20" class="slider-temoignage-header" >
+                      Réseau de leaders percutant
+                    </div>
+                  </div>
+
+                  <div nz-row >
+                    <div nz-col nzS616pan="20" class="slider-temoignage-text">
+                      J'ai vraiment apprécié mon expérience avec Suqali ,
+                      j'ai été jumelé à une entreprise très intéressée par mon entreprise
+                      et j'ai eu des discussions très perspicaces pour améliorer mon entreprise.
+                    </div>
+                  </div>
+
+                  <div nz-row>
+                    <div nz-col nzSpan="3" >
+                      <img class="slider-temoignage-img" src="../../../assets/images/temoignages/temoignage-picture.jpeg" alt="" >
+                    </div>
+                    <div nz-col nzSpan="7" >
+                      <div nz-row class="sliderTemoignagePrenom"> Moussa Diallo</div>
+                      <div nz-row class="sliderTemoignageRole"> PDG de FarmSenegal</div>
+                    </div>
+
+                    <div nz-col nzSpan="14">
+                      <div nz-row nzJustify="end" >
+                        <img src="../../../assets/images/temoignages/”.svg">
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </ng-template>
+
+        <ng-template swiperSlide>
+          <div nz-row nzJustify="center" nzAlign="middle" class="slider-temoignage-container">
+            <div nz-col nzSpan="22" class="slider-temoignage-content" >
+              <div nz-row nzJustify="center"  nzAlign="middle" class="slider-temoignage">
+                <div nz-col nzSpan="20" >
+
+                  <div nz-row >
+                    <div nz-col nzSpan="20" >
+                      <img src="../../../assets/images/temoignages/“.svg">
+                    </div>
+                  </div>
+
+                  <div nz-row >
+                    <div nz-col nzSpan="20" class="slider-temoignage-header" >
+                      Réseau de leaders percutant
+                    </div>
+                  </div>
+
+                  <div nz-row >
+                    <div nz-col nzSpan="20" class="slider-temoignage-text">
+                      J'ai vraiment apprécié mon expérience avec Suqali,
+                      j'ai été jumelé à une entreprise très intéressée par mon entreprise
+                      et j'ai eu des discussions très perspicaces pour améliorer mon entreprise.
+                    </div>
+                  </div>
+
+                  <div nz-row>
+                    <div nz-col nzSpan="3" >
+                      <img class="slider-temoignage-img" src="../../../assets/images/temoignages/temoignage-picture.jpeg" alt="" >
+                    </div>
+                    <div nz-col nzSpan="7" >
+                      <div nz-row class="sliderTemoignagePrenom"> Moussa Diallo</div>
+                      <div nz-row class="sliderTemoignageRole"> PDG de FarmSenegal</div>
+                    </div>
+
+                    <div nz-col nzSpan="14">
+                      <div nz-row nzJustify="end" >
+                        <img src="../../../assets/images/temoignages/”.svg">
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+        <!-- </ng-template> -->
+        <!-- <ng-template swiperSlide>Slide 3</ng-template
+        ><ng-template swiperSlide>Slide 4</ng-template
+        ><ng-template swiperSlide>Slide 5</ng-template
+        ><ng-template swiperSlide>Slide 6</ng-template
+        ><ng-template swiperSlide>Slide 7</ng-template
+        ><ng-template swiperSlide>Slide 8</ng-template
+        ><ng-template swiperSlide>Slide 9</ng-template> -->
+      <!-- </swiper> -->
+      <!-- temoignages swiper  -->
+    <!-- </div> -->
+  <!-- </div> -->
+  <!-- Temoignages -->
+
+
+  <!-- Localisation  -->
+  <div nz-row  class="localisation" nzJustify="center" nzAlign="middle" id="localisation">
+    <div nz-col nzSpan="22">
+      <div nz-row nzJustify="center" nzAlign="middle" class="localisation-container">
+        <div nz-col nzSpan="24">
+
+          <div nz-row nzJustify="center">
+            <!-- <div nz-col nzSpan="9" nzXs="22" nzLg="14" nz class="localisation-header"> -->
+            <div nz-col nzSpan="9" nzXs="22" nzLg="14" nz class="localisation-header">
+              <div nz-row nzJustify="center">
+                <div nz-col >
+                  Trouvez des sites d'inscription près de chez vous
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-row nzJustify="center">
+            <div nz-col nzSpan="9" nzXs="22" nzLg="10" nz class="localisation-text-search">
+              <div nz-row nzJustify="center">
+                <div nz-col >
+                  Trouvez un agent ci-dessous pour vous enregistrer physiquement
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text and search form  -->
+          <div nz-row nzJustify="center" style="margin-top : 20px " >
+            <!-- <div nz-col nzSpan="12" nzXs="24" nzXl="12" > -->
+            <div nz-col nzSpan="12">
+              <nz-input-group [nzSuffix]="prefixTemplateUser" >
+                <input type="text" #placeInput class="input-search-maps">
+              </nz-input-group>
+              <ng-template #prefixTemplateUser><i nz-icon nzType="search" nzTheme="outline"></i></ng-template>
+              <ng-template #suffixTemplateInfo>
+                <i nz-icon nz-tooltip nzTooltipTitle="Extra information" nzType="info-circle"></i>
+              </ng-template>
+
+            </div>
+          </div>
+          <!-- Text and search form  -->
+
+          <!-- MAP  -->
+          <div nz-row nzJustify="center" nzAlign="middle" class="map-localisation" >
+            <div nz-col nzSpan="24" id="map">
+              <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" >
+
+                <agm-direction *ngIf="origin && destination" [origin]="origin" [destination]="destination">
+                </agm-direction>
+
+
+                  <agm-marker *ngFor="let geo of geoPositionList.DATA" [latitude]="parseNumber(geo._geolocalisation_latitude)"
+                            [longitude]="parseNumber(geo._geolocalisation_longitude)"
+                            [iconUrl]="$any(iconUrlValue)" (markerClick)="clickedMarker(infowindow)">
+                    <agm-info-window [latitude]="lat" [longitude]="lng" #infowindow>
+                      <strong>
+                        <p>{{geo.AGENT_PHONE_NUMBER.split('-')[0]}}</p>
+                        <button nz-button nzType="primary" (click)="getDirection(geo)" style="max-height: 22px;font-size: 10px;font-weight: bold;">Direction</button>
+                        <button (click)="setZoom(geo)" nz-button nzType="primary" style="max-height: 22px;font-size: 10px;font-weight: bold; margin-left: 67px;">Zoom ici</button>
+                      </strong>
+                    </agm-info-window>
+                  </agm-marker>
+                  <agm-marker [latitude]="lat" [longitude]="lng" [label]='labelCurrentPerson'>
+                  </agm-marker>
+<!--
+                <agm-circle  [latitude]="lat" [longitude]="lng"
+                             [radius]="500"
+                             [fillColor]="'red'">
+                </agm-circle> -->
+
+              </agm-map>
+            </div>
+          </div>
+          <!-- MAP  -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Localisation  -->
+
+
+
+
+
+  <!-- Contacter  -->
+  <div nz-row class="Contact-container" nzJustify="center" nzAlign="middle" id="Contact-container">
+    <!-- contact info  -->
+    <div nz-col nzSpan="8" nzXs="24" nzMd="8" style=" height: 500px; max-width: 430px;">
+      <div nz-row nzJustify="center" nzAlign="middle" style="height: inherit;">
+        <div nz-col nzSpan="23" class="contact-info" style="height: inherit;" >
+          <div nz-row nzJustify="center" nzAlign="middle" style="height: inherit;" >
+            <div nz-col nzSpan="24"  >
+              <div nz-row nzJustify="center" nzAlign="middle" style="height: inherit;" >
+                <div nz-col nzSpan="22" style="height: inherit;">
+                  <div nz-row nzJustify="center" nzAlign="middle" style="height:125px; margin-bottom:40px">
+                    <div nz-col nzSpan="20" class="contact-info-text-header">
+                      Entrer en contact
+                    </div>
+                    <div nz-col nzSpan="20" class="contact-info-text">
+                      Remplissez le formulaire ci-dessous et notre équipe vous répondra dans les 24 heures.
+                    </div>
+                  </div>
+                  <div nz-row nzJustify="center" nzAlign="middle" style="height:125px; ">
+                    <div nz-col nzSpan="20" >
+                      <div nz-row nzJustify="center">
+                        <div nz-col nzSpan="20">
+                          <div nz-row nzJustify="center" >
+                            <img src="../../../assets/images/contact-icon/support_agent_black_24dp.svg" width="60" height="60" alt="">
+                          </div>
+                        </div>
+                        <div nz-col nzSpan="19" class="text-icon-footer">
+                          <div nz-row nzJustify="center" style="text-align: center;" >
+                            Service client disponible 7jours/7 de 09H à 18H
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div nz-col nzSpan="20" >
+                      <div nz-row>
+                        <div nz-col nzSpan="3">
+                          <img src="../../assets/images/footer/phone.svg" alt="">
+                        </div>
+                        <div nz-col nzSpan="17" class="text-icon-footer">
+                          +221 76 624 04 60
+                        </div>
+                      </div>
+                    </div>
+                    <div nz-col nzSpan="20" >
+                      <div nz-row>
+                        <div nz-col nzSpan="3">
+                          <img src="../../assets/images/footer/email.svg" alt="">
+                        </div>
+                        <div nz-col nzSpan="17" class="text-icon-footer">
+                          info@suqali.com
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- contact info  -->
+
+    <!-- contact form  -->
+    <div nz-col nzSpan="14" nzXs="24" nzMd="14">
+      <div nz-row nzJustify="center" nzAlign="middle" style="height: inherit;">
+        <div nz-col nzSpan="22" class="contact-form">
+          <div nz-row nzJustify="center" nzAlign="middle">
+
+            <!-- nous contacter text  -->
+            <!-- <div nz-col nzSpan="24">
+              <div nz-row nzJustify="center" nzAlign="middle">
+                <div nz-col nzSpan="20" class="contact-form-text-header">
+                  Nous contacter
+                </div>
+                <div nz-col nzSpan="20" class="contact-form-text">
+                  Remplissez le formulaire ci-dessous et notre équipe vous répondra dans les 24 heures.
+                </div>
+              </div>
+            </div> -->
+            <!-- nous contacter text  -->
+
+            <!-- nous contacter form   -->
+            <div nz-col nzSpan="24" class="contact-form-container">
+              <div nz-row class="contact-information-container"  nzJustify="center" nzAlign="middle" >
+                <!-- nous contacter information  -->
+                <div nz-col nzSpan="22">
+
+                  <div nz-row nzJustify="space-between"   >
+
+                    <div nz-col nzSpan="11" class="card-contact" >
+                      <div nz-row nzAlign="middle" nzJustify="center" style="height: inherit;" >
+                        <!-- logo -->
+                        <div nz-col nzSpan="5">
+                          <div nz-row nzAlign="middle" nzJustify="center" style="color: #fff;"  class="circle-logo-contact">
+                            <img src="../../../assets/images/footer/email.svg" alt="">
+                          </div>
+                        </div>
+                        <div nz-col nzSpan="14">
+                          <div nz-row >
+                            <div nz-row  >
+                              <div nz-col nzSpan="20" >
+                                Email:
+                              </div>
+                              <div nz-col nzSpan="22" >
+                                info@suqali.com
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div nz-col  class="card-contact" nzSpan="11"  >
+                      <div nz-row nzAlign="middle" nzJustify="center" style="height: inherit;">
+                        <!-- logo -->
+                        <div nz-col nzSpan="5">
+                          <div nz-row nzAlign="middle" nzJustify="center"  class="circle-logo-contact">
+                            <img src="../../assets/images/footer/phone.svg" alt="">
+                          </div>
+
+                        </div>
+                        <div nz-col nzSpan="14">
+                          <div nz-row >
+                            <div nz-row  >
+                              <div nz-col nzSpan="20" >
+                                Call:
+                              </div>
+                              <div nz-col nzSpan="24" >
+                                +221 76 624 04 60
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- nous contacter information  -->
+                  </div>
+
+                </div>
+
+              </div>
+              <div nz-row nzJustify="center" >
+                <div nz-col nzSpan="22">
+                  <form style="width: inherit;" class="form-home-contact" [formGroup]="formulaireContact" >
+                    <div nz-row nzJustify="center" nzAlign="middle">
+
+                      <!-- Nom Prenom  -->
+                      <div nz-col nzSpan="10" nzXs="20" nzSm="20" nzXl="10">
+                        <div nz-row nzJustify="start" nzAlign="middle" style="margin-bottom: 10px;">
+                          <div nz-col nzSpan="22" nzXs="24" nzSm="24" nzLg="24" class="label-form-contact" >Nom et prenom </div>
+                          <div nz-col nzSpan="22" nzXs="24" nzSm="24" [nzLg]="{span: 24}" >
+                            <input class="form-input-contact" formControlName="nomPrenom" type="text" placeholder="Votre nom complet, par exemple, Ndeye Oumy SY">
+                            <div  *ngIf="formulaireContact.controls.nomPrenom.errors && submitted ">
+                              <span style="color: red " *ngIf="formulaireContact.controls.nomPrenom.errors.required" > Ce champ est obligatoire </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Nom Prenom  -->
+
+                      <!-- Email  -->
+                      <div nz-col nzSpan="10"  nzXs="20" nzSm="20"  nzXl="10">
+                        <div nz-row nzJustify="start" nzAlign="middle" style="margin-bottom: 10px;"   >
+                          <div nz-col nzSpan="22" nzXs="24" nzSm="24" [nzLg]="{span: 24}"  [nzXl]="{span: 22 , offset: 2}" class="label-form-contact" >Adresse e-mail </div>
+                          <div nz-col nzSpan="22" nzXs="24" nzSm="24"  [nzLg]="{span: 24}"  [nzXl]="{span: 22 , offset: 2}" >
+                            <input class="form-input-contact" formControlName="email" type="text" placeholder="Par exemple fozia@exemple.com">
+                            <div  *ngIf="formulaireContact.controls.email.errors && submitted  ">
+                              <span style="color: red "  *ngIf="formulaireContact.controls.email.errors.required" > Ce champ est obligatoire </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Email  -->
+
+                    </div>
+
+                    <div nz-row style="margin-bottom: 10px;">
+                      <div nz-col nzOffset="2" nzSpan="10" class="label-form-contact">Objet</div>
+                    </div>
+
+                    <div nz-row nzJustify="center" nzAlign="middle" style="margin-bottom: 10px;">
+                      <div nz-col nzSpan="20" >
+                        <input class="form-input-contact" formControlName='subject'  type="text" placeholder="Objet Par exemple Demande de renseignements ">
+                        <div  *ngIf="formulaireContact.controls.subject.errors && submitted ">
+                          <span style="color: red " *ngIf="formulaireContact.controls.subject.errors.required" > Ce champ est obligatoire </span>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div nz-row style="margin-bottom: 10px;">
+                      <div nz-col nzOffset="2" nzSpan="10" class="label-form-contact">Un message</div>
+                    </div>
+
+                    <div nz-row nzJustify="center" nzAlign="middle" style="margin-bottom: 10px;">
+                      <div nz-col nzSpan="20" >
+                        <textarea class="textarea-form" formControlName="message" name="" id=""  placeholder="Votre message"></textarea>
+                        <div  *ngIf="formulaireContact.controls.message.errors && submitted ">
+                          <span style="color: red " *ngIf="formulaireContact.controls.message.errors.required" > Ce champ est obligatoire </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div nz-row nzJustify="center" style="margin-bottom: 10px;" >
+                      <div nz-col  nzSpan="10" >
+                        <div nz-row nzJustify="center">
+                          <button nz-button class="button-contact-form" nzType="primary"  nzShape="round" (click)="envoyerMessage()" > Envoyer le message </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+            <!-- nous contacter form   -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- contact form  -->
+
+  </div>
+
+  <!-- last row of the footer  -->
+  <div nz-row class="end-of-footer" nzJustify="space-between" nzAlign="middle">
+    <!-- <div nz-col nzSpan="24">
+      <nz-divider style="margin: 1px ; background-color: white;"></nz-divider>
+    </div> -->
+    <div nz-col nzSpan="3" nzXs=4 nzSm="5" nzMd="6">
+      <img src="../../../assets/images/logo-suqali-png-blanc.png" height="70" alt="">
+    </div>
+
+    <div nz-col nzSpan="6">
+      <div nz-row nzAlign="middle" nzJustify="center">
+        <div nz-col nzSpan="6" >
+          <a href="https://mastercardfdn.org/" target="_blank"> <img style="width: 65%;" src="../../../assets/images/mc_fdn_rgb_pos.jpg" alt=""> </a>
+        </div>
+        <div nz-col nzSpan="12">
+          <div nz-row nzAlign="middle" nzJustify="center">
+            <p  class="presentation-text-2" style="margin-bottom:0px; text-align: center;" >Cette plateforme est sponsorisée par  la Fondation Mastercard .</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col   nzSpan="3" nzXs="0" nzSm="0" nzMd="3">
+      <div style="color: white;">
+        © 2021
+      </div>
+      <div style=" margin-left: 2%; color: white;" nzAlign="middle">
+        v 0.0.5
+      </div>
+    </div>
+
+    <div nz-col nzSpan="3" nzXs="12" nzSm="10" nzMd="10" nzLg="8" >
+      <div nz-row >
+        <div nz-col nzSpan="5">
+          <a href="https://twitter.com/SuqaliSN" target="_blank">
+             <img src="../../assets/images/Social Icons/White/Instagram.svg" height="40" width="40">
+          </a>
+
+        </div>
+        <div nz-col  nzSpan="5">
+          <a href="https://www.facebook.com/Suqali-100680222470713" target="_blank" >
+             <img src="../../assets/images/Social Icons/White/Twitter.svg" alt=""height="40" width="40">
+          </a>
+
+        </div>
+        <div nz-col nzSpan="5" >
+          <a href="https://www.linkedin.com/company/plateform-suqali" target="_blank">
+            <img src="../../assets/images/Social Icons/White/Dribbble.svg" alt=""height="40" width="40">
+          </a>
+
+        </div>
+        <div nz-col nzSpan="5" >
+          <a href="">
+            <img src="../../assets/images/Social Icons/White/Youtube.svg" alt=""height="40" width="40">
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- last row of the footer  -->
+
+
+
+
+  <!-- Contacter  -->
+
+
+</nz-layout>

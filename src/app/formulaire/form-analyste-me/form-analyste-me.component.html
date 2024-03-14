@@ -1,0 +1,28 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <nz-layout style="background-color: #F0F2F5">
+    <div nz-row nzJustify="center" nzAlign="middle" style="margin-bottom: 5%;">
+      <div nz-col nzSpan="20">
+        <div nz-row nzAlign="middle" nzJustify="center">
+          <nz-steps nzType="navigation" [nzCurrent]="currentStepPosition" (nzIndexChange)="onIndexChange($event)">
+            <nz-step nzTitle="Identification du client et Crédit en cours" style="margin-right: 25px"></nz-step>
+            <nz-step nzTitle="Activité Commerciale" style="margin-right: 25px"></nz-step>
+            <nz-step nzTitle="Capacités de remboursement et garanties" style="margin-right: 25px"></nz-step>
+
+          </nz-steps>
+        </div>
+      </div>
+      <div nz-col nzSpan="24" class="steps-content">
+        <div *ngIf="currentStepPosition==0"></div>
+        <app-identification *ngIf="currentStepPosition==0" [(identification)]="identification" [demande] = "demandeEx"></app-identification>
+        <div *ngIf="currentStepPosition==1"></div>
+        <app-activite *ngIf="currentStepPosition==1" [(activite)]="activite"></app-activite>
+        <div *ngIf="currentStepPosition==2"></div>
+        <app-capacite-remboursement *ngIf="currentStepPosition==2"
+                                       [(capacite)]="capacite" ></app-capacite-remboursement>
+
+        <div *ngIf="currentStepPosition==3"></div>
+        <app-form-analyste-me *ngIf="currentStepPosition==3" ></app-form-analyste-me>
+      </div>
+    </div>
+  </nz-layout>
+</nz-spin>

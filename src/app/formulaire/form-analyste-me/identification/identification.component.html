@@ -1,0 +1,366 @@
+
+<div class="container">
+  <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false"
+           nzTitle="Identification du client et Crédits">
+    <form nz-form [formGroup]="identificationForm">
+      <div nz-row nzJustify="center" [nzGutter]="[0,24]" >
+        <div nz-col nzSpan="22">
+          <nz-collapse [nzBordered]="false" style="background-color: white" nzAccordion>
+            <nz-collapse-panel style="font-weight: bold"
+                               nzHeader="Etape 1/3 - Identification du client(1)" [nzActive]="key1">
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label [nzSm]="100" [nzXs]="24"  nzFor="nom" >Prénom et Nom
+                      </nz-form-label>
+                      <input nz-input [ngClass]="{'is-invalid':submitted && identificationForm.controls.nom.errors}" formControlName="nom">
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label [nzSm]="100" [nzXs]="24" nzFor="datelieu">Date et lieu de naissance
+                      </nz-form-label>
+                      <input nz-input name="date" type="date" id="date" formControlName="datelieu"
+                             [ngClass]="{'is-invalid':submitted && identificationForm.controls.datelieu.errors}">
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+
+              </div>
+              <div nz-row nzAlign="top">
+
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  nzFor="p">Numéro de téléphone
+                      </nz-form-label>
+                      <input nz-input formControlName="numeroMobile"
+                             [ngClass]="{'is-invalid': submitted && identificationForm.controls.numeroMobile.errors}"/>
+                      <div class="invalid-feedback" *ngIf="submitted && identificationForm.controls.numeroMobile.errors">
+                        <div *ngIf="identificationForm.controls.numeroMobile.errors.pattern">La valeur du champ est invalide</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label [nzSm]="100" [nzXs]="24"  nzFor="m" >Situation familiale</nz-form-label>
+                      <nz-select formControlName="situation">
+                        <nz-option nzValue="CELIBATAIRE"
+                                   nzLabel="Célibataire"></nz-option>
+                        <nz-option nzValue="MARIE"
+                                   nzLabel="Marié(e)"></nz-option>
+                        <nz-option nzValue="DIVORCE"
+                                   nzLabel="Divorce"></nz-option>
+                        <nz-option nzValue="VEUF"
+                                   nzLabel="Veuf(ve)"></nz-option>
+
+                      </nz-select>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted && identificationForm.controls.situation.errors">
+                        <div *ngIf="identificationForm.controls.situation.errors.required">Ce champ est obligatoire</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label >Type de Piece</nz-form-label>
+                      <nz-select  (ngModelChange)="onClikTypePieces($event)" formControlName="typepiece"
+                                 [(ngModel)]="typePieces" required
+                      >
+                        <nz-option nzValue="cni" nzLabel="Carte Nationale d'Identité (CNI)"></nz-option>
+                        <nz-option nzValue="Passport" nzLabel="Passport"></nz-option>
+                      </nz-select>
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label [nzRequired]="identificationForm.controls.numeroCNI.hasValidator(ValidatorsFront.required)"
+                                     [nzSm]="24" [nzXs]="24" nzFor="numeroCni">Renseigner le numéro du type de piece choisi
+                        <i nz-icon nzType="info-circle" nzTheme="outline"
+                           nz-tooltip="Cas CNI : C'est le numero NIN se trouvant au verso de la CNI qui doit etre saisi"
+                           style="margin-top: 5px; margin-left: 5px;"></i>
+                      </nz-form-label>
+                      <input nz-input name="numeroCni" id="numeroCni" formControlName="numeroCNI"
+                             [ngClass]="{'is-invalid':submitted && identificationForm.controls.numeroCNI.errors}"/>
+                      <div class="invalid-feedback" *ngIf="submitted && identificationForm.controls.numeroCNI.errors">
+
+                        <div *ngIf="identificationForm.controls.numeroCNI.errors.pattern">Ce champ est invalide</div>
+                      </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label
+
+                        [nzSm]="24" [nzXs]="24"  nzFor="adressePhysique">Adresse physique
+                      </nz-form-label>
+                      <input nz-input name="adressePhysique" id="adressePhysique" formControlName="adressePhysique"
+                             [ngClass]="{'is-invalid':submitted && identificationForm.controls.adressePhysique.errors}"/>
+
+                    </nz-form-control>
+                  </nz-form-item>
+
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  required [nzSm]="24" [nzXs]="24" nzFor="numeroCni">Repères
+
+                      </nz-form-label>
+                      <input nz-input name="reperes" id="reperes" formControlName="reperes"
+                             [ngClass]="{'is-invalid':submitted && identificationForm.controls.reperes.errors}"/>
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+            </nz-collapse-panel>
+            <nz-collapse-panel style="font-weight: bold"
+                               nzHeader="Etape 2/3 - Identification du client(2)"
+                               [nzActive]="key2">
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control >
+                      <nz-form-label [nzSm]="100" [nzXs]="24"  nzFor="m" >Statut Domicile</nz-form-label>
+                      <nz-select formControlName="statutdomicile">
+                        <nz-option nzValue="proprietaire"
+                                   nzLabel="Proprietaire"></nz-option>
+                        <nz-option nzValue="locataire"
+                                   nzLabel="locataire"></nz-option>
+
+                      </nz-select>
+
+                    </nz-form-control>
+
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label [nzSm]="100" [nzXs]="24" nzFor="referencecontact">Référence familiale à contacter
+                      </nz-form-label>
+                      <input nz-input name="ned" id="ned" type="number" formControlName="referencecontact"
+                             [ngClass]="{'is-invalid':submitted2 && identificationForm.controls.referencecontact.errors}"/>
+
+
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label class="police-label" nzFor="nomconjoint">Prénom et nom du(de la) conjoint(e)
+
+                      </nz-form-label>
+                      <input nz-input name="ned" id="nomconjoint" type="text" formControlName="nomconjoint"
+                             [ngClass]="{'is-invalid':submitted2 && identificationForm.controls.nomconjoint.errors}"/>
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  nzFor="o">Numéro de téléphone du(de la) conjoint(e)</nz-form-label>
+                      <input nz-input name="o" id="23" type="number" formControlName="numeroconjoint"
+                             [ngClass]="{'is-invalid':submitted2 && identificationForm.controls.numeroconjoint.errors}"
+                             />
+                      <div class="invalid-feedback" *ngIf="submitted2 && identificationForm.controls.numeroconjoint.errors">
+
+                        <div *ngIf="identificationForm.controls.numeroconjoint.errors.pattern">La valeur est incorrecte
+                        </div>
+                      </div>
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  nzFor="nf">Chef lieu activité(département)</nz-form-label>
+                      <input nz-input name="nf" id="departement" type="text" formControlName="departement"
+                             [ngClass]="{'is-invalid':submitted2 && identificationForm.controls.departement.errors}"/>
+
+
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  nzFor="nf">Localisation par activité</nz-form-label>
+                      <input nz-input name="nf" id="localisation" type="text" formControlName="localisation"
+                             [ngClass]="{'is-invalid':submitted2 && identificationForm.controls.localisation.errors}"/>
+
+
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+            </nz-collapse-panel>
+            <nz-collapse-panel style="font-weight: bold;background-color: white" nzHeader="Etape 3/3 - En cours de crédit" [nzActive]="key3">
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label class="police-label" nzFor="enp">Date</nz-form-label>
+                      <input nz-input name="date" type="date" id="datecredit" formControlName="datecredit"
+                             [max]="dateMaxCreationString"
+                             [ngClass]="{'is-invalid':submitted3 && identificationForm.controls.datecredit.errors}">
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label   nzFor="ned">Montant</nz-form-label>
+                      <input nz-input name="ned" id="montantcredit" type="number" formControlName="montantcredit"
+                             [ngClass]="{'is-invalid':submitted3 && identificationForm.controls.montantcredit.errors}"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted3 && identificationForm.controls.montantcredit.errors">
+
+                        <div *ngIf="identificationForm.controls.montantcredit.errors.pattern">La valeur est
+                          incorrecte
+                        </div>
+                      </div>
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label  nzFor="ndf"> Type de crédit</nz-form-label>
+                      <nz-select formControlName="typecredit"
+                                 [ngClass]="{'is-invalid':submitted && identificationForm.controls.typecredit.errors}">
+                        <nz-option *ngFor="let typeFinancement of typefinancements" nzValue="{{typeFinancement.libelle}}"
+                                   nzLabel="{{typeFinancement.libelle}}"></nz-option>
+                      </nz-select>
+
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="pdf">Remboursement</nz-form-label>
+                      <input nz-input name="pdf" id="pdf" formControlName="remboursement"/>
+                      <div class="invalid-feedback"
+                           *ngIf="submitted3 && identificationForm.controls.remboursement.errors">
+
+                        <div *ngIf="identificationForm.controls.remboursement.errors.pattern">La valeur est
+                          incorrecte
+                        </div>
+                      </div>
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <div nz-row nzAlign="top">
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label nzFor="pjd">Remboursement avec retard</nz-form-label>
+                      <input nz-input name="pjd" id="pjd" formControlName="remboursementavecretard"/>
+                      <div class="invalid-feedback" *ngIf="submitted3 && identificationForm.controls.remboursementavecretard.errors">
+
+                      <div *ngIf="identificationForm.controls.remboursementavecretard.errors.pattern">La valeur est
+                        incorrecte
+                      </div>
+                    </div>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }"
+                     [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ offset: 1, span: 15 }" [nzXl]="{ span: 10, offset: 1 }">
+                  <nz-form-item nzJustify="center">
+                    <nz-form-control>
+                      <nz-form-label type="number"   nzFor="ndj">Institution de crédit</nz-form-label>
+                      <nz-select formControlName="institution"
+                                 [ngClass]="{'is-invalid':submitted2 &&identificationForm.controls.institution.errors}"
+                                 >
+                        <nz-option nzValue="Financement terminé et remboursé" nzLabel="U-IMCEC"></nz-option>
+                        <nz-option nzValue="Inscription sur la palteforme en cours" nzLabel="Réseau Entreprendre">
+                        </nz-option>
+                        <nz-option nzValue="Enregistrement de la demande en cours"
+                                   nzLabel="Caurie Microfinance"></nz-option>
+                        <nz-option nzValue="Demande reçue" nzLabel="WIC Capital"></nz-option>
+                        <nz-option nzValue="Demande transmise" nzLabel="BNDE"></nz-option>
+                        <nz-option nzValue="La banque agricole" nzLabel="La banque agricole"></nz-option>
+                        <nz-option nzValue="Incomplet" nzLabel="Orabank"></nz-option>
+                        <nz-option nzValue="Approuvé par le partenaire" nzLabel="Brightmore Capital"></nz-option>
+                        <nz-option nzValue="Autre institution" nzLabel="Autre"></nz-option>
+                      </nz-select>
+
+
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+            </nz-collapse-panel>
+          </nz-collapse>
+        </div>
+      </div>
+      <br>
+      <div nz-row >
+        <div nz-col [nzXs]="{ offset: 3, span: 10, push: 3 }" [nzSm]="{ offset: 0, span: 18, push: 2 }" [nzMd]="{ span: 20, offset: 1 }" [nzLg]="{ span: 20, pull: 2 }" [nzXl]="{ span: 20 }" >
+          <button nz-button nzType="primary" nzShape="round" (click)="pre()" *ngIf="currentStepPosition > 0"
+                  class="boutton-precedant">
+            Précédant
+          </button>
+          <button nz-button nzType="primary" nzShape="round" (click)="next()" *ngIf="currentStepPosition < 2"
+                  class="boutton-suivant">
+            Suivant
+          </button>
+
+          <button nz-button nzType="primary" nzShape="round" (click)="done()" *ngIf="currentStepPosition === 2"
+                  class="boutton-suivant">
+            Valider
+          </button>
+        </div>
+      </div>
+    </form>
+  </nz-card>
+</div>

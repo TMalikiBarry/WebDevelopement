@@ -1,0 +1,14 @@
+<div nz-row nzJustify="center" nzAlign="middle" style="margin-bottom: 5%;">
+  <div nz-col nzSpan="20">
+    <div nz-row nzAlign="middle" nzJustify="center">
+      <nz-steps nzType="navigation" [nzCurrent]="currentStepPosition" (nzIndexChange)="onIndexChange($event)">
+        <nz-step nzTitle="Identification de l'entrepreneur" style="margin-right: 3Rem"></nz-step>
+        <nz-step nzTitle="Identification de l'entreprise"></nz-step>
+      </nz-steps>
+    </div>
+  </div>
+  <div nz-col nzSpan="24" class="steps-content">
+    <app-identify-entrepreneur *ngIf="currentStepPosition==0" [(identifyEntrepreneur)]="identifyEntrepreneur" [demande]="demandeEx"></app-identify-entrepreneur>
+    <app-identify-entreprise *ngIf="currentStepPosition==1" [(identifyEntreprise)]="identifyEntreprise" ></app-identify-entreprise>
+  </div>
+</div>

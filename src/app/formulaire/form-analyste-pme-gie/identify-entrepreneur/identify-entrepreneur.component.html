@@ -1,0 +1,220 @@
+<form [formGroup]="entrepreneurForm" nz-form>
+  <nz-collapse nzAccordion>
+    <nz-collapse-panel [nzActive]="(openCollapse$ | async)" nzHeader="Informations personnelles">
+      <div nz-row nzAlign="middle">
+        <div nz-col  nzOffset="1" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="fullName" nzRequired> Nom complet</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="fullName" id="fullName" nz-input placeholder="Nom complet">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzOffset="2" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="dateNaissance" nzRequired>Date de naissance</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <nz-date-picker formControlName="dateNaissance" id="dateNaissance"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row nzAlign="middle">
+        <div nz-col  nzOffset="1" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="lieuNaissance" nzRequired>Lieu de naissance</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="lieuNaissance" id="lieuNaissance" nz-input placeholder="Lieu de naissance">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzOffset="2" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="nIdentification" nzRequired>N° d'identification</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="nIdentification" id="nIdentification" nz-input placeholder="N° d'identification">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row nzAlign="middle">
+        <div nz-col  nzOffset="1" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="situationMatrimoniale">Situation matrimoniale</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+              <nz-select formControlName="situationMatrimoniale" id="situationMatrimoniale" (nzBlur)="showSelected()">
+                <nz-option nzValue="CELIBATAIRE" nzLabel="Célibataire"></nz-option>
+                <nz-option nzValue="MARIE" nzLabel="Marié(e)"></nz-option>
+                <nz-option nzValue="DIVORCE" nzLabel="Divorcé(e)"></nz-option>
+                <nz-option nzValue="VEUF" nzLabel="Veuf(ve)"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzOffset="2" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="nbPersonnesCharge">Nombre de personnes à charge</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="nbPersonnesCharge" id="nbPersonnesCharge" nz-input
+                     placeholder="Nombre de personnes prises en charge">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row nzAlign="middle">
+        <div nz-col  nzOffset="1" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="adresse" nzRequired>Lieu de naissance</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="adresse" id="adresse" nz-input placeholder="Lieu de naissance">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzOffset="2" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="habiteDepuis" nzRequired>Habite depuis</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <nz-date-picker formControlName="habiteDepuis" id="habiteDepuis"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row nzAlign="middle">
+        <div nz-col  nzOffset="1" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="statutDomicile">Statut du Domicile</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+              <nz-select formControlName="statutDomicile" id="statutDomicile">
+                <nz-option nzValue="locataire" nzLabel="Locataire"></nz-option>
+                <nz-option nzValue="proprietaire" nzLabel="Propriétaire"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzOffset="2" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="domicileFamilial">Domicile familial</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="domicileFamilial" id="domicileFamilial" nz-input placeholder="Domicile familial">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row nzAlign="middle" nzJustify="center">
+        <button nz-button nzType="primary" nzShape="round" (click)="toSecondCollapse('out')">
+          Suivant
+        </button>
+      </div>
+
+    </nz-collapse-panel>
+    <nz-collapse-panel [nzActive]="!(openCollapse$ | async)" nzHeader="Informations supplémentaires">
+      <div nz-row nzAlign="middle">
+        <div nz-col  nzOffset="1" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="personneReference"> Personne référence</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="personneReference" id="personneReference" nz-input placeholder="Nom complet">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzOffset="2" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="nomConjoint">Prenom et nom Conjoint(e)</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="nomConjoint" id="nomConjoint" nz-input placeholder="Nom complet">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row nzAlign="middle">
+        <div nz-col  nzOffset="1" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="telPrincipal" nzRequired>Téléphone principal</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="telPrincipal" id="telPrincipal" nz-input placeholder="Téléphone principal">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzOffset="2" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="telSecondaire">Téléphone Secondaire</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="telSecondaire" id="telSecondaire" nz-input placeholder="Téléphone Secondaire">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row nzAlign="middle">
+        <div nz-col  nzOffset="1" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="telConjoint" >Téléphone Conjoint</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="telConjoint" id="telConjoint" nz-input placeholder="Téléphone Conjoint">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzOffset="2" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="capaciteManag">capacite Manag</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="capaciteManag" id="capaciteManag" nz-input
+                     placeholder="capacite Manag">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row nzAlign="middle">
+
+        <div nz-col  nzOffset="1" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="patrimoinePersonnel" >patrimoine Personnel</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="patrimoinePersonnel" id="patrimoinePersonnel" nz-input
+                     placeholder="patrimoinePersonnel">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col  nzSpan="10" nzOffset="2">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="patrimoineCommun">patrimoine Commun</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="patrimoineCommun" id="patrimoineCommun" nz-input placeholder="patrimoineCommun">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row nzAlign="middle">
+
+        <div nz-col  nzOffset="1" nzSpan="10">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="10" nzFor="regimeMatrimonial" >regime Matrimonial</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">
+              <input formControlName="regimeMatrimonial" id="regimeMatrimonial" nz-input
+                     placeholder="regimeMatrimonial">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <!--        <div nz-col  nzSpan="10" nzOffset="2">-->
+        <!--          <nz-form-item>-->
+        <!--            <nz-form-label [nzSpan]="10" nzFor="domicileFamilial">Domicile familial </nz-form-label>-->
+        <!--            <nz-form-control [nzSpan]="14" nzErrorTip="Ce champ est obligatoire">-->
+        <!--              <input id="domicileFamilial" nz-input formControlName="domicileFamilial" placeholder="Domicile familial">-->
+        <!--            </nz-form-control>-->
+        <!--          </nz-form-item>-->
+        <!--        </div>-->
+      </div>
+      <div nz-row nzAlign="middle" nzJustify="center">
+        <button nz-button nzType="primary" nzShape="round" (click)="toFirstCollapse()" class="space-buttons">
+          Précédent
+        </button>
+        <button nz-button nzType="primary" nzShape="round" (click)="validateFirstForm()">
+          Suivant
+        </button>
+      </div>
+    </nz-collapse-panel>
+
+  </nz-collapse>
+
+</form>

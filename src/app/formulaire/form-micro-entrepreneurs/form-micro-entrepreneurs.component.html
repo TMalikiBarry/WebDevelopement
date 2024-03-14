@@ -1,0 +1,35 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <nz-layout style="background-color: #F0F2F5">
+    <div nz-row nzJustify="center" nzAlign="middle">
+    <div nz-col nzSpan="18">
+      <div nz-row nzAlign="middle" nzJustify="center">
+        <nz-steps nzType="navigation" (nzIndexChange)="onIndexChange($event)" [nzCurrent]="currentStepPosition">
+          <nz-step nzTitle="Identification Propriétaire" style="margin-right: 25px"></nz-step>
+          <nz-step  *ngIf="auth.getRole()!='AGENT_INITIATEUR'" nzTitle="Identification Mandataire" style="margin-right: 25px"></nz-step>
+          <nz-step nzTitle="Description activité  " style="margin-right: 25px"></nz-step>
+          <nz-step *ngIf="!idPmo" nzTitle="Identification Visuelle" style="margin-right: 25px"></nz-step>
+          <nz-step *ngIf="!beneficiaireId && auth.getRole()!='AGENT_INITIATEUR'"
+                   nzTitle="Accès" style="margin-right: 25px"></nz-step>
+        </nz-steps>
+      </div>
+    </div>
+
+    <div nz-col nzSpan="24" class="steps-content">
+      <div *ngIf="currentStepPosition==0"></div>
+      <app-personnecontact [(personContact)]="personContact" [beneficiairetp]="beneficiairetp" [showPmoReferant]="showPmoReferant"  *ngIf="currentStepPosition==0" > </app-personnecontact>
+      <div *ngIf="currentStepPosition==1"></div>
+      <app-agent [(agentContact)]="agentInfo" *ngIf="currentStepPosition==1 && auth.getRole()!='AGENT_INITIATEUR'"> </app-agent>
+      <div *ngIf="currentStepPosition==2"></div>
+      <app-activites-micro-entrepreneur [(descriptionActivite)]="activiteInfo" *ngIf="(currentStepPosition==2 && auth.getRole()!='AGENT_INITIATEUR') || (currentStepPosition==1 && auth.getRole()=='AGENT_INITIATEUR')" ></app-activites-micro-entrepreneur>
+      <div *ngIf="currentStepPosition==3"></div>
+      <app-selphie [beneficiairetp]="beneficiairetp" *ngIf="(currentStepPosition==3 && !idPmo) || (currentStepPosition==2 && auth.getRole()=='AGENT_INITIATEUR')" [(selphieInfo)]="selphieInfo" > </app-selphie>
+     <div *ngIf="currentStepPosition==4"></div>
+      <app-connexion [(connexionInfo)]="connexionInfo" [benefApiResponse]="benefApiResponse" *ngIf="currentStepPosition==4 && !beneficiairetp && auth.getRole()!='AGENT_INITIATEUR'"
+      [numeroTelephone]="numeroTelephone" [stepname]="stepname" [showModel]="showModel" [showCodeOtpForm]="showOtp" [showSuccessPmo]="showSuccessPmo"
+      [nombreSecond]="nombreSecond" [renvoiCode]="renvoiCode">
+      Connexions</app-connexion>
+    </div>
+
+  </div>
+</nz-layout>
+</nz-spin>

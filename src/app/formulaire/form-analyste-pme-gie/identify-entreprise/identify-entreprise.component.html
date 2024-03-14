@@ -1,0 +1,161 @@
+<form nz-form [formGroup]="entrepriseForm">
+  <nz-row nzGutter="16">
+    <nz-col nzSpan="10"  nzOffset="1">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11" nzRequired>Nom ou raison sociale</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="nom">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="10" nzOffset="2">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11">Adresse de l'entreprise</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="adresse">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+
+  <nz-row nzGutter="16">
+    <nz-col nzSpan="10" nzOffset="1">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11" nzRequired>Forme juridique</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="formeJuridique">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="10"  nzOffset="2">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11" nzRequired>Capital</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="capital">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  <nz-row nzGutter="16">
+    <nz-col nzSpan="10" nzOffset="1">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11" nzRequired>Dirigeants de l'entreprise</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <nz-select formControlName="dirigeants">
+            <nz-option nzValue="luiMeme" nzLabel="Lui-même"></nz-option>
+            <nz-option nzValue="delegue" nzLabel="Délégué"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="10"  nzOffset="2">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11">Nom Complet</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="fullName">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+
+  <nz-row nzGutter="16">
+    <nz-col nzSpan="10"  nzOffset="1">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11">Moyens utilisés</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="moyensUtilises">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="10" nzOffset="2">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11">Organisation</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="organisation">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+
+  <nz-row nzGutter="16">
+    <nz-col nzSpan="10" nzOffset="1">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11" nzRequired>Ecrire un commentaire</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <textarea nz-input formControlName="commentaires"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="10"  nzOffset="2">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11" nzRequired>Identification des activités</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input name="identification_activite" type="file" id="iden_act"
+                 accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                 formControlName="identification_activite" (change)="documentIdentifLoad($event)">
+          <span *ngIf="!checkIdentifFileSizeMB" [ngStyle]="{color: 'red'}"> Fichier trop lourd ( ne doit pas dépasser 2 Mo)</span><br>
+          <p *ngIf="IdentifNom && IdentifNom != ''">Fichier :
+            <span><a target="_blank"
+                     href="{{baseUrlFile}}{{IdentifNom}}">
+                        {{this.entrepriseForm.controls.identification_activite.valid ? this.entrepriseForm.controls.identification_activite.value?.replace("C:\\fakepath\\", "") : ''}}
+                      </a><i (click)="deleteIdentif(IdentifNom)" nz-icon nzType="delete"></i></span>
+          </p>
+          <div class="invalid-input" *ngIf="checkFileIdentif">
+            <div>Veuillez choisir un format de fichier autorisé</div>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  <nz-row nzGutter="16">
+    <nz-col nzSpan="10" nzOffset="1">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11" nzRequired>Détails du projet</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input name="detailProjet" type="file" id="projet"
+                 accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                 formControlName="detailProjet" (change)="documentProjetLoad($event)">
+          <span *ngIf="!checkProjetFileSizeMB" [ngStyle]="{color: 'red'}"> Fichier trop lourd ( ne doit pas dépasser 2 Mo)</span><br>
+          <p *ngIf="ProjetNom && ProjetNom != ''">Fichier :
+            <span><a target="_blank"
+                     href="{{baseUrlFile}}{{ProjetNom}}">
+                        {{this.entrepriseForm.controls.detailProjet.valid ? this.entrepriseForm.controls.detailProjet.value?.replace("C:\\fakepath\\", "") : ''}}
+                      </a><i (click)="deleteProjet(ProjetNom)" nz-icon nzType="delete"></i></span>
+          </p>
+          <div class="invalid-input" *ngIf="checkFileProjet">
+            <div>Veuillez choisir un format de fichier autorisé</div>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="10"  nzOffset="2">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="11" nzRequired>Etat Financier</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input name="etat_financier" type="file" id="etat"
+                 accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                 formControlName="etat_financier" (change)="documentEtatLoad($event)">
+          <span *ngIf="!checkEtatFileSizeMB" [ngStyle]="{color: 'red'}"> Fichier trop lourd ( ne doit pas dépasser 2 Mo)</span><br>
+          <p *ngIf="EtatNom && EtatNom != ''">Fichier :
+            <span><a target="_blank"
+                     href="{{baseUrlFile}}{{EtatNom}}">
+                        {{this.entrepriseForm.controls.etat_financier.valid ? this.entrepriseForm.controls.etat_financier.value?.replace("C:\\fakepath\\", "") : ''}}
+                      </a><i (click)="deleteEtat(EtatNom)" nz-icon nzType="delete"></i></span>
+          </p>
+          <div class="invalid-input" *ngIf="checkFileEtat">
+            <div>Veuillez choisir un format de fichier autorisé</div>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  <div nz-row nzAlign="middle" nzJustify="center">
+    <button nz-button nzType="primary" nzShape="round" (click)="toFirstForm()" class="space-buttons">
+      Précédent
+    </button>
+    <button nz-button nzType="primary" nzShape="round" (click)="validatePME_GIETemplate()">
+      Valider
+    </button>
+  </div>
+
+</form>

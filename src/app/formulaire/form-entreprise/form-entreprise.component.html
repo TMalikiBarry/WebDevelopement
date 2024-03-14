@@ -1,0 +1,53 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <nz-layout style="background-color: #F0F2F5">
+    <div nz-row nzJustify="center" nzAlign="middle" style="margin-bottom: 5%;">
+      <div nz-col nzSpan="20">
+        <div nz-row nzAlign="middle" nzJustify="center">
+          <nz-steps nzType="navigation" [nzCurrent]="currentStepPosition" (nzIndexChange)="onIndexChange($event)">
+            <nz-step nzTitle="Propriétaire " style="margin-right: 25px"></nz-step>
+            <nz-step *ngIf="auth.getRole()!='AGENT_INITIATEUR'" nzTitle="Mandataire "
+                     style="margin-right: 25px"></nz-step>
+            <nz-step nzTitle="Entreprise" style="margin-right: 25px"></nz-step>
+            <nz-step nzTitle="Dirigeants " style="margin-right: 25px"></nz-step>
+            <nz-step nzTitle="Activités " style="margin-right: 25px"></nz-step>
+            <nz-step *ngIf="!idPmo" nzTitle="Identification Visuelle" style="margin-right: 25px"></nz-step>
+            <nz-step *ngIf="!beneficiaireId && auth.getRole()!='AGENT_INITIATEUR'" nzTitle="Accès"
+                     style="margin-right: 25px"></nz-step>
+          </nz-steps>
+        </div>
+      </div>
+      <div nz-col nzSpan="24" class="steps-content">
+        <div *ngIf="currentStepPosition==0"></div>
+        <app-identification-person-contact *ngIf="currentStepPosition==0" [(personContact)]="personContact" [beneficiairetp]="beneficiairetp"
+                                           [showPmoReferant]="showPmoReferant"></app-identification-person-contact>
+        <div *ngIf="currentStepPosition==1"></div>
+        <app-identification-agent [(agent)]="agent" *ngIf="currentStepPosition==1 &&
+                                  auth.getRole()!='AGENT_INITIATEUR'"></app-identification-agent>
+        <div *ngIf="currentStepPosition==2"></div>
+        <app-identification-entreprise
+          [(entreprise)]="entreprise"
+          *ngIf="(currentStepPosition==2 && auth.getRole()!='AGENT_INITIATEUR') || (currentStepPosition==1 && auth.getRole()=='AGENT_INITIATEUR')"></app-identification-entreprise>
+        <div *ngIf="currentStepPosition==3"></div>
+        <app-identification-dirigeant
+          [(dirigeantsAssocies)]="dirigeants"
+          *ngIf="(currentStepPosition==3 && auth.getRole()!='AGENT_INITIATEUR') || (currentStepPosition==2 && auth.getRole()=='AGENT_INITIATEUR')"></app-identification-dirigeant>
+        <div *ngIf="currentStepPosition==4"></div>
+        <app-description-activite-entreprise
+          [(activite)]="activite"
+          *ngIf="(currentStepPosition==4 && auth.getRole()!='AGENT_INITIATEUR') || (currentStepPosition==3 && auth.getRole()=='AGENT_INITIATEUR')"></app-description-activite-entreprise>
+        <div *ngIf="currentStepPosition==5"></div>
+        <app-pme-selphie [beneficiairetp]="beneficiairetp"
+                         *ngIf="(currentStepPosition==5 && !idPmo) || (currentStepPosition==4 && auth.getRole()=='AGENT_INITIATEUR')"
+                         [(selphieInfo)]="selphieInfo"></app-pme-selphie>
+        <div *ngIf="currentStepPosition==6"></div>
+        <app-register-form-entreprise
+          *ngIf="currentStepPosition==6 && !beneficiairetp && auth.getRole()!='AGENT_INITIATEUR'"
+          [benefApiResponse]="benefApiResponse"
+          [(connexionInfo)]="connexionInfo" [numeroTelephone]="numeroTelephone"
+          [showCodeOtpForm]="showOtp" [showSuccessPmo]="showSuccessPmo"
+          [nombreSecond]="nombreSecond" [showModel]="showModel" [renvoiCode]="renvoiCode"
+          [stepname]="stepname"></app-register-form-entreprise>
+      </div>
+    </div>
+  </nz-layout>
+</nz-spin>

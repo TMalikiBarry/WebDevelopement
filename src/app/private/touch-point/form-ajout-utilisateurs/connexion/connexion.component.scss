@@ -1,0 +1,22 @@
+@import "src/assets/form-css/form-css";
+
+.login-form {
+  max-width: 300px;
+}
+
+.ant-input-affix-wrapper::ng-deep {
+  border-radius: 14px ;
+}
+  .login-form-margin {
+  margin-bottom: 16px;
+  margin-right: 33%;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+
+.login-form-button {
+  width: 67%;
+}

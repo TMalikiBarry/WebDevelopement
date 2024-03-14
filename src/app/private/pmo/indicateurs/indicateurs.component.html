@@ -1,0 +1,231 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <div nz-row class="content-container" nzJustify="center">
+    <div nz-col nzSpan="20">
+      <!-- Demande et Budget  Header -->
+      <div nz-row nzJustify="space-between" nzAlign="middle" class="demande-buget-container">
+        <div nz-col nzSpan="24" class="demande-text">
+          Indicateurs
+        </div>
+
+      </div>
+
+      <form nz-form [formGroup]="indicateursForm">
+        <div nz-row>
+          <div nz-col [nzXs]="{ span: 10, offset: 1 }" [nzSm]="{ span: 10, offset: 1 }" [nzMd]="{ span: 6, offset: 1 }" [nzLg]="{ span: 6, offset: 1 }" [nzXl]="{ span: 6, offset: 1 }">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label nzRequired nzFor="statutJuridique">Activité</nz-form-label>
+                <nz-select name="select-validate" formControlName="activite">
+                  <nz-option *ngFor="let activite of activites" nzValue="{{activite.code}}" nzLabel="{{activite.libelle}}"></nz-option>
+                  <!-- <nz-option nzValue="Entreprise individuelle" nzLabel="Entreprise individuelle"></nz-option>
+                  <nz-option nzValue="SARL / SUARL" nzLabel="SARL / SUARL"></nz-option>
+                  <nz-option nzValue="SAS / SASU" nzLabel="SAS / SASU"></nz-option>
+                  <nz-option nzValue="SA / SASU" nzLabel="SA / SASU"></nz-option>
+                  <nz-option nzValue="Entreprise non enregistrée" nzLabel="Entreprise non enregistrée"></nz-option> -->
+                </nz-select>
+                <div *ngIf="indicateursForm.controls.activite.hasError('required') && indicateursForm.controls.activite.touched">
+                  <span id="errorMessage">Activité obligatoire</span> <br>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzXs]="{ span: 10, offset: 1 }" [nzSm]="{ span: 10, offset: 1 }" [nzMd]="{ span: 6, offset: 1 }" [nzLg]="{ span: 6, offset: 1 }" [nzXl]="{ span: 6, offset: 1 }">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label nzRequired nzFor="55">Date de création</nz-form-label>
+                <input type="date" [max]="dateMaxCreationString" nz-input name="55" id="55" formControlName="date" />
+                <div *ngIf="indicateursForm.controls.date.hasError('required') && indicateursForm.controls.date.touched">
+                  <span id="errorMessage">Date obligatoire</span> <br>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzXs]="{ span: 10, offset: 1 }" [nzSm]="{ span: 10, offset: 1 }" [nzMd]="{ span: 6, offset: 1 }" [nzLg]="{ span: 6, offset: 1 }" [nzXl]="{ span: 6, offset: 1 }">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label nzRequired nzFor="statutJuridique">Type bénéficiaire</nz-form-label>
+                <nz-select name="select-validate" formControlName="typeBeneficiaire">
+
+                  <nz-option nzValue="GIE" nzLabel="GIE"></nz-option>
+                  <nz-option nzValue="ME" nzLabel="ME"></nz-option>
+                  <nz-option nzValue="PME" nzLabel="PME"></nz-option>
+                  <nz-option nzValue="TOUS" nzLabel="TOUS"></nz-option>
+
+                </nz-select>
+                <div *ngIf="indicateursForm.controls.typeBeneficiaire.hasError('required') && indicateursForm.controls.typeBeneficiaire.touched">
+                  <span id="errorMessage">Type bénéficiaire obligatoire</span> <br>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzXs]="{ span: 10 }" [nzSm]="{ span: 10 }" [nzMd]="{ span: 3 }" [nzLg]="{ span: 3 }" [nzXl]="{ span: 3 }"  class="steps-action marge-form" id="section_button_entreprise">
+            <button nz-button [disabled]="!indicateursForm.valid" nzType="primary" nzShape="round" (click)="onGetIndicateurs()" class="boutton-suivant" >
+              Visualiser
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Tabs de de beneficiaire  -->
+      <div nz-row class="tabs-container">
+        <div nz-col nzSpan="24">
+          <nz-tabset>
+            <nz-tab nzTitle="Nombre de dossiers de demande de financement">
+              <nz-table nzBordered >
+                <thead>
+                  <tr>
+                    <th nzWidth="50%">Intitulé</th>
+                    <th nzWidth="30%">Unités</th>
+                    <th nzWidth="10%">Pourcentage(%)</th>
+                    <!-- <th nzWidth="60px"></th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container>
+                    <tr class="tr-showed">
+                      <td>Nombre de bénéficiaires référés sur la plateforme</td>
+                      <td>{{ indicateurs?.nombreBeneficiaireReferer}}</td>
+                      <td *ngIf="indicateurs?.pourcentageNombreBeneficiaireReferer"> {{ indicateurs?.pourcentageNombreBeneficiaireReferer}}</td>
+                      <td *ngIf="!indicateurs?.pourcentageNombreBeneficiaireReferer && isVisible == true"> N/A</td>
+                      <td *ngIf="!indicateurs?.nombreBeneficiaireTouchpoint && isVisible == false">  </td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Nombre de bénéficiaires TouchPoint sur la plateforme</td>
+                      <td>{{ indicateurs?.nombreBeneficiaireTouchpoint}}</td>
+                      <td *ngIf="indicateurs?.nombreBeneficiaireTouchpoint"> {{ indicateurs?.nombreBeneficiaireTouchpoint}}</td>
+                      <td *ngIf="!indicateurs?.nombreBeneficiaireTouchpoint && isVisible == true"> N/A</td>
+                      <td *ngIf="!indicateurs?.nombreBeneficiaireTouchpoint && isVisible == false">  </td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Reçu</td>
+                      <td>{{ indicateurs?.nombreDemandeRecu}}</td>
+
+                      <td *ngIf="indicateurs?.nombreDemandeRecu"> {{ indicateurs?.nombreDemandeRecu}} </td>
+                      <td *ngIf="!indicateurs?.nombreDemandeRecu && isVisible == true"> N/A</td>
+                      <td *ngIf="!indicateurs?.nombreDemandeRecu && isVisible == false"> </td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Approuvé (en % de Reçu)</td>
+                      <td>{{ indicateurs?.nombreDemandeApprouve}}</td>
+                      <td>{{ indicateurs?.pourcentageNombreDemandeApprouve }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Rejeté (en % de Reçu)</td>
+                      <td>{{ indicateurs?.nombreDemandeRejete}}</td>
+                      <td>{{ indicateurs?.pourcentageNombreDemandeRejete }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Décaissement terminé (en % de Aprrouvé)</td>
+                      <td>{{ indicateurs?.nombreDemandeDecaisseDone}}</td>
+                      <td>{{ indicateurs?.pourcentageNombreDemandeDecaisseDone }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Remboursement terminé (en % de Approuvé)</td>
+                      <td>{{ indicateurs?.nombreDemandeRemboursementDone}}</td>
+                      <td>{{ indicateurs?.pourcentageNombreDemandeRemboursementDone }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Nouveaux bénéficiaires (en % de Approuvé)</td>
+                      <td>{{ indicateurs?.nombreNewBeneficiaire}}</td>
+                      <td>{{ indicateurs?.pourcentageNombreNewBeneficiaire }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Bénéficiaires en dehors des centres urbains (en % de Approuvé)</td>
+                      <td>{{ indicateurs?.nombreBeneficiaireNonCentreUrbain}}</td>
+                      <td>{{ indicateurs?.pourcentageNombreBeneficiaireNonCentreUrbain }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Jeunes = ou inférieur à 35 ans (tout genre) (en % de Approuvé)</td>
+                      <td>{{ indicateurs?.nombreBeneficiaireJeune}}</td>
+                      <td>{{ indicateurs?.pourcentageNombreBeneficiaireJeune }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Femmes (tout age) (en % de Approuvé)</td>
+                      <td>{{ indicateurs?.nombreBeneficiaireFemme}}</td>
+                      <td>{{ indicateurs?.pourcentageNombreBeneficiaireFemme }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Jeunes femmes (en % de femmes "Approuvé")</td>
+                      <td>{{ indicateurs?.nombreBeneficiaireJeuneFemme}}</td>
+                      <td>{{ indicateurs?.pourcentageNombreBeneficiaireJeuneFemme}}</td>
+                    </tr>
+                    <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                    </tr>
+
+                  </ng-container>
+                </tbody>
+              </nz-table>
+            </nz-tab>
+            <nz-tab nzTitle="Volumes des financements - en FCFA">
+              <nz-table nzBordered>
+                <thead>
+                  <tr>
+                    <th nzWidth="50%">Intitulé</th>
+                    <th nzWidth="30%">Unités</th>
+                    <th nzWidth="10%">Pourcentage(%)</th>
+                    <!-- <th nzWidth="60px"></th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container>
+                    <tr class="tr-showed">
+                      <td>Reçu</td>
+                      <td>{{ indicateurs?.volumeDemandeRecu}}</td>
+                      <td></td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Approuvé (en % de Reçu)</td>
+                      <td>{{ indicateurs?.volumeDemandeApprouve}}</td>
+                      <td>{{ indicateurs?.pourcentageVolumeDemandeApprouve }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Rejeté (en % de Reçu)</td>
+                      <td>{{ indicateurs?.volumeDemandeRejete}}</td>
+                      <td>{{ indicateurs?.pourcentageVolumeDemandeRejete }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Décaissement terminé (en % de Aprrouvé)</td>
+                      <td>{{ indicateurs?.volumeDemandeDecaisseDone}}</td>
+                      <td>{{ indicateurs?.pourcentageVolumeDemandeDecaisseDone }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Remboursement terminé (en % de Approuvé)</td>
+                      <td>{{ indicateurs?.volumeDemandeRemboursementDone}}</td>
+                      <td>{{ indicateurs?.pourcentageVolumeDemandeRemboursementDone }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Nouveaux bénéficiaires (en % de Approuvé)</td>
+                      <td>{{ indicateurs?.volumeNewBeneficiaire}}</td>
+                      <td>{{ indicateurs?.pourcentageVolumeNewBeneficiaire }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Bénéficiaires en dehors des centres urbains (en % de Approuvé)</td>
+                      <td>{{ indicateurs?.volumeBeneficiaireNonCentreUrbain}}</td>
+                      <td>{{ indicateurs?.pourcentageVolumeBeneficiaireNonCentreUrbain }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Jeunes = ou inférieur à 35 ans (tout genre) (en % de Approuvé)</td>
+                      <td>{{ indicateurs?.volumeBeneficiaireJeune}}</td>
+                      <td>{{ indicateurs?.pourcentageVolumeBeneficiaireJeune }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Femmes (tout age) (en % de Approuvé)</td>
+                      <td>{{ indicateurs?.volumeBeneficiaireFemme}}</td>
+                      <td>{{ indicateurs?.pourcentageVolumeBeneficiaireFemme }}</td>
+                    </tr>
+                    <tr class="tr-showed">
+                      <td>Jeunes femmes (en % de femmes "Approuvé")</td>
+                      <td>{{ indicateurs?.volumeBeneficiaireJeuneFemme}}</td>
+                      <td>{{ indicateurs?.pourcentageVolumeBeneficiaireJeuneFemme}}</td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </nz-table>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+      </div>
+  </div>
+</div>
+</nz-spin>

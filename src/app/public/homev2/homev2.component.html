@@ -1,0 +1,753 @@
+<nz-layout class="test">
+  <div nz-row nzAlign="middle" nzJustify="center" id="menu-home">
+    <!-- logo de suqali -->
+    <div nz-col [nzXs]="{ offset: 0, span: 6, push: 0 }" [nzSm]="{ offset: 0, span: 6, push: 0 }" [nzMd]="{ span: 2, offset: 0 }" [nzLg]="{ span: 2 }" [nzXl]="{ span: 2 }" routerLink="/homev2">
+      <img src="../../../assets/images/logo-TG_valide.svg" width="150" height="100" alt="Suqali">
+    </div>
+    <!-- logo de suqali -->
+
+    <!-- menu  -->
+    <div nz-col [nzXs]="{ offset: 1, span: 10, push: 0 }" [nzSm]="{ offset: 0, span: 10, push: 0 }" [nzMd]="{ span: 24, offset: 0 }" [nzLg]="{ span: 16 }" [nzXl]="{ span: 18 }">
+      <div nz-row nzJustify="center">
+        <div nz-col> <button class="menu-button" (click)="scrollTo('apropos-header-container')" nz-button nzType="text" nzShape="round"> A PROPOS DE NOUS</button>
+        </div>
+        <div nz-col> <button class="menu-button" (click)="scrollTo('apropos-scrolltag')" nz-button nzType="text" nzShape="round"> FONCTIONNEMENT </button>
+        </div>
+        <!--<div nz-col> <button class="menu-button" (click)="scrollTo('location-scroll-tag')" nz-button nzType="text" nzShape="round"> TROUVER UN AGENT </button>
+        </div>-->
+
+        <div nz-col> <button class="menu-button"  (click)="openFaq()" nz-button   nzType="text" nzShape="round"> FAQ </button>
+        </div>
+        <div nz-col> <button class="menu-button" (click)="scrollTo('contact-scroll-tag')" nz-button nzType="text" nzShape="round"> NOUS CONTACTER </button>
+        </div>
+
+      </div>
+    </div>
+    <!-- menu  -->
+
+    <!-- bouton de connexion  -->
+    <div nz-col [nzXs]="{ offset: 1, span: 6}" [nzSm]="{ offset: 1, span: 6, push: 0 }" [nzMd]="{ span: 2, offset: 0 }" [nzLg]="{ span:4, pull:2 }" [nzXl]="{ span: 3, pull:2 }">
+      <button nz-button class="menu-button" (click)="goToLoginv2()" id="button-connexion" nzType="primary" nzShape="round">
+        <div nz-row nzJustify="center" nzAlign="middle">
+          <div nz-col>
+            <div nz-row nzAlign="middle" nzJustify="center">
+              <i nz-icon nzType="user" nzTheme="outline"></i>
+            </div>
+          </div>
+          <div nz-col>
+            <div nz-row nzJustify="center" nzAlign="middle" >
+              <div nz-col>
+                <span>CONNEXION</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+    <!-- bouton de connexion  -->
+  </div>
+
+  <!-- slider de la page  -->
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <swiper id="swiper-container" [navigation]="true"
+              [autoplay]="{
+        delay: 2500,
+        disableOnInteraction: false
+      }"
+              [loop]="true">
+        <ng-template swiperSlide>
+          <div nz-row class="slide-container" nzAlign="middle" nzJustify="center">
+            <div nz-col style="color : white ; text-align: center; ">
+              <div style="font-size: 50px;">  Seynabou et Fozia,</div>
+              <div style="font-size: 30px;"> des agricultrices bénéficiaires de Fass Touré </div>
+              <div style="font-size:20px;"> ont étendu  leurs opérations à deux nouveaux sites . </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div nz-row class="slide-container-2" nzAlign="middle" nzJustify="center">
+            <div nz-col style="color : white ; text-align: center; ">
+              <div style="font-size: 50px;"> Ndeye Oumy </div>
+              <div style="font-size: 30px;"> Une grande styliste bénéficiaire </div>
+              <div style="font-size:20px;"> a étendu son atelier et recruter 5 personnes. </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div nz-row class="slide-container-3" nzAlign="middle" nzJustify="center">
+            <div nz-col style="color : white ; text-align: center; ">
+              <div style="font-size: 50px;">  Amadou </div>
+              <div style="font-size: 30px;"> propriétaire bénéficiaire d'une ferme à Touba </div>
+              <div style="font-size:20px;">  a modernisé ses usines de fabrication et embauché 30 nouveaux employés. </div>
+            </div>
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+  <!-- slider de la page  -->
+
+  <!-- Statistique de la plateforme  -->
+  <div nz-row nzJustify="center" id="stat-header-container">
+    <div nz-col nzSpan="22">
+
+      <div nz-row>
+        <div nz-col id="stat-header">
+          CHIFFRES CLÉS
+        </div>
+      </div>
+
+      <div nz-row nzJustify="center">
+        <div nz-col nzSpan="8" id="stat-decaisses"  style="margin-top: 2.5vw !important;">
+          <div id="somme-decaisse" style="font-size: 2.5vw !important;"> {{indicateurs?.volumeFinancement | currency: "XOF": "symbol": "1.0": "fr"}} </div>
+          <div id="texte-decaisse" style="font-size: 2.5vw !important;"> de financements décaissés </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div nz-row nzJustify="center" class="stat-content-container">
+    <div nz-col nzSpan="24">
+
+      <div nz-row nzJustify="center">
+
+        <div nz-col [nzXs]="{ span: 8, offset: 1}" [nzSm]="{ span: 8, offset: 1 }" [nzMd]="{ span: 3, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
+          <app-stat-card imgSrc="../../../assets/images/image-statistique/benef-entreprise.png"
+                         [statNumber]="indicateurs?.nombreBeneficiaireEntreprise"
+                         statText="entreprises bénéficiaires">
+          </app-stat-card>
+        </div>
+
+        <div nz-col [nzXs]="{ span: 8, offset: 1}" [nzSm]="{ span: 8, offset: 1 }" [nzMd]="{ span: 3, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
+
+          <app-stat-card imgSrc="../../../assets/images/image-statistique/benef-date.png"
+                         [statNumber]="indicateurs?.nombreBeneficiaireMicroEntrepreneur"
+                         statText="micro-entrepreneures bénéficiaires">
+
+          </app-stat-card>
+        </div>
+
+        <div nz-col [nzXs]="{ span: 8, offset: 1}" [nzSm]="{ span: 8, offset: 1 }" [nzMd]="{ span: 3, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
+          <app-stat-card imgSrc="../../../assets/images/image-statistique/benef-femme.png"
+                         statNumber="{{indicateurs?.pourcentageBeneficiaireFemme}}%"
+                         statText="de bénéficiaires femmes financées">
+          </app-stat-card>
+        </div>
+
+        <div nz-col [nzXs]="{ span: 8, offset: 1}" [nzSm]="{ span: 8, offset: 1 }" [nzMd]="{ span: 3, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
+          <app-stat-card imgSrc="../../../assets/images/image-statistique/benef-jeune.png"
+                         statNumber="{{indicateurs?.pourcentageBeneficiaireJeune}}%"
+                         statText="de jeunes bénéficiaires financés">
+          </app-stat-card>
+        </div>
+
+        <div nz-col [nzXs]="{ span: 8, offset: 1}" [nzSm]="{ span: 8, offset: 1 }" [nzMd]="{ span: 3, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
+          <app-stat-card imgSrc="../../../assets/images/image-statistique/benef-rural.png"
+                         statNumber="{{indicateurs?.pourcentageBeneficiaireZoneRurale}}%"
+                         statText="de bénéficiaires dans les zones rurales">
+          </app-stat-card>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Statistique de la plateforme  -->
+
+  <!-- A propos de  -->
+  <div nz-row nzJustify="end" id="apropos-header-container" >
+    <div nz-col style="margin-right: 100px;" id="apropos-header"  >
+      {{ "à propos de nous"  | uppercase }}
+    </div>
+  </div>
+
+  <div nz-row id="apropos-container" >
+
+    <div nz-col nzSpan="24" id="apropos-content-container">
+      <!-- content a propos -->
+      <div nz-row style="height: inherit;">
+        <div nz-col [nzXs]="{ span: 12 }" [nzSm]="{ span: 12 }" [nzMd]="{ span: 12 }" [nzLg]="{ span:12 }" [nzXl]="{ span: 12 }">
+          <img src="../../../assets/images/aproposdenous.png" class="photo-apropos-v2" width="100%" alt="">
+        </div>
+        <div nz-col [nzXs]="{ span: 12 }" [nzSm]="{ span: 12 }" [nzMd]="{ span: 12 }" [nzLg]="{ span:12 }" [nzXl]="{ span: 12 }" id="apropos-content-text" style="height:inherit;" >
+          <div nz-row nzJustify="center"   style="height: inherit;">
+            <div nz-col nzSpan="13" id="apropos-text" style="overflow-y: auto" >
+              <div nz-row nzAlign="bottom" style="height: 100%;">
+                <div nz-col>
+                  Suqali est une plateforme digitale conçue pour favoriser l'inclusion financière. Elle est destinée à tous les micro-entrepreneurs,
+                  et micros, petites et moyennes entreprises des 14 régions du Sénégal dans le but de faciliter leur accès au financement.
+                </div>
+              </div>
+            </div>
+            <div nz-col nzSpan="12" style="height: 40%;" >
+              <button nz-button nzType="primary" id="button-apropos" (click)="goAPropos()" style="font-size: 2.5vw !important;">
+                En Savoir plus
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content a propos -->
+    </div>
+  </div>
+  <!-- A propos de  -->
+
+  <!-- Fonctionnement  -->
+  <div nz-row >
+
+    <!-- fonctionnement header  -->
+    <div nz-col nzSpan="22" id="apropos-scrolltag">
+
+      <div nz-row >
+        <div nz-col nzSpan="6" >
+          <div nz-row nzJustify="center" >
+            <div nz-col nzSpan="24" class="header-text" style="text-align: center;">
+              DEVENIR BÉNÉFICIAIRE
+            </div>
+            <div nz-col nzSpan="14" class="header-line" >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- fonctionnement header  -->
+
+    <!-- fonctionnement body -->
+    <div nz-col nzSpan="24">
+      <div nz-row  id="fonc-body">
+        <div nz-col nzSpan="16" id="fonc-body-text" >
+          <div nz-row  nzAlign="middle" style="height: inherit;color:black">
+            <div nz-col nzSpan="2" style="height: 221px;">
+              <div nz-row style="height: inherit;">
+                <div nz-col nzSpan="15" class="desc-step-number">
+                  <div nz-row nzJustify="center"  style="height: 100%;">
+                    1
+                  </div>
+                </div>
+
+                <div nz-col nzSpan="15" class="desc-step-number" style="margin-top : 30px" >
+                  <div nz-row nzJustify="center"  style="height: 100%;">
+                    2
+                  </div>
+                </div>
+
+                <div nz-col nzSpan="15" class="desc-step-number" style="margin-top : 30px">
+                  <div nz-row nzJustify="center"  style="height: 100%;">
+                    3
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div nz-col nzSpan="1">
+              <img src="../../../assets/images/ligne-fonctionnement.png" alt="">
+            </div>
+            <div nz-col nzSpan="19" style="height: 221px;" >
+              <div nz-row style="height: inherit; overflow-y: auto">
+                <div nz-col style="height: auto; "  >
+                  <div nz-row >
+                    <div nz-col nzSpan="24" class="title-step size-policy-step" >
+                      Créer votre compte  Inscrivez-vous
+                    </div>
+                    <div nz-col nzSpan="20" class="title-step-content" >
+                      Inscrivez-vous gratuitement sur la plateforme
+                      et présentez-nous votre activité.
+                    </div>
+                  </div>
+                </div>
+                <div nz-col style="height: auto; margin-top: 30px; " >
+                  <div nz-row >
+                    <div nz-col nzSpan="24" class="title-step size-policy-step" >
+                      Soumettre une demande
+                      de financement
+                    </div>
+                    <div nz-col nzSpan="20" class="title-step-content" >
+                      Soumettez votre demande de financement via notre formulaire afin de vous orienter vers nos instutions financières partenaires.
+                    </div>
+                  </div>
+                </div>
+                <div nz-col style="height: auto; margin-top: 30px;" >
+                  <div nz-row >
+                    <div nz-col nzSpan="24" class="title-step size-policy-step" >
+                      Bénéficier du financement
+                    </div>
+                    <div nz-col nzSpan="20" class="title-step-content" >
+                      Si votre demande est approuvée par nos partenaires, le montant de votre financement demandé vous sera versé par intervalles.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div nz-col nzSpan="8" style="height: inherit;">
+          <img src="../../../assets/images/image-comment-ca-marche.png" width="100%" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- fontionnement  body  -->
+  </div>
+  <!-- Fonctionnement  -->
+
+
+  <!-- Partenaires  -->
+  <div nz-row id="partner-scroll-tag">
+    <div nz-col nzSpan="22" >
+
+      <div nz-row nzJustify="center" >
+        <div nz-col nzSpan="6"  >
+          <div nz-row nzJustify="center" >
+            <div nz-col nzSpan="24" class="header-text" style="text-align: center;">
+              {{ "Nos partenaires" | uppercase }}
+            </div>
+            <div nz-col nzSpan="14" class="header-line" >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div nz-row nzJustify="center" class="header-description">
+        nous travaillons avec plusieurs structures pour le  financement
+      </div>
+
+      <div nz-row nzJustify="center" nzAlign="middle"  >
+        <div nz-col nzSpan="14" style="height: 500px;">
+          <swiper
+            [slidesPerView]="3"
+            [grid]="{
+              rows: 2
+            }"
+            [spaceBetween]="5"
+            [pagination]="{
+              clickable: true
+            }"
+
+            [autoplay]="{
+              delay: 2500,
+              disableOnInteraction: false
+            }"
+
+            [loopFillGroupWithBlank]="true"
+            style="height:inherit">
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/WIC Capital Logo.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/incubateur_ugb.jpg">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/LOGO BNDE.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/LOGO CTIC .png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/LOGO I-UMCEC HD.jpg">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/Logo RED .png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/Logocaurie_A4.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/makesense.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/Brightmore Capital - Logo.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/IMPACTHUB.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/ISM.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/UADB.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/DER.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/impact4energy.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/uaszinnovzig.jpeg">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/AMI.jpg">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+            <app-partner-card srcImage="../../../assets/images/partenaires-confiance/GAPP-1.png">
+            </app-partner-card>
+          </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/PYLON.jpg">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/NCS.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/PPI.jpg">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/SEKOYA.png">
+              </app-partner-card>
+            </ng-template>
+            <ng-template swiperSlide class="swiper-slide-element">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/CAPER.jpg">
+              </app-partner-card>
+            </ng-template>
+          </swiper>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Partenaires  -->
+
+
+
+<!--  &lt;!&ndash; Localisation des points Suqali  &ndash;&gt;
+  <div nz-row nzJustify="center" id="location-scroll-tag" >
+
+    <div nz-col nzSpan="22">
+
+      &lt;!&ndash; Header  &ndash;&gt;
+      <div nz-row nzJustify="center" style="margin-top : 30px ; margin-bottom: 40px;" >
+        <div nz-col nzSpan="8"  >
+          <div nz-row nzJustify="center" >
+            <div nz-col nzSpan="24" class="header-text" >
+              {{ "NOUS SOMMES près de chez vous" | uppercase }}
+            </div>
+            <div nz-col nzSpan="14" class="header-line" >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      &lt;!&ndash; Header  &ndash;&gt;
+      &lt;!&ndash; content &ndash;&gt;
+      <div nz-row id="localisation-container">
+        &lt;!&ndash; part for search &ndash;&gt;
+        <div nz-col nzSpan="8">
+          <div nz-row nzJustify="center" nzAlign="middle" style="height: 100%;">
+
+            <div nz-col nzSpan="20">
+              <div id="search-description">Trouver un Agent pour
+                vous enregistrer physiquement</div>
+              <nz-input-group [nzPrefix]="suffixIconSearch">
+                <input type="text" nz-input placeholder="input search text" />
+              </nz-input-group>
+              <ng-template #suffixIconSearch>
+                <img src="../../../assets/images/icone-home/icone-recherche.png " alt="">
+              </ng-template>
+            </div>
+
+          </div>
+
+        </div>
+        &lt;!&ndash; part for search &ndash;&gt;
+
+
+        &lt;!&ndash; part for map &ndash;&gt;
+        <div nz-col nzSpan="16">
+
+          &lt;!&ndash; MAP  &ndash;&gt;
+          <div nz-row nzJustify="center" nzAlign="middle" class="map-localisation" >
+            <div nz-col nzSpan="24" id="map">
+              <agm-map style="border-radius : 12px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" >
+                <agm-direction *ngIf="origin && destination" [origin]="origin" [destination]="destination">
+                </agm-direction>
+                <agm-marker *ngFor="let geo of geoPositionList.DATA" [latitude]="parseNumber(geo._geolocalisation_latitude)"
+                            [longitude]="parseNumber(geo._geolocalisation_longitude)"
+                            [iconUrl]="$any(iconUrlValue)" (markerClick)="clickedMarker(infowindow)">
+                  <agm-info-window [latitude]="lat" [longitude]="lng" #infowindow>
+                    <strong>
+                      <p>{{geo.AGENT_PHONE_NUMBER.split('-')[0]}}</p>
+                      <button nz-button nzType="primary" (click)="getDirection(geo)" style="max-height: 22px;font-size: 10px;font-weight: bold;">Direction</button>
+                      <button (click)="setZoom(geo)" nz-button nzType="primary" style="max-height: 22px;font-size: 10px;font-weight: bold; margin-left: 67px;">Zoom ici</button>
+                    </strong>
+                  </agm-info-window>
+                </agm-marker>
+                <agm-marker [latitude]="lat" [longitude]="lng" [label]='labelCurrentPerson'>
+                </agm-marker>
+              </agm-map>
+            </div>
+          </div>
+          &lt;!&ndash; MAP  &ndash;&gt;
+        </div>
+        &lt;!&ndash; part for map &ndash;&gt;
+      </div>
+      &lt;!&ndash; content &ndash;&gt;
+    </div>
+  </div>-->
+
+  <!-- Localisation des points Suqali  -->
+
+
+  <!-- Nous contacter  -->
+  <div nz-row nzJustify="center" id="contact-scroll-tag" style=" background-color: #96b7d4 ;" >
+    <div nz-col nzSpan="22" >
+
+      <!-- Header  -->
+      <div nz-row nzJustify="center" style="margin-top : 100px ; margin-bottom: 40px;" >
+        <div nz-col nzSpan="8"  >
+          <div nz-row nzJustify="center" >
+            <div nz-col nzSpan="24" class="header-text" >
+              {{ "CONTACTEZ-NOUS" | uppercase }}
+            </div>
+            <div nz-col nzSpan="14" class="header-line" >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Header  -->
+
+      <!-- content -->
+
+      <div nz-row nzJustify="center" >
+
+        <!-- Part with the logo and call information  -->
+
+        <div nz-col nzSpan="22">
+
+          <div nz-row >
+            <div nz-col [nzXs]="{ span: 10, offset: 1}" [nzSm]="{ span: 10, offset: 1 }" [nzMd]="{ span: 10, offset: 1 }" [nzLg]="{ span:10, offset: 1 }" [nzXl]="{ span: 10, offset: 1 }">
+              <div nz-row nzJustify="center" >
+                <div nz-col nzSpan="20" >
+                  <div nz-row nzJustify="center" >
+                    <img src="../../../assets/images/icone-home/mail.png" height="62"  alt="">
+                  </div>
+                </div>
+                <div nz-col nzSpan="20" style="margin-top : 20px" >
+                  <div nz-row nzJustify="center" class="head-text-contact">
+                    info@suqali.com
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div nz-col [nzXs]="{ span: 10, offset: 1}" [nzSm]="{ span: 10, offset: 1 }" [nzMd]="{ span: 10, offset: 1 }" [nzLg]="{ span:10, offset: 1 }" [nzXl]="{ span: 10, offset: 1 }">
+              <div nz-row nzJustify="center" >
+                <div nz-col nzSpan="20" >
+                  <div nz-row nzJustify="center" >
+                    <img src="../../../assets/images/icone-home/call.png" alt="">
+                  </div>
+                </div>
+                <div nz-col nzSpan="20" style="margin-top : 20px " >
+                  <div nz-row nzJustify="center" class="head-text-contact" >
+                    +221 76 624 04 60
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Part with the logo and call information  -->
+
+          <!-- Nous Contacter Formulaire -->
+          <div nz-row nzJustify="center" style="margin-top : 20px; margin-bottom: 20px; " >
+            <div nz-col nzSpan="20" id="header-form-contact">
+              Écrivez-nous :
+            </div>
+          </div>
+          <form style="height: fit-content;" [formGroup]="formulaireContact" >
+            <div nz-row nzJustify="center" style="margin-top : 20px " >
+
+              <div nz-col  nzSpan="10" >
+                <div nz-row nzJustify="start" >
+                  <div nz-col nzSpan="22">
+                    <input type="text" formControlName="nomPrenom" class="contact-input" placeholder="Fozia Gning"  >
+                    <div  *ngIf="formulaireContact.controls.nomPrenom.errors && submitted ">
+                      <span style="color: red " *ngIf="formulaireContact.controls.nomPrenom.errors.required" > Ce champ est obligatoire </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div nz-col nzSpan="10"  >
+                <div nz-row nzJustify="end" >
+                  <div nz-col nzSpan="22">
+                    <input type="text" formControlName="email" class="contact-input" placeholder="fozia@exemple.com" >
+                    <div  *ngIf="formulaireContact.controls.email.errors && submitted  ">
+                      <span style="color: red "  *ngIf="formulaireContact.controls.email.errors.required" > Ce champ est obligatoire </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div nz-row nzJustify="center" style="margin-top : 20px ">
+              <div nz-col nzSpan="20">
+                <input type="text" formControlName="subject" class="contact-input" placeholder="Objet de votre mail" >
+                <div  *ngIf="formulaireContact.controls.subject.errors && submitted ">
+                  <span style="color: red " *ngIf="formulaireContact.controls.subject.errors.required" > Ce champ est obligatoire </span>
+                </div>
+              </div>
+            </div>
+
+            <div nz-row nzJustify="center" style="margin-top:20px" >
+              <div nz-col nzSpan="20">
+                <textarea name="" id="" formControlName="message" class="contact-input textarea-contact" placeholder="Votre message"  ></textarea>
+                <div  *ngIf="formulaireContact.controls.message.errors && submitted ">
+                  <span style="color: red " *ngIf="formulaireContact.controls.message.errors.required" > Ce champ est obligatoire </span>
+                </div>
+              </div>
+            </div>
+
+            <div nz-row nzJustify="center"  style="margin-top:20px; margin-bottom: 30px;">
+              <div nz-col nzSpan="20" >
+                <div nz-row nzJustify="end">
+                  <button nz-button nzType="primary" class="send-button" (click)="envoyerMessage()" style="font-size: 2.5vw !important;">Envoyer</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+          <div nz-row nzJustify="center" style="margin-bottom: 40px;">
+            <div nz-col nzSpan="16" >
+
+              <div nz-row nzJustify="center" >
+                <div nz-col [nzXs]="{ span: 5, offset: 1}" [nzSm]="{ span: 5, offset: 1 }" [nzMd]="{ span: 5, offset: 1 }" [nzLg]="{ span:5, offset: 1 }" [nzXl]="{ span: 5, offset: 1 }">
+                  <img src="../../../assets/images/icone-home/call-center.png" width="50" height="50" alt="">
+                </div>
+                <div nz-col [nzXs]="{ span: 18, offset: 1}" [nzSm]="{ span: 18, offset: 1 }" [nzMd]="{ span: 18, offset: 1 }" [nzLg]="{ span:18, offset: 1 }" [nzXl]="{ span: 18, offset: 1 }">
+                  <div nz-row nzJustify="center" >
+                    <div nz-col nzSpan="20" style="font-size: 2.5vw;
+                      color: #000000;
+                      font-weight: 200;">
+                      Service client disponible
+                    </div>
+                    <div nz-col nzSpan="20" style="font-size: 2.5vw;
+                      color: #000000;
+                      font-weight: bold;">
+                      7jours/7 de 09H à 18H
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Nous Contacter Formulaire -->
+        </div>
+      </div>
+
+      <!-- content -->
+
+    </div>
+  </div>
+
+  <!-- Nous contacter  -->
+
+  <!-- footer  -->
+
+  <div nz-row nzJustify="center" nzAlign="middle" id="footer-home" >
+    <div nz-col nzSpan="24">
+
+      <div nz-row nzJustify="space-between" >
+
+        <div nz-col [nzXs]="{ span: 22}" [nzSm]="{ span: 22 }" [nzMd]="{ span: 22}" [nzLg]="{ span:24 }" [nzXl]="{ span: 24, offset: 1 }" >
+
+          <div nz-row  >
+            <div nz-col [nzXs]="{ span: 12, push: 3 }" [nzSm]="{ span: 12, push: 3 }" [nzMd]="{ span: 4, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
+              <img src="../../../assets/images/logo-TG_valide.svg" height="70" alt="">
+            </div>
+            <div nz-col [nzXs]="{ span: 12, push: 3 }" [nzSm]="{ span: 12, push: 3 }" [nzMd]="{ span: 4, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 2, offset: 1 }">
+              <div nz-row nzJustify="start" nzAlign="middle" style="height: 100%" >
+                <div nz-col >
+                  <img src="../../../assets/images/image-footer/Masrecard fondation.png" alt="">
+                </div>
+              </div>
+            </div>
+            <div nz-col [nzXs]="{ span: 4, push: 1, offset: 1}" [nzSm]="{ span: 4, offset: 1}" [nzMd]="{ span: 5, offset: 1, push: 3 }" [nzLg]="{ span:2, offset: 1 }" [nzXl]="{ span: 2, offset: 1 }" style="color : white ">
+              suivez-nous sur
+            </div>
+            <div nz-col [nzXs]="{ span: 3, offset: 1 }" [nzSm]="{ span: 3, offset: 1 }" [nzMd]="{ span: 3, offset: 1, push: 3 }" [nzLg]="{ span:2, offset: 1 }" [nzXl]="{ span: 1, offset: 1 }">
+              <a href="https://twitter.com/SuqaliSN" target="_blank">
+                <img src="assets/images/Social Icons/White/twitter.svg" height="40" width="40">
+              </a>
+            </div>
+            <div nz-col [nzXs]="{ span: 3, offset: 1}" [nzSm]="{ span: 3, offset: 1 }" [nzMd]="{ span: 3, offset: 1, push: 3 }" [nzLg]="{ span:2, offset: 1 }" [nzXl]="{ span: 1, offset: 1 }">
+              <a href="https://www.facebook.com/Suqali-100680222470713" target="_blank" >
+                <img src="../../../../../../../assets/images/Social Icons/White/facebook.svg" alt=""height="40" width="40">
+              </a>
+            </div>
+            <div nz-col [nzXs]="{ span: 3, offset: 1}" [nzSm]="{ span: 5, offset: 1 }" [nzMd]="{ span: 3, offset: 1, push: 3 }" [nzLg]="{ span:2, offset: 1 }" [nzXl]="{ span: 1, offset: 1 }">
+              <a href="https://www.linkedin.com/company/suqalisn/" target="_blank">
+                <img src="../../../assets/images/Social Icons/White/linkedin.svg" alt=""height="40" width="40">
+              </a>
+            </div>
+            <div nz-col [nzXs]="{ span: 3, offset: 1}" [nzSm]="{ span: 5, offset: 1 }" [nzMd]="{ span: 3, offset: 1, push: 3 }" [nzLg]="{ span:2, offset: 1 }" [nzXl]="{ span: 1, offset: 1 }">
+              <a href="https://www.instagram.com/suqali.officiel/" target="_blank">
+                <img src="assets/images/Social Icons/White/insta.jpeg" alt="" height="40" width="40">
+              </a>
+            </div>
+            <div nz-col [nzXs]="{ span: 2, offset: 1}" [nzSm]="{ span: 3, offset: 1 }" [nzMd]="{ span: 3, offset: 1, push: 3 }" [nzLg]="{ span:2, offset: 1 }" [nzXl]="{ span: 1, offset: 1 }">
+              <a href="https://www.youtube.com/channel/UCTCjqZgCsIhpGlnu3QB-vUA" target="_blank">
+                <img src="../../assets/images/Social Icons/White/Youtube.svg" alt=""height="40" width="40">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!--<div nz-col [nzXs]="{ span: 14, offset: 1}" [nzSm]="{ span: 5, offset: 1 }" [nzMd]="{ span: 5, offset: 1 }" [nzLg]="{ span:5, offset: 1 }" [nzXl]="{ span: 5, offset: 1 }">
+          <div nz-row nzAlign="middle" nzJustify="end" style="height: 100%;" >
+            <div nz-col nzSpan="6" style="color : white ">
+              suivez-nous sur
+            </div>
+            <div nz-col nzSpan="3">
+              <a href="https://twitter.com/SuqaliSN" target="_blank">
+                <img src="../../assets/images/Social Icons/White/twitter.svg" height="40" width="40">
+              </a>
+            </div>
+            <div nz-col nzSpan="3">
+              <a href="https://www.facebook.com/Suqali-100680222470713" target="_blank" >
+                <img src="../../assets/images/Social Icons/White/facebook.svg" alt=""height="40" width="40">
+              </a>
+            </div>
+            <div nz-col nzSpan="3">
+              <a href="https://www.linkedin.com/company/suqalisn/" target="_blank">
+                <img src="../../assets/images/Social Icons/White/linkedin.svg" alt=""height="40" width="40">
+              </a>
+            </div>
+            <div nz-col nzSpan="3">
+              <a href="https://www.youtube.com/channel/UCTCjqZgCsIhpGlnu3QB-vUA" target="_blank">
+                <img src="../../assets/images/Social Icons/White/Youtube.svg" alt=""height="40" width="40">
+              </a>
+            </div>
+          </div>
+        </div>-->
+      </div>
+
+      <div nz-row >
+        <div nz-col class="footer-text-sponsor" nzSpan="24" style="color : white ; font-size : 10px ">
+          Cette plateforme est sponsorisée par la Mastercard Foundation.
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- footer  -->
+</nz-layout>

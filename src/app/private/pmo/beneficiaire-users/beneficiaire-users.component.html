@@ -1,0 +1,1104 @@
+<nz-spin [nzSpinning]="isSpinning || isSpinningPME || isSpinningME || isSpinningGIE" [nzDelay]="500">
+  <div nz-row class="content-container" nzJustify="center">
+    <div nz-col nzSpan="20">
+      <!-- Demande et Budget  Header -->
+      <div nz-row nzJustify="space-between" nzAlign="middle" class="demande-buget-container">
+        <div nz-col nzSpan="5" class="demande-text">
+          Bénéficiaires
+        </div>
+        <div *ngIf="isActivite2 || isPMOSpecial" nz-col nzSpan="4"
+             style="position: absolute; right: 10%; margin-top: 10px;" nzJustify="space-between" nzAlign="middle"
+             class="demande-buget-container">
+          <div class="steps-action marge-form" id="section_button_entreprise">
+            <button nz-button nzType="primary" nzShape="round" nz-popover [nzPopoverContent]="contentTemplate">
+              Ajouter
+            </button>
+          </div>
+        </div>
+        <div nz-col nzSpan="4" style="position: absolute; right: 0; margin-top: 10px;" nzJustify="space-between"
+             (click)="showModal()" nzAlign="middle" class="demande-buget-container">
+          <div class="steps-action marge-form" id="section_button_entreprise">
+            <button nz-button nzType="primary" nzShape="round" class="boutton-suivant">
+              Exporter
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #contentTemplate>
+        <div nz-row nzJustify="space-around" nzAlign="middle" class="inscription-content"
+             style="max-width: 400px; width: fit-content; min-height: 300px; height: fit-content;">
+
+          <div nz-col nzSpan="8" nzXs="20" nzSm="8" nz-tooltip nzTooltipTitle="Toute personne physique exerçant, à titre individuel,
+                    une activité économique et dont le chiffre d’affaires annuel est
+                    inférieur ou égal à 50 millions FCFA"
+               routerLink="/switch/beneficiaire-me/{{idPmo}}">
+            <div nz-row nzJustify="center">
+              <div nz-col nzSpan="20"><img src="../../../assets/images/petite.png" alt="" class="dimension-bouton">
+              </div>
+              <div nz-col nzSpan="20" class="text-center"> Micro Entrepeneur</div>
+              <button nzSize="large" style="margin-left: 11px;" nz-button nzShape="round" nz-popover>
+                Inscrire
+              </button>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="7" nzXs="20" nzSm="8" routerLink="/switch/beneficiaire-pme/{{idPmo}}" nz-tooltip
+               nzTooltipTitle="Toute personne physique ou morale, exerçant une activité économique en société
+                  (ex: entreprise individuelle, SARL, SUARL, SAS, SA, SAU, etc.) et dont le chiffre d’affaires annuel hors taxes est
+                  inférieur ou égal à 300 millions FCFA.">
+            <div nz-row nzJustify="center">
+              <div nz-col nzSpan="20"><img src="../../../assets/images/moyenne.png" alt="" class="dimension-bouton">
+              </div>
+              <div nz-col nzSpan="20" class="text-center"> Entreprise</div>
+              <button nzSize="large" style="margin-left: 11px; margin-top:22px;" nz-button nzShape="round" nz-popover>
+                Inscrire
+              </button>
+            </div>
+          </div>
+          <div nz-col nzSpan="7" nzXs="20" nzSm="8" routerLink="/switch/beneficiaire-gie/{{idPmo}}" nz-tooltip
+               nzTooltipTitle="Tout groupe de personnes exerçant une activité économique en GIE dont le revenu annuel total
+                de tous les membres est inférieur ou égal à 300 millions FCFA">
+            <div nz-row nzJustify="center">
+              <div nz-col nzSpan="20"><img src="../../../assets/images/gie.png" alt="" class="dimension-bouton">
+              </div>
+              <div nz-col nzSpan="20" class="text-center"> GIE</div>
+              <button nzSize="large" style="margin-left: 11px; margin-top:22px;" nz-button nzShape="round" nz-popover>
+                Inscrire
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <nz-modal [(nzVisible)]="isVisible" style="margin-left: 0px;" [nzWidth]="700" nzTitle="Choix date"
+                (nzOnCancel)="handleCancel()">
+        <div *nzModalContent>
+          <form nz-form [formGroup]="demandeForm">
+            <div nz-row nzAlign="middle" nzJustify="space-between">
+              <div nz-col nzSpan="12">
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-form-label nzFor="55">Date début</nz-form-label>
+                    <nz-date-picker nzFormat="dd/MM/yyyy" formControlName="beginDate"></nz-date-picker>
+                    <!-- <input type="date" [max]="dateMaxCreationString" nz-input name="55" id="55" formControlName="date" /> -->
+                    <div
+                      *ngIf="demandeForm.controls.beginDate.hasError('required') && demandeForm.controls.beginDate.touched">
+                      <span id="errorMessage">Date obligatoire</span> <br>
+                    </div>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <!-- <div nz-col nzSpan="3">
+
+              </div> -->
+              <div nz-col nzSpan="12">
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-form-label nzFor="55">Date fin</nz-form-label>
+                    <nz-date-picker nzFormat="dd/MM/yyyy" formControlName="endDate"></nz-date-picker>
+                    <!-- <input type="date" [max]="dateMaxCreationString" nz-input name="55" id="55" formControlName="date" /> -->
+                    <div
+                      *ngIf="demandeForm.controls.endDate.hasError('required') && demandeForm.controls.endDate.touched">
+                      <span id="errorMessage">Date obligatoire</span> <br>
+                    </div>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+
+
+          </form>
+        </div>
+        <div *nzModalFooter>
+          <!-- <span>Modal Footer:</span> -->
+          <button nz-button nzType="default" (click)="handleCancel()">Annuler</button>
+          <button nz-button nzType="primary" [disabled]="!demandeForm.valid" (click)="handleOk()">Valider</button>
+        </div>
+      </nz-modal>
+      <nz-modal [(nzVisible)]="isVisibleError" nzTitle="Erreur" (nzOnCancel)="handleCancelError()">
+        <div *nzModalContent>
+          {{erreurMsg}}
+        </div>
+        <div *nzModalFooter>
+          <!-- <span>Modal Footer:</span> -->
+          <button nz-button nzType="default" (click)="handleCancelError()">Annuler</button>
+          <button nz-button nzType="primary" (click)="handleOkError()">Ok</button>
+        </div>
+      </nz-modal>
+
+      <!-- Tabs de de beneficiaire  -->
+      <div nz-row class="tabs-container">
+        <!-- <nz-modal [(nzVisible)]="isVisible" nzTitle="Description demande" (nzOnCancel)="handleCancel()">
+          <div *nzModalContent>
+            <description-demande >
+
+            </description-demande>
+          </div>
+          <div *nzModalFooter>
+            <button nz-button nzType="default" (click)="handleCancel()">Fermer</button>
+          </div>
+        </nz-modal> -->
+        <div nz-col nzSpan="24">
+          <nz-tabset>
+            <nz-tab nzTitle="Entreprise">
+              <nz-table #nzTable [nzData]="listOfDisplayDataPME" nzTableLayout="fixed" [nzScroll]="{ x: '1150px' }"
+                        nzShowSizeChanger
+                        [nzFrontPagination]="false"
+                        [nzLoading]="loading"
+                        [nzTotal]="totalPME"
+                        [nzPageSize]="pageSize"
+                        [nzPageIndex]="pageIndex"
+                        (nzQueryParams)="onQueryParamsChangePME($event)">
+                <thead>
+                <tr>
+                  <th nzCustomFilter [nzSortOrder]="beneficiaireColumn.sortOrder" [nzSortFn]="beneficiaireColumn.sortFn"
+                      [nzSortDirections]="beneficiaireColumn.sortDirections">
+                    ID Bénéficiaire
+                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
+                                       [nzDropdownMenu]="menu">
+                      <i nz-icon nzType="search"></i>
+                    </nz-filter-trigger>
+                  </th>
+                  <th
+                    *ngFor="let column of listOfColumns"
+                    [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections"
+                    [nzColumnKey]="column.columnKey"
+                  >
+                    {{ column.name }}
+                  </th>
+                  <th
+                    *ngFor="let column of listOfColumnsBis"
+                    [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections"
+                    [nzFilterMultiple]="column.filterMultiple"
+                    [nzFilters]="column.listOfFilter"
+                    [nzFilterFn]="column.filterFn"
+                    [nzColumnKey]="column.columnKey"
+                  >
+                    {{ column.name }}
+                  </th>
+                  <!-- <th>Actions</th> -->
+                  <th nzWidth="60px"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let data of nzTable.data">
+                  <!-- <description-demande [infoDemande]="currentInfo" *ngIf="!currentInfo" > </description-demande> -->
+                  <tr class="tr-showed">
+                    <td>#{{ data.id }}</td>
+                    <td>
+                      <span *ngIf="data?.typeBeneficiaire?.trim().toLowerCase()=='me'">
+                        {{data?.prenom}} {{data?.nom}}
+                      </span>
+                      <span *ngIf="data?.typeBeneficiaire?.trim().toLowerCase()=='pme'">
+                        {{data?.denominationSociale}}
+                      </span>
+                      <span *ngIf="data?.typeBeneficiaire?.trim().toLowerCase()=='gie'">
+                        {{data?.nom}}
+                      </span>
+                    </td>
+                    <!-- <td>{{ getPersonneContactInfo(data)?.prenom }}</td> -->
+                    <td>
+                      <!-- {{ getPersonneContactInfo(data)?.numeroMobile }} -->
+                      {{data.telephone}}
+                    </td>
+                    <!-- <td>{{ data.typeBeneficiaire }}</td> -->
+                    <td>{{ data.dateCreation | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td>{{ getStatusLibelle(data.statut) }}</td>
+                    <td [nzExpand]="expandSet.has(data.id+'')"
+                        (nzExpandChange)="onExpandChange(data.id+'', $event)"></td>
+                  </tr>
+                  <tr [nzExpand]="expandSet.has(data.id+'')" class="tr-expanded"
+                      style="height: 160px;border: 1px solid #EBEBEB; ">
+                    <div nz-row nzAlign="middle" style="height: auto !important; overflow: auto !important ">
+
+                      <!-- Right part of detail benef  -->
+                      <div nz-col nzSpan="18">
+                        <!-- Right part top header  -->
+                        <div nz-row style="margin-bottom: 15px;">
+                          <!-- image of the detail  -->
+                          <div nz-col nzSpan="1">
+                            <img src="../../../../assets/images/pmo/logo-detail" width="30" height="30" alt="">
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                          <!-- image of the detail  -->
+
+                          <!-- Nom benef et non entreprise  -->
+                          <div nz-col nzSpan="6">
+                            <div nz-row>
+                              <div nz-col nzSpan="24" class="nom-entreprise-benef" style="font-size: small">
+                                {{data?.denominationSociale}}
+                              </div>
+                            </div>
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                          <!-- Nom benef et non entreprise  -->
+
+                          <!-- bouton detail  -->
+                          <div nz-col nzSpan="7">
+                            <!-- Intitulé offre -->
+                            <div nz-row>
+                              <div nz-col nzSpan="24" class="label-detail-tr">
+                                Chiffre d'affaire hors taxe
+                              </div>
+                            </div>
+                            <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                            <div nz-row style="margin-bottom: 25px;">
+                              <div nz-col nzSpan="24" class="label-detail-tr-content">
+                                <!-- 250,000 CFA -->
+                                {{data.activiteBeneficiaires[0]?.chiffreAffaireHorsTaxeAnMois2}} CFA
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- bouton detail  -->
+
+                          <!-- Type beneficiaire -->
+                          <div nz-col nzSpan="7">
+                            <!-- Intitulé offre -->
+                            <div nz-row nzJustify="space-between">
+                              <div nz-col nzSpan="24" class="label-detail-tr">
+                                Adresse
+                              </div>
+                            </div>
+
+                            <div nz-row nzJustify="space-between" style="margin-bottom: 25px; padding-left: 10px;">
+                              <div nz-col nzSpan="24" class="label-detail-tr-content">
+                                <!-- 250,000 CFA -->
+                                <span>{{data.adresse}}</span>
+                                <!-- <span *ngIf="!data.demande?.beneficiaire?.typeBeneficiaire">Non renseigné</span> -->
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- type beneficiaire -->
+                        </div>
+                        <!-- Right part top header  -->
+
+                        <!-- Right part second header  -->
+
+                        <div nz-row>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Ninea
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Numéro RCCM
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Statut Juridique
+                          </div>
+                        </div>
+
+                        <div nz-row style="margin-bottom: 75px;">
+                          <div nz-col nzSpan="1" class="label-detail-tr-content">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            <!-- 250,000 CFA -->
+                            <!-- {{data.demande?.beneficiaire?.chiffreAffaireAnMoins1}} -->
+                            <span>{{data.ninea}}</span>
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            <!-- 3 Years -->
+                            {{data.numeroRCCM}}
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            <!-- 3 Years -->
+                            {{data.statusJuridique}}
+                          </div>
+                        </div>
+                        <!-- Right part second header  -->
+
+                        <!-- stepper   -->
+                        <!-- <div nz-row >
+                          <div nz-col nzSpan="24" >
+                            <nz-steps [nzCurrent]="2" nzSize="small" nzLabelPlacement="vertical" nzProgressDot>
+
+                              <nz-step  nzTitle="50,000 CFA"></nz-step>
+
+                              <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                              <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                              <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                            </nz-steps>
+                          </div>
+                        </div> -->
+                        <!-- stepper   -->
+                      </div>
+                      <!-- Right part of detail benef  -->
+                      <div nz-col nzSpan="6" style="height: 100%; ">
+                        <div nz-row nzJustify="space-between">
+                          <!-- <div nz-col nzSpan="24" nzOffset="12">
+                            <button nz-button nzType="primary"class="buton-detail"> Détails </button>
+                          </div> -->
+                          <!-- <div nz-col nzOffset="2" nzSpan="6" class="label-detail-tr">
+
+                          </div> -->
+                          <div nz-col nzSpan="6" class="label-detail-tr">
+                            <button nz-button (click)="showModalDescriptionDemande(data)" nzType="primary"
+                                    class="buton-detail"> Détails
+                            </button>
+                          </div>
+                        </div>
+
+                        <div nz-row nzJustify="space-between">
+                          <!-- <div nz-col nzSpan="24" nzOffset="12">
+                            <button nz-button nzType="primary"class="buton-detail"> Détails </button>
+                          </div> -->
+                          <!-- <div nz-col nzOffset="2" nzSpan="6" class="label-detail-tr">
+
+                          </div> -->
+                          <div nz-col nzSpan="6" class="label-detail-tr">
+                            <button nz-button routerLink="/pmo/offres-beneficiaire/{{data.id}}" nzType="primary"
+                                    class="buton-detail"> Choix offres
+                            </button>
+                          </div>
+                        </div>
+
+                        <div nz-row nzJustify="space-between" style="margin-bottom: 75px;">
+                          <div nz-col nzSpan="5" nzOffset="2" class="label-detail-tr-content">
+                            <!-- 250,000 CFA -->
+                            <!-- {{data.demande?.beneficiaire?.chiffreAffaireAnMoins1}}  -->
+
+                          </div>
+                          <div nz-col nzSpan="6" class="label-detail-tr-content">
+                            <!-- 3 Years -->
+                            <!-- {{data.demande?.beneficiaire?.telephone}} -->
+                          </div>
+                          <div nz-row nzJustify="space-between" style="margin-bottom: 75px;">
+                            <div nz-col nzSpan="5" class="label-detail-tr">
+                              <button nz-button routerLink="/expression-besoin/expression-pme/{{idPmo}}/{{data.id}}"
+                                      nzType="primary" class="buton-detail"> Demander un financement
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                  </tr>
+                </ng-container>
+                </tbody>
+              </nz-table>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <div class="ant-table-filter-dropdown">
+                  <div class="search-box">
+                    <input type="text" nz-input placeholder="ID bénéficiaire" [(ngModel)]="searchValue"/>
+                    <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+                      Chercher
+                    </button>
+                    <button nz-button nzSize="small" (click)="reset()">Annuler</button>
+                  </div>
+                </div>
+              </nz-dropdown-menu>
+            </nz-tab>
+            <nz-tab nzTitle="Micro-entrepreneur">
+              <nz-table #nzTableME [nzData]="listOfDisplayDataME" nzTableLayout="fixed" [nzScroll]="{ x: '1150px' }"
+                        nzShowSizeChanger
+                        [nzFrontPagination]="false"
+                        [nzLoading]="loading"
+                        [nzTotal]="totalME"
+                        [nzPageSize]="pageSize"
+                        [nzPageIndex]="pageIndex"
+                        (nzQueryParams)="onQueryParamsChangeME($event)">
+                <thead>
+                <tr>
+                  <th nzCustomFilter [nzSortOrder]="beneficiaireColumn.sortOrder" [nzSortFn]="beneficiaireColumn.sortFn"
+                      [nzSortDirections]="beneficiaireColumn.sortDirections">
+                    ID Bénéficiaire
+                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
+                                       [nzDropdownMenu]="menu">
+                      <i nz-icon nzType="search"></i>
+                    </nz-filter-trigger>
+                  </th>
+                  <th
+                    *ngFor="let column of listOfColumns"
+                    [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections"
+                    [nzColumnKey]="column.columnKey"
+                  >
+                    {{ column.name }}
+                  </th>
+                  <th
+                    *ngFor="let column of listOfColumnsBis"
+                    [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections"
+                    [nzFilterMultiple]="column.filterMultiple"
+                    [nzFilters]="column.listOfFilter"
+                    [nzFilterFn]="column.filterFn"
+                    [nzColumnKey]="column.columnKey"
+                  >
+                    {{ column.name }}
+                  </th>
+                  <!-- <th>Actions</th> -->
+                  <th nzWidth="60px"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let data of nzTableME.data">
+                  <!-- <description-demande [infoDemande]="currentInfo" *ngIf="!currentInfo" > </description-demande> -->
+                  <tr class="tr-showed">
+                    <td>#{{ data.id }}</td>
+                    <td>
+                      <span *ngIf="data?.typeBeneficiaire?.trim().toLowerCase()=='me'">
+                        {{data?.prenom}} {{data?.nom}}
+                      </span>
+                      <span *ngIf="data?.typeBeneficiaire?.trim().toLowerCase()=='pme'">
+                        {{data?.denominationSociale}}
+                      </span>
+                      <span *ngIf="data?.typeBeneficiaire?.trim().toLowerCase()=='gie'">
+                        {{data?.nom}}
+                      </span>
+                    </td>
+                    <!-- <td>{{ getPersonneContactInfo(data)?.prenom }}</td> -->
+                    <td>
+                      <!-- {{ getPersonneContactInfo(data)?.numeroMobile }} -->
+                      {{data.telephone}}
+                    </td>
+                    <!-- <td>{{ data.typeBeneficiaire }}</td> -->
+                    <td>{{ data.dateCreation | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td>{{ getStatusLibelle(data.statut) }}</td>
+                    <td [nzExpand]="expandSet.has(data.id+'')"
+                        (nzExpandChange)="onExpandChange(data.id+'', $event)"></td>
+                  </tr>
+                  <tr [nzExpand]="expandSet.has(data.id+'')" class="tr-expanded"
+                      style="height: 160px;border: 1px solid #EBEBEB;">
+                    <div nz-row nzAlign="middle" style="height: auto !important; overflow: auto !important ">
+
+                      <!-- Right part of detail benef  -->
+                      <div nz-col nzSpan="18">
+                        <!-- Right part top header  -->
+                        <div nz-row style="margin-bottom: 15px;">
+                          <!-- image of the detail  -->
+                          <div nz-col nzSpan="1">
+                            <img src="../../../../assets/images/pmo/logo-detail" width="30" height="30" alt="">
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                          <!-- image of the detail  -->
+
+                          <!-- Nom benef et non entreprise  -->
+                          <div nz-col nzSpan="6">
+                            <div nz-row>
+                              <div nz-col nzSpan="24" class="nom-entreprise-benef" style="font-size: small">
+                                {{data?.denominationSociale}}
+                              </div>
+                            </div>
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                          <!-- Nom benef et non entreprise  -->
+
+                          <!-- bouton detail  -->
+                          <div nz-col nzSpan="7">
+                            <!-- Intitulé offre -->
+                            <div nz-row>
+                              <div nz-col nzSpan="24" class="label-detail-tr">
+                                Chiffre d'affaire hors taxe
+                              </div>
+                            </div>
+                            <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                            <div nz-row style="margin-bottom: 25px;">
+                              <div nz-col nzSpan="24" class="label-detail-tr-content">
+                                <!-- 250,000 CFA -->
+                                {{data.activiteBeneficiaires[0]?.chiffreAffaireHorsTaxeAnMois2}} CFA
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- bouton detail  -->
+
+                          <!-- Type beneficiaire -->
+                          <div nz-col nzSpan="7">
+                            <!-- Intitulé offre -->
+                            <div nz-row nzJustify="space-between">
+                              <div nz-col nzSpan="24" class="label-detail-tr">
+                                Adresse
+                              </div>
+                            </div>
+
+                            <div nz-row nzJustify="space-between" style="margin-bottom: 25px; padding-left: 10px;">
+                              <div nz-col nzSpan="24" class="label-detail-tr-content">
+                                <!-- 250,000 CFA -->
+                                <span>{{data.adresse}}</span>
+                                <!-- <span *ngIf="!data.demande?.beneficiaire?.typeBeneficiaire">Non renseigné</span> -->
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- type beneficiaire -->
+                        </div>
+                        <!-- Right part top header  -->
+
+                        <!-- Right part second header  -->
+
+                        <div nz-row>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Ninea
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Numéro RCCM
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Statut Juridique
+                          </div>
+                        </div>
+
+                        <div nz-row style="margin-bottom: 75px;">
+                          <div nz-col nzSpan="1" class="label-detail-tr-content">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            <!-- 250,000 CFA -->
+                            <!-- {{data.demande?.beneficiaire?.chiffreAffaireAnMoins1}} -->
+                            <span>{{data.ninea}}</span>
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            <!-- 3 Years -->
+                            {{data.numeroRCCM}}
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            <!-- 3 Years -->
+                            {{data.statusJuridique}}
+                          </div>
+                        </div>
+                        <!-- Right part second header  -->
+
+                        <!-- stepper   -->
+                        <!-- <div nz-row >
+                          <div nz-col nzSpan="24" >
+                            <nz-steps [nzCurrent]="2" nzSize="small" nzLabelPlacement="vertical" nzProgressDot>
+
+                              <nz-step  nzTitle="50,000 CFA"></nz-step>
+
+                              <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                              <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                              <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                            </nz-steps>
+                          </div>
+                        </div> -->
+                        <!-- stepper   -->
+                      </div>
+                      <!-- Right part of detail benef  -->
+                      <div nz-col nzSpan="6" style="height: 100%; ">
+                        <div nz-row nzJustify="space-between">
+                          <!-- <div nz-col nzSpan="24" nzOffset="12">
+                            <button nz-button nzType="primary"class="buton-detail"> Détails </button>
+                          </div> -->
+                          <!-- <div nz-col nzOffset="2" nzSpan="6" class="label-detail-tr">
+
+                          </div> -->
+                          <div nz-col nzSpan="6" class="label-detail-tr">
+                            <button nz-button (click)="showModalDescriptionDemande(data)" nzType="primary"
+                                    class="buton-detail"> Détails
+                            </button>
+                          </div>
+                        </div>
+
+                        <div nz-row nzJustify="space-between">
+                          <!-- <div nz-col nzSpan="24" nzOffset="12">
+                            <button nz-button nzType="primary"class="buton-detail"> Détails </button>
+                          </div> -->
+                          <!-- <div nz-col nzOffset="2" nzSpan="6" class="label-detail-tr">
+
+                          </div> -->
+                          <div nz-col nzSpan="6" class="label-detail-tr">
+                            <button nz-button routerLink="/pmo/offres-beneficiaire/{{data.id}}" nzType="primary"
+                                    class="buton-detail"> Choix offres
+                            </button>
+                          </div>
+                        </div>
+
+                        <div nz-row nzJustify="space-between" style="margin-bottom: 75px;">
+                          <div nz-col nzSpan="5" nzOffset="2" class="label-detail-tr-content">
+                            <!-- 250,000 CFA -->
+                            <!-- {{data.demande?.beneficiaire?.chiffreAffaireAnMoins1}}  -->
+
+                          </div>
+                          <div nz-col nzSpan="6" class="label-detail-tr-content">
+                            <!-- 3 Years -->
+                            <!-- {{data.demande?.beneficiaire?.telephone}} -->
+                          </div>
+                          <div nz-row nzJustify="space-between" style="margin-bottom: 75px;">
+                            <div nz-col nzSpan="5" class="label-detail-tr">
+                              <button nz-button routerLink="/expression-besoin/expression-me/{{idPmo}}/{{data.id}}"
+                                      nzType="primary" class="buton-detail"> Demander un financement
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                  </tr>
+                </ng-container>
+                </tbody>
+              </nz-table>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <div class="ant-table-filter-dropdown">
+                  <div class="search-box">
+                    <input type="text" nz-input placeholder="ID bénéficiaire" [(ngModel)]="searchValue"/>
+                    <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+                      Chercher
+                    </button>
+                    <button nz-button nzSize="small" (click)="reset()">Annuler</button>
+                  </div>
+                </div>
+              </nz-dropdown-menu>
+            </nz-tab>
+            <nz-tab nzTitle="Groupement">
+              <nz-table #nzTableGIE [nzData]="listOfDisplayDataGIE" nzTableLayout="fixed" [nzScroll]="{ x: '1150px' }"
+                        nzShowSizeChanger
+                        [nzFrontPagination]="false"
+                        [nzLoading]="loading"
+                        [nzTotal]="totalGIE"
+                        [nzPageSize]="pageSize"
+                        [nzPageIndex]="pageIndex"
+                        (nzQueryParams)="onQueryParamsChangeGIE($event)">
+                <thead>
+                <tr>
+                  <th nzCustomFilter [nzSortOrder]="beneficiaireColumn.sortOrder" [nzSortFn]="beneficiaireColumn.sortFn"
+                      [nzSortDirections]="beneficiaireColumn.sortDirections">
+                    ID Bénéficiaire
+                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
+                                       [nzDropdownMenu]="menu">
+                      <i nz-icon nzType="search"></i>
+                    </nz-filter-trigger>
+                  </th>
+                  <th
+                    *ngFor="let column of listOfColumns"
+                    [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections"
+                    [nzColumnKey]="column.columnKey"
+                  >
+                    {{ column.name }}
+                  </th>
+                  <th
+                    *ngFor="let column of listOfColumnsBis"
+                    [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections"
+                    [nzFilterMultiple]="column.filterMultiple"
+                    [nzFilters]="column.listOfFilter"
+                    [nzFilterFn]="column.filterFn"
+                    [nzColumnKey]="column.columnKey"
+                  >
+                    {{ column.name }}
+                  </th>
+                  <!-- <th>Actions</th> -->
+                  <th nzWidth="60px"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let data of nzTableGIE.data">
+                  <!-- <description-demande [infoDemande]="currentInfo" *ngIf="!currentInfo" > </description-demande> -->
+                  <tr class="tr-showed">
+                    <td>#{{ data.id }}</td>
+                    <td>
+                      <span *ngIf="data?.typeBeneficiaire?.trim().toLowerCase()=='me'">
+                        {{data?.prenom}} {{data?.nom}}
+                      </span>
+                      <span *ngIf="data?.typeBeneficiaire?.trim().toLowerCase()=='pme'">
+                        {{data?.denominationSociale}}
+                      </span>
+                      <span *ngIf="data?.typeBeneficiaire?.trim().toLowerCase()=='gie'">
+                        {{data?.nom}}
+                      </span>
+                    </td>
+                    <!-- <td>{{ getPersonneContactInfo(data)?.prenom }}</td> -->
+                    <td>
+                      <!-- {{ getPersonneContactInfo(data)?.numeroMobile }} -->
+                      {{data.telephone}}
+                    </td>
+                    <!-- <td>{{ data.typeBeneficiaire }}</td> -->
+                    <td>{{ data.dateCreation | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td>{{ getStatusLibelle(data.statut) }}</td>
+                    <td [nzExpand]="expandSet.has(data.id+'')"
+                        (nzExpandChange)="onExpandChange(data.id+'', $event)"></td>
+                  </tr>
+                  <tr [nzExpand]="expandSet.has(data.id+'')" class="tr-expanded"
+                      style="height: 160px;border: 1px solid #EBEBEB;">
+                    <div nz-row nzAlign="middle" style="height: auto !important; overflow: auto !important ">
+
+                      <!-- Right part of detail benef  -->
+                      <div nz-col nzSpan="18">
+                        <!-- Right part top header  -->
+                        <div nz-row style="margin-bottom: 15px;">
+                          <!-- image of the detail  -->
+                          <div nz-col nzSpan="1">
+                            <img src="../../../../assets/images/pmo/logo-detail" width="30" height="30" alt="">
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                          <!-- image of the detail  -->
+
+                          <!-- Nom benef et non entreprise  -->
+                          <div nz-col nzSpan="6">
+                            <div nz-row>
+                              <div nz-col nzSpan="24" class="nom-entreprise-benef" style="font-size: small">
+                                {{data?.denominationSociale}}
+                              </div>
+                            </div>
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                          <!-- Nom benef et non entreprise  -->
+
+                          <!-- bouton detail  -->
+                          <div nz-col nzSpan="7">
+                            <!-- Intitulé offre -->
+                            <div nz-row>
+                              <div nz-col nzSpan="24" class="label-detail-tr">
+                                Chiffre d'affaire hors taxe
+                              </div>
+                            </div>
+                            <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                            <div nz-row style="margin-bottom: 25px;">
+                              <div nz-col nzSpan="24" class="label-detail-tr-content">
+                                <!-- 250,000 CFA -->
+                                {{data.activiteBeneficiaires[0]?.chiffreAffaireHorsTaxeAnMois2}} CFA
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- bouton detail  -->
+
+                          <!-- Type beneficiaire -->
+                          <div nz-col nzSpan="7">
+                            <!-- Intitulé offre -->
+                            <div nz-row nzJustify="space-between">
+                              <div nz-col nzSpan="24" class="label-detail-tr">
+                                Adresse
+                              </div>
+                            </div>
+
+                            <div nz-row nzJustify="space-between" style="margin-bottom: 25px; padding-left: 10px;">
+                              <div nz-col nzSpan="24" class="label-detail-tr-content">
+                                <!-- 250,000 CFA -->
+                                <span>{{data.adresse}}</span>
+                                <!-- <span *ngIf="!data.demande?.beneficiaire?.typeBeneficiaire">Non renseigné</span> -->
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- type beneficiaire -->
+                        </div>
+                        <!-- Right part top header  -->
+
+                        <!-- Right part second header  -->
+
+                        <div nz-row>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Ninea
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Numéro RCCM
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Statut Juridique
+                          </div>
+                        </div>
+
+                        <div nz-row style="margin-bottom: 75px;">
+                          <div nz-col nzSpan="1" class="label-detail-tr-content">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            <!-- 250,000 CFA -->
+                            <!-- {{data.demande?.beneficiaire?.chiffreAffaireAnMoins1}} -->
+                            <span>{{data.ninea}}</span>
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr"></div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            <!-- 3 Years -->
+                            {{data.numeroRCCM}}
+                          </div>
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            <!-- 3 Years -->
+                            {{data.statusJuridique}}
+                          </div>
+                        </div>
+                        <!-- Right part second header  -->
+
+                        <!-- stepper   -->
+                        <!-- <div nz-row >
+                          <div nz-col nzSpan="24" >
+                            <nz-steps [nzCurrent]="2" nzSize="small" nzLabelPlacement="vertical" nzProgressDot>
+
+                              <nz-step  nzTitle="50,000 CFA"></nz-step>
+
+                              <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                              <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                              <nz-step nzTitle="50,000 CFA"></nz-step>
+
+                            </nz-steps>
+                          </div>
+                        </div> -->
+                        <!-- stepper   -->
+                      </div>
+                      <!-- Right part of detail benef  -->
+                      <div nz-col nzSpan="6" style="height: 100%; ">
+                        <div nz-row nzJustify="space-between">
+                          <!-- <div nz-col nzSpan="24" nzOffset="12">
+                            <button nz-button nzType="primary"class="buton-detail"> Détails </button>
+                          </div> -->
+                          <!-- <div nz-col nzOffset="2" nzSpan="6" class="label-detail-tr">
+
+                          </div> -->
+                          <div nz-col nzSpan="6" class="label-detail-tr">
+                            <button nz-button (click)="showModalDescriptionDemande(data)" nzType="primary"
+                                    class="buton-detail"> Détails
+                            </button>
+                          </div>
+                        </div>
+
+                        <div nz-row nzJustify="space-between">
+                          <!-- <div nz-col nzSpan="24" nzOffset="12">
+                            <button nz-button nzType="primary"class="buton-detail"> Détails </button>
+                          </div> -->
+                          <!-- <div nz-col nzOffset="2" nzSpan="6" class="label-detail-tr">
+
+                          </div> -->
+                          <div nz-col nzSpan="6" class="label-detail-tr">
+                            <button nz-button routerLink="/pmo/offres-beneficiaire/{{data.id}}" nzType="primary"
+                                    class="buton-detail"> Choix offres
+                            </button>
+                          </div>
+                        </div>
+
+                        <div nz-row nzJustify="space-between" style="margin-bottom: 75px;">
+                          <div nz-col nzSpan="5" nzOffset="2" class="label-detail-tr-content">
+                            <!-- 250,000 CFA -->
+                            <!-- {{data.demande?.beneficiaire?.chiffreAffaireAnMoins1}}  -->
+
+                          </div>
+                          <div nz-col nzSpan="6" class="label-detail-tr-content">
+                            <!-- 3 Years -->
+                            <!-- {{data.demande?.beneficiaire?.telephone}} -->
+                          </div>
+                          <div nz-row nzJustify="space-between" style="margin-bottom: 75px;">
+                            <div nz-col nzSpan="5" class="label-detail-tr">
+                              <button nz-button routerLink="/expression-besoin/expression-gie/{{idPmo}}/{{data.id}}"
+                                      nzType="primary" class="buton-detail"> Demander un financement
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                  </tr>
+                </ng-container>
+                </tbody>
+              </nz-table>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <div class="ant-table-filter-dropdown">
+                  <div class="search-box">
+                    <input type="text" nz-input placeholder="ID bénéficiaire" [(ngModel)]="searchValue"/>
+                    <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+                      Chercher
+                    </button>
+                    <button nz-button nzSize="small" (click)="reset()">Annuler</button>
+                  </div>
+                </div>
+              </nz-dropdown-menu>
+            </nz-tab>
+            <nz-tab *ngIf="isActivite2" nzTitle="Activité 2">
+              <nz-table #nzTableActivite2 [nzData]="listOfDisplayDataActivite2" nzTableLayout="fixed"
+                        [nzScroll]="{ x: '1150px' }" nzShowSizeChanger
+                        [nzFrontPagination]="false"
+                        [nzLoading]="loading"
+                        [nzTotal]="totalActivite2"
+                        [nzPageSize]="pageSize"
+                        [nzPageIndex]="pageIndex"
+                        (nzQueryParams)="onQueryParamsChangeActivite2($event)">
+                <thead>
+                <tr>
+                  <th nzCustomFilter [nzSortOrder]="activite2Column.sortOrder" [nzSortFn]="activite2Column.sortFn"
+                      [nzSortDirections]="activite2Column.sortDirections">
+                    ID Demande
+                    <nz-filter-trigger [(nzVisible)]="visibleActivite" [nzActive]="searchValueActivite.length > 0"
+                                       [nzDropdownMenu]="menuActivite">
+                      <i nz-icon nzType="search"></i>
+                    </nz-filter-trigger>
+                  </th>
+                  <th
+                    *ngFor="let column of listOfColumnsActivite2"
+                    [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections"
+                  >
+                    {{ column.name }}
+                  </th>
+                  <th
+                    *ngFor="let column of listOfColumnsBisActivite2"
+                    [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections"
+                    [nzFilterMultiple]="column.filterMultiple"
+                    [nzFilters]="column.listOfFilter"
+                    [nzFilterFn]="column.filterFn"
+                  >
+                    {{ column.name }}
+                  </th>
+                  <th nzWidth="60px"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let data of nzTableActivite2.data">
+                  <tr class="tr-showed">
+                    <td>#{{ data.demande.beneficiaire?.id }}</td>
+                    <td>{{ data.demande.dateCreation | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td>{{ data.demande.montant | currency: "XOF": "symbol": "1.0": "fr" }}</td>
+                    <td>{{ data.demande.montantOctroye | currency: "XOF": "symbol": "1.0": "fr" }}</td>
+                    <td>{{ data.demande.typeDemande }}</td>
+                    <td>{{ getStatusLibelle(data?.demande.statutDossier) || ''}}</td>
+                    <td [nzExpand]="expandSet.has(data.id+'')"
+                        (nzExpandChange)="onExpandChange(data.id+'', $event)"></td>
+                  </tr>
+                  <tr [nzExpand]="expandSet.has(data.id+'')" class="tr-expanded"
+                      style="height: 160px;border: 1px solid #EBEBEB;">
+                    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                      <div nz-col class="gutter-row" [nzSpan]="2">
+                        <div class="inner-box">
+                          <div nz-col nzSpan="2">
+                            <img src="../../../../assets/images/pmo/logo-detail" width="30" height="30" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="6">
+                        <div class="inner-box">
+                          <!-- Babs -->
+                          {{getPersonneContactInfo(data.demande.beneficiaire)?.prenom}} {{getPersonneContactInfo(data.demande.beneficiaire)?.nom}}
+                        </div>
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="6">
+                        <div class="inner-box">
+                          Chiffre d'affaire <br>
+                          <span
+                            *ngIf="data.demande.chiffreAffaireAnMoins1">{{data.demande.chiffreAffaireAnMoins1}}</span>
+                          <span *ngIf="!data.demande.chiffreAffaireAnMoins1">Non renseigné</span>
+                        </div>
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="6">
+                        <div class="inner-box">
+                          Période de Prêt <br>
+                          {{data.demande.duree}} Mois
+                        </div>
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="4">
+                        <div class="inner-box">
+                          <button nz-button (click)="showModalDescriptionDemandeActivite2(data)" nzType="primary"
+                                  class="buton-detail"> Détails
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                      <div nz-col class="gutter-row" [nzSpan]="20">
+
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="4"
+                           *ngIf="data.demande.statutDossier=='INITIE_TG' || data.demande.statutDossier=='RECU_TG' || data.demande.statutDossier=='INVALIDATED_TG'">
+                        <div class="inner-box">
+                          <button nz-button (click)="goExpressionBesoin(data.demande)" nzType="primary"
+                                  class="buton-detail"> Modifier
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }" style="margin-top: 2px;">
+                      <div nz-col class="gutter-row" [nzSpan]="20">
+
+                      </div>
+                      <div nz-col class="gutter-row" [nzSpan]="4"
+                           *ngIf="data.demande.statutDossier=='INITIE_TG' || data.demande.statutDossier=='RECU_TG' || data.demande.statutDossier=='INVALIDATED_TG'">
+                        <!-- <div class="inner-box">
+                          <button nz-button (click)="goExpressionBesoin(data)" nzType="primary"class="buton-detail"> Modifier </button>
+                        </div> -->
+                        <div class="inner-box">
+                          <button nz-button (click)="goOffreBeneficiaire(data.demande)" nzType="primary"
+                                  class="buton-detail"> Suivi offres
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                  </tr>
+                </ng-container>
+                </tbody>
+              </nz-table>
+              <nz-dropdown-menu #menuActivite="nzDropdownMenu">
+                <div class="ant-table-filter-dropdown">
+                  <div class="search-box">
+                    <input type="text" nz-input placeholder="ID bénéficiaire" [(ngModel)]="searchValueActivite"/>
+                    <button nz-button nzSize="small" nzType="primary" (click)="searchActivite2()" class="search-button">
+                      Chercher
+                    </button>
+                    <button nz-button nzSize="small" (click)="resetActivite2()">Annuler</button>
+                  </div>
+                </div>
+              </nz-dropdown-menu>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+      </div>
+      <!-- Tabs de de beneficiaire  -->
+
+    </div>
+
+  </div>
+</nz-spin>

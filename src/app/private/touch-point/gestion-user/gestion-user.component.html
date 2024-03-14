@@ -1,0 +1,227 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <div nz-row class="content-container" nzJustify="center">
+    <div nz-col nzSpan="20">
+      <!-- Demande et Budget  Header -->
+      <div nz-row style="position: absolute; right: 0;" nzJustify="space-between" (click)="addUser()" nzAlign="middle" class="demande-buget-container">
+        <div nz-col nzSpan="4"  class="steps-action marge-form" id="section_button_entreprise">
+          <button nz-button nzType="primary" nzShape="round" class="boutton-suivant">
+            Ajout utilisateur
+          </button>
+        </div>
+      </div>
+      <div nz-row nzJustify="space-between" nzAlign="middle" class="demande-buget-container">
+        <div nz-col nzSpan="5" class="demande-text">
+          Liste des utilisateurs
+        </div>
+
+      </div>
+
+      <!-- Tabs de de beneficiaire  -->
+      <div nz-row class="tabs-container">
+        <nz-modal [(nzVisible)]="isVisibleError" nzTitle="Custom Modal Title" (nzOnCancel)="handleCancelError()">
+          <div *nzModalContent>
+            Une erreur est survenue
+          </div>
+          <div *nzModalFooter>
+            <!-- <span>Modal Footer:</span> -->
+            <button nz-button nzType="default" (click)="handleCancelError()">Annuler</button>
+            <button nz-button nzType="primary" (click)="handleOkError()">Ok</button>
+          </div>
+        </nz-modal>
+        <div nz-col nzSpan="24">
+          <nz-tabset>
+            <nz-tab nzTitle="">
+              <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+                <thead>
+                <tr>
+                  <!-- <th nzCustomFilter [nzSortOrder]="beneficiaireColumn.sortOrder" [nzSortFn]="beneficiaireColumn.sortFn" [nzSortDirections]="beneficiaireColumn.sortDirections">
+                    ID Bénéficiaire
+                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+                      <i nz-icon nzType="search"></i>
+                    </nz-filter-trigger>
+                  </th> -->
+                  <th
+                    *ngFor="let column of listOfColumns"
+                    [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections"
+                  >
+                    {{ column.name }}
+                  </th>
+                  <th>Actions</th>
+                  <th nzWidth="60px"></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let data of nzTable.data">
+                  <tr class="tr-showed">
+                    <td>{{ data.prenom }}</td>
+                    <td>{{ data.nom }}</td>
+                    <td>{{ data.numeroMobile }}</td>
+                    <td>{{ data.acces?.login }}</td>
+                    <td>
+                      {{ data.acces?.profil?.libelle }}
+                    </td>
+                    <td>
+                      <button *ngIf="idPmo!=data.acces?.id" nz-button nzType="primary" (click)="modifier(data)" nzSize="small" style="margin-right: 10px;">Modifier</button>
+                      <button *ngIf="idPmo!=data.acces?.id" nz-button nzType="primary" (click)="supprimer(data)" nzSize="small" >Supprimer</button>
+                    </td>
+                    <td [nzExpand]="expandSet.has(data.id+'')" (nzExpandChange)="onExpandChange(data.id+'', $event)"></td>
+                  </tr>
+                  <tr [nzExpand]="expandSet.has(data.id+'')" class="tr-expanded" style="height: 160px;border: 1px solid #EBEBEB;">
+                    <div nz-row nzAlign="middle" style="height: 155px; ">
+
+                      <!-- Right part of detail benef  -->
+                      <div nz-col nzSpan="18" style="height: 100%; " >
+                        <!-- Right part top header  -->
+                        <div nz-row style="margin-bottom: 15px;">
+                          <!-- image of the detail  -->
+                          <div nz-col nzSpan="1">
+                            <img src="../../../../assets/images/pmo/logo-detail" width="30" height="30" alt="">
+                          </div>
+                          <!-- image of the detail  -->
+
+                          <!-- bouton detail  -->
+                          <div nz-col nzSpan="7">
+                            <!-- Intitulé offre -->
+                            <div nz-row >
+                              <div nz-col nzSpan="24" class="label-detail-tr">
+                                Email
+                              </div>
+                            </div>
+
+                            <div nz-row  style="margin-bottom: 25px;">
+                              <div nz-col nzSpan="24" class="label-detail-tr-content">
+                                <!-- 250,000 CFA -->
+                                {{data.email}}
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- bouton detail  -->
+
+                          <!-- Type beneficiaire -->
+                          <div nz-col nzSpan="7">
+                            <!-- Intitulé offre -->
+                            <div nz-row nzJustify="space-between" >
+                              <div nz-col nzSpan="24" class="label-detail-tr">
+                                Genre
+                              </div>
+                            </div>
+
+                            <div nz-row nzJustify="space-between" style="margin-bottom: 25px;">
+                              <div nz-col nzSpan="24" class="label-detail-tr-content">
+                                <!-- 250,000 CFA -->
+                                {{data.genre?.libelle}}
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- type beneficiaire -->
+                          <!-- Type beneficiaire -->
+                          <div nz-col nzSpan="7">
+                            <!-- Intitulé offre -->
+                            <div nz-row nzJustify="space-between" >
+                              <div nz-col nzSpan="24" class="label-detail-tr">
+                                Titre
+                              </div>
+                            </div>
+
+                            <div nz-row nzJustify="space-between" style="margin-bottom: 25px;">
+                              <div nz-col nzSpan="24" class="label-detail-tr-content">
+                                <!-- 250,000 CFA -->
+                                {{data.titre?.libelle}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Right part top header  -->
+
+                        <!-- Right part second header  -->
+
+                        <div nz-row  >
+                          <div nz-col nzSpan="1" class="label-detail-tr">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Numéro fixe
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Adresse
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr">
+                            Date de naissance
+                          </div>
+                        </div>
+
+                        <div nz-row  style="margin-bottom: 75px;">
+                          <div nz-col nzSpan="1" class="label-detail-tr-content">
+
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            {{data.numeroFixe}}
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            {{data.adresse}}
+                          </div>
+                          <div nz-col nzSpan="7" class="label-detail-tr-content">
+                            {{data.dateNaissance | date:'dd/MM/yyyy'}}
+                          </div>
+                        </div>
+                        <!-- Right part second header  -->
+
+                      </div>
+                      <!-- Right part of detail benef  -->
+                      <div nz-col nzSpan="6" style="height: 100%; " >
+                        <div nz-row nzJustify="space-between" >
+                          <!-- <div nz-col nzSpan="24" nzOffset="12">
+                            <button nz-button nzType="primary"class="buton-detail"> Détails </button>
+                          </div> -->
+                          <!-- <div nz-col nzOffset="2" nzSpan="6" class="label-detail-tr">
+
+                          </div> -->
+                          <div nz-col nzSpan="6" class="label-detail-tr">
+                            <!-- <button nz-button (click)="showModalDescriptionDemande(data)" nzType="primary"class="buton-detail"> Détails </button> -->
+                          </div>
+                        </div>
+
+                        <div nz-row nzJustify="space-between" style="margin-bottom: 75px;">
+                          <div nz-col nzSpan="5" nzOffset="2" class="label-detail-tr-content">
+                            <!-- 250,000 CFA -->
+                            <!-- {{data.demande?.beneficiaire?.chiffreAffaireAnMoins1}}  -->
+
+                          </div>
+                          <div nz-col nzSpan="6" class="label-detail-tr-content">
+                            <!-- 3 Years -->
+                            <!-- {{data.demande?.beneficiaire?.telephone}} -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr style="height: 20px;visibility: hidden;background-color: none;">
+
+                  </tr>
+                </ng-container>
+                </tbody>
+              </nz-table>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <div class="ant-table-filter-dropdown">
+                  <div class="search-box">
+                    <input type="text" nz-input placeholder="ID bénéficiaire" [(ngModel)]="searchValue" />
+                    <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Chercher</button>
+                    <button nz-button nzSize="small" (click)="reset()">Annuler</button>
+                  </div>
+                </div>
+              </nz-dropdown-menu>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+      </div>
+      <!-- Tabs de de beneficiaire  -->
+
+    </div>
+
+  </div>
+</nz-spin>

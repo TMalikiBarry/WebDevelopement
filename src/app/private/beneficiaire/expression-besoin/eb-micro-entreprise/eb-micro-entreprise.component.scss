@@ -1,0 +1,61 @@
+
+.boutton-suivant {
+  float: right;
+}
+.boutton-precedant {
+  float: left;
+}
+.adjustements-inputs{
+  margin-top:10%;
+}
+.logo-image{
+  width: 90%;
+  height: 80%;
+  cursor: pointer;
+}
+.menu-home {
+  height: 80px;
+  background-color: white;
+}
+
+.button-menu{
+  height: 30px;
+  width: 100px;
+}
+
+
+ul {
+  border-bottom: none;
+}
+
+.menu-element{
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #282D5E;
+}
+
+.invalid-input{
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: red;
+
+}
+
+.end-footer-container{
+  height: 10vh;
+  background-color: #224B96;
+}
+
+.layoutContent{
+  min-height:80vh;
+  // min-height: 100vh;
+  // height: 100%;
+  background-color:#F1F1F9;
+  width: 100%;
+  height: fit-content;
+}
+

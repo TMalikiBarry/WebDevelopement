@@ -1,0 +1,37 @@
+@import "src/assets/form-css/form-css";
+@import "../../../../assets/form-css/button-css";
+@import "../../../../assets/form-css/card-css";
+@import "../layout/layout.component";
+
+nz-layout{
+    height: 100vh;
+  }
+
+  .login-container {
+    width: 100%;
+    min-height: 100%;
+    height: max-content;
+  }
+
+
+  .login-content{
+    background-color: white;
+
+  }
+
+  .login-form-here{
+    min-height: 400px;
+    border-radius: 20px;
+    padding: 10px;
+  }
+
+  // .login-form-button-here {
+  //   width: 100%;
+  // }
+
+  // :host ::ng-deep input{
+
+  //   border: 1px solid #ABABAB;
+  //   border-radius: 8px;
+  //   height: 20px;
+  // }

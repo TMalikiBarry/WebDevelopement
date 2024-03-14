@@ -1,0 +1,13 @@
+@import "../../../assets/form-css/step-css.scss";
+
+.boutton-suivant {
+  float: right;
+}
+.boutton-precedant {
+  float: left;
+}
+
+:host ::ng-deep .ant-steps-navigation{
+  display: block !important;
+}
+

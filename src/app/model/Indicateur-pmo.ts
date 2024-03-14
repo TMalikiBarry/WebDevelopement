@@ -1,0 +1,53 @@
+import { PMO } from "./pmo";
+import { ActiviteBeneficiaire } from "./activite-beneficiaire";
+
+export class IndicateurPMO {
+  id?: number;
+  nombreBeneficiaireReferer?: number;
+  nombreDemandeRecu?: number;
+  nombreDemandeApprouve?: number;
+  nombreDemandeRejete?: number;
+  nombreDemandeDecaisseDone?: number;
+  nombreDemandeRemboursementDone?: number;
+  nombreNewBeneficiaire?: number;
+  nombreBeneficiaireNonCentreUrbain?: number;
+  nombreBeneficiaireJeune?: number;
+  nombreBeneficiaireFemme?: number;
+  nombreBeneficiaireJeuneFemme?: number;
+  pourcentageNombreBeneficiaireReferer?: number;
+  pourcentageNombreDemandeApprouve?: number;
+  pourcentageNombreDemandeRejete?: number;
+  pourcentageNombreDemandeDecaisseDone?: number;
+  pourcentageNombreDemandeRemboursementDone?: number;
+  pourcentageNombreNewBeneficiaire?: number;
+  pourcentageNombreBeneficiaireNonCentreUrbain?: number;
+  pourcentageNombreBeneficiaireJeune?: number;
+  pourcentageNombreBeneficiaireFemme?: number;
+  pourcentageNombreBeneficiaireJeuneFemme?: number;
+  volumeDemandeRecu?: number;
+  volumeDemandeApprouve?: number;
+  volumeDemandeRejete?: number;
+  volumeDemandeDecaisseDone?: number;
+  volumeDemandeRemboursementDone?: number;
+  volumeNewBeneficiaire?: number;
+  volumeBeneficiaireNonCentreUrbain?: number;
+  volumeBeneficiaireJeune?: number;
+  volumeBeneficiaireFemme?: number;
+  volumeBeneficiaireJeuneFemme?: number;
+  pourcentageVolumeDemandeApprouve?: number;
+  pourcentageVolumeDemandeRejete?: number;
+  pourcentageVolumeDemandeDecaisseDone?: number;
+  pourcentageVolumeDemandeRemboursementDone?: number;
+  pourcentageVolumeNewBeneficiaire?: number;
+  pourcentageVolumeBeneficiaireNonCentreUrbain?: number;
+  pourcentageVolumeBeneficiaireJeune?: number ;
+  pourcentageVolumeBeneficiaireFemme?: number ;
+  pourcentageVolumeBeneficiaireJeuneFemme?: number;
+  dateCreation?: Date ;
+  dateReporting?: Date ;
+  pmo?: PMO[];
+  typeBeneficiaire?: string;
+  activiteBeneficiaires?: ActiviteBeneficiaire[] =[];
+  nombreBeneficiaireTouchpoint?: number;
+
+}
