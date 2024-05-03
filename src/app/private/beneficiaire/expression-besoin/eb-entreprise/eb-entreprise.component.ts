@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {DemandeFinancementComponent} from "./demande-financement/demande-financement.component";
 import {
   DescriptionProjetEntrepriseComponent
@@ -82,10 +82,10 @@ export class EbEntrepriseComponent implements OnInit, OnDestroy {
       console.log('test1');
       let benef = new Beneficiaire();
       let demandeRecuperee: Demande;
-      if(localStorage.getItem('demandeCourante')) {
+      if (this.authService.storage.getItem('demandeCourante')) {
         console.log('test2');
-        // demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+        // demandeRecuperee = JSON.parse(<string>this.authService.storage.getItem('demandeCourante'));
+        const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
         benef.id = currentUser.idParent;
         // if (!(this.description || demandeRecuperee.beneficiaire?.id == benef.id)) {
         if (!(this.description) || !this.demandeForm) {
@@ -180,8 +180,8 @@ export class EbEntrepriseComponent implements OnInit, OnDestroy {
       let benef = new Beneficiaire();
       let demandeRecuperee: Demande;
 
-      demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      demandeRecuperee = JSON.parse(<string>this.authService.storage.getItem('demandeCourante'));
+      const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
       benef.id = currentUser.idParent;
       console.log(demandeRecuperee);
       console.log(benef.id);
@@ -230,7 +230,7 @@ export class EbEntrepriseComponent implements OnInit, OnDestroy {
     //insertion beneficiaire
     let beneficiaire = new Beneficiaire();
     if(localStorage.getItem('currentUser') != null) {
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
       beneficiaire.id = currentUser.idParent;
       this.demandeBis.beneficiaire = beneficiaire;
     }

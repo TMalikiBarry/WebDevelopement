@@ -63,6 +63,7 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import {NzSpaceModule} from "ng-zorro-antd/space";
 import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
+import {FinancementComponent} from "./financements/financement.component";
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
     AddUserComponent,
     ApercuComponent,
     OffresComponent,
+    FinancementComponent,
     OffresBeneficiaireComponent,
     FormAjoutUserPMOComponent,
     DescriptionBeneficiaireComponent,

@@ -13,6 +13,7 @@ import {Demande} from "../../../model/demande";
 import {environment} from 'src/environments/environment';
 import {CheckFileSize} from "../../../core/utils/checker/checkFileSize";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {StorageService} from "../../../services/Storage/storage.service";
 
 @Component({
   selector: 'app-description-projet-gie',
@@ -25,6 +26,7 @@ export class DescriptionProjetGieComponent implements OnInit {
               private eb: EbGieComponent,
               private tranchepersonneService: TranchePersonneService,
               private fb: UntypedFormBuilder,
+              private storage: StorageService,
               private changeDetector: ChangeDetectorRef,
               private messageService: MessageService,
               private toast: ToastrService,
@@ -85,13 +87,13 @@ export class DescriptionProjetGieComponent implements OnInit {
 
   ngOnInit(): void {
     this.onGetTranchePersonnes()
-    if (localStorage.getItem('demandeCourante')) {
+    if (this.storage.getItem('demandeCourante')) {
       let beneficiaire = new Beneficiaire();
       let demandeRecuperee: Demande;
 
 
-      demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      demandeRecuperee = JSON.parse(<string>this.storage.getItem('demandeCourante'));
+      const currentUser = JSON.parse(this.storage.getItem('currentUser') || '');
       beneficiaire.id = currentUser.idParent;
       //console.log(demandeRecuperee);
       //console.log(beneficiaire.id);
@@ -103,7 +105,6 @@ export class DescriptionProjetGieComponent implements OnInit {
         this.nouveaux = demandeRecuperee.projets;
         // @ts-ignore
         //console.log(demandeRecuperee.projets[0]);
-// @ts-ignore
         nouveau = demandeRecuperee.projets[0];
         this.complementInfoNomList = nouveau.complementInformations || [];
         this.descriptionForm.patchValue({
@@ -200,15 +201,14 @@ export class DescriptionProjetGieComponent implements OnInit {
 
       let beneficiaire = new Beneficiaire();
       if(localStorage.getItem('currentUser') != null) {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+        const currentUser = JSON.parse(this.storage.getItem('currentUser') || '');
         beneficiaire.id = currentUser.idParent;
         demande.beneficiaire = beneficiaire;
       }
       descriptionCourante = JSON.stringify(demande);
 
 
-
-      localStorage.setItem("demandeCourante", descriptionCourante)
+      this.storage.setItem("demandeCourante", descriptionCourante)
       this.eb.next()
     }else {
       if (this.nombreEntree === this.nombrecollapes - 3){

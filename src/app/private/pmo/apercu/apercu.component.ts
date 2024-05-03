@@ -1,6 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Demande} from "../../../model/demande";
-import {ChartComponent} from "ng-apexcharts";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {AuthService} from "../../../services/security/auth/auth.service";
 import {PmoService} from "../../../services/pmo/pmo.service";
@@ -396,7 +395,7 @@ export class ApercuComponent implements OnInit {
       this.checkIfCanRegisterBenef();
       this.onGetAllDemande();
       // this.onGetRejetesDemande();
-      this.role = localStorage.getItem('ROLE')!;
+      this.role = this.authService.storage.getItem('ROLE')!;
       // console.log('role ', this.role);
       this.getListeStatuts();
       this.getListeSources();
@@ -1071,7 +1070,7 @@ export class ApercuComponent implements OnInit {
         if (info?.demande?.id) {
           this.currentInfo.demande = response;
         }
-        
+
         console.info(this.currentInfo?.offre);
         console.info('Bienvenue')
         console.info(this.currentInfo?.demande)

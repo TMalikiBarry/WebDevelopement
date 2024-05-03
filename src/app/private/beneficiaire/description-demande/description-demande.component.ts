@@ -3,7 +3,7 @@ import {Subscription} from 'rxjs';
 import {Demande} from 'src/app/model/demande';
 import {DataService} from 'src/app/services/data_service/data_service';
 import {environment} from 'src/environments/environment';
-import {Beneficiaire} from "../../../model/beneficiaire";
+import {StorageService} from "../../../services/Storage/storage.service";
 
 @Component({
   selector: 'description-demande',
@@ -25,6 +25,7 @@ export class DescriptionDemandeComponent implements OnInit {
   beneficiaire: any;
 
   constructor(private data: DataService,
+              private storage: StorageService,
               // private pmoService:PmoService
   ) {
   }
@@ -41,7 +42,7 @@ export class DescriptionDemandeComponent implements OnInit {
     }
 
     if (!this.demandeEx && localStorage.getItem('currentUser') != null) {
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      const currentUser = JSON.parse(this.storage.getItem('currentUser') || '');
       console.log(this.infoDemande)
       this.typeBeneficiaire = currentUser.personne.beneficiaire.typeBeneficiaire;
       // //console.log(this.typeBeneficiaire);

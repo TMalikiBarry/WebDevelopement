@@ -1,6 +1,6 @@
 import {Login} from "./login";
-import { Personne } from "./personne";
-import {EnumValue} from "@angular/compiler-cli/src/ngtsc/partial_evaluator";
+import {Personne} from "./personne";
+import {AUTHLICYCLEStatus} from "./acces";
 
 export class User extends Login{
   roles: string[] | undefined;
@@ -11,6 +11,8 @@ export class User extends Login{
   type : string = '';
   personne : Personne = new Personne();
   username : String = '';
+  codeQR?: string;
+  auth_statut?: AUTHLICYCLEStatus;
 
 }
 

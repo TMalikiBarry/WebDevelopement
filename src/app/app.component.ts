@@ -1,16 +1,12 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
-import { SwiperComponent } from "swiper/angular";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 // import Swiper core and required modules
-import SwiperCore, { Navigation, Pagination } from "swiper";
+import SwiperCore, {Navigation} from "swiper";
 import {Subscription} from "rxjs";
 import {MessageService} from "./services/message/message-service.service";
 import {ToastrService} from "ngx-toastr";
-import { Router } from '@angular/router';
-import { AuthService } from './services/security/auth/auth.service';
-
-import * as anime from 'animejs';
-import * as scrollmagic from 'scrollmagic';
+import {Router} from '@angular/router';
+import {AuthService} from './services/security/auth/auth.service';
 // install swiper module
 SwiperCore.use([Navigation]);
 
@@ -51,7 +47,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-   
+
   }
 
 }

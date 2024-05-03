@@ -1,0 +1,93 @@
+<div class="container-fluid d-flex vh-100 text-center two-fa-screen">
+
+  <!-- Etape1 : Installer Google Authenticator et Scanner le code QR -->
+  <!-- <div class="row d-flex my-auto mx-auto"
+      style="padding:40px;background: white;max-width: 400px; height: 500px;">
+      <div class="col">
+          <div class="mb-2 text-center">
+              <img src="../../../assets/images/login_logo.png" style="height: 92px;">
+          </div>
+          <div class="mt-3 mb-2 text-center">
+              <h4>Installez Google Authenticator pour la vérification à 2 facteurs</h4>
+          </div>
+
+          <div class="mb-2 text-center">
+              <button class="btn btn-primary me-1" (click)="onNext()">Suivant</button>
+              <button class="btn btn-primary" routerLink="/login">Annuler</button>
+
+          </div>
+
+      </div>
+
+  </div> -->
+
+
+  <!-- Etape2 : Scanner le code QR -->
+
+
+  <!-- Etape3 : Entrer votre Code OTP -->
+  <div class="row d-flex my-auto mx-auto"
+       style="padding:20px 0;background: white; max-width: 450px; max-height: 500px;">
+    <div class="col">
+      <div class="mb-2">
+        <img alt="logo" src="assets/images/logo/logo-mini.svg" style="height: 92px;">
+      </div>
+      <div class="mb-2" id="verifOtp">
+        VERIFICATION DU CODE OTP
+      </div>
+      <div class="mb-3 codeOtp">
+        Entrez le code ici
+      </div>
+
+
+      <form (ngSubmit)="onSubmit()" [formGroup]="otpForm" aria-describedby="OTPHelp" class="mb-3">
+        <div class="row mb-3 me-sm-3 ms-sm-3 otprow">
+          <div class="col-2">
+
+            <input (input)="focusNext(1)" [(ngModel)]="otp[0]" class="form-control border rounded otpInput"
+                   formControlName="code1" id="otp1" maxlength="1" type="text">
+          </div>
+
+          <div class="col-2">
+            <input (input)="focusNext(2)" [(ngModel)]="otp[1]" class="form-control border rounded otpInput" formControlName="code2"
+                   id="otp2" maxlength="1" type="text">
+          </div>
+          <div class="col-2">
+            <input (input)="focusNext(3)" [(ngModel)]="otp[2]" class="form-control border rounded otpInput" formControlName="code3"
+                   id="otp3" maxlength="1" type="text">
+          </div>
+          <div class="col-2">
+            <input (input)="focusNext(4)" [(ngModel)]="otp[3]" class="form-control border rounded otpnput" formControlName="code4"
+                   id="otp4" maxlength="1" type="text">
+          </div>
+          <div class="col-2">
+            <input (input)="focusNext(5)" [(ngModel)]="otp[4]" class="form-control border rounded otpInput" formControlName="code5"
+                   id="otp5" maxlength="1" type="text">
+          </div>
+          <div class="col-2">
+            <input [(ngModel)]="otp[5]" class="form-control border rounded otpInput" formControlName="code6" id="otp6"
+                   maxlength="1" type="text">
+          </div>
+        </div>
+
+        <div class="me-5 ms-5 mt-2 mb-2 codeOtp" id="resentCode">
+          Code OTP perdu ? Cliquez <a routerLink="/two-fa-scan" style="color: #282C5D; font-weight: 800;">
+          ici</a> pour générer un nouveau.
+        </div>
+
+        <input [disabled]="isSubmitDisabled()" class="btn btn-primary" name="submit" style="width: 80%; color: #fff; font-size: 16px;"
+               type="submit" value="Vérifier & continuer">
+      </form>
+
+      <div class="m-2">
+        <a class="codeOtp ms-1" routerLink="/login" style="color: #282C5D;">
+          <img alt="Arrow" src="assets/images/icones/arrow-left.svg" width="30">
+          Retour à la connexion
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Redirection vers la page d'accueil si authentification réussie -->
+</div>

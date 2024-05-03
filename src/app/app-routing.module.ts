@@ -8,6 +8,8 @@ import {SetNewPasswordComponent} from './public/set-new-password/set-new-passwor
 import {Homev2Component} from './public/homev2/homev2.component';
 import {AproposComponent} from './public/apropos/apropos.component';
 import {TouchComponent} from "./private/touch-point/touch/touch.component";
+import {TwoFaLoginComponent} from "./public/login/two-fa-login/two-fa-login.component";
+import {TwoFaScanComponent} from "./public/login/two-fa-scan/two-fa-scan.component";
 
 
 const routes: Routes = [
@@ -25,6 +27,8 @@ const routes: Routes = [
   { path: 'home', component: Homev2Component },
   { path: 'apropos', component: AproposComponent },
   { path: 'login', component: LoginComponent },
+  {path: 'two-fa-scan', component: TwoFaScanComponent},
+  {path: 'two-fa', component: TwoFaLoginComponent},
   { path: 'reset_password', component: ResetPasswordComponent },
   { path: 'newpassword' , component: SetNewPasswordComponent },
   { path: 'switch',component: SwitchComponent, loadChildren: () => import('./switch/switch.module').then(m => m.SwitchModule) },

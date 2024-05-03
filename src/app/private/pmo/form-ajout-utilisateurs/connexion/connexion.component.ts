@@ -1,15 +1,14 @@
-import {Component, EventEmitter, Input, OnInit, Output, OnDestroy} from '@angular/core';
-import {UntypedFormBuilder, FormGroup, Validators} from "@angular/forms";
-import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { ApiResponseBenef } from 'src/app/model/api-response-benef';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {UntypedFormBuilder, Validators} from "@angular/forms";
+import {NzNotificationService} from 'ng-zorro-antd/notification';
 import {FormAjoutUserPMOComponent} from "../form-ajout-user.component";
-import {interval, Subscription} from "rxjs";
-import {Router} from "@angular/router";
+import {Subscription} from "rxjs";
 import {NzModalService} from "ng-zorro-antd/modal";
-import { UniqueLoginValidator } from 'src/app/core/customValidators/asyncValidators/UniqueLoginValidator';
-import { DataService } from 'src/app/services/data_service/data_service';
-import { GestionUsersComponent } from '../../gestion-user/gestion-user.component';
+import {UniqueLoginValidator} from 'src/app/core/customValidators/asyncValidators/UniqueLoginValidator';
+import {DataService} from 'src/app/services/data_service/data_service';
+import {GestionUsersComponent} from '../../gestion-user/gestion-user.component';
 import {PmoService} from "../../../../services/pmo/pmo.service";
+import {StorageService} from "../../../../services/Storage/storage.service";
 
 @Component({
   selector: 'app-connexion',
@@ -95,12 +94,13 @@ export class ConnexionComponent implements OnInit, OnDestroy {
               private notification : NzNotificationService,
               private gestionUsersComponent: GestionUsersComponent,
               private data: DataService,
+              private storage: StorageService,
               private modal: NzModalService,
               private pmo : PmoService,
               private loginValidator : UniqueLoginValidator) {}
 
   ngOnInit( ):void {
-    let user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    let user = JSON.parse(this.storage.getItem('currentUser') || '{}');
     this.pmo.getById(user.idParent).subscribe(data => {
       console.log("user pmo : "+ data.sigle)
       if(data.sigle === 'INTOUCH'){

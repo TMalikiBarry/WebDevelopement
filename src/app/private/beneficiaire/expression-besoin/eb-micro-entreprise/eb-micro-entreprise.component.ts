@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, OnDestroy, ChangeDetectorRef} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {DemandeService} from "../../../../services/demande/demande.service";
 import {MessageService} from "../../../../services/message/message-service.service";
 import {Demande} from "../../../../model/demande";
@@ -11,8 +11,8 @@ import {FinancementObtenu} from "../../../../model/FinancementObtenu";
 import {NzModalService} from "ng-zorro-antd/modal";
 // import {TypeFinancement} from "../../../../model/type-financement";
 import {Router} from "@angular/router";
-import { DataService } from 'src/app/services/data_service/data_service';
-import { Subscription } from 'rxjs';
+import {DataService} from 'src/app/services/data_service/data_service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-eb-micro-entreprise',
@@ -80,9 +80,9 @@ export class EbMicroEntrepriseComponent implements OnInit, OnDestroy {
       console.log('test2');
       let benef = new Beneficiaire();
       let demandeRecuperee: Demande;
-      if(localStorage.getItem('demandeCourante')) {
-        demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      if (this.authService.storage.getItem('demandeCourante')) {
+        demandeRecuperee = JSON.parse(<string>this.authService.storage.getItem('demandeCourante'));
+        const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
         benef.id = currentUser.idParent;
         if (!(this.description || !this.demandeForm)) {
           console.log('test3');
@@ -157,8 +157,8 @@ export class EbMicroEntrepriseComponent implements OnInit, OnDestroy {
       let benef = new Beneficiaire();
       let demandeRecuperee: Demande;
 
-      demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      demandeRecuperee = JSON.parse(<string>this.authService.storage.getItem('demandeCourante'));
+      const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
       benef.id = currentUser.idParent;
       //console.log(demandeRecuperee);
       //console.log(benef.id);
@@ -204,7 +204,7 @@ export class EbMicroEntrepriseComponent implements OnInit, OnDestroy {
     //insertion beneficiaire
     let beneficiaire = new Beneficiaire();
     if(localStorage.getItem('currentUser') != null) {
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
       beneficiaire.id = currentUser.idParent;
       this.demandeBis.beneficiaire = beneficiaire;
     }

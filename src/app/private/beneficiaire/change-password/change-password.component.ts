@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Validators, UntypedFormBuilder } from '@angular/forms';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { PmoService } from 'src/app/services/pmo/pmo.service';
-import { AuthService } from 'src/app/services/security/auth/auth.service';
-import { OtpService } from 'src/app/services/security/otp/otp.service';
-import { environment } from 'src/environments/environment';
-import { PasswordValidator } from './confirmPassword';
+import {Component, OnInit} from '@angular/core';
+import {UntypedFormBuilder, Validators} from '@angular/forms';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {PmoService} from 'src/app/services/pmo/pmo.service';
+import {AuthService} from 'src/app/services/security/auth/auth.service';
+import {environment} from 'src/environments/environment';
+import {PasswordValidator} from './confirmPassword';
 
 @Component({
   selector: 'app-change-password',
@@ -23,11 +22,11 @@ export class ChangePasswordComponent implements OnInit {
   confirmPasswordVisible = false ;
   isSpinning: boolean =false;
   baseUrlFile = environment.baseUrlFile;
-  
+
   constructor(private fb : UntypedFormBuilder , private pmoService : PmoService, private modal: NzModalService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.user = JSON.parse(this.authService.storage.getItem('currentUser') || '{}');
     console.log(this.user);
   }
 

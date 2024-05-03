@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {DemandeFinancementComponent} from "./demande-financement/demande-financement.component";
-import {DescriptionProjetEntrepriseComponent} from "./description-projet-entreprise/description-projet-entreprise.component";
+import {
+  DescriptionProjetEntrepriseComponent
+} from "./description-projet-entreprise/description-projet-entreprise.component";
 import {DemandeService} from "../../services/demande/demande.service";
 import {Demande} from "../../model/demande";
 import {Projet} from "../../model/projet";
@@ -64,9 +66,9 @@ export class EbEntrepriseComponent implements OnInit {
     if(this.currentStepPosition == 1){
       let benef = new Beneficiaire();
       let demandeRecuperee: Demande;
-if(localStorage.getItem('demandeCourante')) {
-  demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-  const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      if (this.authService.storage.getItem('demandeCourante')) {
+        demandeRecuperee = JSON.parse(<string>this.authService.storage.getItem('demandeCourante'));
+        const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
   benef.id = currentUser.idParent;
   if (!(this.description || demandeRecuperee.beneficiaire?.id == benef.id)) {
     this.stepname = "la description du projet";
@@ -145,8 +147,8 @@ if(localStorage.getItem('demandeCourante')) {
       let benef = new Beneficiaire();
       let demandeRecuperee: Demande;
 
-      demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      demandeRecuperee = JSON.parse(<string>this.authService.storage.getItem('demandeCourante'));
+      const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
       benef.id = currentUser.idParent;
       //console.log(demandeRecuperee);
       //console.log(benef.id);
@@ -194,7 +196,7 @@ if(localStorage.getItem('demandeCourante')) {
     }
     else{
       if(localStorage.getItem('currentUser') != null) {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+        const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
         beneficiaire.id = currentUser.idParent;
         demande.beneficiaire = beneficiaire;
       }

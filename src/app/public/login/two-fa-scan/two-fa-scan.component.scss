@@ -1,0 +1,33 @@
+.two-fa-screen {
+  background-image: url("/assets/images/logo/logo-mini.svg"),
+  url("/assets/images/logo/logo-mini.svg");
+  background-position: left top, right bottom;
+  background-repeat: no-repeat;
+  background-color: #ECF2FF;
+  font-family: Poppins, serif;
+}
+
+#verifOtp {
+  color: #2F335A;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.codeOtp {
+  font-size: 14px;
+  color: #5D6273;
+  font-weight: 500;
+}
+
+#resentCode {
+  font-weight: 400;
+}
+
+input[type="text"] {
+  background-color: #ECF2FF;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}

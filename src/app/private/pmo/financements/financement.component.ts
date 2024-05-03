@@ -1,20 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexTitleSubtitle
-} from "ng-apexcharts";
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { BeneficiaireGie } from 'src/app/model/beneficiaire-gie';
-import { BeneficiaireGieService } from 'src/app/services/beneficiaire/beneficiaire-gie/beneficiaire-gie.service';
-import { BeneficiairePmeService } from 'src/app/services/beneficiaire/beneficiaire-pme/beneficiaire-pme.service';
-import { BeneficiaireMEService } from 'src/app/services/beneficiaire/beneficiaire_me/beneficiaire-me.service';
-import { AuthService } from 'src/app/services/security/auth/auth.service';
-import { PmoService } from 'src/app/services/pmo/pmo.service';
-import { Demande } from 'src/app/model/demande';
-import { InfoSelection } from 'src/app/model/info-selection';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ApexAxisChartSeries, ApexChart, ApexTitleSubtitle, ApexXAxis, ChartComponent} from "ng-apexcharts";
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {BeneficiaireGieService} from 'src/app/services/beneficiaire/beneficiaire-gie/beneficiaire-gie.service';
+import {BeneficiairePmeService} from 'src/app/services/beneficiaire/beneficiaire-pme/beneficiaire-pme.service';
+import {BeneficiaireMEService} from 'src/app/services/beneficiaire/beneficiaire_me/beneficiaire-me.service';
+import {AuthService} from 'src/app/services/security/auth/auth.service';
+import {PmoService} from 'src/app/services/pmo/pmo.service';
+import {Demande} from 'src/app/model/demande';
 
 
 export type ChartOptions = {
@@ -72,7 +64,7 @@ export class FinancementComponent implements OnInit {
   ngOnInit(): void {
     // this.getAllBeneficiaires();
     if (localStorage.getItem('currentUser')) {
-      let user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      let user = JSON.parse(this.authService.storage.getItem('currentUser') || '{}');
       // //console.log('local storage', user);
       this.idPmo = user.idParent;
       this.onGetAllDemande();

@@ -9,10 +9,7 @@ import {Beneficiaire} from "../../model/beneficiaire";
 import {AuthService} from "../../services/security/auth/auth.service";
 import {FinancementObtenu} from "../../model/FinancementObtenu";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {TypeFinancement} from "../../model/type-financement";
 import {ActivatedRoute, Router} from "@angular/router";
-import {environment} from "../../../environments/environment";
-import {Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-eb-micro-entreprise',
@@ -65,7 +62,7 @@ export class FormDemandeComponent implements OnInit {
       let id = this.beneficiairetp.demandes[0].id
       this.demandeService.getById(id).subscribe((response) => {
         this.DemandeEx = response;
-        localStorage.setItem("demandeCourante", JSON.stringify(this.DemandeEx))
+        this.authService.storage.setItem("demandeCourante", JSON.stringify(this.DemandeEx))
         localStorage.setItem("typeBenef", <string>this.DemandeEx.beneficiaire?.typeBeneficiaire)
         // //  console.log('ME', response)
         //
@@ -253,9 +250,9 @@ export class FormDemandeComponent implements OnInit {
       let benef = new Beneficiaire();
       let demandeRecuperee: Demande = new Demande();
       //a revoir
-      if(localStorage.getItem('demandeCourante')) {
-        demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      if (this.authService.storage.getItem('demandeCourante')) {
+        demandeRecuperee = JSON.parse(<string>this.authService.storage.getItem('demandeCourante'));
+        const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
         benef.id = currentUser.idParent;
         if (!(this.description || demandeRecuperee.beneficiaire?.id == benef.id)) {
           this.stepname = "la description du projet";
@@ -341,8 +338,8 @@ export class FormDemandeComponent implements OnInit {
       let benef = new Beneficiaire();
       let demandeRecuperee: Demande;
 
-      demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      demandeRecuperee = JSON.parse(<string>this.authService.storage.getItem('demandeCourante'));
+      const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
       benef.id = currentUser.idParent;
       //console.log(demandeRecuperee);
       //console.log(benef.id);
@@ -400,7 +397,7 @@ export class FormDemandeComponent implements OnInit {
     }
     else{
       if(localStorage.getItem('currentUser') != null) {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+        const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
         beneficiaire.id = currentUser.idParent;
         demande.beneficiaire = beneficiaire;
       }

@@ -1,12 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import { Login } from 'src/app/model/login';
-import { SignUp } from 'src/app/model/sign-up';
-import { environment } from 'src/environments/environment';
+import {Login} from 'src/app/model/login';
+import {environment} from 'src/environments/environment';
 import {User} from "../../../model/user";
 import {map} from "rxjs/operators";
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+import {StorageService} from "../../Storage/storage.service";
+import {CodeOTPInfos} from "../../../model/CodeOTP/code-otp";
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,9 @@ export class AuthService {
   private currentUserSubject!: BehaviorSubject<User>;
   public currentUser!: Observable<Login>;
   roleAs!: string | null;
-  constructor(private http: HttpClient, private router: Router) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(<string>localStorage.getItem("currentUser")));
+
+  constructor(private http: HttpClient, private router: Router, public storage: StorageService) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(<string>this.storage.getItem("currentUser")));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -51,6 +53,7 @@ export class AuthService {
         //   localStorage.setItem('currentUser', JSON.stringify(user));
         //   localStorage.setItem('STATE', 'true');
         //   localStorage.setItem('ROLE', user.roles);
+          this.storage.setItem('currentUser', JSON.stringify(user));
           this.isLogin = true;
           this.currentUserSubject.next(user);
         }
@@ -61,7 +64,7 @@ export class AuthService {
   routingAlreadyConnectedApp(){
     // console.log('babs');
     if (localStorage.getItem('currentUser')) {
-      let user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      let user = JSON.parse(this.storage.getItem('currentUser') || '{}');
       // console.log('local storage', user);
       this.isLogin = true;
       if (user.roles?.includes("SUPERVISEUR_BE")){
@@ -83,17 +86,21 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    const loggedIn = localStorage.getItem('STATE');
-    if (loggedIn == 'true')
-      this.isLogin = true;
-    else
-      this.isLogin = false;
+    const loggedIn = this.storage.getItem('STATE');
+    this.isLogin = loggedIn == 'true';
     return this.isLogin;
   }
 
   getRole() {
-    this.roleAs = localStorage.getItem('ROLE');
+    this.roleAs = this.storage.getItem('ROLE');
     // console.log(this.roleAs);
     return this.roleAs;
+  }
+
+  validateOtp(codeOTPInfos: CodeOTPInfos) {
+
+
+    return this.http.post<CodeOTPInfos>(this.host + "/auth/signin/validateOTP", codeOTPInfos)
+
   }
 }

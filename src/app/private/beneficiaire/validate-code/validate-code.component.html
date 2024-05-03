@@ -50,7 +50,7 @@
     </div>
 
     <!--  Message de succes  -->
-    <div nz-row class="login-container" nzJustify="center" nzAlign="middle" nzJustify="center" nzAlign="middle" *ngIf="showSuccess">
+    <div *ngIf="showSuccess" class="login-container" nz-row nzAlign="middle" nzJustify="center">
       <div nz-col nzSpan="8" class="login-content">
         <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="Modification mot de passe">
           <!-- Formulaire de connexion  -->
@@ -69,7 +69,7 @@
     </div>
 
     <!--  Message derreur  -->
-    <div nz-row class="login-container" nzJustify="center" nzAlign="middle" nzJustify="center" nzAlign="middle" *ngIf="showError">
+    <div *ngIf="showError" class="login-container" nz-row nzAlign="middle" nzJustify="center">
       <div nz-col nzSpan="8" class="login-content">
         <nz-card style="width:auto;border-radius: 8px;" [nzBordered]="false" nzTitle="Modification mot de passe">
           <form nz-form style="margin-left: 25%;" [formGroup]="validateCodeForm" class="login-form-here">

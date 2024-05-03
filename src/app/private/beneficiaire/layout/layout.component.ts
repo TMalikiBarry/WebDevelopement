@@ -56,7 +56,7 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     // localStorage.setItem('isPMOSpecial','true');
     if (localStorage.getItem('currentUser')) {
-      this.user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      this.user = JSON.parse(this.authService.storage.getItem('currentUser') || '{}');
       // console.log('local user', this.user);
       this.idBeneficiaire = this.user.idParent;
       this.onGetAllSecteurActivite();

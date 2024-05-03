@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Validators, UntypedFormBuilder } from '@angular/forms';
-import { PmoService } from 'src/app/services/pmo/pmo.service';
-import { OtpService } from 'src/app/services/security/otp/otp.service';
-import { PasswordValidator } from './confirmPassword';
+import {Component, OnInit} from '@angular/core';
+import {UntypedFormBuilder, Validators} from '@angular/forms';
+import {PmoService} from 'src/app/services/pmo/pmo.service';
+import {PasswordValidator} from './confirmPassword';
+import {StorageService} from "../../../services/Storage/storage.service";
 
 @Component({
   selector: 'app-change-password',
@@ -20,10 +20,12 @@ export class ChangePasswordComponent implements OnInit {
   passwordVisible = false ;
   confirmPasswordVisible = false ;
   isSpinning: boolean =false;
-  constructor(private fb : UntypedFormBuilder , private pmoService : PmoService) { }
+
+  constructor(private fb: UntypedFormBuilder, private pmoService: PmoService, private storage: StorageService) {
+  }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.user = JSON.parse(this.storage.getItem('currentUser') || '{}');
     //console.log(this.user);
   }
 

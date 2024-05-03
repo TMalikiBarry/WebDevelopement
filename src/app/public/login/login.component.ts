@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from "../../services/security/auth/auth.service";
 import {first} from "rxjs/operators";
+import {NgStyleInterface} from "ng-zorro-antd/core/types";
+import {AUTHLICYCLEStatus} from "../../model/acces";
 
 @Component({
   selector: 'app-login',
@@ -32,11 +34,13 @@ export class LoginComponent implements OnInit {
 
   passwordVisible : any  ;
 
-  tooltipStyle : Object =  {
+  tooltipStyle: NgStyleInterface = {
     'font-family' : "Manrope"
   };
 
-  constructor(private fb: UntypedFormBuilder , private router : Router,  private route: ActivatedRoute,  private authService: AuthService) {}
+  constructor(private fb: UntypedFormBuilder, private router: Router, private route: ActivatedRoute,
+              private authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -61,47 +65,28 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          //console.log(this.authService.currentUserValue.personne.acces?.hasAlreadyConnected);
-          //console.log('superviseur ' , this.authService.currentUserValue.roles?.includes("SUPERVISEUR_PMO") );
-          //console.log('superviseur ' , this.authService.currentUserValue.roles?.includes("AGENT_PMO") );
+
+          // console.log('isLoggin ', data)
           this.isSpinning = false;
-          console.log(data);
+
           let user = data;
           if (user && user.token) {
-            if(user.roles?.includes("SUPERVISEUR_BE") && user.personne?.beneficiaire?.statut?.trim()=='PENDING_REGISTRED'){
-              localStorage.setItem('currentUserNotActivated', JSON.stringify(user));
-              this.router.navigateByUrl('/beneficiaire/validate_code');
-              return;
-            }
+            // console.log('hasLoggin ', data)
 
+            let goToScan: boolean = [null, undefined, AUTHLICYCLEStatus.GENERATED]
+              .some(v => v === user.auth_statut);
 
-            // if( !this.authService.currentUserValue.personne.acces?.hasAlreadyConnected
-            //   &&  ( this.authService.currentUserValue.roles?.includes("AGENT_INITIATEUR") || this.authService.currentUserValue.roles?.includes("AGENT_VALIDATEUR") || this.authService.currentUserValue.roles?.includes("ANALYSTE_FINANCIER") )){
-            //   localStorage.setItem('currentUserPMO', JSON.stringify(user));
-            //   localStorage.setItem('ROLE', user.roles);
-            //   this.router.navigateByUrl('/newpassword');
-            //   return ;
-            // }
+            this.authService.storage.setItem('SUQALI_QR', user.codeQR);
 
-            // check for PMO first connection
-            if( !this.authService.currentUserValue.personne.acces?.hasAlreadyConnected
-              &&  ( this.authService.currentUserValue.roles?.includes("SUPERVISEUR_PMO") || this.authService.currentUserValue.roles?.includes("AGENT_PMO") )){
-                localStorage.setItem('currentUserPMO', JSON.stringify(user));
-                localStorage.setItem('ROLE', user.roles);
-              this.router.navigateByUrl('/newpassword');
-              return ;
-            }
-            // check for PMO first connection
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            localStorage.setItem('STATE', 'true');
-            localStorage.setItem('ROLE', user.roles);
+            this.isLogginOk = true;
 
+            this.router.navigateByUrl(goToScan ? '/two-fa-scan' : '/two-fa');
+          } else {
+            this.isLogginOk = false;
           }
           // console.log(data);
-          this.isLogginOk = true;
           //console.log(this.authService.currentUserValue.roles);
-          if (this.authService.currentUserValue.roles?.includes("SUPERVISEUR_BE") || this.authService.currentUserValue.roles?.includes("AGENT_BE")){
+          /*if (this.authService.currentUserValue.roles?.includes("SUPERVISEUR_BE") || this.authService.currentUserValue.roles?.includes("AGENT_BE")){
             //console.log('babs');
             this.router.navigateByUrl('/beneficiaire');
           }else if ((this.authService.currentUserValue.roles?.includes("SUPERVISEUR_PMO")  && this.authService.currentUserValue.idParent !== 11) || this.authService.currentUserValue.roles?.includes("AGENT_PMO")){
@@ -111,7 +96,7 @@ export class LoginComponent implements OnInit {
           }
           else{
             this.isLogginOk = false;
-          }
+          }*/
         },
         error => {
           this.isSpinning = false;

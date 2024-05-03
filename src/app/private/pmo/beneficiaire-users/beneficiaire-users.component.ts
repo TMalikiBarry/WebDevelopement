@@ -1,20 +1,25 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Demande} from "../../../model/demande";
-import {ChartComponent} from "ng-apexcharts";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {AuthService} from "../../../services/security/auth/auth.service";
 import {PmoService} from "../../../services/pmo/pmo.service";
-import { NzTableFilterFn, NzTableFilterList, NzTableQueryParams, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
-import { InfoSelection } from 'src/app/model/info-selection';
-import { UntypedFormBuilder, FormControl, Validators } from '@angular/forms';
-import { FileService } from 'src/app/services/file/file.service';
-import { DataService } from 'src/app/services/data_service/data_service';
-import { DescriptionBeneficiaireComponent } from '../description-beneficiaire/description-beneficiaire.component';
-import { DatePipe } from '@angular/common';
-import { DescriptionDemandeComponent } from '../description-demande/description-demande.component';
-import { Router } from '@angular/router';
-import { ExportPMO } from 'src/app/model/exportPMO';
+import {
+  NzTableFilterFn,
+  NzTableFilterList,
+  NzTableQueryParams,
+  NzTableSortFn,
+  NzTableSortOrder
+} from 'ng-zorro-antd/table';
+import {InfoSelection} from 'src/app/model/info-selection';
+import {UntypedFormBuilder} from '@angular/forms';
+import {FileService} from 'src/app/services/file/file.service';
+import {DataService} from 'src/app/services/data_service/data_service';
+import {DescriptionBeneficiaireComponent} from '../description-beneficiaire/description-beneficiaire.component';
+import {DescriptionDemandeComponent} from '../description-demande/description-demande.component';
+import {Router} from '@angular/router';
+import {ExportPMO} from 'src/app/model/exportPMO';
 import {Beneficiaire} from "../../../model/beneficiaire";
+
 interface ColumnItem {
   name: string;
   sortOrder: NzTableSortOrder | null;
@@ -350,7 +355,7 @@ export class UsersBeneficiaireComponent implements OnInit {
         // this.isSpinning = false;
         console.log(response);
         this.isPMOSpecial = response.reponse;
-        localStorage.setItem('isPMOSpecial', this.isPMOSpecial+'');
+        this.authService.storage.setItem('isPMOSpecial', this.isPMOSpecial + '');
         console.log(localStorage.getItem('isPMOSpecial'));
       },
       (error)=>{

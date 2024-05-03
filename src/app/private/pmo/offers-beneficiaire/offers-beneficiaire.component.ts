@@ -1,17 +1,16 @@
-import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
-import { NzIconService } from 'ng-zorro-antd/icon';
-import { AuthService } from 'src/app/services/security/auth/auth.service';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BeneficiaireService } from 'src/app/services/beneficiaire/beneficiaire.service';
-import { Offre } from 'src/app/model/offre';
-import { environment } from 'src/environments/environment';
-import { DemandeSelection } from 'src/app/model/DemandeSelection';
-import { DemandeService } from 'src/app/services/demande/demande.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {NzIconService} from 'ng-zorro-antd/icon';
+import {AuthService} from 'src/app/services/security/auth/auth.service';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {ActivatedRoute, Router} from '@angular/router';
+import {BeneficiaireService} from 'src/app/services/beneficiaire/beneficiaire.service';
+import {Offre} from 'src/app/model/offre';
+import {environment} from 'src/environments/environment';
+import {DemandeSelection} from 'src/app/model/DemandeSelection';
+import {DemandeService} from 'src/app/services/demande/demande.service';
 import {ApiResponseDemandeOffres} from "../../../model/demande-offres";
-import {FormAnalystePmeGieComponent} from "../../../formulaire/form-analyste-pme-gie/form-analyste-pme-gie.component";
-import {FormAnalysteMeComponent} from "../../../formulaire/form-analyste-me/form-analyste-me.component";
 import {Demande} from "../../../model/demande";
+
 // import { User } from 'src/app/model/user';
 
 @Component({
@@ -390,7 +389,7 @@ export class OffresBeneficiaireComponent implements OnInit {
     }
 
     console.log(localStorage.getItem('isPMOSpecial'));
-    if(!localStorage.getItem('isPMOSpecial') || localStorage.getItem('isPMOSpecial')==='false'){
+    if (!localStorage.getItem('isPMOSpecial') || this.authService.storage.getItem('isPMOSpecial') === 'false') {
       if(this.listeOffres.length >=2){
         if(count < 2 && count >0){
           // //console.log('choisir 2');
@@ -415,8 +414,7 @@ export class OffresBeneficiaireComponent implements OnInit {
           return;
         }
       }
-    }
-    else if(localStorage.getItem('isPMOSpecial') && localStorage.getItem('isPMOSpecial')==='true' && this.authService.currentUserValue.idParent != 11){
+    } else if (localStorage.getItem('isPMOSpecial') && this.authService.storage.getItem('isPMOSpecial') === 'true' && this.authService.currentUserValue.idParent != 11) {
       console.log('here6');
       if(this.listeOffres.length >0){
         if(selectedOffers.length == 0){

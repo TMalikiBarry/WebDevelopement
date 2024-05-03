@@ -1,11 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, SimpleChanges, OnChanges } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { Genre } from 'src/app/model/genre';
-import { GenreService } from 'src/app/services/configuration/genre/genre.service';
-import { DataService } from 'src/app/services/data_service/data_service';
-import { PmoService } from 'src/app/services/pmo/pmo.service';
-import { environment } from 'src/environments/environment';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {UntypedFormBuilder, Validators} from '@angular/forms';
+import {NzNotificationService} from 'ng-zorro-antd/notification';
+import {Genre} from 'src/app/model/genre';
+import {GenreService} from 'src/app/services/configuration/genre/genre.service';
+import {DataService} from 'src/app/services/data_service/data_service';
+import {PmoService} from 'src/app/services/pmo/pmo.service';
+import {environment} from 'src/environments/environment';
+import {StorageService} from "../../../services/Storage/storage.service";
 
 @Component({
   selector: 'app-profil-user',
@@ -35,6 +36,7 @@ export class ProfilUserComponent implements OnInit, OnChanges {
 
   constructor(private data: DataService,
     private pmoService:PmoService,
+              private storage: StorageService,
     private fb : UntypedFormBuilder,
     private notification : NzNotificationService,
     private genreService: GenreService,
@@ -66,7 +68,7 @@ export class ProfilUserComponent implements OnInit, OnChanges {
 );
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.user = JSON.parse(this.storage.getItem('currentUser') || '{}');
     //console.log('local user', this.user.personne);
     this.onGetGenre();
     this.onGetTitreInfo();
@@ -141,7 +143,8 @@ export class ProfilUserComponent implements OnInit, OnChanges {
       this.user.personne = this.personnePMO;
       //console.log('new user', this.user);
       // localStorage.removeItem('currentUser');
-      localStorage.setItem('currentUser', JSON.stringify(this.user));
+        // localStorage.setItem('currentUser', JSON.stringify(this.user));
+        this.storage.setItem('currentUser', JSON.stringify(this.user));
       // this.regionEntreprise = response;
       // this.offers = response?.offres;
     },

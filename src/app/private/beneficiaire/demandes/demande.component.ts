@@ -1,20 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexTitleSubtitle
-} from "ng-apexcharts";
-import { BeneficiaireService } from 'src/app/services/beneficiaire/beneficiaire.service';
-import { AuthService } from 'src/app/services/security/auth/auth.service';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { Demande } from 'src/app/model/demande';
-import { DescriptionDemandeComponent } from '../description-demande/description-demande.component';
-import { DataService } from 'src/app/services/data_service/data_service';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
+import {Component, OnInit} from '@angular/core';
+import {ApexAxisChartSeries, ApexChart, ApexTitleSubtitle, ApexXAxis} from "ng-apexcharts";
+import {BeneficiaireService} from 'src/app/services/beneficiaire/beneficiaire.service';
+import {AuthService} from 'src/app/services/security/auth/auth.service';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {Demande} from 'src/app/model/demande';
+import {DescriptionDemandeComponent} from '../description-demande/description-demande.component';
+import {DataService} from 'src/app/services/data_service/data_service';
+import {Router} from '@angular/router';
+import {environment} from 'src/environments/environment';
+import {NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder} from 'ng-zorro-antd/table';
 
 
 export type ChartOptions = {
@@ -135,7 +129,7 @@ export class DemandeComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('currentUser')) {
-      let user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      let user = JSON.parse(this.authService.storage.getItem('currentUser') || '{}');
       // //console.log('local storage', user);
       this.idBeneficiaire = user.idParent;
       this.setStatusMap();

@@ -1,23 +1,17 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {DemandeFinancementGieComponent} from "./demande-financement-gie/demande-financement-gie.component";
 import {DescriptionProjetGieComponent} from "./description-projet-gie/description-projet-gie.component";
-import {BeneficiaireGie} from "../../../../model/beneficiaire-gie";
 import {Demande} from "../../../../model/demande";
 import {Beneficiaire} from "../../../../model/beneficiaire";
-import {Offre} from "../../../../model/offre";
-import {Session} from "../../../../model/session";
 import {Projet} from "../../../../model/projet";
-import {TrancheNombrePersonne} from "../../../../model/tranche-nombre-personne";
 import {DemandeService} from "../../../../services/demande/demande.service";
 import {MessageService} from "../../../../services/message/message-service.service";
 import {FinancementObtenu} from "../../../../model/FinancementObtenu";
 import {AuthService} from "../../../../services/security/auth/auth.service";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {Router} from "@angular/router";
-import {Validators} from "@angular/forms";
-import {pasteDateValidator} from "../../../../core/customValidators/past-date-validator";
-import { Subscription } from 'rxjs';
-import { DataService } from 'src/app/services/data_service/data_service';
+import {Subscription} from 'rxjs';
+import {DataService} from 'src/app/services/data_service/data_service';
 
 
 @Component({
@@ -89,9 +83,9 @@ export class EbGieComponent implements OnInit {
 
       let benef = new Beneficiaire();
       let demandeRecuperee: Demande;
-      if(localStorage.getItem('demandeCourante')) {
-        demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      if (this.authService.storage.getItem('demandeCourante')) {
+        demandeRecuperee = JSON.parse(<string>this.authService.storage.getItem('demandeCourante'));
+        const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
         benef.id = currentUser.idParent;
         // if (!(this.description || demandeRecuperee.beneficiaire?.id == benef.id)) {
         if (!(this.description) || !this.demandeForm) {
@@ -169,8 +163,8 @@ export class EbGieComponent implements OnInit {
       let benef = new Beneficiaire();
       let demandeRecuperee: Demande;
 
-      demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      demandeRecuperee = JSON.parse(<string>this.authService.storage.getItem('demandeCourante'));
+      const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
       benef.id = currentUser.idParent;
       console.log(demandeRecuperee);
       console.log(benef.id);
@@ -216,7 +210,7 @@ export class EbGieComponent implements OnInit {
     //insertion beneficiaire
     let beneficiaire = new Beneficiaire();
     if(localStorage.getItem('currentUser') != null) {
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      const currentUser = JSON.parse(this.authService.storage.getItem('currentUser') || '');
       beneficiaire.id = currentUser.idParent;
       this.demandeBis.beneficiaire = beneficiaire;
     }

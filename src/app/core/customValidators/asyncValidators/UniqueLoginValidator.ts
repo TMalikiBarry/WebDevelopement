@@ -1,10 +1,11 @@
-import { Injectable } from "@angular/core";
-import { AbstractControl, AsyncValidator, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
-import { Observable, of } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { BeneficiaireService } from "src/app/services/beneficiaire/beneficiaire.service";
-import { CheckLoginService } from "src/app/services/security/checkLogin/check-login.service";
+import {Injectable} from "@angular/core";
+import {AbstractControl, AsyncValidator, AsyncValidatorFn, ValidationErrors} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
+import {Observable, of} from "rxjs";
+import {catchError, map} from "rxjs/operators";
+import {BeneficiaireService} from "src/app/services/beneficiaire/beneficiaire.service";
+import {CheckLoginService} from "src/app/services/security/checkLogin/check-login.service";
+import {StorageService} from "../../../services/Storage/storage.service";
 
 @Injectable({providedIn:'root' })
 
@@ -12,9 +13,10 @@ export class UniqueLoginValidator implements  AsyncValidator  {
 
   constructor(private checkUnicity : CheckLoginService,
               private activatedRoute : ActivatedRoute,
+              private storage: StorageService,
               private beneficiareService : BeneficiaireService ){
 
-                this.user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.user = JSON.parse(this.storage.getItem('currentUser') || '{}');
                 this.beneficiaireId = this.user.idParent ;
 
               //  console.log('benficiaire id of checke r' , this.beneficiaireId);

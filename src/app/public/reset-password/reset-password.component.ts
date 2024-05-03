@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Validators, UntypedFormBuilder } from '@angular/forms';
-import { OtpService } from 'src/app/services/security/otp/otp.service';
-import { PasswordValidator } from './confirmPassword';
+import {Component, OnInit} from '@angular/core';
+import {UntypedFormBuilder, Validators} from '@angular/forms';
+import {OtpService} from 'src/app/services/security/otp/otp.service';
+import {PasswordValidator} from './confirmPassword';
+import {StorageService} from "../../services/Storage/storage.service";
 
 @Component({
   selector: 'app-reset-password',
@@ -14,7 +15,9 @@ export class ResetPasswordComponent implements OnInit {
   errorMessage: string = '';
   showCodeOtpForm = false ;
   benefApiResponse: any;
-  constructor(private fb : UntypedFormBuilder , private otpService : OtpService) { }
+
+  constructor(private fb: UntypedFormBuilder, private otpService: OtpService, private storage: StorageService) {
+  }
 
   ngOnInit(): void {
 
@@ -42,7 +45,7 @@ export class ResetPasswordComponent implements OnInit {
           this.showCodeOtpForm=true ;
           this.showError = false;
           this.errorMessage = '';
-          localStorage.setItem('username', this.resetPasswordForm.controls['username'].value);
+        this.storage.setItem('username', this.resetPasswordForm.controls['username'].value);
         // }
         // else{
         //   this.showSuccess = false ;
@@ -66,7 +69,7 @@ export class ResetPasswordComponent implements OnInit {
   validerResetPassword(){
     //console.log('call validate password');
     if(this.otpForm.valid){
-      let username : string = localStorage.getItem('username') || '';
+      let username: string = this.storage.getItem('username') || '';
       this.otpService.validateResetPassword(this.otpForm.controls['code'].value ,this.otpForm.controls['password'].value, username).subscribe(
         response => {
           //console.log(response);

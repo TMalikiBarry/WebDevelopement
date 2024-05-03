@@ -14,4 +14,13 @@ export class Acces {
   dateLastPwdUpdate?:	string;
   hasAlreadyConnected?:	boolean;
   profil?: Profil
+
+  auth_statut?: AUTHLICYCLEStatus;
+  secretKey?: string;
+}
+
+export enum AUTHLICYCLEStatus {
+  GENERATED = "GENERATED",
+  REGISTERED = "REGISTERED",
+  VALIDATED = "VALIDATED",
 }

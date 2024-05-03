@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-/*    host: "http://localhost:8090/api/teranga",
-    baseUrlFile: "http://localhost:8090/api/teranga/files/",*/
-  host: "https://dev-be.suqali.com/api/teranga",
+  host: "http://localhost:8080/api/teranga",
+  // baseUrlFile: "http://localhost:8090/api/teranga/files/",
+  // host: "https://dev-be.suqali.com/api/teranga",
   baseUrlFile: "https://dev-be.suqali.com/files/",
 
 

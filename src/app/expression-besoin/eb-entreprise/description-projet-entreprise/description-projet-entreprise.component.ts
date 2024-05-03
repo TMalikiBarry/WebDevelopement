@@ -11,6 +11,7 @@ import {Beneficiaire} from "../../../model/beneficiaire";
 import {environment} from 'src/environments/environment';
 import {CheckFileSize} from "../../../core/utils/checker/checkFileSize";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {StorageService} from "../../../services/Storage/storage.service";
 
 @Component({
   selector: 'app-description-projet-entreprise',
@@ -20,6 +21,7 @@ import {NzModalService} from "ng-zorro-antd/modal";
 export class DescriptionProjetEntrepriseComponent implements OnInit {
 
   constructor(private modalService: NzModalService,
+              private storage: StorageService,
               private eb: EbEntrepriseComponent,
               private tranchepersonneService: TranchePersonneService,
               private fb: UntypedFormBuilder,
@@ -81,13 +83,13 @@ export class DescriptionProjetEntrepriseComponent implements OnInit {
 
   ngOnInit(): void {
     this.onGetTranchePersonnes()
-    if (localStorage.getItem('demandeCourante')) {
+    if (this.storage.getItem('demandeCourante')) {
       let beneficiaire = new Beneficiaire();
       let demandeRecuperee: Demande;
 
 
-      demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      demandeRecuperee = JSON.parse(<string>this.storage.getItem('demandeCourante'));
+      const currentUser = JSON.parse(this.storage.getItem('currentUser') || '');
       beneficiaire.id = currentUser.idParent;
       ////console.log(demandeRecuperee);
       // console.log(demandeRecuperee);
@@ -203,12 +205,12 @@ export class DescriptionProjetEntrepriseComponent implements OnInit {
 
       let beneficiaire = new Beneficiaire();
       if (localStorage.getItem('currentUser') != null) {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+        const currentUser = JSON.parse(this.storage.getItem('currentUser') || '');
         beneficiaire.id = currentUser.idParent;
         demande.beneficiaire = beneficiaire;
       }
       descriptionCourante = JSON.stringify(demande);
-      localStorage.setItem("demandeCourante", descriptionCourante)
+      this.storage.setItem("demandeCourante", descriptionCourante)
 
       this.eb.next()
     } else {

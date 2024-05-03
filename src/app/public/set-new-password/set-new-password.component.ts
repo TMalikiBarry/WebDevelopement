@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { fr_BE } from 'ng-zorro-antd/i18n';
-import { ReinitModel } from 'src/app/model/reinit-model';
-import { ReinitializePasswordService } from 'src/app/services/security/ReinitializePassword/reinitialize-password.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {UntypedFormBuilder, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {ReinitModel} from 'src/app/model/reinit-model';
+import {
+  ReinitializePasswordService
+} from 'src/app/services/security/ReinitializePassword/reinitialize-password.service';
+import {StorageService} from "../../services/Storage/storage.service";
 
 @Component({
   selector: 'app-set-new-password',
@@ -13,6 +15,7 @@ import { ReinitializePasswordService } from 'src/app/services/security/Reinitial
 export class SetNewPasswordComponent implements OnInit, OnDestroy {
 
   constructor(private fb : UntypedFormBuilder,
+              private storage: StorageService,
               private reinitService : ReinitializePasswordService,
               private router : Router ) { }
 
@@ -43,7 +46,7 @@ export class SetNewPasswordComponent implements OnInit, OnDestroy {
          newPasswordObject.newPassword = this.newPasswordForm.controls.newPassword.value;
 
          if (localStorage.getItem('currentUserPMO')) {
-          let user = JSON.parse(localStorage.getItem('currentUserPMO')!);
+           let user = JSON.parse(this.storage.getItem('currentUserPMO')!);
           newPasswordObject.username = user.username;
          }
 
@@ -51,8 +54,8 @@ export class SetNewPasswordComponent implements OnInit, OnDestroy {
           (response)=>{
             // console.log(response);
             localStorage.removeItem('currentUserPMO');
-            localStorage.setItem('currentUser', localStorage.getItem('currentUserPMO')!);
-            localStorage.setItem('STATE', 'true');
+            this.storage.setItem('currentUser', this.storage.getItem('currentUserPMO')!);
+            this.storage.setItem('STATE', 'true');
             this.router.navigateByUrl('/pmo')
           }
          );

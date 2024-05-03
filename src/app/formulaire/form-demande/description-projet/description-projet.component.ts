@@ -83,13 +83,13 @@ export class DescriptionProjetComponent implements OnInit {
     this.descriptionForm.controls.PourcentageJeunessNonPermanent.disable()
     this.descriptionForm.controls.pourcentageJeunesPermanent.disable()
 
-    if (localStorage.getItem('demandeCourante')) {
+    if (this.auth.storage.getItem('demandeCourante')) {
       let beneficiaire = new Beneficiaire();
       let demandeRecuperee: Demande;
 
 
-      demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+      demandeRecuperee = JSON.parse(<string>this.auth.storage.getItem('demandeCourante'));
+      const currentUser = JSON.parse(this.auth.storage.getItem('currentUser') || '');
       beneficiaire.id = currentUser.idParent;
       //console.log(demandeRecuperee);
       //console.log(beneficiaire.id);
@@ -197,14 +197,14 @@ export class DescriptionProjetComponent implements OnInit {
 
       let beneficiaire = new Beneficiaire();
       if (localStorage.getItem('currentUser') != null) {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
+        const currentUser = JSON.parse(this.auth.storage.getItem('currentUser') || '');
         beneficiaire.id = currentUser.idParent;
         demande.beneficiaire = beneficiaire;
       }
       descriptionCourante = JSON.stringify(demande);
 
 
-      localStorage.setItem("demandeCourante", descriptionCourante)
+      this.auth.storage.setItem("demandeCourante", descriptionCourante)
       this.eb.next()
     } else {
       if (this.nombreEntree === this.nombrecollapes - 3) {

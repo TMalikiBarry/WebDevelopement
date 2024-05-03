@@ -1,12 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 import {ConnexionComponent} from "./connexion/connexion.component";
-import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { Acces } from 'src/app/model/acces';
-import { PersonnePMO } from 'src/app/model/personnePMO';
-import { PmoService } from 'src/app/services/pmo/pmo.service';
-import { AddUserComponent } from './ajout-user/ajout-user.component';
-import { DataService } from 'src/app/services/data_service/data_service';
+import {NzNotificationService} from 'ng-zorro-antd/notification';
+import {PersonnePMO} from 'src/app/model/personnePMO';
+import {PmoService} from 'src/app/services/pmo/pmo.service';
+import {AddUserComponent} from './ajout-user/ajout-user.component';
+import {DataService} from 'src/app/services/data_service/data_service';
+import {StorageService} from "../../../services/Storage/storage.service";
 
 @Component({
   selector: 'app-form-ajout-user',
@@ -30,7 +30,8 @@ export class FormAjoutUserPMOComponent implements OnInit {
   showModel:boolean  = false;
   isSpinning: boolean = false;
 
-  constructor(private router : Router, private pmoService:PmoService, private data: DataService, private notification : NzNotificationService) { }
+  constructor(private router: Router, private pmoService: PmoService, private data: DataService, private notification: NzNotificationService, private storage: StorageService) {
+  }
 
   currentStepPosition : number = 0 ;
 
@@ -38,7 +39,7 @@ export class FormAjoutUserPMOComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.user = JSON.parse(this.storage.getItem('currentUser') || '{}');
       //console.log('local user', this.user);
   }
 

@@ -1,0 +1,38 @@
+<div class="container-fluid d-flex vh-100 text-center two-fa-screen">
+  <div class="row d-flex my-auto mx-auto"
+       style="padding:20px 40px; background-color: white;max-width: 450px; max-height: 500px;;">
+    <div class="mb-2" id="verifOtp">
+      GENERATION DU CODE OTP
+    </div>
+    <p>Veuillez installer Google Authenticator pour la vérification à 2 facteurs </p>
+    <div class="d-flex text-center mb-1">
+      <a>
+        <img alt="Play Store|Android" class="w-50 align-self-center"
+             src="assets/images/play-store-logo.jpg">
+      </a>
+      <a>
+        <img alt="App Store|Iphone" class="w-50 mt-2 align-self-end" src="assets/images/app-store-logo.jpg">
+      </a>
+    </div>
+
+    <p>Puis scannez le code QR suivant</p>
+
+    <div class="mb-2">
+      <img *ngIf="qrBase64" [src]="'data:image/jpeg;base64,' + qrBase64"
+           alt="Image en base64"
+           width="200">
+    </div>
+
+    <div class="d-flex text-center mb-2">
+
+      <span class=" me-auto" routerLink="/login" style="cursor: pointer;">Retour</span>
+
+      <button (click)="onNextStepTwoFa()" class="btn btn-primary me-1">Suivant</button>
+
+    </div>
+
+    <div class="col-12 text-center">
+
+    </div>
+  </div>
+</div>

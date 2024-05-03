@@ -2,11 +2,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Demande} from "../../model/demande";
 import {IdentifyEntrepreneurComponent} from "./identify-entrepreneur/identify-entrepreneur.component";
 import {IdentifyEntrepriseComponent} from "./identify-entreprise/identify-entreprise.component";
-import {Validators} from "@angular/forms";
-import {Beneficiaire} from "../../model/beneficiaire";
 import {TemplateAF} from "../../model/templateAF";
-import {BeneficiaireME} from "../../model/beneficiaire-me";
-import {FormDemandeComponent} from "../form-demande/form-demande.component";
 import {TouchPointService} from "../../services/touch-point/touch-point.service";
 import {NzModalService} from "ng-zorro-antd/modal";
 
@@ -55,8 +51,8 @@ export class FormAnalystePmeGieComponent implements OnInit {
         // let benef = new Beneficiaire();
         // let demandeRecuperee: Demande = new Demande();
         // //a revoir
-        // if(localStorage.getItem('demandeCourante')) {
-        //   demandeRecuperee = JSON.parse(<string>localStorage.getItem('demandeCourante'));
+        // if(this.storage.getItem('demandeCourante')) {
+        //   demandeRecuperee = JSON.parse(<string>this.storage.getItem('demandeCourante'));
         //   const currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
         //   benef.id = currentUser.idParent;
         //   if (!(this.description || demandeRecuperee.beneficiaire?.id == benef.id)) {
