@@ -1,13 +1,15 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {Login} from 'src/app/model/login';
 import {environment} from 'src/environments/environment';
 import {User} from "../../../model/user";
-import {map} from "rxjs/operators";
+import {catchError, map} from "rxjs/operators";
 import {Router} from '@angular/router';
 import {StorageService} from "../../Storage/storage.service";
 import {CodeOTPInfos} from "../../../model/CodeOTP/code-otp";
+import {RefreshtokenRequest} from "../../../model/rToken/refreshtoken-request";
+import {RefreshtokenResponse} from "../../../model/rToken/refreshtoken-response";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,7 @@ export class AuthService {
   private currentUserSubject!: BehaviorSubject<User>;
   public currentUser!: Observable<Login>;
   roleAs!: string | null;
+  freq: number = 0;
 
   constructor(private http: HttpClient, private router: Router, public storage: StorageService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(<string>this.storage.getItem("currentUser")));
@@ -41,7 +44,6 @@ export class AuthService {
   login(username: string, password: string) {
     return this.http.post<any>(this.host + "/auth/signin", { username, password })
       .pipe(map(user => {
-        // console.log('user', user);
         // login successful if there's a jwt token in the response
         if (user && user.token) {
         //   if(user.roles?.includes("SUPERVISEUR_BE") && user.personne?.beneficiaire?.statut?.trim()=='PENDING_REGISTRED'){
@@ -61,11 +63,32 @@ export class AuthService {
       }));
   }
 
+  refreshToken(rtRequest: RefreshtokenRequest) {
+    // console.log('TOKEN ID ', rtRequest);
+
+    return this.http.post<RefreshtokenResponse>(this.host+'/auth/signin/refreshtoken', rtRequest).pipe(
+      map(response => {
+        let currentUser = this.currentUserValue;
+
+        // console.log('FREQUENCE REFRESH TOKEN ', ++this.freq);
+        // Update local storage with new token
+        if (response.accessToken) {
+          currentUser.token = response.accessToken;
+          // currentUser.refreshToken = response.refreshToken;
+          this.storage.setItem('currentUser', JSON.stringify(currentUser));
+          this.currentUserSubject.next(currentUser);
+        }
+        return response;
+      }),
+      catchError(error => {
+        return throwError(error);
+      }));
+  }
+
   routingAlreadyConnectedApp(){
     // console.log('babs');
     if (localStorage.getItem('currentUser')) {
       let user = JSON.parse(this.storage.getItem('currentUser') || '{}');
-      // console.log('local storage', user);
       this.isLogin = true;
       if (user.roles?.includes("SUPERVISEUR_BE")){
         // console.log('babs');
@@ -80,8 +103,9 @@ export class AuthService {
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.clear();
     this.currentUserSubject.next(new User());
+    localStorage.clear();
+    this.freq = 0;
     this.router.navigateByUrl('');
   }
 

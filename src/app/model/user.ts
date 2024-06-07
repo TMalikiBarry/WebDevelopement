@@ -13,7 +13,7 @@ export class User extends Login{
   username : String = '';
   codeQR?: string;
   auth_statut?: AUTHLICYCLEStatus;
-
+  refreshToken?: string;
 }
 
 export enum Role{
