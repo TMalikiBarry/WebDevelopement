@@ -276,9 +276,9 @@ export class RegisterFormEntrepriseComponent implements OnInit, OnChanges {
         ' Siège : Paris (Bezons) River Ouest 80 Quai Voltaire 95870 Bezons </br>' +
         ' T: +33 (0)1 73 26 00 00</p>' +
         '<h5>A PROPOS DU SITE</h5>' +
-        '<p>Suqali est une plateforme digitale conçue pour favoriser l\'inclusion financière. Elle est destinée à tous les micro-entrepreneurs, et micros, petites et moyennes entreprises des 14 régions du Sénégal dans le but de faciliter leur accès au financement.</p>' +
+        '<p>TouchFinace est une plateforme digitale conçue pour favoriser l\'inclusion financière. Elle est destinée à tous les micro-entrepreneurs, et micros, petites et moyennes entreprises des 14 régions du Sénégal dans le but de faciliter leur accès au financement.</p>' +
         '<p>Pour apporter de la valeur à nos utilisateurs, il nous tient à cœur de leur donner la possibilité de profiter en toute fiabilité et sécurité de l’écosystème que nous créons.</p>' +
-        '<p>Les présents Conditions Générales d’Utilisation (CGU) ont pour objet l’encadrement juridique de l’utilisation du site Web Suqali et régissent le recours et l’utilisation des produits et services proposés via la plateforme Web. Le site internet « https://suqali.com» vous permet de : :</br>' +
+        '<p>Les présents Conditions Générales d’Utilisation (CGU) ont pour objet l’encadrement juridique de l’utilisation du site Web TouchFinace et régissent le recours et l’utilisation des produits et services proposés via la plateforme Web. Le site internet « https://suqali.com» vous permet de : :</br>' +
         ' - Vous inscrire gratuitement et présenter de votre activité</br>' +
         ' - Soumettre une demande de financement afin qu’on vous oriente vers nos partenaires de mise en œuvre</br>' +
         ' - Bénéficier d’un financement auprès d’un partenaire de mise en œuvre sous réserve que votre demande soit approuvée:</br>' +
@@ -290,7 +290,7 @@ export class RegisterFormEntrepriseComponent implements OnInit, OnChanges {
         '</p>' +
         '<p>Les Conditions Générales d’utilisation doivent être acceptées par tous les Utilisateurs et l’accès au site par ces derniers vaut acceptation de ces conditions.</p>' +
         '<h6>ARTICLE 1 – DEFINITIONS</h6>' +
-        '<p><strong>Conditions Générales d’Utilisation</strong> : désignent les présentes Conditions Générales d’Utilisation.<br></br> - <strong>Candidat</strong> : Désigne toute personne utilisant les services de suqali pour s’inscrire en vue d’obtenir un financement de ses activités via la plateforme https://suqali.com/</p>' +
+        '<p><strong>Conditions Générales d’Utilisation</strong> : désignent les présentes Conditions Générales d’Utilisation.<br></br> - <strong>Candidat</strong> : Désigne toute personne utilisant les services de TouchFinace pour s’inscrire en vue d’obtenir un financement de ses activités via la plateforme https://suqali.com/</p>' +
         '<p><strong>Données personnelles</strong> : désigne toute information se rapportant à une personne physique ou morale identifiée ou identifiable. Une personne peut être identifiée directement (exemple : nom, prénom) ou indirectement (exemple : par un identifiant (n° client), un numéro (de téléphone), une donnée biométrique, plusieurs éléments spécifiques propres à son identité physique, physiologique, génétique, psychique, économique, culturelle ou sociale, mais aussi la voix ou l’image).</p>' +
         '<p>L’identification d’une personne physique peut être réalisée à partir d’une seule donnée (exemple : numéro de sécurité sociale, ADN) ou à partir du croisement d’un ensemble de données (exemple : une femme vivant à telle adresse, née tel jour, abonnée à tel magazine et militant dans telle association)</p>' +
         '<p><strong>RGPD</strong> : désigne le Règlement (UE) 2016/679 Du Parlement Européen du Conseil du 27 Avril 2016 relatif à la protection des personnes physiques à l\'égard du traitement des données à caractère personnel et à la libre circulation de ces données.</p>' +
@@ -302,7 +302,7 @@ export class RegisterFormEntrepriseComponent implements OnInit, OnChanges {
         '<p>Le site et ses différents services peuvent être interrompus ou suspendus par Intouch, notamment à l’occasion d’une mise à jour ou d’une maintenance sans obligation de préavis ou de justification.</p>' +
         '<h6>ARTICLE 4 – OBLIGATIONS DES UTILISATEURS</h6>' +
         '<p>L’Utilisateur devra : </br>' +
-        '- Lors de son inscription sur le site suqali , ' +
+        '- Lors de son inscription sur le site TouchFinace , ' +
         'fournir des informations exactes et toutes les pièces utiles à son identification conformément à la règlementation en vigueur. En tout état de cause l’Utilisateur devra créer : </br>' +
         '° un nom d’utilisateur et un mot de passe ; </br>' +
         '° fournir une copie recto/verso d’une pièce d’identité en cours de validité (Passeport, CNI), </br>' +
@@ -321,13 +321,13 @@ export class RegisterFormEntrepriseComponent implements OnInit, OnChanges {
         '<p><strong>InTouch</strong> n\'est pas responsable des dommages causés à l\'Utilisateur, à des tiers et/ou à l\'équipement de l\'Utilisateur du fait de sa connexion ou de son utilisation du site et l\'Utilisateur renonce à toute action contre InTouch de ce fait. Plus précisément <strong>InTouch</strong> décline toute responsabilité dans les cas suivants :</p>' +
         '<p>Dans la limite des lois applicables, <strong>InTouch</strong> n’est pas responsable du comportement d’un Utilisateur , de la mauvaise exécution ou de l’inexécution des obligations Utilisateurs. L’Utilisateur s’engage à garder confidentiel ces informations d\'accès à l\'application à l’égard des tiers et s’engage également à mettre à jour, sans délai, les informations sur le site qui ne sont plus pertinentes en raison de modifications de ses données (en particulier celles fournies au moment de son inscription).</p>' +
         '<p>Si <strong>InTouch</strong> venait à faire l\'objet d\'une procédure amiable ou judiciaire en raison de l\'utilisation du site par l\'Utilisateur, il pourra se retourner contre lui pour obtenir indemnisation de tous les préjudices, sommes, condamnations et frais qui pourraient découler de cette procédure.</p>' +
-        '<p>Des liens hypertextes peuvent être présents sur le site. L’utilisateur est informé qu’en cliquant sur ces liens, il sortira du site. Ces liens hypertextes mis en place dans le cadre du présent site Suqali en direction d’autres ressources présentes sur le réseau Internet ne sauraient engager la responsabilité d’<strong>InTouch</strong>.</p>' +
+        '<p>Des liens hypertextes peuvent être présents sur le site. L’utilisateur est informé qu’en cliquant sur ces liens, il sortira du site. Ces liens hypertextes mis en place dans le cadre du présent site TouchFinace en direction d’autres ressources présentes sur le réseau Internet ne sauraient engager la responsabilité d’<strong>InTouch</strong>.</p>' +
         '<h6>ARTICLE 6 – PROPRIETE INTELLECTUELLE</h6>' +
         '<p>Tous les documents techniques, produits, photographies, textes, logos, dessins, vidéos, copyright etc., sont soumis à des droits d\'auteur et sont protégés par les lois en vigueur sur la propriété intellectuelle. Lorsqu\'ils\n' +
         '\n' +
         'sont remis aux Clients ou Utilisateurs, ils demeurent la propriété exclusive du seul titulaire des droits de propriété intellectuelle sur ces documents, qui doivent lui être rendus à sa demande</p>' +
         '<p>L’Utilisateur reconnaît que l’utilisation qu’il fait du site et l’adhésion aux présentes CGU ne lui concèdent aucun droit ni aucun titre de propriété quel qu’il soit sur la plateforme et ne tentera aucune action qui mettrait en péril les droits d’<strong>InTouch</strong>.</p>' +
-        '<p>Aucune disposition des CGU ne confère ou ne sera considérée comme conférant à l’Utilisateur le droit ou la licence pour l’utilisation de la propriété intellectuelle du site. A cet effet, l’Utilisateur n’est pas autorisé à utiliser les marques et logos de Suqali ou des groupes de sociétés auxquels celle-ci appartient sans l’accord préalable exprès de celle-ci.</p>' +
+        '<p>Aucune disposition des CGU ne confère ou ne sera considérée comme conférant à l’Utilisateur le droit ou la licence pour l’utilisation de la propriété intellectuelle du site. A cet effet, l’Utilisateur n’est pas autorisé à utiliser les marques et logos de TouchFinace ou des groupes de sociétés auxquels celle-ci appartient sans l’accord préalable exprès de celle-ci.</p>' +
         '<h6>ARTICLE 7 – PROTECTION DES DONNEES PERSONNELLES</h6>' +
         '<p><strong>InTouch</strong> en sa qualité » de Responsable de traitement dispose d’autorisations de la Commission de Protection des Données Personnelles ayant fait l’objet des' +
         ' <strong>délibérations n°2017-00259/ CDP du 10 Février 2017 et n°2019-00418/ CDP du 02 Octobre 2019</strong>' +

@@ -485,7 +485,7 @@ export class SelphieComponent implements OnInit {
 
 
 
-            // save image to the suqali db
+            // save image to the TouchFinace db
             this.fileService.save(formData, 'SELPHIE').subscribe(
               response => {
                 //console.log(response);

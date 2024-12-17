@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   host: "https://be.suqali.com/api/teranga",
   baseUrlFile: "https://be.suqali.com/files/",
   appVersion : require('../../package.json').version ,

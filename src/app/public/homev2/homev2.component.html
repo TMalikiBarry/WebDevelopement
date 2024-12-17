@@ -1,10 +1,10 @@
 <nz-layout class="test">
   <div nz-row nzAlign="middle" nzJustify="center" id="menu-home">
-    <!-- logo de suqali -->
+    <!-- logo de TouchFinace -->
     <div nz-col [nzXs]="{ offset: 0, span: 6, push: 0 }" [nzSm]="{ offset: 0, span: 6, push: 0 }" [nzMd]="{ span: 2, offset: 0 }" [nzLg]="{ span: 2 }" [nzXl]="{ span: 2 }" routerLink="/homev2">
-      <img src="../../../assets/images/logo-TG_valide.svg" width="150" height="100" alt="Suqali">
+      <img src="assets/images/Touch-Finance.png" width="150" height="100" alt="Suqali">
     </div>
-    <!-- logo de suqali -->
+    <!-- logo de TouchFinace -->
 
     <!-- menu  -->
     <div nz-col [nzXs]="{ offset: 1, span: 10, push: 0 }" [nzSm]="{ offset: 0, span: 10, push: 0 }" [nzMd]="{ span: 24, offset: 0 }" [nzLg]="{ span: 16 }" [nzXl]="{ span: 18 }">
@@ -114,7 +114,7 @@
       <div nz-row nzJustify="center">
 
         <div nz-col [nzXs]="{ span: 8, offset: 1}" [nzSm]="{ span: 8, offset: 1 }" [nzMd]="{ span: 3, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
-          <app-stat-card imgSrc="../../../assets/images/image-statistique/benef-entreprise.png"
+          <app-stat-card imgSrc="assets/images/image-statistique/benef-entreprise.png"
                          [statNumber]="indicateurs?.nombreBeneficiaireEntreprise"
                          statText="entreprises bénéficiaires">
           </app-stat-card>
@@ -122,7 +122,7 @@
 
         <div nz-col [nzXs]="{ span: 8, offset: 1}" [nzSm]="{ span: 8, offset: 1 }" [nzMd]="{ span: 3, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
 
-          <app-stat-card imgSrc="../../../assets/images/image-statistique/benef-date.png"
+          <app-stat-card imgSrc="assets/images/image-statistique/benef-date.png"
                          [statNumber]="indicateurs?.nombreBeneficiaireMicroEntrepreneur"
                          statText="micro-entrepreneures bénéficiaires">
 
@@ -130,21 +130,21 @@
         </div>
 
         <div nz-col [nzXs]="{ span: 8, offset: 1}" [nzSm]="{ span: 8, offset: 1 }" [nzMd]="{ span: 3, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
-          <app-stat-card imgSrc="../../../assets/images/image-statistique/benef-femme.png"
+          <app-stat-card imgSrc="assets/images/image-statistique/benef-femme.png"
                          statNumber="{{indicateurs?.pourcentageBeneficiaireFemme}}%"
                          statText="de bénéficiaires femmes financées">
           </app-stat-card>
         </div>
 
         <div nz-col [nzXs]="{ span: 8, offset: 1}" [nzSm]="{ span: 8, offset: 1 }" [nzMd]="{ span: 3, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
-          <app-stat-card imgSrc="../../../assets/images/image-statistique/benef-jeune.png"
+          <app-stat-card imgSrc="assets/images/image-statistique/benef-jeune.png"
                          statNumber="{{indicateurs?.pourcentageBeneficiaireJeune}}%"
                          statText="de jeunes bénéficiaires financés">
           </app-stat-card>
         </div>
 
         <div nz-col [nzXs]="{ span: 8, offset: 1}" [nzSm]="{ span: 8, offset: 1 }" [nzMd]="{ span: 3, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
-          <app-stat-card imgSrc="../../../assets/images/image-statistique/benef-rural.png"
+          <app-stat-card imgSrc="assets/images/image-statistique/benef-rural.png"
                          statNumber="{{indicateurs?.pourcentageBeneficiaireZoneRurale}}%"
                          statText="de bénéficiaires dans les zones rurales">
           </app-stat-card>
@@ -168,14 +168,14 @@
       <!-- content a propos -->
       <div nz-row style="height: inherit;">
         <div nz-col [nzXs]="{ span: 12 }" [nzSm]="{ span: 12 }" [nzMd]="{ span: 12 }" [nzLg]="{ span:12 }" [nzXl]="{ span: 12 }">
-          <img src="../../../assets/images/aproposdenous.png" class="photo-apropos-v2" width="100%" alt="">
+          <img src="assets/images/aproposdenous.png" class="photo-apropos-v2" width="100%" alt="">
         </div>
         <div nz-col [nzXs]="{ span: 12 }" [nzSm]="{ span: 12 }" [nzMd]="{ span: 12 }" [nzLg]="{ span:12 }" [nzXl]="{ span: 12 }" id="apropos-content-text" style="height:inherit;" >
           <div nz-row nzJustify="center"   style="height: inherit;">
             <div nz-col nzSpan="13" id="apropos-text" style="overflow-y: auto" >
               <div nz-row nzAlign="bottom" style="height: 100%;">
                 <div nz-col>
-                  Suqali est une plateforme digitale conçue pour favoriser l'inclusion financière. Elle est destinée à tous les micro-entrepreneurs,
+                  TouchFinace est une plateforme digitale conçue pour favoriser l'inclusion financière. Elle est destinée à tous les micro-entrepreneurs,
                   et micros, petites et moyennes entreprises des 14 régions du Sénégal dans le but de faciliter leur accès au financement.
                 </div>
               </div>
@@ -240,7 +240,7 @@
               </div>
             </div>
             <div nz-col nzSpan="1">
-              <img src="../../../assets/images/ligne-fonctionnement.png" alt="">
+              <img src="assets/images/ligne-fonctionnement.png" alt="">
             </div>
             <div nz-col nzSpan="19" style="height: 221px;" >
               <div nz-row style="height: inherit; overflow-y: auto">
@@ -281,7 +281,7 @@
           </div>
         </div>
         <div nz-col nzSpan="8" style="height: inherit;">
-          <img src="../../../assets/images/image-comment-ca-marche.png" width="100%" alt="">
+          <img src="assets/images/image-comment-ca-marche.png" width="100%" alt="">
         </div>
       </div>
     </div>
@@ -330,83 +330,83 @@
             [loopFillGroupWithBlank]="true"
             style="height:inherit">
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/WIC Capital Logo.png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/WIC Capital Logo.png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/incubateur_ugb.jpg">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/incubateur_ugb.jpg">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/LOGO BNDE.png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/LOGO BNDE.png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/LOGO CTIC .png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/LOGO CTIC .png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/LOGO I-UMCEC HD.jpg">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/LOGO I-UMCEC HD.jpg">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/Logo RED .png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/Logo RED .png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/Logocaurie_A4.png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/Logocaurie_A4.png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/makesense.png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/makesense.png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/Brightmore Capital - Logo.png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/Brightmore Capital - Logo.png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/IMPACTHUB.png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/IMPACTHUB.png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/ISM.png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/ISM.png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/UADB.png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/UADB.png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/DER.png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/DER.png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/impact4energy.png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/impact4energy.png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/uaszinnovzig.jpeg">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/uaszinnovzig.jpeg">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/AMI.jpg">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/AMI.jpg">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-            <app-partner-card srcImage="../../../assets/images/partenaires-confiance/GAPP-1.png">
+            <app-partner-card srcImage="assets/images/partenaires-confiance/GAPP-1.png">
             </app-partner-card>
           </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/PYLON.jpg">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/PYLON.jpg">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/NCS.png">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/NCS.png">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
-              <app-partner-card srcImage="../../../assets/images/partenaires-confiance/PPI.jpg">
+              <app-partner-card srcImage="assets/images/partenaires-confiance/PPI.jpg">
               </app-partner-card>
             </ng-template>
             <ng-template swiperSlide class="swiper-slide-element">
@@ -458,7 +458,7 @@
                 <input type="text" nz-input placeholder="input search text" />
               </nz-input-group>
               <ng-template #suffixIconSearch>
-                <img src="../../../assets/images/icone-home/icone-recherche.png " alt="">
+                <img src="assets/images/icone-home/icone-recherche.png " alt="">
               </ng-template>
             </div>
 
@@ -535,7 +535,7 @@
               <div nz-row nzJustify="center" >
                 <div nz-col nzSpan="20" >
                   <div nz-row nzJustify="center" >
-                    <img src="../../../assets/images/icone-home/mail.png" height="62"  alt="">
+                    <img src="assets/images/icone-home/mail.png" height="62"  alt="">
                   </div>
                 </div>
                 <div nz-col nzSpan="20" style="margin-top : 20px" >
@@ -550,7 +550,7 @@
               <div nz-row nzJustify="center" >
                 <div nz-col nzSpan="20" >
                   <div nz-row nzJustify="center" >
-                    <img src="../../../assets/images/icone-home/call.png" alt="">
+                    <img src="assets/images/icone-home/call.png" alt="">
                   </div>
                 </div>
                 <div nz-col nzSpan="20" style="margin-top : 20px " >
@@ -629,7 +629,7 @@
 
               <div nz-row nzJustify="center" >
                 <div nz-col [nzXs]="{ span: 5, offset: 1}" [nzSm]="{ span: 5, offset: 1 }" [nzMd]="{ span: 5, offset: 1 }" [nzLg]="{ span:5, offset: 1 }" [nzXl]="{ span: 5, offset: 1 }">
-                  <img src="../../../assets/images/icone-home/call-center.png" width="50" height="50" alt="">
+                  <img src="assets/images/icone-home/call-center.png" width="50" height="50" alt="">
                 </div>
                 <div nz-col [nzXs]="{ span: 18, offset: 1}" [nzSm]="{ span: 18, offset: 1 }" [nzMd]="{ span: 18, offset: 1 }" [nzLg]="{ span:18, offset: 1 }" [nzXl]="{ span: 18, offset: 1 }">
                   <div nz-row nzJustify="center" >
@@ -672,12 +672,12 @@
 
           <div nz-row  >
             <div nz-col [nzXs]="{ span: 12, push: 3 }" [nzSm]="{ span: 12, push: 3 }" [nzMd]="{ span: 4, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 3, offset: 1 }">
-              <img src="../../../assets/images/logo-TG_valide.svg" height="70" alt="">
+              <img src="assets/images/Touch-Finance.png" height="70" alt="">
             </div>
             <div nz-col [nzXs]="{ span: 12, push: 3 }" [nzSm]="{ span: 12, push: 3 }" [nzMd]="{ span: 4, offset: 1 }" [nzLg]="{ span:3, offset: 1 }" [nzXl]="{ span: 2, offset: 1 }">
               <div nz-row nzJustify="start" nzAlign="middle" style="height: 100%" >
                 <div nz-col >
-                  <img src="../../../assets/images/image-footer/Masrecard fondation.png" alt="">
+                  <img src="assets/images/image-footer/Masrecard fondation.png" alt="">
                 </div>
               </div>
             </div>
@@ -691,12 +691,12 @@
             </div>
             <div nz-col [nzXs]="{ span: 3, offset: 1}" [nzSm]="{ span: 3, offset: 1 }" [nzMd]="{ span: 3, offset: 1, push: 3 }" [nzLg]="{ span:2, offset: 1 }" [nzXl]="{ span: 1, offset: 1 }">
               <a href="https://www.facebook.com/Suqali-100680222470713" target="_blank" >
-                <img src="../../../../../../../assets/images/Social Icons/White/facebook.svg" alt=""height="40" width="40">
+                <img src="assets/images/Social Icons/White/facebook.svg" alt=""height="40" width="40">
               </a>
             </div>
             <div nz-col [nzXs]="{ span: 3, offset: 1}" [nzSm]="{ span: 5, offset: 1 }" [nzMd]="{ span: 3, offset: 1, push: 3 }" [nzLg]="{ span:2, offset: 1 }" [nzXl]="{ span: 1, offset: 1 }">
               <a href="https://www.linkedin.com/company/suqalisn/" target="_blank">
-                <img src="../../../assets/images/Social Icons/White/linkedin.svg" alt=""height="40" width="40">
+                <img src="assets/images/Social Icons/White/linkedin.svg" alt=""height="40" width="40">
               </a>
             </div>
             <div nz-col [nzXs]="{ span: 3, offset: 1}" [nzSm]="{ span: 5, offset: 1 }" [nzMd]="{ span: 3, offset: 1, push: 3 }" [nzLg]="{ span:2, offset: 1 }" [nzXl]="{ span: 1, offset: 1 }">
@@ -706,7 +706,7 @@
             </div>
             <div nz-col [nzXs]="{ span: 2, offset: 1}" [nzSm]="{ span: 3, offset: 1 }" [nzMd]="{ span: 3, offset: 1, push: 3 }" [nzLg]="{ span:2, offset: 1 }" [nzXl]="{ span: 1, offset: 1 }">
               <a href="https://www.youtube.com/channel/UCTCjqZgCsIhpGlnu3QB-vUA" target="_blank">
-                <img src="../../assets/images/Social Icons/White/Youtube.svg" alt=""height="40" width="40">
+                <img src="assets/images/Social Icons/White/Youtube.svg" alt=""height="40" width="40">
               </a>
             </div>
           </div>
@@ -719,22 +719,22 @@
             </div>
             <div nz-col nzSpan="3">
               <a href="https://twitter.com/SuqaliSN" target="_blank">
-                <img src="../../assets/images/Social Icons/White/twitter.svg" height="40" width="40">
+                <img src="assets/images/Social Icons/White/twitter.svg" height="40" width="40">
               </a>
             </div>
             <div nz-col nzSpan="3">
               <a href="https://www.facebook.com/Suqali-100680222470713" target="_blank" >
-                <img src="../../assets/images/Social Icons/White/facebook.svg" alt=""height="40" width="40">
+                <img src="assets/images/Social Icons/White/facebook.svg" alt=""height="40" width="40">
               </a>
             </div>
             <div nz-col nzSpan="3">
               <a href="https://www.linkedin.com/company/suqalisn/" target="_blank">
-                <img src="../../assets/images/Social Icons/White/linkedin.svg" alt=""height="40" width="40">
+                <img src="assets/images/Social Icons/White/linkedin.svg" alt=""height="40" width="40">
               </a>
             </div>
             <div nz-col nzSpan="3">
               <a href="https://www.youtube.com/channel/UCTCjqZgCsIhpGlnu3QB-vUA" target="_blank">
-                <img src="../../assets/images/Social Icons/White/Youtube.svg" alt=""height="40" width="40">
+                <img src="assets/images/Social Icons/White/Youtube.svg" alt=""height="40" width="40">
               </a>
             </div>
           </div>

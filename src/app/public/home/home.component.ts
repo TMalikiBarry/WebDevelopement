@@ -325,7 +325,7 @@ envoyerMessage(){
 
   lat = 14.710282610378616;
   lng = -17.475344902340513;
-  iconUrlValue = { url: '../../../assets/images/logo/logo-mini.svg',
+  iconUrlValue = { url: 'assets/images/Touch-Finance.png',
                   scaledSize: {height: 40, width: 40} } ;
   zoom = 12;
   title = 'Vous';
