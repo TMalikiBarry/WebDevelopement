@@ -12,6 +12,7 @@
 
 .menu-button{
   height: 50px;
+  margin-right: 5px;
 }
 
 .menu-button:focus {
@@ -21,8 +22,9 @@
 }
 
 .menu-button:hover{
-  background-color: #F49D1E;
-  border-color: #F49D1E;
+  background-color: rgba(168, 23, 53, 0.55);
+  border-color: rgba(168, 23, 53, 0.8);
+  color : white ;
 }
 
 #button-connexion{
@@ -52,7 +54,7 @@
 }
 .slide-container{
   height: 500px;
-  background-image:linear-gradient(0.25turn, #2d70eb, #ebf8e179, #f7990b),  url(assets/images/image-slide-principal/Agri-bon.PNG);
+  background-image:linear-gradient(0.25turn, #2d70eb, #ebf8e179, rgba(168, 23, 53, 0.6)),  url(/assets/images/image-slide-principal/Agri-bon.PNG);
   background-size: cover;
   background-repeat: no-repeat;
   background-position:center;
@@ -61,7 +63,7 @@
 
 .slide-container-2{
   height: 500px;
-  background-image:linear-gradient(0.25turn, #2d70eb, #ebf8e179, #f7990b),  url(assets/images/image-slide-principal/artisanat-bn.PNG);
+  background-image:linear-gradient(0.25turn, #2d70eb, #ebf8e179, rgba(168, 23, 53, 0.6)),  url(/assets/images/image-slide-principal/artisanat-bn.PNG);
   background-size: cover;
   background-repeat: no-repeat;
   background-position:center;
@@ -69,7 +71,7 @@
 }
 .slide-container-3{
   height: 500px;
-  background-image:linear-gradient(0.25turn, #2d70eb, #ebf8e179, #f7990b),  url(assets/images/image-slide-principal/elevage-bn.PNG);
+  background-image:linear-gradient(0.25turn, #2d70eb, #ebf8e179, rgba(168, 23, 53, 0.6)),  url(/assets/images/image-slide-principal/elevage-bn.PNG);
   background-size: cover;
   background-repeat: no-repeat;
   background-position:center;
@@ -97,7 +99,7 @@
   font-weight: 500;
   font-family: "Avenir";
   text-align: center;
-  border-bottom: 3px solid #f18d1d ;
+  border-bottom: 3px solid #A81735 ;
   border-bottom-left-radius : 2px ;
   border-bottom-right-radius : 2px ;
 }
@@ -140,7 +142,7 @@
   font-size: 25px;
   color: #000000;
   font-weight: 500;
-  border-bottom: 2px solid #f28e1e;
+  border-bottom: 2px solid #A81735;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
 }
@@ -167,7 +169,7 @@
 }
 
 #apropos-content-text{
-  background-image: url(assets/images/Touch-Finance.png);
+  background-image: url(/assets/images/Touch-Finance.png);
   background-position-x: center;
   background-position-y: 20%;
   background-repeat: no-repeat;
@@ -180,8 +182,8 @@
   margin-top : 20px;
   height: 55px;
   width: auto;
-  background-color: #f18d1d;
-  border-color : #f18d1d;
+  background-color: rgba(168, 23, 53, 0.8);
+  border-color : #A81735;
   border-radius: 32px;
   font-size: 21px;
 }
@@ -212,13 +214,13 @@
 
 .header-line{
   height: 3px;
-  background-color: #f18d1d;
+  background-color: #A81735;
   border-radius:3px;
 }
 
 
 #fonc-body {
-  background-color: #f18d1d;
+  background-color: #A81735;
   height: 550px;
   clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
 }
@@ -384,7 +386,7 @@ agm-map {
 // ***************************************  Footer   ***************************************
 
 #footer-home {
-  border-top : 5px solid #f28e1e;
+  border-top : 5px solid #A81735;
   min-height: 100px;
   background-color: #156ab3;
 }

@@ -120,14 +120,14 @@
 // **************** Slider Design *********************
 
 .slider-container-1 {
-background: url(assets/images/image-slide-principal/Agri-bon.PNG);
+background: url(/assets/images/image-slide-principal/Agri-bon.PNG);
 background-size: cover;
 background-position: center;
 height: 500px ;
 }
 
 .slider-container-2 {
-  background: url(assets/images/image-slide-principal/artisanat-bn.PNG);
+  background: url(/assets/images/image-slide-principal/artisanat-bn.PNG);
   background-size: cover;
   background-position: center;
   height: 500px ;
@@ -135,7 +135,7 @@ height: 500px ;
 
   }
 .slider-container-3 {
-  background: url(assets/images/image-slide-principal/elevage-bn.PNG);
+  background: url(/assets/images/image-slide-principal/elevage-bn.PNG);
   background-size: cover;
   background-position: center;
   height: 500px ;
@@ -158,7 +158,7 @@ height: 500px ;
 .statistic-container {
   min-height: 450 px;
   height: fit-content;
-  background-image: url(assets/images/background-statistic.svg);
+  background-image: url(/assets/images/background-statistic.svg);
   background-size: cover;
   background-position: top ;
   background-color: #FFFFFF;
@@ -302,7 +302,7 @@ height: 500px ;
 .comment-ca-part{
   min-height: 596px;
   height: fit-content;
-  background-image: url(assets/images/comment-bg.svg);
+  background-image: url(/assets/images/comment-bg.svg);
   background-color: white;
   background-position: bottom;
 }
@@ -492,7 +492,7 @@ color: #000000;
 .temoignages {
   min-height:440px ;
   height: fit-content;
-  background-image: url(assets/images/temoignages/bg-temoignages.svg);
+  background-image: url(/assets/images/temoignages/bg-temoignages.svg);
   background-repeat: no-repeat;
   background-size:cover;
   background-color: #F1F1F9;

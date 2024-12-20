@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   // host: "http://localhost:8080/api/teranga",
   // baseUrlFile: "http://localhost:8090/api/teranga/files/",
-  host: "https://dev-be.suqali.com/api/teranga",
-  baseUrlFile: "https://dev-be.suqali.com/files/",
+  host: "https://dev-ssii.gutouch.net/api/teranga",
+  baseUrlFile: "https://dev-ssii.gutouch.net/files/",
 
 
 /*  host: "https://dev-touch-ssii-api.gutouch.net/suqali/api/teranga",
